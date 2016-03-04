@@ -2,44 +2,36 @@ CMSC128_CSV_AB7L
 =====
 
 
-Table of contents
------
-- [Introduction](#introduction)
-- [Running the application](#running-the-application)
-- [Creating a controller](#creating-a-controller)
-- [Contributing](#contributing)
-- [Running test](#running-test)
-- [Code coverage](#code-coverage)
-- [API documentation](#api-documentation)
-- [License](#license)
-- [Author](#author)
-
-
 Introduction
 -----
 This application uses the anytv-node-boilerplate.
 
 The CSVs is an online application that allows teachers to select random ‘volunteers’. The volunteers are students enrolled in a class.
 
+
+## Prerequisites
+1. MySQL 5.6 (the user "root" is assumed to have the password "user")
+2. git (sudo apt-get install git)
+3. npm (sudo apt-get install npm)
+4. Node.js version 5.0 or above (If node.js is not updated, run "update_nodejs.sh", if you can't run the script run "chmod 755 update_nodejs.sh")
+5. sudo ln -sf /usr/local/n/version/node/<VERSION_OF_NODE>/bin/node /usr/bin/node 
+
 ## Running the application
 
-
-1. Download Zip
-2. Extract to your project's folder
-3. Import `database/schema.sql` and `database/seed.sql`
+1. git clone https://github.com/WareAnj/CMSC128_CSV_AB7L.git
+2. Import `database/schema.sql` and `database/seed.sql`
   ```sh
   mysql -uroot -puser < database/schema.sql
   mysql -uroot -puser < database/seed.sql
   ```
 
-4. Run this commands :
+3. Run this commands :
   ```sh
-  npm install -g grunt-cli
   npm install
-  grunt
+  sudo npm install -g nodemon
   ```
-
-5. check http://localhost
+4. npm start
+4. check http://localhost:5000
 
 
 Creating a controller
@@ -193,9 +185,8 @@ Notes:
 
 
 
-## Contributing
 
-Install the tools needed:
+<!-- Install the tools needed:
 ```sh
 npm install istanbul -g
 npm install apidoc -g
@@ -221,12 +212,8 @@ Then open coverage/lcov-report/index.html.
 ```sh
 npm run docs
 ```
-Then open apidoc/index.html.
-
-## License
-
-MIT
-
+Then open apidoc/index.html. -->
 
 ## Author
-[Freedom! Labs, any.TV Limited DBA Freedom!](https://www.freedom.tm)
+
+CMSC 128 AB-7L Students

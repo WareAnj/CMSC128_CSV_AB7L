@@ -22,10 +22,10 @@
     "winston": "^2.1.0"
   },
   "scripts": {
-    "start": "node server.js",
-    "test": "grunt test",
+    "start": "nodemon server.js",
+    "test": "make test",
     "coverage": "unset NODE_ENV && istanbul cover _mocha -- --recursive -R spec -t 5000 -s 100",
-    "test-dev": "grunt test-watch",
+    "test-dev": "unset NODE_ENV && mocha --watch --recursive -R spec -t 5000 -s 100",
     "docs": "apidoc -i controllers -o apidoc/"
   },
   "repository": {
