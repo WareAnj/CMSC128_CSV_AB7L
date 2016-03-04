@@ -16,8 +16,11 @@ The CSVs is an online application that allows teachers to select random ‘volun
   then set the password of the `root` user to `user`
 2. git (`sudo apt-get install git`)
 3. npm (`sudo apt-get install npm`)
-4. Node.js version 5.0 or above. If node.js is not updated, run `update_nodejs.sh` and if you can't run the script run `chmod 755 update_nodejs.sh`
-5. Set the symbolic link of `node` by running `sudo ln -sf /usr/local/n/version/node/<VERSION_OF_NODE>/bin/node /usr/bin/node`
+4. Node.js version 5.0 or above.
+  `sudo npm cache clean -f`
+  `sudo npm install -g n`
+  `sudo n stable`
+  `sudo ln -sf /usr/local/n/version/node/<VERSION_OF_NODE>/bin/node /usr/bin/node`
   
 ## Running the application
 
@@ -25,7 +28,7 @@ The CSVs is an online application that allows teachers to select random ‘volun
 2. Import `database/schema.sql` and `database/seed.sql`
   ```sh
   mysql -uroot -puser < database/schema.sql
-  mysql -uroot -puser < database/seed.sql
+  mysql -uroot -puser test < database/seed.sql
   ```
 
 3. Run this commands :
