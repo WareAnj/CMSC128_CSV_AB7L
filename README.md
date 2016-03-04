@@ -20,7 +20,7 @@ The CSVs is an online application that allows teachers to select random ‘volun
   `sudo npm cache clean -f`
   `sudo npm install -g n`
   `sudo n stable`
-  `sudo ln -sf /usr/local/n/version/node/<VERSION_OF_NODE>/bin/node /usr/bin/node`
+  `sudo ln -sf /usr/local/n/versions/node/<VERSION_OF_NODE>/bin/node /usr/bin/node`
   
 ## Running the application
 
