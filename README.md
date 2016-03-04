@@ -10,12 +10,27 @@ The CSVs is an online application that allows teachers to select random ‘volun
 
 
 ## Prerequisites
-1. MySQL 5.6 (run "sudo apt-get install mysql-client-core-5.6 && sudo apt-get install mysql-server-5.6", then set the password of the "root" user to "user")
+1. MySQL 5.6
+  ```sh
+  sudo apt-get install mysql-client-core-5.6
+  sudo apt-get install mysql-server-5.6
+  ```
+  then set the password of the `root` user to `user`
 2. git (sudo apt-get install git)
 3. npm (sudo apt-get install npm)
-4. Node.js version 5.0 or above (If node.js is not updated, run "update_nodejs.sh", if you can't run the script run "chmod 755 update_nodejs.sh")
-5. sudo ln -sf /usr/local/n/version/node/<VERSION_OF_NODE>/bin/node /usr/bin/node 
-
+4. Node.js version 5.0 or above (If node.js is not updated, run
+  ```sh
+  update_nodejs.sh
+  ```
+  if you can't run the script run
+  ```sh
+  chmod 755 update_nodejs.sh
+  ```
+5. Set the symbolic link of `node`
+  ```sh
+  sudo ln -sf /usr/local/n/version/node/<VERSION_OF_NODE>/bin/node /usr/bin/node 
+  ```
+  
 ## Running the application
 
 1. git clone https://github.com/WareAnj/CMSC128_CSV_AB7L.git
