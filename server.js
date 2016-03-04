@@ -1,8 +1,5 @@
 'use strict';
 
-/**
-    Last maintained : 2015-11-06 (rvnjl)
-**/
 
 const config      = require(__dirname + '/config/config');
 const util        = require(__dirname + '/helpers/util');
