@@ -3,6 +3,17 @@ CREATE DATABASE cmsc128ab7l;
 USE cmsc128ab7l;
 
 
+
+DROP TABLE IF EXISTS admin;
+CREATE TABLE faculty_user(
+	admin_id INT NOT NULL AUTO_INCREMENT,
+	admin_username VARCHAR(32) NOT NULL,
+	admin_password VARCHAR(64) NOT NULL,
+	PRIMARY KEY(admin_id)
+);
+
+
+
 DROP TABLE IF EXISTS faculty_user;
 CREATE TABLE faculty_user(
 	faculty_user_id INT NOT NULL AUTO_INCREMENT,
@@ -17,6 +28,7 @@ CREATE TABLE faculty_user(
 );
 
 
+
 DROP TABLE IF EXISTS course;
 CREATE TABLE course(
 	course_code VARCHAR(16) NOT NULL,
@@ -24,6 +36,7 @@ CREATE TABLE course(
 	course_description VARCHAR(256) NOT NULL,
 	PRIMARY KEY(course_code)
 ); 
+
 
 
 DROP TABLE IF EXISTS section;
@@ -36,16 +49,21 @@ CREATE TABLE section(
 );
 
 
+
 DROP TABLE IF EXISTS student;
 CREATE TABLE student(
 	student_number VARCHAR(10) NOT NULL,
-	student_name VARCHAR(128) NOT NULL,
+	student_given_name VARCHAR(64) NOT NULL,
+	student_middle_name VARCHAR(32) NOT NULL,
+	student_last_name VARCHAR(32) NOT NULL,
 	student_degree VARCHAR(8) NOT NULL,
-	student_classification VARCHAR(16) NOT NULL,
+	student_classification ENUM('Freshman', 'Sophomore', 'Junior', 'Senior', 'Masteral', 'PhD') NOT NULL,
 	student_college VARCHAR(8) NOT NULL,
 	student_picture BLOB,
-	PRIMARY KEY(student_number)	
+	PRIMARY KEY(student_number)
 );
+
+
 
 DROP TABLE IF EXISTS student_section;
 CREATE TABLE student_section(
@@ -56,10 +74,12 @@ CREATE TABLE student_section(
 	FOREIGN KEY(ss_section_id) REFERENCES section(section_id)
 );
 
+
+
 DROP TABLE IF EXISTS faculty_user_course;
 CREATE TABLE faculty_user_course(
-	uc_course_code VARCHAR(16) NOT NULL,
 	uc_user_id INT NOT NULL,
+	uc_course_code VARCHAR(16) NOT NULL,
 	FOREIGN KEY(uc_course_code) REFERENCES course(course_code),
 	FOREIGN KEY(uc_user_id) REFERENCES faculty_user(faculty_user_id)
 );
