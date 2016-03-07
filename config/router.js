@@ -9,7 +9,8 @@ module.exports = (router) => {
 
     router.del = router.delete;
 
-    router.get('/user/:id', __.user.get_user);
+    router.get('/user/:id', __.user.get_user)
+          .post('/register/', __.faculty_user.post_faculty_user);
 
     router.all('*', (req, res) => {
         res.status(404)
