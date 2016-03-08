@@ -5,7 +5,7 @@ USE cmsc128ab7l;
 
 
 DROP TABLE IF EXISTS admin;
-CREATE TABLE faculty_user(
+CREATE TABLE admin(
 	admin_id INT NOT NULL AUTO_INCREMENT,
 	admin_username VARCHAR(32) NOT NULL,
 	admin_password VARCHAR(64) NOT NULL,
@@ -24,6 +24,7 @@ CREATE TABLE faculty_user(
 	faculty_user_given_name VARCHAR(64) NOT NULL,
 	faculty_user_middle_name VARCHAR(32) NOT NULL,
 	faculty_user_last_name VARCHAR(32) NOT NULL,
+	is_approved BOOLEAN NOT NULL,
 	PRIMARY KEY(faculty_user_id)
 );
 
@@ -83,4 +84,5 @@ CREATE TABLE faculty_user_course(
 	FOREIGN KEY(uc_course_code) REFERENCES course(course_code),
 	FOREIGN KEY(uc_user_id) REFERENCES faculty_user(faculty_user_id)
 );
+
 
