@@ -14,8 +14,9 @@ The CSVs is an online application that allows teachers to select random ‘volun
   ```sh
   sudo apt-get install mysql-client-core-5.6 
   sudo apt-get install mysql-server-5.6
-  then set the password of the `root` user to `user`
   ```
+
+  then set the password of the `root` user to `user`
 
 2. git:
   ```sh
@@ -42,7 +43,9 @@ The CSVs is an online application that allows teachers to select random ‘volun
 2. Import `database/schema.sql` and `database/seed.sql`
   ```sh
   mysql -u root -p < database/schema.sql
+  <!--
   mysql -u root -p cmsc128ab7l < database/seed.sql
+  -->
   ```
 
 3. Run this commands:
