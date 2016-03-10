@@ -10,32 +10,47 @@ The CSVs is an online application that allows teachers to select random ‘volun
 
 
 ## Prerequisites
-1. MySQL 5.6, run
-  `sudo apt-get install mysql-client-core-5.6` and 
-  `sudo apt-get install mysql-server-5.6`
+1. MySQL 5.6, run:
+  ```sh
+  sudo apt-get install mysql-client-core-5.6 
+  sudo apt-get install mysql-server-5.6
   then set the password of the `root` user to `user`
-2. git (`sudo apt-get install git`)
-3. npm (`sudo apt-get install npm`)
-4. Node.js version 5.0 or above.
-  `sudo npm cache clean -f`
-  `sudo npm install -g n`
-  `sudo n stable`
-  `sudo ln -sf /usr/local/n/versions/node/<VERSION_OF_NODE>/bin/node /usr/bin/node`
+  ```
+
+2. git:
+  ```sh
+  sudo apt-get install git
+  ```
+
+3. npm:
+  ```sh
+  sudo apt-get install npm
+  ```
+
+4. Node.js version 5.0 or above:
+  ```sh
+  sudo npm cache clean -f
+  sudo npm install -g n
+  sudo n stable
+  sudo ln -sf /usr/local/n/versions/node/<VERSION_OF_NODE>/bin/node /usr/bin/node
+  ```
   
 ## Running the application
 
 1. git clone https://github.com/WareAnj/CMSC128_CSV_AB7L.git
+
 2. Import `database/schema.sql` and `database/seed.sql`
   ```sh
-  mysql -uroot -puser < database/schema.sql
-  mysql -uroot -puser test < database/seed.sql
+  mysql -u root -p < database/schema.sql
+  mysql -u root -p cmsc128ab7l < database/seed.sql
   ```
 
-3. Run this commands :
+3. Run this commands:
   ```sh
   npm install
   sudo npm install -g nodemon
   ```
+
 4. npm start
 4. check http://localhost:5000
 
