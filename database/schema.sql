@@ -102,9 +102,9 @@ DROP TABLE IF EXISTS randomizer_logs;
 CREATE TABLE randomizer_logs(
 	randomizer_logs_id INT NOT NULL AUTO_INCREMENT,
 	randomizer_logs_date_randomized DATETIME NOT NULL,
-	login_logs_faculty_user_id INT NOT NULL,
+	randomizer_logs_faculty_user_id INT NOT NULL,
 	PRIMARY KEY(randomizer_logs_id),
-	FOREIGN KEY(login_logs_faculty_user_id) REFERENCES faculty_user(faculty_user_id)
+	FOREIGN KEY(randomizer_logs_faculty_user_id) REFERENCES faculty_user(faculty_user_id)
 );
 
 
