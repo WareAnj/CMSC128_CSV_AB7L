@@ -17,17 +17,16 @@ CREATE TABLE admin(
 DROP TABLE IF EXISTS faculty_user;
 CREATE TABLE faculty_user(
 	faculty_user_id INT NOT NULL AUTO_INCREMENT,
-	faculty_user_username VARCHAR(32) NOT NULL,
+	faculty_user_username VARCHAR(32) NOT NULL UNIQUE,
 	faculty_user_password VARCHAR(64) NOT NULL,
 	faculty_user_employee_id INT NOT NULL,
 	faculty_user_classification VARCHAR(32) NOT NULL,
 	faculty_user_given_name VARCHAR(64) NOT NULL,
 	faculty_user_middle_name VARCHAR(32) NOT NULL,
 	faculty_user_last_name VARCHAR(32) NOT NULL,
-	is_approved BOOLEAN NOT NULL,
+	faculty_user_is_approved BOOLEAN NOT NULL,
 	PRIMARY KEY(faculty_user_id)
 );
-
 
 
 DROP TABLE IF EXISTS course;
@@ -61,9 +60,9 @@ CREATE TABLE student(
 	student_classification ENUM('Freshman', 'Sophomore', 'Junior', 'Senior', 'Masteral', 'PhD') NOT NULL,
 	student_college VARCHAR(8) NOT NULL,
 	student_picture BLOB,
+	student_times_called INT NOT NULL DEFAULT 0,
 	PRIMARY KEY(student_number)
 );
-
 
 
 DROP TABLE IF EXISTS student_section;
@@ -77,12 +76,42 @@ CREATE TABLE student_section(
 
 
 
-DROP TABLE IF EXISTS faculty_user_course;
+DROP TABLE IF EXISTS faculty_user_course_section;
 CREATE TABLE faculty_user_course(
 	uc_user_id INT NOT NULL,
 	uc_course_code VARCHAR(16) NOT NULL,
+	uc_section_id INT NOT NULL,
 	FOREIGN KEY(uc_course_code) REFERENCES course(course_code),
-	FOREIGN KEY(uc_user_id) REFERENCES faculty_user(faculty_user_id)
+	FOREIGN KEY(uc_user_id) REFERENCES faculty_user(faculty_user_id),
+	FOREIGN KEY(uc_section_id) REFERENCES section(section_id)
 );
 
+
+
+DROP TABLE IF EXISTS login_logs;
+CREATE TABLE login_logs(
+	login_logs_date_login DATETIME NOT NULL,
+	login_logs_is_login BOOLEAN NOT NULL,
+	login_logs_faculty_user_id INT NOT NULL,
+	FOREIGN KEY(login_logs_faculty_user_id) REFERENCES faculty_user(faculty_user_id)
+);
+
+
+
+DROP TABLE IF EXISTS randomizer_logs;
+CREATE TABLE randomizer_logs(
+	randomizer_logs_id INT NOT NULL AUTO_INCREMENT,
+	randomizer_logs_date_randomized DATETIME NOT NULL,
+	PRIMARY KEY(randomizer_logs_id)
+);
+
+
+
+DROP TABLE IF EXISTS randomizer_logs_students;
+CREATE TABLE randomizer_logs_students(
+	rls_randomizer_logs_id INT NOT NULL,
+	rls_student_number VARCHAR(10) NOT NULL,
+	FOREIGN KEY(rls_randomizer_logs_id) REFERENCES randomizer_logs(randomizer_logs_id),
+	FOREIGN KEY(rls_student_number) REFERENCES student(student_number)	
+);
 
