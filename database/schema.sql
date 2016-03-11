@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS admin;
 CREATE TABLE admin(
 	admin_id INT NOT NULL AUTO_INCREMENT,
 	admin_username VARCHAR(32) NOT NULL,
-	admin_password VARCHAR(64) NOT NULL,
+	admin_password VARCHAR(256) NOT NULL,
 	PRIMARY KEY(admin_id)
 );
 
@@ -18,8 +18,8 @@ DROP TABLE IF EXISTS faculty_user;
 CREATE TABLE faculty_user(
 	faculty_user_id INT NOT NULL AUTO_INCREMENT,
 	faculty_user_username VARCHAR(32) NOT NULL UNIQUE,
-	faculty_user_password VARCHAR(64) NOT NULL,
-	faculty_user_employee_id INT NOT NULL,
+	faculty_user_password VARCHAR(256) NOT NULL,
+	faculty_user_employee_id INT NOT NULL UNIQUE,
 	faculty_user_classification VARCHAR(32) NOT NULL,
 	faculty_user_given_name VARCHAR(64) NOT NULL,
 	faculty_user_middle_name VARCHAR(32) NOT NULL,
@@ -102,7 +102,9 @@ DROP TABLE IF EXISTS randomizer_logs;
 CREATE TABLE randomizer_logs(
 	randomizer_logs_id INT NOT NULL AUTO_INCREMENT,
 	randomizer_logs_date_randomized DATETIME NOT NULL,
-	PRIMARY KEY(randomizer_logs_id)
+	login_logs_faculty_user_id INT NOT NULL,
+	PRIMARY KEY(randomizer_logs_id),
+	FOREIGN KEY(login_logs_faculty_user_id) REFERENCES faculty_user(faculty_user_id)
 );
 
 
