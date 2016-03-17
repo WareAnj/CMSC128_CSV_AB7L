@@ -20,7 +20,7 @@ const winston = require('winston');
          mysql.use('my_db')
          mysql.use('my_db')
               .query(
-                   'INSERT INTO faculty_user(faculty_user_username, faculty_user_password,faculty_user_employee_id, faculty_user_classification, faculty_user_given_name, faculty_user_middle_name, faculty_user_last_name, faculty_user_is_approved) VALUES (?, ?, ?, ?, ?, ?, ?, false);',
+                   'INSERT INTO faculty_user(faculty_user_username, faculty_user_password,faculty_user_employee_id, faculty_user_classification, faculty_user_given_name, faculty_user_middle_name, faculty_user_last_name, faculty_user_is_approved) VALUES (?, SHA1(?), ?, ?, ?, ?, ?, false);',
                    [req.body.faculty_user_username, req.body.faculty_user_password, req.body.faculty_user_employee_id, req.body.faculty_user_classification, req.body.faculty_user_given_name, req.body.faculty_user_middle_name, req.body.faculty_user_last_name],
                    send_response
                )
