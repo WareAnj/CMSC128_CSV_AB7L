@@ -15,7 +15,7 @@ CREATE TABLE faculty_user(
 	faculty_user_id INT NOT NULL AUTO_INCREMENT,
 	faculty_user_username VARCHAR(32) NOT NULL UNIQUE,
 	faculty_user_password VARCHAR(256) NOT NULL,
-	faculty_user_employee_id INT NOT NULL UNIQUE,
+	faculty_user_employee_id VARCHAR(16) NOT NULL UNIQUE,
 	faculty_user_classification VARCHAR(32) NOT NULL,
 	faculty_user_given_name VARCHAR(64) NOT NULL,
 	faculty_user_middle_name VARCHAR(32) NOT NULL,
