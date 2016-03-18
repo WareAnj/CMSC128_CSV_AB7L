@@ -40,9 +40,9 @@ The CSVs is an online application that allows teachers to select random ‘volun
 
 1. git clone https://github.com/WareAnj/CMSC128_CSV_AB7L.git
 
-2. Import `database/schema.sql`
+2. Import `backend/es6/database/schema.sql` 
   ```sh
-  mysql -u root -p < database/schema.sql
+  mysql -u root -p < backend/es6/database/schema.sql
   ```
 
 3. Run this commands:
