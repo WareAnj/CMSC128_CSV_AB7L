@@ -15,7 +15,7 @@ CREATE TABLE faculty_user(
 	faculty_user_id INT NOT NULL AUTO_INCREMENT,
 	faculty_user_username VARCHAR(32) NOT NULL UNIQUE,
 	faculty_user_password VARCHAR(256) NOT NULL,
-	faculty_user_employee_id INT NOT NULL UNIQUE,
+	faculty_user_employee_id VARCHAR(16) NOT NULL UNIQUE,
 	faculty_user_classification VARCHAR(32) NOT NULL,
 	faculty_user_given_name VARCHAR(64) NOT NULL,
 	faculty_user_middle_name VARCHAR(32) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE course(
 	course_title VARCHAR(64) NOT NULL,
 	course_description VARCHAR(256) NOT NULL,
 	PRIMARY KEY(course_code)
-); 
+);
 
 DROP TABLE IF EXISTS section;
 CREATE TABLE section(
@@ -77,7 +77,7 @@ CREATE TABLE faculty_user_course_section(
 DROP TABLE IF EXISTS login_logs;
 CREATE TABLE login_logs(
 	login_logs_date_login DATETIME NOT NULL,
-	login_logs_is_login BOOLEAN NOT NULL,
+	login_logs_is_logged_in BOOLEAN NOT NULL,
 	login_logs_faculty_user_id INT NOT NULL,
 	FOREIGN KEY(login_logs_faculty_user_id) REFERENCES faculty_user(faculty_user_id)
 );
@@ -96,5 +96,5 @@ CREATE TABLE randomizer_logs_students(
 	rls_randomizer_logs_id INT NOT NULL,
 	rls_student_number VARCHAR(10) NOT NULL,
 	FOREIGN KEY(rls_randomizer_logs_id) REFERENCES randomizer_logs(randomizer_logs_id),
-	FOREIGN KEY(rls_student_number) REFERENCES student(student_number)	
+	FOREIGN KEY(rls_student_number) REFERENCES student(student_number)
 );
