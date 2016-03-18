@@ -49,12 +49,16 @@ The CSVs is an online application that allows teachers to select random ‘volun
   ```sh
   npm install
   sudo npm install -g nodemon
-  sudo npm install -g eslint
   sudo npm install -g gulp
   ```
 
 4. npm start
 5. check http://localhost:8000
+
+## To check if you follow the conventions, run
+```sh
+gulp
+```
 
 ## Author
 
