@@ -6,7 +6,9 @@ const path = require('path');
 const config = {
     APP_NAME: 'CMSC 128 CSV AB-7L',
 
-    PORT: 5000,
+    PORT: 8000,
+
+    COOKIE_SECRET: 'r391nYz3R',
 
     CORS:  {
         allowed_headers: 'Access-Token, X-Requested-With, Content-Type, Accept',
@@ -14,10 +16,10 @@ const config = {
         allowed_methods: 'GET, POST, PUT, OPTIONS, DELETE'
     },
 
-    UPLOAD_DIR: path.normalize(__dirname + '/../uploads/'),
+    /*UPLOAD_DIR: path.normalize(__dirname + '/../uploads/'),
     ASSETS_DIR: path.normalize(__dirname + '/../assets'),
     VIEWS_DIR: path.normalize(__dirname + '/../views'),
-    LOGS_DIR: path.normalize(__dirname + '/../logs'),
+    LOGS_DIR: path.normalize(__dirname + '/../logs'),*/
 
     use: (env) => {
         _.assign(config, require(__dirname + '/env/' + env));
