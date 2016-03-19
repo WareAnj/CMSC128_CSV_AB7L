@@ -5,6 +5,8 @@ const body_parser   = require('body-parser');
 const winston       = require('winston');
 const express       = require('express');
 const session       = require('express-session');
+const redis_store   = require('connect-redis')(session);
+const store         = new redis_store(config.REDIS_DB);
 
 
 let app;
@@ -33,6 +35,21 @@ function start () {
 
 
     winston.log('info', 'Starting', config.APP_NAME, 'on', config.ENV, 'environment');
+
+    app.use(session({
+        store: store,
+        secret: config.COOKIE_SECRET,
+        resave: false,
+        //rolling: true,
+        saveUninitialized: false,
+        cookie: {
+            path: '/',
+            httpOnly: true,
+            secure: false,
+            maxAge: 1000 * 60 * 60 * 2     // 2 hours expiration
+            //domain: config.COOKIE_DOMAIN
+        }
+    }));
 
     // configure express app
     app.set('case sensitive routing', true);
