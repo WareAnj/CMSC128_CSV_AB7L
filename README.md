@@ -34,6 +34,26 @@ The CSVs is an online application that allows teachers to select random ‘volun
   sudo ln -sf /usr/local/n/versions/node/<VERSION_OF_NODE>/bin/node /usr/bin/node
   ```
   
+5. Redis
+  Go to the website `redis.io` and download the latest version of Redis (WARNING: Version may vary)
+
+  ```sh
+  tar xzf redis-3.0.7.tar.gz
+  cd redis-3.0.7
+  make
+  ```
+
+  Run the test to make sure that the compilation is successful:
+  ```sh
+  make test
+  ```
+
+  To run the redis server:
+  ```sh
+  src/redis-server
+  ```
+
+
 ## Running the application
 
 1. git clone https://github.com/WareAnj/CMSC128_CSV_AB7L.git

@@ -76,16 +76,22 @@ CREATE TABLE faculty_user_course_section(
 
 DROP TABLE IF EXISTS login_logs;
 CREATE TABLE login_logs(
-	login_logs_date_login DATETIME NOT NULL,
-	login_logs_is_logged_in BOOLEAN NOT NULL,
+	login_logs_date_login TIMESTAMP NOT NULL,
 	login_logs_faculty_user_id INT NOT NULL,
 	FOREIGN KEY(login_logs_faculty_user_id) REFERENCES faculty_user(faculty_user_id)
+);
+
+DROP TABLE IF EXISTS logout_logs;
+CREATE TABLE logout_logs(
+	logout_logs_date_logout TIMESTAMP NOT NULL,
+	logout_logs_faculty_user_id INT NOT NULL,
+	FOREIGN KEY(logout_logs_faculty_user_id) REFERENCES faculty_user(faculty_user_id)
 );
 
 DROP TABLE IF EXISTS randomizer_logs;
 CREATE TABLE randomizer_logs(
 	randomizer_logs_id INT NOT NULL AUTO_INCREMENT,
-	randomizer_logs_date_randomized DATETIME NOT NULL,
+	randomizer_logs_date_randomized TIMESTAMP NOT NULL,
 	randomizer_logs_faculty_user_id INT NOT NULL,
 	PRIMARY KEY(randomizer_logs_id),
 	FOREIGN KEY(randomizer_logs_faculty_user_id) REFERENCES faculty_user(faculty_user_id)
