@@ -9,6 +9,7 @@ module.exports = (router) => {
     router.del = router.delete;
 
     router.post('/faculty_user/register/', 				__.faculty_user.register);
+    router.post('/authenticate/login/',                 __.authenticate.login);
 
 
     router.all('*', (req, res) => {
