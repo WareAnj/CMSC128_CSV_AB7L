@@ -16,7 +16,6 @@ module.exports = (router) => {
 
     router.get('/faculty_user/randomize/:user_id/:course_code/:section_name/:limit', __.faculty_user.randomize);
 
-
     router.all('*', (req, res, next) => {
         res.status(404)
             .send({message: 'Nothing to do here.'});
