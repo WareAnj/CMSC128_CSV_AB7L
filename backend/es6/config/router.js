@@ -7,11 +7,15 @@ module.exports = (router) => {
     const __ = importer.dirloadSync(__dirname + '/../controllers');
 
     router.del = router.delete;
-
-    router.get('/', 									__.render_controller.index);
+    
+    router.get('/', __.render_controller.index);
 
     router.post('/faculty_user/register/', 				__.faculty_user.register);
     router.post('/authenticate/login/',                 __.authenticate.login);
+    router.get ('/authenticate/logout',                 __.authenticate.logout);
+
+    router.get('/faculty_user/randomize/:user_id/:course_code/:section_name/:limit', __.faculty_user.randomize);
+
 
     router.all('*', (req, res, next) => {
         res.status(404)

@@ -21,6 +21,7 @@ CREATE TABLE faculty_user(
 	faculty_user_middle_name VARCHAR(32) NOT NULL,
 	faculty_user_last_name VARCHAR(32) NOT NULL,
 	faculty_user_is_approved BOOLEAN NOT NULL,
+	faculty_user_date_approved TIMESTAMP,
 	PRIMARY KEY(faculty_user_id)
 );
 
