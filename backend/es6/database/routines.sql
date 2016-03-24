@@ -6,12 +6,13 @@ USE cmsc128ab7l;
  *
  */
 
+
 -- REGISTER function
 DROP FUNCTION IF EXISTS REGISTER;
 DELIMITER $$
-CREATE FUNCTION `REGISTER` (_faculty_user_username VARCHAR(32), _faculty_user_password VARCHAR(32), _faculty_user_employee_id VARCHAR(16), _faculty_user_classification VARCHAR(32), _faculty_user_given_name VARCHAR(64), _faculty_user_middle_name VARCHAR(32), _faculty_user_last_name VARCHAR(32)) RETURNS VARCHAR(20) CHARSET latin1
+CREATE FUNCTION REGISTER (_faculty_user_username VARCHAR(32), _faculty_user_password VARCHAR(32), _faculty_user_employee_id VARCHAR(16), _faculty_user_classification VARCHAR(32), _faculty_user_given_name VARCHAR(64), _faculty_user_middle_name VARCHAR(32), _faculty_user_last_name VARCHAR(32)) RETURNS VARCHAR(64)
 BEGIN
-	 DECLARE _return_message VARCHAR(20) DEFAULT '';
+	 DECLARE _return_message VARCHAR(64) DEFAULT '';
 	 DECLARE _count_username INT DEFAULT 0;
 	 DECLARE _count_employee_id INT DEFAULT 0;
 
@@ -33,6 +34,17 @@ BEGIN
 END $$
 DELIMITER ;
 
+
+-- REGISTER procedure
+DROP PROCEDURE IF EXISTS REGISTER;
+DELIMITER $$
+CREATE PROCEDURE REGISTER (_faculty_user_username VARCHAR(32), _faculty_user_password VARCHAR(32), _faculty_user_employee_id VARCHAR(16), _faculty_user_classification VARCHAR(32), _faculty_user_given_name VARCHAR(64), _faculty_user_middle_name VARCHAR(32), _faculty_user_last_name VARCHAR(32))
+BEGIN
+	SELECT REGISTER(_faculty_user_username, _faculty_user_password, _faculty_user_employee_id, _faculty_user_classification, _faculty_user_given_name, _faculty_user_middle_name, _faculty_user_last_name) AS message;
+END $$
+DELIMITER ;
+
+
 -- LOGIN procedure
 DROP PROCEDURE IF EXISTS LOGIN;
 DELIMITER $$
@@ -44,6 +56,7 @@ BEGIN
 			faculty_user_last_name FROM faculty_user WHERE faculty_user_username = _faculty_user_username;
 END $$
 DELIMITER ;
+
 
 -- INSERT_LOGIN_LOGS procedure
 DROP PROCEDURE IF EXISTS INSERT_LOGIN_LOGS;
