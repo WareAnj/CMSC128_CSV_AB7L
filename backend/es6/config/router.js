@@ -11,8 +11,7 @@ module.exports = (router) => {
     router.post('/faculty_user/register/', 				__.faculty_user.register);
     router.post('/authenticate/login/',                 __.authenticate.login);
 
-
-    router.all('*', (req, res) => {
+    router.all('*', (req, res, next) => {
         res.status(404)
             .send({message: 'Nothing to do here.'});
     });
