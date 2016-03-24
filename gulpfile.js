@@ -15,9 +15,4 @@ gulp.task('default', () => {
 	gulp.src('backend/es6/**/*.js')
 		.pipe(babel())
 		.pipe(gulp.dest('backend/dist'));
-
-    // Port to ES5 (frontend)
-    //gulp.src('frontend/**/*.js')
-    //    .pipe(babel())
-    //    .pipe(gulp.dest('dist_frontend'));
 });
