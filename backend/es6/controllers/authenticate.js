@@ -58,7 +58,7 @@ exports.login = (req, res, next) => {
 
         req.session.user = user;
 
-        res.send(result);
+        res.send(result[0][0]);
 
         // Will be converted to trigger later
         let user_id = result[0][0].faculty_user_id;
@@ -71,6 +71,26 @@ exports.login = (req, res, next) => {
         });
     }
 
+
+    start();
+};
+
+
+exports.logout = (req, res, next) => {
+    let response;
+
+    function start() {
+
+        if (!req.session.user) {
+            response = status.MISSING_SESSION;
+
+            return res.status(response.status).send(response.message);
+        }
+
+        req.session.destroy();
+
+        res.send({message: 'Successfully logged out'});
+    }
 
     start();
 };
