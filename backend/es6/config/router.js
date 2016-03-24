@@ -10,6 +10,8 @@ module.exports = (router) => {
 
     router.post('/faculty_user/register/', 				__.faculty_user.register);
     router.post('/authenticate/login/',                 __.authenticate.login);
+    router.get ('/authenticate/logout',                 __.authenticate.logout);
+
 
     router.all('*', (req, res, next) => {
         res.status(404)
