@@ -61,7 +61,7 @@ exports.randomize = (req, res, next) => {
 
         db.query (
             [
-                'CREATE VIEW v AS SELECT',
+                'CREATE VIEW temporary_view AS SELECT',
                 's.student_number,',
                 'uc.uc_user_id,',
                 'uc.uc_course_code,',
