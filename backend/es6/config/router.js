@@ -7,7 +7,7 @@ module.exports = (router) => {
     const __ = importer.dirloadSync(__dirname + '/../controllers');
 
     router.del = router.delete;
-    
+
     router.get('/', __.render_controller.index);
 
     router.post('/faculty_user/register/', 				__.faculty_user.register);

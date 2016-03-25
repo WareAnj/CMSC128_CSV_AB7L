@@ -1,0 +1,50 @@
+<div id="signupModal" class="modal">
+<div class="modal-content center">
+  <h4>Sign Up</h4>
+  <form method="POST" ng-submit="AddFacultyUser()">
+    <div class="row">
+      <div class="input-field">
+        <div class="col s12 m12 l4">
+          <input placeholder="First Name" type="text" name="user-fname" id="fname-input" ng-model="newFacultyUser.faculty_user_given_name">
+        </div>
+        <div class="col s12 m12 l4">
+          <input placeholder="Middle Name" type="text" name="user-mname" id="mname-input" ng-model="newFacultyUser.faculty_user_middle_name">
+        </div>
+        <div class="col s12 m12 l4">
+          <input placeholder="Last Name" type="text" name="user-lname" id="lname-input" ng-model="newFacultyUser.faculty_user_last_name">
+          <label for="lname-input">Name</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m6 l6">
+        <div class="input-field">
+          <input placeholder="Username" type="text" name="username" id="name-input" ng-model="newFacultyUser.faculty_user_username">
+          <label for="name-input">Username</label>
+        </div>
+      </div>
+      <div class="col s12 m6 l6">
+        <div class="input-field">
+          <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" name="user-password" id="password-input" ng-model="newFacultyUser.faculty_user_password">
+          <label for="password-input">Password</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m7 l7">
+        <div class="input-field">
+          <input placeholder="Employee ID" type="text" name="employee-id" id="employee-input" ng-model="newFacultyUser.faculty_user_employee_id">
+          <label for="employeeid-input">Employee ID</label>
+        </div>
+      </div>
+      <div class="col s12 m5 l5">
+        <div class="input-field">
+          <input placeholder="Professor, Instructor 3, etc." type="text" name="user-classification" id="classification-input" ng-model="newFacultyUser.faculty_user_classification">
+          <label for="classification-input">Classification</label>
+        </div>
+      </div>
+    </div>
+      <button class="btn waves-effect waves-light" type="submit">Create an Account</button>
+  </form>
+  </div>
+</div
