@@ -7,6 +7,7 @@ const express       = require('express');
 const session       = require('express-session');
 const redis_store   = require('connect-redis')(session);
 const store         = new redis_store(config.REDIS_DB);
+const path          = require('path');
 
 
 let app;
@@ -20,6 +21,17 @@ function start () {
 
     // create express app
     app = express();
+
+    // crude implementation of joining paths for discovery
+    app.use(express.static(path.join(__dirname, '../../frontend')));
+    app.use(express.static(path.join(__dirname, '../../frontend/assets')));
+    app.use(express.static(path.join(__dirname, '../../frontend/public')));
+
+    // view engines
+    app.set('views', path.join(__dirname, '../../frontend/views'));
+    app.engine('html', require('ejs')
+        .renderFile);
+    app.set('view engine', 'html');
 
     // set config
     config.use(process.env.NODE_ENV);
