@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html>
+<html ng-app="app">
 	<head>
 		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
 		<title>Reginyzr</title>
@@ -23,7 +22,7 @@
 		    			<a href="#">
 		    			<img id="nav-logo" src="img/logo-2.png">
 		    			</a></div></li>
-		    	-->	<li><a href="#" class="brand-logos"> REGINYZR</a></li>
+		    	-->	<li><a href="#" class="brand-logos">REGINYZR</a></li>
 		    	</ul>
 
 		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
@@ -71,7 +70,7 @@
 
 			<div id="more-info">
 				<div class="container" id="content">
-					<h4>How does it work?</h4>
+					<h4>HOW DOES IT WORK?</h4>
 					<div class="row">
 						<div class="col s12 m4 l4">
 							<div class="center">
@@ -103,7 +102,7 @@
 
 			<div id="more-info-2">
 				<div class="container" id="content">
-					<h4>Why sign up?</h4>
+					<h4>WHY SIGN UP?</h4>
 					<h5 class="center">//Will fix layout, background, and images, will add transitions//</h5>
 					<div class="row">
 						<div class="col s12 m12 l5" id="reason-1">
@@ -123,7 +122,6 @@
 			</div>
 
 	<!-- MODALS: LOGIN AND SIGN UP -->
-
 			<div id="loginModal" class="modal">
 				<div class="modal-content center">
 					<h4>Log In</h4>
@@ -194,6 +192,8 @@
 					</form>
 				</div>
 			</div>
+			<div ng-view="">
+			</div
 
 		</main>
 
@@ -213,5 +213,17 @@
 	    <script type="text/javascript" src="js/jquery.js"></script>
 	    <script type="text/javascript" src="js/materialize.min.js"></script>
 	    <script type="text/javascript" src="js/index.js"></script>
+
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-route.min.js"></script>
+
+		<script src="app.js"></script>
+
+		<script src="/partials/login/login.service.js"></script>
+		<script src="/partials/login/login.controller.js"></script>
+
+		<script src="partials/register/register.service.js"></script>
+		<script src="partials/register/register.controller.js"></script>
+
 	</body>
 </html>
