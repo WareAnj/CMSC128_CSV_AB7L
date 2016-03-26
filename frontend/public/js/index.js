@@ -17,7 +17,7 @@ $(window).scroll(function(){
 });
 
 $(window).scroll(function(){
-    var aTop = ($('#reason-1').height() * 2) + 50;
+    var aTop = ($('#reason-1').height() * 2) + 80;
     if($(this).scrollTop()>=aTop){
     $('#reason-2').removeClass("reason");
     $('#reason-2').addClass("animated fadeInRight");
@@ -25,7 +25,7 @@ $(window).scroll(function(){
 });
 
 $(window).scroll(function(){
-    var aTop = ($('#reason-1').height() * 3) + 50;
+    var aTop = ($('#reason-1').height() * 3) + 80;
     if($(this).scrollTop()>=aTop){
     $('#reason-3').removeClass("reason");
         $('#reason-3').addClass("animated fadeInLeft");
