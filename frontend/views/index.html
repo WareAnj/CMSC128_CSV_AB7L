@@ -51,10 +51,12 @@
 				<div id="brief-intro">
 					<div class="container" id="content">
 						<div class="row">
-							<div class="col s12 m12 l12"><img src="img/logo-2.png" id="intro-logo" class="animated flipInY"></div>
-							<div class="col s12 m12 l12">
+							<div class="col s12 m12 l10"><img src="img/logo-2.png" id="intro-logo" class="animated flipInY"></div>
+						</div>
+						<div class="row">
+							<div class="col s12 m12 l10">
 								<div class="center animated fadeIn">
-								<h4>The best web application for a <br>fun and interactive class discussion.</h4>
+								<h4>The best web application for a fun and interactive class discussion.</h4>
 									<a href="#signupModal" class="modal-trigger waves-effect waves-light btn-large">Sign Up</a>
 									<a class="waves-effect waves-light btn-large">Try Now</a>
 								</div>
@@ -128,13 +130,13 @@
 					<form action="" method="POST">
 						<div class="input-field">
 							<i class="material-icons prefix">account_circle</i>
-							<input placeholder="jdelacruz_123" type="text" name="username" id="name-input">
+							<input placeholder="jdelacruz_123" required="" type="text" name="username" id="name-input">
 							<label for="name-input">Username</label>
 						</div>
 
 						<div class="input-field">
 							<i class="material-icons prefix">vpn_key</i>
-							<input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" name="user-password" id="password-input">
+							<input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required="" type="password" name="user-password" id="password-input" minlength="8">
 							<label for="password-input">Password</label>
 						</div>
 						<button class="btn waves-effect waves-light" type="submit">Log In</button>
@@ -149,13 +151,13 @@
 						<div class="row">
 							<div class="input-field">
 								<div class="col s12 m12 l4">
-									<input placeholder="First Name" type="text" name="user-fname" id="fname-input">
+									<input placeholder="First Name" required="" type="text" name="user-fname" id="fname-input">
 								</div>
 								<div class="col s12 m12 l4">
-									<input placeholder="Middle Name" type="text" name="user-mname" id="mname-input">
+									<input placeholder="Middle Name" required="" type="text" name="user-mname" id="mname-input">
 								</div>
 								<div class="col s12 m12 l4">
-									<input placeholder="Last Name" type="text" name="user-lname" id="lname-input">
+									<input placeholder="Last Name" required="" type="text" name="user-lname" id="lname-input">
 									<label for="lname-input">Name</label>
 								</div>
 							</div>
@@ -163,13 +165,13 @@
 						<div class="row">
 							<div class="col s12 m6 l6">
 								<div class="input-field">
-									<input placeholder="Username" type="text" name="username" id="name-input">
+									<input placeholder="Username" required="" type="text" name="username" id="name-input">
 									<label for="name-input">Username</label>
 								</div>
 							</div>
 							<div class="col s12 m6 l6">
 								<div class="input-field">
-									<input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" name="user-password" id="password-input">
+									<input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" name="user-password" id="password-input" required="" minlength="8">
 									<label for="password-input">Password</label>
 								</div>
 							</div>
@@ -177,13 +179,13 @@
 						<div class="row">
 							<div class="col s12 m7 l7">
 								<div class="input-field">
-									<input placeholder="Employee ID" type="text" name="employee-id" id="employee-input">
+									<input placeholder="Employee ID" type="text" name="employee-id" id="employee-input" required="">
 									<label for="employeeid-input">Employee ID</label>
 								</div>
 							</div>
 							<div class="col s12 m5 l5">
 								<div class="input-field">
-									<input placeholder="Professor, Instructor 3, etc." type="text" name="user-classification" id="classification-input">
+									<input placeholder="Professor, Instructor 3, etc." type="text" name="user-classification" id="classification-input" required="">
 									<label for="classification-input">Classification</label>
 								</div>
 							</div>
@@ -204,7 +206,7 @@
 					<div class="col s12 m12 l5">
 					more footer content
 					</div>
-				</div>
+				</div
 			</div>
 		</footer>
 
