@@ -1,5 +1,5 @@
 (function() {
-	angular
+var app =	angular
 		.module("app", ["ngRoute"])
 		.config(config);
 
@@ -8,8 +8,18 @@
 	function config($routeProvider) {
 	$routeProvider
 		.when("/",{
-			"controller" : "RegisterCtrl",
-			"templateUrl" : "register/register.view.html"
+			"controller" : "RouteCtrl",
+			"templateUrl" : "uirouter.html"
+		})
+		.when("/faculty_user/register",{
+			"controller" : "RegisterCtrl"
 		});
 	}
+
+	app.controller('RouteCtrl', function($scope) {
+  $scope.template = {
+    "register": "partials/register/register.view.html",
+		"login": "partials/login/login.view.html"
+  }
+	});
 })();
