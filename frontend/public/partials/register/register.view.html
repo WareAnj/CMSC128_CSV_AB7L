@@ -1,16 +1,16 @@
 <div class="modal-content center">
   <h4>Sign Up</h4>
-  <form ng-submit="AddFacultyUser()" method="GET" action="/#/" ng-controller="RegisterCtrl">
+  <form ng-submit="AddFacultyUser()" action="/#/" method="GET" ng-controller="RegisterCtrl">
     <div class="row">
       <div class="input-field">
         <div class="col s12 m12 l4">
-          <input placeholder="First Name" type="text" name="user-fname" id="fname-input" ng-model="newFacultyUser.faculty_user_given_name" required="required">
+          <input placeholder="First Name" type="text" id="fname-input" ng-model="newFacultyUser.faculty_user_given_name" required="required">
         </div>
         <div class="col s12 m12 l4">
-          <input placeholder="Middle Name" type="text" name="user-mname" id="mname-input" ng-model="newFacultyUser.faculty_user_middle_name" required="required">
+          <input placeholder="Middle Name" type="text" id="mname-input" ng-model="newFacultyUser.faculty_user_middle_name" required="required">
         </div>
         <div class="col s12 m12 l4">
-          <input placeholder="Last Name" type="text" name="user-lname" id="lname-input" ng-model="newFacultyUser.faculty_user_last_name" required="required">
+          <input placeholder="Last Name" type="text" id="lname-input" ng-model="newFacultyUser.faculty_user_last_name" required="required">
           <label for="lname-input">Name</label>
         </div>
       </div>
@@ -18,13 +18,13 @@
     <div class="row">
       <div class="col s12 m6 l6">
         <div class="input-field">
-          <input placeholder="Username" type="text" name="username" id="name-input" ng-model="newFacultyUser.faculty_user_username" required="required">
+          <input placeholder="Username" type="text" id="name-input" ng-model="newFacultyUser.faculty_user_username" required="required">
           <label for="name-input">Username</label>
         </div>
       </div>
       <div class="col s12 m6 l6">
         <div class="input-field">
-          <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" name="user-password" id="password-input" ng-model="newFacultyUser.faculty_user_password" required="required">
+          <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="password-input" ng-model="newFacultyUser.faculty_user_password" required="required" minlength="8">
           <label for="password-input">Password</label>
         </div>
       </div>
@@ -32,7 +32,7 @@
     <div class="row">
       <div class="col s12 m7 l7">
         <div class="input-field">
-          <input placeholder="Employee ID" type="text" name="employee-id" id="employee-input" ng-model="newFacultyUser.faculty_user_employee_id" required="required">
+          <input placeholder="Employee ID" type="text" id="employee-input" ng-model="newFacultyUser.faculty_user_employee_id" required="required">
           <label for="employeeid-input">Employee ID</label>
         </div>
       </div>
