@@ -1,19 +1,33 @@
 $(".button-collapse").sideNav();
 
 $('.modal-trigger').leanModal({
-      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-      opacity: .5, // Opacity of modal background
-      in_duration: 300, // Transition in duration
-      out_duration: 200, // Transition out duration
+      dismissible: true,
+      opacity: .5,
+      in_duration: 300,
+      out_duration: 200
     }
   );
 
 $(window).scroll(function(){
     var aTop = $('#reason-1').height();
     if($(this).scrollTop()>=aTop){
-        $('#reason-1').fadeIn(slow);/*animate({
-        	opacity: 1,
-            left: '250px'
-        });*/
+    $('#reason-1').removeClass("reason");
+        $('#reason-1').addClass("animated fadeInLeft");
+    }
+});
+
+$(window).scroll(function(){
+    var aTop = ($('#reason-1').height() * 2) + 50;
+    if($(this).scrollTop()>=aTop){
+    $('#reason-2').removeClass("reason");
+    $('#reason-2').addClass("animated fadeInRight");
+    }
+});
+
+$(window).scroll(function(){
+    var aTop = ($('#reason-1').height() * 3) + 50;
+    if($(this).scrollTop()>=aTop){
+    $('#reason-3').removeClass("reason");
+        $('#reason-3').addClass("animated fadeInLeft");
     }
 });
