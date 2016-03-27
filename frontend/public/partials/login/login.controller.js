@@ -1,22 +1,24 @@
 
-// (function(){
-//   'use strict';
+(function(){
+  'use strict';
 
-//   angular
-//     .module('app')
-//     .controller('RegisterCtrl', RegisterCtrl);
+  angular
+    .module('app')
+    .controller('AuthenticationCtrl', AuthenticationCtrl);
 
-//   RegisterCtrl.$inject = ["$scope", "$location", "RegisterService"];
+  AuthenticationCtrl.$inject = ["$scope", "$location", "AuthenticationService"];
 
-//   function RegisterCtrl($scope, $location, RegisterService){
-//     $scope.faculty_user_data = [];
+  function AuthenticationCtrl($scope, $location, AuthenticationService){
+  	
+  
+    $scope.faculty_user_data = [];
 
-//     $scope.AddFacultyUser = function(){
-// 			RegisterService.AddFacultyUser($scope.newFacultyUser)
-// 				.then(function(data) {
-// 					$scope.faculty_user_data.push(data);
-// 				});
-// 		}
-//   }
+    $scope.Login = function(){
+			AuthenticationService.Login($scope.facultyUser)
+				.then(function(data) {
+				$scope.faculty_user_data.push(data);
+				});
+		}
+  }
 
-// })();
+})();
