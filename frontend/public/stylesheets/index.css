@@ -1,0 +1,103 @@
+/* NAV BAR */
+
+#nav-logo{
+	height: 75px;
+}
+
+.brand-logos{
+	font-family: logo;
+	font-size: 55px;
+	display: inline-block;
+	color: #303030;
+}
+
+.nav-right{
+	font-family: nav-side;
+}
+
+.logo-img a:hover, .logo-img-side a:hover{
+	background-color: initial;
+}
+
+/* BRIEF INTRO */
+
+main #brief-intro{
+	background-color: rgba(250,255,249, 0.8);
+}
+
+#brief-intro-container{
+	background: url("../img/cover-f.jpg") no-repeat center;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#brief-intro #content{
+	padding: 5% 0 3% 10%;
+}
+
+#brief-intro #content a{
+	margin-right: 20px;
+	background-color: #50514F;
+}
+
+#intro-logo{
+	height: 220px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+/* MORE INFO - HOW DOES IT WORK */
+
+#more-info, #get-started{
+	background-color: #BEE3DB;
+}
+
+#more-info #content{
+	padding: 3% 0 3% 0;
+}
+
+#content h4{
+	font-size: 50px;
+	text-align: center;
+	padding: 0 0 1% 0;
+}
+
+#more-info #content i{
+	font-size: 80px;
+}
+
+#more-info #content .caption{
+	font-size: 30px;
+	font-weight: 300;
+	margin-bottom: -5px;
+}
+
+/* MORE INFO - WHY SIGN UP */
+#more-info-2 img{
+	height: 250px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+/* MODALS */
+
+#loginModal{
+	margin-top: 10%;
+	width: 400px;
+}
+
+#signupModal{
+	width: 60%;
+}
+
+.modal .input-field i{
+	color: #50514F;
+}
+
+.modal .col{
+	margin-top: 20px;
+}
