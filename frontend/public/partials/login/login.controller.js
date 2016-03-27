@@ -4,19 +4,14 @@
 
 //   angular
 //     .module('app')
-//     .controller('RegisterCtrl', RegisterCtrl);
+//     .controller('LoginCtrl', LoginCtrl);
 
-//   RegisterCtrl.$inject = ["$scope", "$location", "RegisterService"];
+//   LoginCtrl.$inject = ["$scope", "$location", "LoginService"];
 
-//   function RegisterCtrl($scope, $location, RegisterService){
+//   function LoginCtrl($scope, $location, LoginService){
 //     $scope.faculty_user_data = [];
 
-//     $scope.AddFacultyUser = function(){
-// 			RegisterService.AddFacultyUser($scope.newFacultyUser)
-// 				.then(function(data) {
-// 					$scope.faculty_user_data.push(data);
-// 				});
-// 		}
+   	
 //   }
 
 // })();

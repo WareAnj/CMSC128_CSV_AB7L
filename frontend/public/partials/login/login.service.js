@@ -3,7 +3,7 @@
 // (function(){
 // 	angular
 // 		.module("app")
-// 		.factory("RegisterService", RegisterService);
+// 		.factory("LginService", RegisterService);
 
 // 	RegisterService.$inject = ["$http", "$q"];
 
