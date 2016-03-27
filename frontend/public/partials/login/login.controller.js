@@ -1,17 +1,22 @@
+(function(){
+  'use strict';
 
-// (function(){
-//   'use strict';
+  angular
+    .module('app')
+    .controller('AuthenticationCtrl', AuthenticationCtrl);
 
-//   angular
-//     .module('app')
-//     .controller('LoginCtrl', LoginCtrl);
+  AuthenticationCtrl.$inject = ["$scope", "$location", "AuthenticationService"];
 
-//   LoginCtrl.$inject = ["$scope", "$location", "LoginService"];
+  function AuthenticationCtrl($scope, $location, AuthenticationService){
+  	
+    $scope.faculty_user_data = [];
 
-//   function LoginCtrl($scope, $location, LoginService){
-//     $scope.faculty_user_data = [];
+    $scope.Login = function(){
+			AuthenticationService.Login($scope.facultyUser)
+				.then(function(data) {
+				$scope.faculty_user_data.push(data);
+				});
+		}
+  }
 
-   	
-//   }
-
-// })();
+})();

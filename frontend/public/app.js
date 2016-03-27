@@ -10,9 +10,6 @@ var app =	angular
 		.when("/",{
 			"controller" : "RouteCtrl",
 			"templateUrl" : "uirouter.html"
-		})
-		.when("/faculty_user/register",{
-			"controller" : "RegisterCtrl"
 		});
 	}
 
