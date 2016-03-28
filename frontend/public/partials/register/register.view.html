@@ -1,16 +1,16 @@
 <div class="modal-content center">
   <h4>Sign Up</h4>
-  <form ng-submit="AddFacultyUser()" action="/#/" method="GET" ng-controller="RegisterCtrl">
+  <form ng-submit="AddFacultyUser()" action="/" method="GET" ng-controller="RegisterCtrl">
     <div class="row">
       <div class="input-field">
         <div class="col s12 m12 l4">
-          <input placeholder="First Name" type="text" id="fname-input" ng-model="newFacultyUser.faculty_user_given_name" required="required">
+          <input placeholder="First Name" type="text" id="fname-input" ng-model="newFacultyUser.faculty_user_given_name" required="required" pattern="[A-Za-z\.\-]*[A-Za-z\.]+">
         </div>
         <div class="col s12 m12 l4">
-          <input placeholder="Middle Name" type="text" id="mname-input" ng-model="newFacultyUser.faculty_user_middle_name" required="required">
+          <input placeholder="Middle Name" type="text" id="mname-input" ng-model="newFacultyUser.faculty_user_middle_name" required="required" pattern="[A-Za-z\.\-]*[A-Za-z\.]+">
         </div>
         <div class="col s12 m12 l4">
-          <input placeholder="Last Name" type="text" id="lname-input" ng-model="newFacultyUser.faculty_user_last_name" required="required">
+          <input placeholder="Last Name" type="text" id="lname-input" ng-model="newFacultyUser.faculty_user_last_name" required="required" pattern="[A-Za-z\.\-]*[A-Za-z\.]+">
           <label for="lname-input">Name</label>
         </div>
       </div>
@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col s12 m6 l6">
         <div class="input-field">
-          <input placeholder="Username" type="text" id="name-input" ng-model="newFacultyUser.faculty_user_username" required="required">
+          <input placeholder="Username" type="text" id="name-input" ng-model="newFacultyUser.faculty_user_username" required="required" pattern="[A-Za-z0-9_]*">
           <label for="name-input">Username</label>
         </div>
       </div>
@@ -32,13 +32,13 @@
     <div class="row">
       <div class="col s12 m7 l7">
         <div class="input-field">
-          <input placeholder="Employee ID" type="text" id="employee-input" ng-model="newFacultyUser.faculty_user_employee_id" required="required">
+          <input placeholder="Employee ID" type="text" id="employee-input" ng-model="newFacultyUser.faculty_user_employee_id" required="required" minlength="10" maxlength="10">
           <label for="employeeid-input">Employee ID</label>
         </div>
       </div>
       <div class="col s12 m5 l5">
         <div class="input-field">
-          <input placeholder="Professor, Instructor 3, etc." type="text" id="classification-input" ng-model="newFacultyUser.faculty_user_classification" required="required">
+          <input placeholder="Professor, Instructor 3, etc." type="text" id="classification-input" ng-model="newFacultyUser.faculty_user_classification" required="required"  pattern="(Instructor|Assistant Professor|Professor)\s*[0-9]">
           <label for="classification-input">Classification</label>
         </div>
       </div>
