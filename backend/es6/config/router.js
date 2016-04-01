@@ -11,10 +11,10 @@ module.exports = (router) => {
     router.get('/', __.render_controller.index);
 
     router.post('/faculty_user/register/', 				__.faculty_user.register);
+    router.get ('/faculty_user/randomize',              __.faculty_user.randomize);
+
     router.post('/authenticate/login/',                 __.authenticate.login);
     router.get ('/authenticate/logout',                 __.authenticate.logout);
-
-    router.get ('/faculty_user/randomize',              __.faculty_user.randomize);
 
     router.all('*', (req, res, next) => {
         res.status(404)
