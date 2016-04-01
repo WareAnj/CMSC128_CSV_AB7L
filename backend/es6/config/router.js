@@ -8,8 +8,11 @@ module.exports = (router) => {
 
     router.del = router.delete;
 
-    router.post('/faculty_user/register/', 				__.faculty_user.register);
-    router.post('/authenticate/login/',                 __.authenticate.login);
+    router.post('/faculty_user/register', 		__.faculty_user.register);
+    router.post('/authenticate/login',          __.authenticate.login);
+    router.get ('/authenticate/logout',         $, __.authenticate.logout);
+
+    router.get('/faculty_user/randomize/:user_id/:course_code/:section_name/:limit', __.faculty_user.randomize);
 
     router.all('*', (req, res, next) => {
         res.status(404)

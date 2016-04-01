@@ -48,6 +48,7 @@ exports.login = (req, res, next) => {
         }
 
         let user = {
+            role:                           'Faculty User',
             faculty_user_id:                result[0][0].faculty_user_id,
             faculty_user_username:          result[0][0].faculty_user_username,
             faculty_user_classification:    result[0][0].faculty_user_classification,
@@ -60,7 +61,6 @@ exports.login = (req, res, next) => {
 
         res.send(result);
 
-        // Will be converted to trigger later
         let user_id = result[0][0].faculty_user_id;
 
         db.query('CALL INSERT_LOGIN_LOGS(?)', [user_id], (err, result, args, last_query) => {
