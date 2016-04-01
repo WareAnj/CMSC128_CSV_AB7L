@@ -52,13 +52,17 @@ exports.update_volunteer = (req, res, next) => {
 
 };
 
+exports.delete_volunteer = (req, res, next) => {
+
+};
+
 exports.randomize = (req, res, next) => {
 
     const data = {
         user_id:                req.query.user_id,
         course_code:            req.query.course_code,
         section_name:           req.query.section_name,
-        limit:                  req.query.limit  
+        limit:                  req.query.limit
     };
 
     function start () {
