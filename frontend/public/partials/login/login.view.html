@@ -1,0 +1,18 @@
+<div class="modal-content center">
+	<h4>Log In</h4>
+	<form ng-submit="Login()" action="/#/" method="GET" ng-controller="AuthenticationCtrl">
+	
+		<div class="input-field">
+			<i class="material-icons prefix">Username</i>
+			<input placeholder="username" type="text" name="username" id="name-input" ng-model="facultyUser.username" required="required">
+		</div>
+		
+		<div class="input-field">
+			<i class="material-icons prefix">Password</i>
+			<input placeholder="password" type="password" name="password" id="password-input" ng-model="facultyUser.password" required="required">
+		</div>
+		
+		<button class="btn waves-effect waves-light" type="submit">Log In</button>
+		
+	</form>
+</div>

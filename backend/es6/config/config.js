@@ -8,7 +8,7 @@ const config = {
 
     PORT: 8000,
 
-    COOKIE_SECRET: 'r391nYz3R',
+    COOKIE_SECRET: 'R3G1nYzR',
 
     CORS:  {
         allowed_headers: 'Access-Token, X-Requested-With, Content-Type, Accept',

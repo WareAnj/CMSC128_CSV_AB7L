@@ -10,7 +10,7 @@ The CSVs is an online application that allows teachers to select random ‘volun
 ## Prerequisites
 1. MySQL 5.6, run:
   ```sh
-  sudo apt-get install mysql-client-core-5.6 
+  sudo apt-get install mysql-client-core-5.6
   sudo apt-get install mysql-server-5.6
   ```
 
@@ -33,8 +33,8 @@ The CSVs is an online application that allows teachers to select random ‘volun
   sudo n stable
   sudo ln -sf /usr/local/n/versions/node/<VERSION_OF_NODE>/bin/node /usr/bin/node
   ```
-  
-5. Redis
+
+5. Redis (this will be the storage of user sessions)
   Go to the website `redis.io` and download the latest version of Redis (WARNING: Version may vary)
 
   ```sh
@@ -58,9 +58,9 @@ The CSVs is an online application that allows teachers to select random ‘volun
 
 1. git clone https://github.com/WareAnj/CMSC128_CSV_AB7L.git
 
-2. Import `backend/es6/database/schema.sql` 
+2. Import all files in the folder `backend/es6/database/`
   ```sh
-  mysql -u root -p < backend/es6/database/schema.sql
+  ./setup_database.sh
   ```
 
 3. Run this commands:

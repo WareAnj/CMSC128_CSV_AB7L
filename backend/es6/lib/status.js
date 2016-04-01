@@ -32,5 +32,13 @@ module.exports = {
             code: 'ALREADY_LOGGED_IN',
             context: 'Already logged in'
         }
+    },
+
+    MISSING_SESSION: {
+        status: 403,
+        message: {
+            code: 'MISSING_SESSION',
+            context: 'No session found'
+        }
     }
 };

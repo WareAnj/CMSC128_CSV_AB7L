@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
+		<title>Reginyzr</title>
+    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+       	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
+       	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
+    	<link type="text/css" rel="stylesheet" href="stylesheets/index.css">
+	</head>
+
+	<body>
+
+	<!-- NAV BAR -->
+
+		<nav>
+		 	<div class="nav-wrapper container">
+		 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+		 		<ul id="nav-mobile">
+		    	<!--	<li><div class="logo-img hide-on-small-and-down">
+		    			<a href="#">
+		    			<img id="nav-logo" src="img/logo-2.png">
+		    			</a></div></li>
+		    	-->	<li><a href="#" class="brand-logos">REGINYZR</a></li>
+		    	</ul>
+
+		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
+				    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
+				    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
+		    	</ul>
+
+	    		<!-- SIDE NAV (WHEN VIEWED IN SMALLER SCREENS) -->
+
+		    	<ul id="mobile-demo" class="side-nav">
+		    		<div class="logo-img-side"><a href="#">
+		    			<img id="logo-img-side" src="img/logo-2.png">
+		    		</a></div>
+				    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
+				    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
+		    	</ul>
+		    </div>
+		</nav>
+
+		<main>
+
+	<!-- INTRO -->
+
+			<div id="brief-intro-container">
+				<div id="brief-intro">
+					<div class="container" id="content">
+						<div class="row">
+							<div class="col s12 m12 l10"><img src="img/logo-2.png" id="intro-logo" class="animated flipInY"></div>
+						</div>
+						<div class="row">
+							<div class="col s12 m12 l10">
+								<div class="center animated fadeIn">
+								<h4>The best web application for a fun and interactive class discussion.</h4>
+									<a href="#signupModal" class="modal-trigger waves-effect waves-light btn-large">Sign Up</a>
+									<a class="waves-effect waves-light btn-large">Try Now</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+	<!-- MORE INFO: HOW DOES IT WORK -->
+
+			<div id="more-info">
+				<div class="container" id="content">
+					<h4>HOW DOES IT WORK?</h4>
+					<div class="row">
+						<div class="col s12 m4 l4">
+							<div class="center">
+				                <i class="material-icons">add</i>
+				                <p class="caption">Add a Class</p>
+				                <p class="center light">You can either provide the information manually or upload a file.</p>
+			            	</div>
+						</div>
+						<div class="col s12 m4 l4">
+							<div class="center">
+				                <i class="material-icons">settings</i>
+				                <p class="caption">Adjust the Settings</p>
+				                <p class="center light">How many volunteers? Which lab sections? Choose the right settings for your class' needs.</p>
+			            	</div>
+						</div>
+						<div class="col s12 m4 l4">
+							<div class="center">
+				                <i class="material-icons">supervisor_account</i>
+				                <p class="caption">Randomize!</p>
+				                <p class="center light">And you're done! All you have to do is wait as we generate your volunteers for you.</p>
+			            	</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+	<!-- MORE INFO: WHY SIGN UP -->
+
+			<div id="more-info-2">
+				<div class="container" id="content">
+					<h4>WHY SIGN UP?</h4>
+					<h5 class="center">//Will fix layout, background, and images//</h5>
+					<div class="row">
+						<div class="reason col s12 m12 l5" id="reason-1">
+							<img src="img/blank.png">
+							<h4>Save and access all your classes</h4>
+						</div>
+						<div class="reason col s12 m12 l5 offset-l7" id="reason-2">
+							<img src="img/blank.png">
+							<h4>More functionalities</h4>
+						</div>
+						<div class="reason col s12 m12 l5" id="reason-3">
+							<img src="img/blank.png">
+							<h4>Lorem Ipsum Dolor Sit Amet</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+
+	<!-- MODALS: LOGIN AND SIGN UP -->
+			<div ng-view="">
+			</div
+
+		</main>
+
+		<footer class="page-footer">
+			<div class="container">
+				<div class="row center">
+					<div class="col s12 m12 l7">
+					footer content
+					</div>
+					<div class="col s12 m12 l5">
+					more footer content
+					</div>
+				</div
+			</div>
+		</footer>
+
+	    <script type="text/javascript" src="js/jquery.js"></script>
+	    <script type="text/javascript" src="js/materialize.min.js"></script>
+	    <script type="text/javascript" src="js/index.js"></script>
+
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-route.min.js"></script>
+
+		<script src="app.js"></script>
+
+		<script src="partials/login/login.service.js"></script>
+		<script src="partials/login/login.controller.js"></script>
+
+		<script src="partials/register/register.service.js"></script>
+		<script src="partials/register/register.controller.js"></script>
+
+	</body>
+</html>

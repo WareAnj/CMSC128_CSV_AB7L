@@ -24,7 +24,7 @@ exports.login = (req, res, next) => {
 
         db.query('CALL LOGIN(?, ?)', [data.faculty_user_username, data.faculty_user_password],
                     send_response);
-    };
+    }
 
 
     function send_response (err, result, args, last_query) {
@@ -54,12 +54,12 @@ exports.login = (req, res, next) => {
             faculty_user_classification:    result[0][0].faculty_user_classification,
             faculty_user_given_name:        result[0][0].faculty_user_given_name,
             faculty_user_middle_name:       result[0][0].faculty_user_middle_name,
-            faculty_user_last_name:         result[0][0].faculty_user_last_name,
-        }
+            faculty_user_last_name:         result[0][0].faculty_user_last_name
+        };
 
         req.session.user = user;
 
-        res.send(result);
+        res.send(result[0][0]);
 
         let user_id = result[0][0].faculty_user_id;
 
@@ -68,11 +68,29 @@ exports.login = (req, res, next) => {
                 winston.error('Error in creating login logs', last_query);
                 return next(err);
             }
-
-            console.log(result);
         });
     }
 
+
+    start();
+};
+
+
+exports.logout = (req, res, next) => {
+    let response;
+
+    function start() {
+
+        if (!req.session.user) {
+            response = status.MISSING_SESSION;
+
+            return res.status(response.status).send(response.message);
+        }
+
+        req.session.destroy();
+
+        res.send({message: 'Successfully logged out'});
+    }
 
     start();
 };
