@@ -31,4 +31,12 @@ module.exports = (req, res, next) => {
             return res.status(response.status).send(response.message);
         };
     }
+
+    if (req.session && req.session.user) {
+        return next();
+    }
+
+    let response = status.MISSING_SESSION;
+
+    return res.status(response.status).send(response.message);
 };
