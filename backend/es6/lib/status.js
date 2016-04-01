@@ -1,6 +1,15 @@
 'use strict';
 
 module.exports = {
+
+    UNAUTHORIZED: {
+        status: 403,
+        message: {
+            code: 'UNAUTHORIZED',
+            context: 'Unauthorized!'
+        }
+    },
+
     INV_USERNAME: {
         status: 404,
         message: {
