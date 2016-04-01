@@ -40,6 +40,18 @@ exports.register = (req, res, next) => {
     start();
 };
 
+exports.post_volunteer = (req, res, next) => {
+
+};
+
+exports.get_volunteers = (req, res, next) => {
+
+};
+
+exports.update_volunteer = (req, res, next) => {
+
+};
+
 exports.randomize = (req, res, next) => {
 
     const data = {
