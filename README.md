@@ -30,8 +30,8 @@ The CSVs is an online application that allows teachers to select random ‘volun
   ```sh
   sudo npm cache clean -f
   sudo npm install -g n
-  sudo n stable
-  sudo ln -sf /usr/local/n/versions/node/<VERSION_OF_NODE>/bin/node /usr/bin/node
+  sudo n 5.6
+  sudo ln -sf /usr/local/n/versions/node/5.6.0/bin/node /usr/bin/node
   ```
 
 5. Redis (this will be the storage of user sessions)
