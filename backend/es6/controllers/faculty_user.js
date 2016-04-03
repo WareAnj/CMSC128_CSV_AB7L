@@ -22,7 +22,7 @@ exports.register = (req, res, next) => {
                  [data.faculty_user_username, data.faculty_user_password,
                   data.faculty_user_employee_id, data.faculty_user_classification,
                   data.faculty_user_given_name, data.faculty_user_middle_name,
-                  data.faculty_user_last_name, data.faculty_user_username],
+                  data.faculty_user_last_name],
                   send_response);
     }
 
