@@ -43,10 +43,10 @@ exports.register = (req, res, next) => {
 exports.randomize = (req, res, next) => {
 
     const data = {
-        user_id:                req.params.user_id,
-        course_code:            req.params.course_code,
-        section_name:           req.params.section_name,
-        limit:                  req.params.limit
+        user_id:                req.query.user_id,
+        course_code:            req.query.course_code,
+        section_name:           req.query.section_name,
+        limit:                  req.query.limit
     };
 
     function start () {
