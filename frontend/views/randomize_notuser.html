@@ -7,48 +7,77 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
        	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
        	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/index.css">
+    	<link type="text/css" rel="stylesheet" href="stylesheets/randomize_notuser.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	</head>
 
 	<body>
 
 	<!-- NAV BAR -->
 
-		<nav>
-		 	<div class="nav-wrapper container">
-		 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-		 		<ul id="nav-mobile">
-		    	<!--	<li><div class="logo-img hide-on-small-and-down">
-		    			<a href="#">
-		    			<img id="nav-logo" src="img/logo-2.png">
-		    			</a></div></li>
-		    	-->	<li><a href="#" class="brand-logos">REGINYZR</a></li>
-		    	</ul>
-
-		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
-				    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
-				    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
-		    	</ul>
-
-	    		<!-- SIDE NAV (WHEN VIEWED IN SMALLER SCREENS) -->
-
-		    	<ul id="mobile-demo" class="side-nav">
-		    		<div class="logo-img-side"><a href="#">
-		    			<img id="logo-img-side" src="img/logo-2.png">
-		    		</a></div>
-				    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
-				    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
-		    	</ul>
+		<nav id="navbar">
+		 	<div class="row">
+		 		<div class="col s5 offset-s5">
+		 			<img src="img/logo-2.png" id="logo" class="animated flipInY"></div>
+		 		</div>
 		    </div>
 		</nav>
 
-		<main>
+		<main class="container">
+			<div class="row">
 
+				<!-- COLUMN FOR FORM -->
+				<div class="col s6 m6 l6">
+					<div class="container center">
+						<form action="" id="form">
+							<div class="input-field">
+								<i class="material-icons prefix">account_circle</i>
+								<input id ="icon_prefix" type="text" class="validate" name="text">
+								<label for="icon_prefix">Name</label>
+							</div>
 
-	<!-- MODALS: LOGIN AND SIGN UP -->
-			<div ng-view="">
-			</div
+				  			<button id="add" class="btn waves-effect waves-light">Add
+				  				<i class="material-icons right">send</i>
+				  			</button>
 
+				  			<button id="#randomizeModal" class="btn waves-effect waves-light">Randomize
+				  				<i class="material-icons right">assignment</i>
+				  			</button>
+				  			
+				  			<!-- <button type="button">Randomize</button><br> -->
+
+					  		<script>
+					  			$("#add").click(function(){
+						   			var new_field = $('<tr><td>').attr({ type: 'text', name:'text', value:'', placeholder: 'Name'});
+						   			$("#table").append(new_field);
+								});
+					 		</script>
+						</form>
+					</div>
+				</div>
+
+				<!-- COLUMN FOR TABLE -->
+				<div class="col s6">
+					<div class="container">
+						<table class="striped">
+							<thead>
+								<tr>
+									<th>NAMES</th>
+								</tr>
+							</thead>
+							<tbody id="table">
+								<tr>
+									<td>Sample name 1</td>
+								</tr>
+								<tr>
+									<td>Sample name 1</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+			</div>
 		</main>
 
 	    <script type="text/javascript" src="js/jquery.js"></script>
