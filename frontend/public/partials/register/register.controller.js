@@ -13,8 +13,10 @@
     $scope.AddFacultyUser = function(){
 			RegisterService.AddFacultyUser($scope.newFacultyUser)
 				.then(function(data) {
-					$scope.faculty_user_data.push(data);
+					$scope.faculty_user_data.push(data);  
 				});
+        //Materialize.toast('Faculty User added!', 8000, 'rounded');
+        alert('Faculty User added!');
 		}
   }
 
