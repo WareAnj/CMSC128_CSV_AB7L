@@ -5,5 +5,5 @@ exports.index = (req, res, next) => {
 };
 
 exports.randomize_notuser = (req, res, next) =>{
-	res.send('randomize_notuser');
+	res.render('randomize_notuser');
 };
