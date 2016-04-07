@@ -41,7 +41,59 @@ exports.register = (req, res, next) => {
 };
 
 exports.post_volunteer = (req, res, next) => {
+    const data = {
+        student_number:         req.body.student_number,
+        student_given_name:     req.body.student_given_name,
+        student_middle_name:    req.body.student_middle_name,
+        student_last_name:      req.body.student_last_name,
+        student_degree:         req.body.student_degree,
+        student_classification: req.body.student_classification,
+        student_college:        req.body.student_college,
+        ss_section_id:          req.body.ss_section_id
+    };
 
+    function start () {
+        db.query(
+            [
+                'INSERT INTO student',
+                '(student_number, student_given_name, student_middle_name,',
+                'student_last_name, student_degree, student_classification, student_college)',
+                'VALUES (?, ?, ?, ?, ?, ?, ?);'
+            ].join(' '),
+            [
+                data.student_number,
+                data.student_given_name,
+                data.student_middle_name,
+                data.student_last_name,
+                data.student_degree,
+                data.student_classification,
+                data.student_college, 
+            ],
+            update_section
+        );
+    }
+
+    function update_section () {
+        db.query(
+            [
+                'INSERT INTO student_section',
+                '(ss_student_number, ss_section_id)',
+                'VALUES (?, ?);'
+            ].join(' '),
+            [data.student_number, data.ss_section_id],
+            send_response
+        );
+    }
+        
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in Creating Volunteer', last_query);
+            return next(err);
+        }
+        res.send(result);
+    }
+
+    start();
 };
 
 exports.get_volunteers = (req, res, next) => {
