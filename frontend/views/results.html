@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
 		<title>Reginyzr</title>
-    	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
     	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
        	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
        	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
@@ -23,7 +22,7 @@
 		    			<a href="#">
 		    			<img id="nav-logo" src="img/logo-2.png">
 		    			</a></div></li>
-		    	-->	<li><a href="index.html" class="brand-logos"> REGINYZR</a></li>
+		    	-->	<li><a href="/" class="brand-logos"> REGINYZR</a></li>
 		    	</ul>
 
 		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
@@ -53,6 +52,9 @@
 				</div>
 			</div>
 
+		<!-- MODALS: LOGIN AND SIGN UP -->
+			<div ng-view="">
+			</div>
 		</main>
 
 		<footer class="page-footer">
@@ -71,5 +73,17 @@
 	    <script type="text/javascript" src="js/jquery.js"></script>
 	    <script type="text/javascript" src="js/materialize.min.js"></script>
 	    <script type="text/javascript" src="js/randomizer-2.js"></script>
+
+			<script src="js/angular.min.js"></script>
+			<script src="js/angular-route.min.js"></script>
+
+			<script src="app.js"></script>
+
+			<script src="partials/login/login.service.js"></script>
+			<script src="partials/login/login.controller.js"></script>
+
+			<script src="partials/register/register.service.js"></script>
+			<script src="partials/register/register.controller.js"></script>
+			<script src="partials/register/register.check_faculty_user_username.js"></script>
 	</body>
 </html>

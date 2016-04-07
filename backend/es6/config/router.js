@@ -10,6 +10,7 @@ module.exports = (router) => {
     router.del = router.delete;
 
     router.get('/',                                                                     __.render_controller.index);
+    router.get('/randomizer/',                                      __.render_controller.randomizer);
 
     router.post('/faculty_user/register/',                                              __.faculty_user.register);
     router.post('/faculty_user/check_faculty_user_username/', 	                                __.faculty_user.check_faculty_user_username);
