@@ -24,6 +24,7 @@ module.exports = (router) => {
     router.post('/authenticate/login/',                                                 __.authenticate.login);
     router.get ('/authenticate/logout',                             $,                  __.authenticate.logout);
 
+    router.get('/randomize_notuser',                                                    __.render_controller.randomize_notuser);
 
     router.all('*', (req, res, next) => {
         res.status(404)
