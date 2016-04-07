@@ -6,12 +6,12 @@
 		.controller("CheckEmpIDCtrl", CheckEmpIDCtrl);
 
 	CheckEmpIDCtrl.$inject = ["$scope", "$http"];
-
+alert("dsfsfd");
 	function CheckEmpIDCtrl($scope, $http){
-		angular.element(document.querySelector('#employee-input')).on('keyup',function(e){
-			var faculty_user_employee_id = document.querySelector('#employee-input').value;
+		angular.element(document.querySelector('#employeeinput')).on('keyup',function(e){
+			var faculty_user_employee_id = document.querySelector('#employeeinput').value;
 			if (faculty_user_employee_id===""){
-				document.querySelector('#uid-warning').innerText = "";
+				document.querySelector('#uidd-warning').innerText = "";
 				return;
 			}
 
@@ -20,13 +20,12 @@
 				 {faculty_user_employee_id: faculty_user_employee_id}
 			).then(function successCallback(response) {
 				if (response.data==true){
-					document.querySelector('#uid-warning').innerText = "Employee ID not available!";
+					document.querySelector('#uidd-warning').innerText = "Employee ID not available!";
 				} else {
-					document.querySelector('#uid-warning').innerText = "Employee ID available!";
+					document.querySelector('#uidd-warning').innerText = "Employee ID available!";
 				}
 			}, function errorCallback(response) { });
 		});
 	}
 
 })();
-
