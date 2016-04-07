@@ -29,29 +29,29 @@
 				<!-- COLUMN FOR FORM -->
 				<div class="col s6 m6 l6">
 					<div class="container center">
-						<form action="" id="form">
+						<form onSubmit="return false;" id="form">
+							 <input type="file" name="file" id="file">
+							 
+							 <p></p>
+						
 							<div class="input-field">
 								<i class="material-icons prefix">account_circle</i>
-								<input id ="icon_prefix" type="text" class="validate" name="text">
-								<label for="icon_prefix">Name</label>
+								<input id="input" type="text" class="validate" placeholder="Name">
 							</div>
 
 				  			<button id="add" class="btn waves-effect waves-light">Add
 				  				<i class="material-icons right">send</i>
 				  			</button>
 
-				  			<button id="#randomizeModal" class="btn waves-effect waves-light">Randomize
+				  			<button id="rand" class="btn waves-effect waves-light">Randomize
 				  				<i class="material-icons right">assignment</i>
+				  			</button>
+				  			
+				  			<button id="clear" class="btn waves-effect waves-light">Clear
 				  			</button>
 				  			
 				  			<!-- <button type="button">Randomize</button><br> -->
 
-					  		<script>
-					  			$("#add").click(function(){
-						   			var new_field = $('<tr><td>').attr({ type: 'text', name:'text', value:'', placeholder: 'Name'});
-						   			$("#table").append(new_field);
-								});
-					 		</script>
 						</form>
 					</div>
 				</div>
@@ -63,15 +63,10 @@
 							<thead>
 								<tr>
 									<th>NAMES</th>
+									<th>DELETE BUTTON</th>
 								</tr>
 							</thead>
 							<tbody id="table">
-								<tr>
-									<td>Sample name 1</td>
-								</tr>
-								<tr>
-									<td>Sample name 1</td>
-								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -95,5 +90,116 @@
 		<script src="partials/register/register.service.js"></script>
 		<script src="partials/register/register.controller.js"></script>
 
+
+		 <script>
+		  //randomize and add name
+		  var arr = [];
+		  	$("#add").click(function(){
+			
+			  //var new_field = $('<tr><td>' + document.getElementById('input').value + '<td/><td><button >Delete</button></td><tr/>').attr({class:'fields', value:document.getElementById('input').value});
+			  			  
+			  var delButton = $('<button>Delete</button>').attr({value:document.getElementById('input').value, onclick:'deleteRow(this.value)'});
+			  var detTD = $('<td>').add(delButton);
+			  var nameTD = $('<td>' + document.getElementById('input').value + '</td>');
+			  
+			  var spacesToUnderscore =document.getElementById('input').value.replace(/ /g,"_");
+			  var new_field = $('<tr>').attr({class:'fields', id:spacesToUnderscore}).append(nameTD).append(delButton);			  
+			  
+			  if(inArray(document.getElementById('input').value, arr)){
+				alert("'"+  document.getElementById('input').value  + "' already exists");
+			  }else if(document.getElementById('input').value == ""){
+				alert("Name is blank");
+			  }else{
+			   	$("#table").append(new_field);
+			  	arr.push(document.getElementById('input').value);
+			  }
+			  document.getElementById('input').value = '';
+			});
+
+			$("#rand").click(function(){
+				if(arr.length == 0){
+					alert("The list is empty");
+					return false;
+				}
+			    var x = arr[Math.floor((Math.random() * arr.length))];
+			    $("p").html("Randomized Name: "+x);
+			});
+
+			function inArray(word,array){
+    			var count=array.length;
+   				for(var i=0;i<count;i++){
+        			if(array[i].toLowerCase()===word.toLowerCase()){return true;}
+    			}
+    			return false;	
+			}
+			
+			$("#clear").click(function(){
+				arr = [];
+				var deleter = document.getElementsByClassName('fields');
+
+				while(deleter[0]) {
+					deleter[0].parentNode.removeChild(deleter[0]);
+				}
+			});
+			
+			
+			function deleteRow(value){
+				var index = arr.indexOf(value);
+				arr.splice(index,1);
+				
+				var spacesToUnderscore = value.replace(/ /g,"_");
+				
+				$("#"+ spacesToUnderscore).remove(); 
+				$("#"+ spacesToUnderscore).empty(); 
+			};
+			
+			
+			/*
+				src: http://www.html5rocks.com/en/tutorials/file/dndfiles/
+				src: http://www.htmlgoodies.com/beyond/javascript/read-text-files-using-the-javascript-filereader.html#fbid=jkQONyBE0Ht
+			*/
+			
+			//filereading
+			document.getElementById('file').onchange = function(){
+				
+				// Check for the various File API support.
+				if (window.File && window.FileReader && window.FileList && window.Blob) {
+					var file = this.files[0];
+					var reader = new FileReader();
+					reader.onload = function(progressEvent){					
+						var lines = this.result.split('\n');
+						for(var line = 0; line < lines.length; line++){
+							
+							//var new_field = $('<label/>' + lines[line].trim() + '<label/><br>').attr({class:'fields', value:lines[line].trim()});	
+							
+							 var delButton = $('<button>Delete</button>').attr({class:'delButton', value:lines[line].trim(), onclick:'deleteRow(this.value)'});
+							 var detTD = $('<td>').add(delButton);
+							 var nameTD = $('<td>' + lines[line].trim() + '</td>');
+							 
+							 var spacesToUnderscore = lines[line].trim().replace(/ /g,"_");
+							 var new_field = $('<tr>').attr({class:'fields', id:spacesToUnderscore}).append(nameTD).append(delButton);
+							
+							
+							 if(inArray(lines[line].trim(), arr)){
+								alert("Input at line " + line + "\n'"+  lines[line].trim()  + "' already exists");
+							  }else if(lines[line].trim() == ""){
+								alert("Input at line " + line + " is blank");
+							  }else{
+							  
+								$("#table").append(new_field);
+								arr.push(lines[line].trim());
+							  }
+						}
+					};
+				reader.readAsText(file);				  
+				} 
+				
+				else {
+					alert('The File APIs are not fully supported by your browser.');
+				} 
+				
+			};
+			
+		  </script>
 	</body>
 </html>
