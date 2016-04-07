@@ -40,6 +40,29 @@ exports.register = (req, res, next) => {
     start();
 };
 
+exports.check_faculty_user_username = (req, res, next) => {
+  const faculty_user_username = req.body.faculty_user_username;
+
+  db.query(
+    [
+      'SELECT faculty_user_username FROM faculty_user',
+      'WHERE faculty_user_username = ?; '
+    ].join(' '),
+	   [faculty_user_username],
+     responder
+  );
+
+	function responder(err, result){
+		if (err) winston.error('Error! ', err);
+		const rows = result.length;
+		if (rows === 1) {
+			res.status(200).send(true);
+		} else {
+			res.status(200).send(false);
+		}
+	}
+};
+
 exports.post_volunteer = (req, res, next) => {
 
 };
