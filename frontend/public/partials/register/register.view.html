@@ -15,10 +15,11 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <span id="uid-warning"> </span>
+    <div class="row" ng-controller="CheckUserCtrl">
       <div class="col s12 m6 l6">
         <div class="input-field">
-          <input placeholder="Username" type="text" id="name-input" ng-model="newFacultyUser.faculty_user_username" required="required" pattern="[A-Za-z0-9_]*">
+          <input placeholder="Username" type="text" id="nameinput" ng-model="newFacultyUser.faculty_user_username" required="required" pattern="[A-Za-z0-9_]*">
           <label for="name-input" class="active">Username</label>
         </div>
       </div>
