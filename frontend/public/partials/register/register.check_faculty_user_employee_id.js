@@ -6,7 +6,6 @@
 		.controller("CheckEmpIDCtrl", CheckEmpIDCtrl);
 
 	CheckEmpIDCtrl.$inject = ["$scope", "$http"];
-alert("dsfsfd");
 	function CheckEmpIDCtrl($scope, $http){
 		angular.element(document.querySelector('#employeeinput')).on('keyup',function(e){
 			var faculty_user_employee_id = document.querySelector('#employeeinput').value;
