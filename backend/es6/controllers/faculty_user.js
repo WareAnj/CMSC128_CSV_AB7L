@@ -63,6 +63,29 @@ exports.check_faculty_user_username = (req, res, next) => {
 	}
 };
 
+exports.check_faculty_user_employee_id = (req, res, next) => {
+  const faculty_user_employee_id = req.body.faculty_user_employee_id;
+
+  db.query(
+    [
+      'SELECT faculty_user_employee_id FROM faculty_user',
+      'WHERE faculty_user_employee_id = ?; '
+    ].join(' '),
+	   [faculty_user_employee_id],
+     responder
+  );
+
+	function responder(err, result){
+		if (err) winston.error('Error! ', err);
+		const rows = result.length;
+		if (rows === 1) {
+			res.status(200).send(true);
+		} else {
+			res.status(200).send(false);
+		}
+	}
+};
+
 exports.post_volunteer = (req, res, next) => {
     const data = {
         student_number:         req.body.student_number,

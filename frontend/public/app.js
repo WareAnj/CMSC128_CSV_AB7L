@@ -10,6 +10,10 @@ var app =	angular
 		.when("/",{
 			"controller" : "RouteCtrl",
 			"templateUrl" : "uirouter.html"
+		})
+		.when("/randomizer",{
+			"controller" : "RouteCtrl",
+			"templateUrl" : "uirouter.html"
 		});
 	}
 

@@ -30,10 +30,11 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <span id="uidd-warning"> </span>
+    <div class="row" ng-controller="CheckEmpIDCtrl">
       <div class="col s12 m7 l7">
         <div class="input-field">
-          <input placeholder="Employee ID" type="text" id="employee-input" ng-model="newFacultyUser.faculty_user_employee_id" required="required" minlength="10" maxlength="10">
+          <input placeholder="Employee ID" type="text" id="employeeinput" ng-model="newFacultyUser.faculty_user_employee_id" required="required" minlength="10" maxlength="10" pattern="[0-9]*">
           <label for="employeeid-input" class="active">Employee ID</label>
         </div>
       </div>
