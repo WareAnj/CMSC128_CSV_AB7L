@@ -12,7 +12,8 @@ module.exports = (router) => {
     router.get('/',                                                                     __.render_controller.index);
 
     router.post('/faculty_user/register/',                                              __.faculty_user.register);
-    router.post('/faculty_user/check_faculty_user_username/', 	                                __.faculty_user.check_faculty_user_username);
+    router.post('/faculty_user/check_faculty_user_username/',
+    router.post('/faculty_user/check_faculty_user_employee_id/', 	                                __.faculty_user.check_faculty_user_username);
     router.post('/faculty_user/post_volunteer/',                                        __.faculty_user.post_volunteer);
     router.get ('/faculty_user/volunteers/:user_id',                                    __.faculty_user.get_volunteers);
     router.put ('/faculty_user/volunteer/:user_id/:student_number',                     __.faculty_user.update_volunteer);
