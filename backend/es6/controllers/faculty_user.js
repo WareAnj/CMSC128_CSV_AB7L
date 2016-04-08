@@ -97,30 +97,26 @@ exports.post_volunteer = (req, res, next) => {
         student_classification: req.body.student_classification,
         student_college:        req.body.student_college,
 
-        section_name:           req.body.section_name,
-        section_course_code:    req.body.section_course_code
+        section_id:             req.body.section_id
     };
 
     function start () {
+        db.query (
+            'SELECT COUNT(*) as n FROM student WHERE student_number = ?;',
+            [data.student_number],
+            student_existence
+        );
+    }
 
-        db.query(
-            [
-                'INSERT INTO student',
-                '(student_number, student_given_name, student_middle_name,',
-                'student_last_name, student_degree, student_classification, student_college)',
-                'VALUES (?, ?, ?, ?, ?, ?, ?);'
-            ].join(' '),
-            [
-                data.student_number,
-                data.student_given_name,
-                data.student_middle_name,
-                data.student_last_name,
-                data.student_degree,
-                data.student_classification,
-                data.student_college,
-            ],
+    function student_existence (err, result, args, last_query) {
+        var string = JSON.stringify(result);
+        var count = JSON.parse(string);
+        if(err) {
+            winston.error('Error in Creating Volunteer', last_query);
+            return next(err);
+        }
 
-        if(!check_student_exists){
+        if(count[0].n == '0') {
             db.query(
                 [
                     'INSERT INTO student',
@@ -139,9 +135,12 @@ exports.post_volunteer = (req, res, next) => {
                 ],
                 update_section
             );
-        }else{
-            update_section
+        } else {
+            db.query (
+                update_section
+            );
         }
+
     }
 
     function update_section () {
@@ -151,10 +150,11 @@ exports.post_volunteer = (req, res, next) => {
                 '(ss_student_number, ss_section_id)',
                 'VALUES (?, ?);'
             ].join(' '),
-            [data.student_number, get_section_id],
+            [data.student_number, data.section_id],
             send_response
         );
     }
+<<<<<<< HEAD
 
     function  get_section_id () { //di ko po sure ito pero more or less dapat ganto sya
         var sect_id;
@@ -179,7 +179,7 @@ exports.post_volunteer = (req, res, next) => {
         }
         return false;
     }
-
+    
     function send_response (err, result, args, last_query) {
         if (err) {
             winston.error('Error in Creating Volunteer', last_query);
