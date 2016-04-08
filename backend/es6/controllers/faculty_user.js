@@ -167,18 +167,18 @@ exports.post_volunteer = (req, res, next) => {
         return sect_id;
     }
 
-    // function check_student_exists () {
-    //     var count = db.query(
-    //         [
-    //             SELECT COUNT(student_number) FROM student WHERE student_number = ?;
-    //         ],
-    //         [data.student_number]
-    //     );
-    //     if(count){
-    //         return true;
-    //     }
-    //     return false;
-    // }
+    function check_student_exists () {
+        var count = db.query(
+            [
+                SELECT COUNT(student_number) FROM student WHERE student_number = ?;
+            ],
+            [data.student_number]
+        );
+        if(count){
+            return true;
+        }
+        return false;
+    }
 
     function send_response (err, result, args, last_query) {
         if (err) {
