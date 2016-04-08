@@ -14,14 +14,18 @@
 				document.querySelector('#uid-warning').innerText = "";
 				return;
 			}
-
+      
 			$http.post(
 				"faculty_user/check_faculty_user_username/",
 				 {faculty_user_username: faculty_user_username}
 			).then(function successCallback(response) {
 				if (response.data==true){
 					document.querySelector('#uid-warning').innerText = "Username not available!";
-				} 
+          $("#submit-button").attr('disabled', 'disabled');
+        } else{
+          document.querySelector('#uid-warning').innerText = "";
+          $("#submit-button").removeAttr('disabled');
+        }
 			}, function errorCallback(response) { });
 		});
 	}

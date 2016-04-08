@@ -20,7 +20,7 @@ module.exports = (router) => {
     router.del ('/faculty_user/volunteer/',                                             __.faculty_user.delete_volunteer);
 
 
-    router.get ('/faculty_user/randomize',                          $('Faculty User'),  __.faculty_user.randomize);
+    router.get ('/faculty_user/randomize',                         __.faculty_user.randomize);
 
     router.post('/authenticate/login/',                                                 __.authenticate.login);
     router.get ('/authenticate/logout',                             $,                  __.authenticate.logout);

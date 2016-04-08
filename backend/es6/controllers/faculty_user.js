@@ -113,7 +113,7 @@ exports.post_volunteer = (req, res, next) => {
                 data.student_last_name,
                 data.student_degree,
                 data.student_classification,
-                data.student_college, 
+                data.student_college,
             ],
             update_section
         );
@@ -130,7 +130,7 @@ exports.post_volunteer = (req, res, next) => {
             send_response
         );
     }
-        
+
     function send_response (err, result, args, last_query) {
         if (err) {
             winston.error('Error in Creating Volunteer', last_query);
@@ -186,10 +186,10 @@ exports.delete_volunteer = (req, res, next) => {
 exports.randomize = (req, res, next) => {
 
     const data = {
-        user_id:                req.params.user_id,
-        course_code:            req.params.course_code,
-        section_name:           req.params.section_name,
-        limit:                  req.params.limit
+        user_id:                req.query.user_id,
+        course_code:            req.query.course_code,
+        section_name:           req.query.section_name,
+        limit:                  req.query.limit
     };
 
     function start () {
