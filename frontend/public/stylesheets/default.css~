@@ -94,6 +94,6 @@ h3{
 }
 
 footer.page-footer{
-	padding: 1% 0% 0% 0%;
+	padding: 2% 0% 0% 0%;
 	background-color: #629d95;
 }

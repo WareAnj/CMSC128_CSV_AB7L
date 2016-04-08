@@ -32,7 +32,7 @@ $(window).scroll(function(){
     }
 });
 
-$(document).ready(function() {
+$(window).ready(function() {
     $('select').material_select();
   });
            
