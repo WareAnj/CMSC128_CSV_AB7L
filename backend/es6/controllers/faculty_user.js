@@ -88,11 +88,12 @@ exports.post_volunteer = (req, res, next) => {
         );
     }
 
-    function  get_section_id () { //di ko po sure ito pero more or less dapat ganto sya
+    function  get_section_id () {
         var sect_id;
         sect_id = db.query(
             [
-                'SELECT section_id FROM section WHERE section_name = ? AND section_course_code = ? LIMIT 1;'
+                'SELECT section_id FROM section WHERE section_name = ?',
+                'AND section_course_code = ? LIMIT 1;'
             ],
             [data.section_name, data.section_course_code]
         );
