@@ -11,7 +11,7 @@ var app =	angular
 			"controller" : "RouteCtrl",
 			"templateUrl" : "uirouter.html"
 		})
-		.when("/randomizer",{
+		.when("/randomize",{
 			"controller" : "RouteCtrl",
 			"templateUrl" : "uirouter.html"
 		});
@@ -20,7 +20,7 @@ var app =	angular
 	app.controller('RouteCtrl', function($scope) {
   $scope.template = {
     "register": "partials/register/register.view.html",
-		"login": "partials/login/login.view.html"
+		"login": 		"partials/login/login.view.html"
   }
 	});
 })();

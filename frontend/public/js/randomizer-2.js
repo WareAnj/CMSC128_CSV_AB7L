@@ -32,7 +32,7 @@ $('document').ready(function(){
 	    if(counter === name.length) {	// if all spans are filled
 	    	for(j = 0; j < name.length + (name.length/4); j++){
 	    		$('span#lettersContainer' + (counter + j)).remove();
-	    	}			
+	    	}
 	        clearInterval(loop);		// it will stop the loop
 	    }
 
