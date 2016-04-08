@@ -204,6 +204,20 @@ exports.update_volunteer = (req, res, next) => {
 
 exports.delete_volunteer = (req, res, next) => {
 
+    const data = {
+        user_id:                req.body.user_id,
+        course_code:            req.body.course_code,
+        section_name:           req.body.section_name,
+        student_number:         req.body.student_number
+    }
+
+    function start () {
+        db.query (
+            
+        );
+    }
+
+    start();
 };
 
 exports.randomize = (req, res, next) => {
