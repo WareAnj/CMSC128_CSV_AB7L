@@ -51,12 +51,27 @@ exports.post_volunteer = (req, res, next) => {
         student_classification: req.body.student_classification,
         student_college:        req.body.student_college,
 
-        section_name:           req.body.section_name,
-        section_course_code:    req.body.section_course_code
+        section_id:             req.body.section_id
     };
 
     function start () {
-        if(!check_student_exists){
+        db.query (
+            'SELECT COUNT(*) as n FROM student WHERE student_number = ?;',
+            [data.student_number],
+            student_existence
+            // send_response
+        );
+    }
+
+    function student_existence (err, result, args, last_query) {
+        var string = JSON.stringify(result);
+        var count = JSON.parse(string);
+        if(err) {
+            winston.error('Error in Creating Volunteer', last_query);
+            return next(err);
+        }
+
+        if(count[0].n == '0') {
             db.query(
                 [
                     'INSERT INTO student',
@@ -75,9 +90,12 @@ exports.post_volunteer = (req, res, next) => {
                 ],
                 update_section
             );
-        }else{
-            update_section
+        } else {
+            db.query (
+                update_section
+            );
         }
+
     }
 
     function update_section () {
@@ -87,33 +105,9 @@ exports.post_volunteer = (req, res, next) => {
                 '(ss_student_number, ss_section_id)',
                 'VALUES (?, ?);'
             ].join(' '),
-            [data.student_number, get_section_id],
+            [data.student_number, data.section_id],
             send_response
         );
-    }
-
-    function  get_section_id () { //di ko po sure ito pero more or less dapat ganto sya
-        var sect_id;
-        sect_id = db.query(
-            [
-                'SELECT section_id FROM section WHERE section_name = ? AND section_course_code = ? LIMIT 1;'
-            ],
-            [data.section_name, data.section_course_code]
-        );
-        return sect_id;
-    }
-    
-    function check_student_exists () {
-        var count = db.query(
-            [
-                SELECT COUNT(student_number) FROM student WHERE student_number = ?;'
-            ],
-            [data.student_number]           
-        ); 
-        if(count){
-            return true;
-        }
-        return false;   
     }
         
     function send_response (err, result, args, last_query) {
