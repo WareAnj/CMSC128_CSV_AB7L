@@ -1,0 +1,17 @@
+#results-container{
+	margin-top: 2%;
+	margin-bottom: 2%;
+	background-color: rgb(250,255,249);
+	border-radius: 10px;
+}
+
+#results-container #content{
+	padding: 13% 0 13% 0;
+}
+
+img#volunteerPic{
+	height: 300px;
+}
+
+#results-container #content #lettersContainer{
+}

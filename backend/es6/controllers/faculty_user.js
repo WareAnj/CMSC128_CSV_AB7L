@@ -22,7 +22,7 @@ exports.register = (req, res, next) => {
                  [data.faculty_user_username, data.faculty_user_password,
                   data.faculty_user_employee_id, data.faculty_user_classification,
                   data.faculty_user_given_name, data.faculty_user_middle_name,
-                  data.faculty_user_last_name, data.faculty_user_username],
+                  data.faculty_user_last_name],
                   send_response);
     }
 
@@ -40,8 +40,54 @@ exports.register = (req, res, next) => {
     start();
 };
 
+exports.check_faculty_user_username = (req, res, next) => {
+  const faculty_user_username = req.body.faculty_user_username;
+
+  db.query(
+    [
+      'SELECT faculty_user_username FROM faculty_user',
+      'WHERE faculty_user_username = ?; '
+    ].join(' '),
+	   [faculty_user_username],
+     responder
+  );
+
+	function responder(err, result){
+		if (err) winston.error('Error! ', err);
+		const rows = result.length;
+		if (rows === 1) {
+			res.status(200).send(true);
+		} else {
+			res.status(200).send(false);
+		}
+	}
+};
+
+exports.check_faculty_user_employee_id = (req, res, next) => {
+  const faculty_user_employee_id = req.body.faculty_user_employee_id;
+
+  db.query(
+    [
+      'SELECT faculty_user_employee_id FROM faculty_user',
+      'WHERE faculty_user_employee_id = ?; '
+    ].join(' '),
+	   [faculty_user_employee_id],
+     responder
+  );
+
+	function responder(err, result){
+		if (err) winston.error('Error! ', err);
+		const rows = result.length;
+		if (rows === 1) {
+			res.status(200).send(true);
+		} else {
+			res.status(200).send(false);
+		}
+	}
+};
+
 exports.post_volunteer = (req, res, next) => {
-    
+
     const data = {
         student_number:         req.body.student_number,
         student_given_name:     req.body.student_given_name,
@@ -56,6 +102,24 @@ exports.post_volunteer = (req, res, next) => {
     };
 
     function start () {
+
+        db.query(
+            [
+                'INSERT INTO student',
+                '(student_number, student_given_name, student_middle_name,',
+                'student_last_name, student_degree, student_classification, student_college)',
+                'VALUES (?, ?, ?, ?, ?, ?, ?);'
+            ].join(' '),
+            [
+                data.student_number,
+                data.student_given_name,
+                data.student_middle_name,
+                data.student_last_name,
+                data.student_degree,
+                data.student_classification,
+                data.student_college,
+            ],
+
         if(!check_student_exists){
             db.query(
                 [
@@ -102,20 +166,20 @@ exports.post_volunteer = (req, res, next) => {
         );
         return sect_id;
     }
-    
+
     // function check_student_exists () {
     //     var count = db.query(
     //         [
     //             SELECT COUNT(student_number) FROM student WHERE student_number = ?;'
     //         ],
-    //         [data.student_number]           
-    //     ); 
+    //         [data.student_number]
+    //     );
     //     if(count){
     //         return true;
     //     }
-    //     return false;   
+    //     return false;
     // }
-        
+
     function send_response (err, result, args, last_query) {
         if (err) {
             winston.error('Error in Creating Volunteer', last_query);
@@ -213,7 +277,7 @@ exports.randomize = (req, res, next) => {
             return next(err);
         }
         db.query(
-                'SELECT * FROM temporary_view ORDER BY rand() LIMIT '+ data.limit + ';',
+                'SELECT * FROM student WHERE student_number = (SELECT student_number FROM temporary_view ORDER BY rand() LIMIT '+ data.limit + ') LIMIT 1;',
                 send_response
             );
     }
@@ -223,6 +287,7 @@ exports.randomize = (req, res, next) => {
             winston.error('Error in randomizing students', last_query);
             return next(err);
         }
+
         res.send(result);
     }
 
