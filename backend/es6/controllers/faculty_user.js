@@ -204,6 +204,29 @@ exports.update_volunteer = (req, res, next) => {
 
 exports.delete_volunteer = (req, res, next) => {
 
+    const data = {
+        section_id:             req.body.section_id,
+        student_number:         req.body.student_number
+    }
+
+    function start () {
+        db.query (
+            'DELETE from student_section where ss_section_id = ? AND ss_student_number = ?;',
+            [data.section_id, data.student_number], send_response
+        );
+    }
+
+
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in deleting student', last_query);
+            return next(err);
+        }
+
+        res.send(result);
+    }
+
+    start();
 };
 
 exports.randomize = (req, res, next) => {
