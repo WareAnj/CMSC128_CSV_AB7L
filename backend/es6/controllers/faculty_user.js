@@ -56,24 +56,28 @@ exports.post_volunteer = (req, res, next) => {
     };
 
     function start () {
-        db.query(
-            [
-                'INSERT INTO student',
-                '(student_number, student_given_name, student_middle_name,',
-                'student_last_name, student_degree, student_classification, student_college,)',
-                'VALUES (?, ?, ?, ?, ?, ?);'
-            ].join(' '),
-            [
-                data.student_number,
-                data.student_given_name,
-                data.student_middle_name,
-                data.student_last_name,
-                data.student_degree,
-                data.student_classification,
-                data.student_college
-            ],
+        if(!check_student_exists){
+            db.query(
+                [
+                    'INSERT INTO student',
+                    '(student_number, student_given_name, student_middle_name,',
+                    'student_last_name, student_degree, student_classification, student_college)',
+                    'VALUES (?, ?, ?, ?, ?, ?, ?);'
+                ].join(' '),
+                [
+                    data.student_number,
+                    data.student_given_name,
+                    data.student_middle_name,
+                    data.student_last_name,
+                    data.student_degree,
+                    data.student_classification,
+                    data.student_college
+                ],
+                update_section
+            );
+        }else{
             update_section
-        );
+        }
     }
 
     function update_section () {
@@ -88,16 +92,28 @@ exports.post_volunteer = (req, res, next) => {
         );
     }
 
-    function  get_section_id () {
+    function  get_section_id () { //di ko po sure ito pero more or less dapat ganto sya
         var sect_id;
         sect_id = db.query(
             [
-                'SELECT section_id FROM section WHERE section_name = ?',
-                'AND section_course_code = ? LIMIT 1;'
+                'SELECT section_id FROM section WHERE section_name = ? AND section_course_code = ? LIMIT 1;'
             ],
             [data.section_name, data.section_course_code]
         );
         return sect_id;
+    }
+    
+    function check_student_exists () {
+        var count = db.query(
+            [
+                SELECT COUNT(student_number) FROM student WHERE student_number = ?;'
+            ],
+            [data.student_number]           
+        ); 
+        if(count){
+            return true;
+        }
+        return false;   
     }
         
     function send_response (err, result, args, last_query) {
