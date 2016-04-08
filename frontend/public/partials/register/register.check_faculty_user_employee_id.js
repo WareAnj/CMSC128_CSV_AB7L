@@ -20,8 +20,6 @@
 			).then(function successCallback(response) {
 				if (response.data==true){
 					document.querySelector('#uidd-warning').innerText = "Employee ID not available!";
-				} else {
-					document.querySelector('#uidd-warning').innerText = "Employee ID available!";
 				}
 			}, function errorCallback(response) { });
 		});

@@ -10,7 +10,6 @@ module.exports = (router) => {
     router.del = router.delete;
 
     router.get('/',                                                                     __.render_controller.index);
-    router.get('/randomizer/',                                      __.render_controller.randomizer);
 
     router.post('/faculty_user/register/',                                              __.faculty_user.register);
     router.post('/faculty_user/check_faculty_user_username/', __.faculty_user.check_faculty_user_username);
@@ -27,6 +26,7 @@ module.exports = (router) => {
     router.get ('/authenticate/logout',                             $,                  __.authenticate.logout);
 
     router.get('/randomize_notuser',                                                    __.render_controller.randomize_notuser);
+    router.get('/randomize',                                      __.render_controller.randomize);
 
     router.all('*', (req, res, next) => {
         res.status(404)

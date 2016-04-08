@@ -8,11 +8,11 @@ $('.modal-trigger').leanModal({
     }
   );
 
-$('#submit-button').on('click', function(){
+function submitClick(){
     setTimeout(function(){
-      $('#modal1').closeModal();
+      $('#signupModal').closeModal();
     }, 3000);
-});
+};
 
 $(window).scroll(function(){
     var aTop = $('#reason-1').height();

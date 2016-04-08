@@ -21,9 +21,7 @@
 			).then(function successCallback(response) {
 				if (response.data==true){
 					document.querySelector('#uid-warning').innerText = "Username not available!";
-				} else {
-					document.querySelector('#uid-warning').innerText = "Username available!";
-				}
+				} 
 			}, function errorCallback(response) { });
 		});
 	}

@@ -17,8 +17,7 @@
 				.then(function(data) {
 					$scope.faculty_user_data.push(data);
 				});
-        //Materialize.toast('Faculty User added!', 8000, 'rounded');
-        alert('Faculty User added!');
+        Materialize.toast('Faculty User added!', 3000, 'rounded');
 		}
   }
 
