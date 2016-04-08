@@ -11,24 +11,25 @@
     var mname = false;
     var lname = false;
     var uname = false;
-    var password = false;
+    var pword = false;
     var empid = false;
     var classification = false;
 
 
-    if(fname && mname && lname && uname && password && empid && classification){
+    if(fname && mname && lname && uname && pword && empid && classification){
       alert("dsadas");
     }
 
     angular.element(document.querySelector('#fname-input')).on('keyup', function(e){
       var faculty_user_given_name = document.querySelector('#fname-input').value;
       if(faculty_user_given_name===""){
-        fname = false
+        fname = false;
         $("#submit-button").attr('disabled', 'disabled');
-      } else if(fname && mname && lname && uname && password && empid && classification){
-        $("#submit-button").removeAttr('disabled');
       } else{
         fname = true;
+      }
+      if(fname && mname && lname && uname && pword && empid && classification){
+        $("#submit-button").removeAttr('disabled');
       }
     });
 
@@ -37,11 +38,13 @@
       if(faculty_user_given_name===""){
         $("#submit-button").attr('disabled', 'disabled');
         mname = false;
-      } else if(fname && mname && lname && uname && password && empid && classification){
-        $("#submit-button").removeAttr('disabled');
       } else{
         mname = true;
       }
+      if(fname && mname && lname && uname && pword && empid && classification){
+        $("#submit-button").removeAttr('disabled');
+      }
+
     });
 
     angular.element(document.querySelector('#lname-input')).on('keyup', function(e){
@@ -49,22 +52,26 @@
       if(faculty_user_given_name===""){
         $("#submit-button").attr('disabled', 'disabled');
         lname = false;
-      } else if(fname && mname && lname && uname && password && empid && classification){
-        $("#submit-button").removeAttr('disabled');
       } else{
         lname = true;
       }
+      if(fname && mname && lname && uname && pword && empid && classification){
+        $("#submit-button").removeAttr('disabled');
+      }
+
     });
 
-    angular.element(document.querySelector('#password-input')).on('keyup', function(e){
-      var faculty_user_given_name = document.querySelector('#password-input').value;
+    angular.element(document.querySelector('#passwordinput')).on('keyup', function(e){
+      var faculty_user_given_name = document.querySelector('#passwordinput').value;
+
       if(faculty_user_given_name===""){
         $("#submit-button").attr('disabled', 'disabled');
-        password = false;
-      } else if(fname && mname && lname && uname && password && empid && classification){
-        $("#submit-button").removeAttr('disabled');
+        pword = false;
       } else{
-        password = true;
+        pword = true;
+      }
+      if(fname && mname && lname && uname && pword && empid && classification){
+        $("#submit-button").removeAttr('disabled');
       }
     });
 
@@ -73,16 +80,18 @@
       if(faculty_user_given_name===""){
         $("#submit-button").attr('disabled', 'disabled');
         classification = false;
-      } else if(fname && mname && lname && uname && password && empid && classification){
-        $("#submit-button").removeAttr('disabled');
       } else{
         classification = true;
+      }
+      if(fname && mname && lname && uname && pword && empid && classification){
+        $("#submit-button").removeAttr('disabled');
       }
     });
 
     angular.element(document.querySelector('#nameinput')).on('keyup',function(e){
 			var faculty_user_username = document.querySelector('#nameinput').value;
 			if (faculty_user_username===""){
+        $("#submit-button").attr('disabled', 'disabled');
 				document.querySelector('#uid-warning').innerText = "";
         uname = false;
 			}
@@ -95,19 +104,22 @@
 					document.querySelector('#uid-warning').innerText = "Username not available!";
           $("#submit-button").attr('disabled', 'disabled');
           uname = false;
-        } else if(fname && mname && lname && uname && password && empid && classification){
-          $("#submit-button").removeAttr('disabled');
         } else if(response.data==false){
           document.querySelector('#uid-warning').innerText = "";
           uname = true;
         }
 			}, function errorCallback(response) { });
-		});
+      if(fname && mname && lname && uname && pword && empid && classification){
+        $("#submit-button").removeAttr('disabled');
+      }
+    });
 
 		angular.element(document.querySelector('#employeeinput')).on('keyup',function(e){
 			var faculty_user_employee_id = document.querySelector('#employeeinput').value;
-			if (faculty_user_employee_id===""){
+      console.log($("#employeeinput").val().length);
+      if (faculty_user_employee_id===""){
 				document.querySelector('#uidd-warning').innerText = "";
+        $("#submit-button").attr('disabled', 'disabled');
         empid = false;
       }
 
@@ -119,14 +131,22 @@
 					document.querySelector('#uidd-warning').innerText = "Employee ID not available!";
           $("#submit-button").attr('disabled', 'disabled');
           empid = false;
-				} else if(fname && mname && lname && uname && password && empid && classification){
-          $("#submit-button").removeAttr('disabled');
-        } else if(response.data==false){
-          document.querySelector('#uidd-warning').innerText = "";
+				} else if($("#employeeinput").val().length == 10 && response.data==false && $.isNumeric($("#employeeinput").val())){
           empid = true;
+          document.querySelector('#uidd-warning').innerText = "";
+          if(fname && mname && lname && uname && pword && empid && classification){
+            $("#submit-button").removeAttr('disabled');
+          }
+        } else if($("#employeeinput").val().length < 10){
+          document.querySelector('#uidd-warning').innerText = "Employee ID not valid!";
+          $("#submit-button").attr('disabled', 'disabled');
+          empid = false;
         }
 			}, function errorCallback(response) { });
-		});
+      if(fname && mname && lname && uname && pword && empid && classification){
+        $("#submit-button").removeAttr('disabled');
+      }
+    });
 	}
 
 })();

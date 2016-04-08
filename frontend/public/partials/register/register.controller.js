@@ -11,7 +11,6 @@
     $scope.faculty_user_data = [];
 
     $scope.AddFacultyUser = function(){
-
       RegisterService.AddFacultyUser($scope.newFacultyUser)
 				.then(function(data) {
           $scope.newFacultyUser.faculty_user_given_name = "";
