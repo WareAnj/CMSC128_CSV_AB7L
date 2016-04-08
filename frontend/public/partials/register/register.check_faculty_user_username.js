@@ -21,8 +21,10 @@
 			).then(function successCallback(response) {
 				if (response.data==true){
 					document.querySelector('#uid-warning').innerText = "Username not available!";
+					document.getElementById("submit-button").disabled = true;
 				} else {
 					document.querySelector('#uid-warning').innerText = "Username available!";
+					document.getElementById("submit-button").disabled = false;
 				}
 			}, function errorCallback(response) { });
 		});
