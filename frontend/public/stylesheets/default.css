@@ -15,7 +15,7 @@
 
 @font-face{
 	font-family: reasons;
-	src: url("../font/FontleroyBrown.ttf");
+	src: url("../font/TFPironv2.otf");
 }
 
 @font-face{
@@ -94,6 +94,6 @@ h3{
 }
 
 footer.page-footer{
-	padding: 1% 0% 0% 0%;
+	margin: -8px 0px 0px 0px;
 	background-color: #629d95;
 }

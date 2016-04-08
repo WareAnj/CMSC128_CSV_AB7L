@@ -17,7 +17,8 @@ nav {
 }
 
 #brand{
-	margin-bottom: 20px;
+	width: 100px;
+	height: 64px;
 }
 
 .nav-right{
@@ -101,22 +102,22 @@ nav {
 	visibility: hidden;
 }
 
-#reason-1 #reason-2 #reason-3{
-	margin-top: 15px;
+#reason-1, #reason-2, #reason-3{
+	margin-top: 10px;
+	padding-bottom: 30px;
+	
 }
 
 #p1{
 	font-family: reasons;
 	font-size: 20px;
 	text-align: center;
-	padding: 21% 2% 2% 2%;
 }
 
 #p2{
 	font-family: reasons;
 	font-size: 20px;
 	text-align: center;
-	padding: 15% 2% 2% 2%;
 }
 
 
@@ -124,7 +125,6 @@ nav {
 	font-family: reasons;
 	font-size: 20px;
 	text-align: center;
-	padding: 15% 2% 2% 2%;
 }
 
 
