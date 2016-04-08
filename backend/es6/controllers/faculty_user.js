@@ -228,7 +228,7 @@ exports.randomize = (req, res, next) => {
             return next(err);
         }
         db.query(
-                'SELECT * FROM temporary_view ORDER BY rand() LIMIT '+ data.limit + ';',
+                'SELECT * FROM student WHERE student_number = (SELECT student_number FROM temporary_view ORDER BY rand() LIMIT '+ data.limit + ') LIMIT 1;',
                 send_response
             );
     }
@@ -238,6 +238,7 @@ exports.randomize = (req, res, next) => {
             winston.error('Error in randomizing students', last_query);
             return next(err);
         }
+
         res.send(result);
     }
 
