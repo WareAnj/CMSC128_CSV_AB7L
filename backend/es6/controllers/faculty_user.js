@@ -106,7 +106,7 @@ exports.post_volunteer = (req, res, next) => {
     // function check_student_exists () {
     //     var count = db.query(
     //         [
-    //             SELECT COUNT(student_number) FROM student WHERE student_number = ?;'
+    //             SELECT COUNT(student_number) FROM student WHERE student_number = ?;
     //         ],
     //         [data.student_number]           
     //     ); 
