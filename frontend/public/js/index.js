@@ -8,6 +8,12 @@ $('.modal-trigger').leanModal({
     }
   );
 
+function submitClick(){
+    setTimeout(function(){
+      $('#signupModal').closeModal();
+    }, 3000);
+};
+
 $(window).scroll(function(){
     var aTop = $('#reason-1').height();
     if($(this).scrollTop()>=aTop){

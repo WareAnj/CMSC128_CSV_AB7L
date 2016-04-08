@@ -10,13 +10,17 @@ var app =	angular
 		.when("/",{
 			"controller" : "RouteCtrl",
 			"templateUrl" : "uirouter.html"
+		})
+		.when("/randomize",{
+			"controller" : "RouteCtrl",
+			"templateUrl" : "uirouter.html"
 		});
 	}
 
 	app.controller('RouteCtrl', function($scope) {
   $scope.template = {
     "register": "partials/register/register.view.html",
-		"login": "partials/login/login.view.html"
+		"login": 		"partials/login/login.view.html"
   }
 	});
 })();
