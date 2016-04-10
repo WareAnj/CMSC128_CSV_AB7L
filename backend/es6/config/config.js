@@ -5,6 +5,7 @@ const path = require('path');
 
 const config = {
     APP_NAME: 'REGINYZR',
+    APP_URL: 'http://localhost:8000',
 
     PORT: 8000,
 
