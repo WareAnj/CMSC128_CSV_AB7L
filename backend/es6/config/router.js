@@ -26,6 +26,7 @@ module.exports = (router) => {
 
     router.get('/randomize_notuser',                                                        __.render_controller.randomize_notuser);
     router.get('/randomize',                                                                __.render_controller.randomize);
+    router.get('/edit',                                                                     __.render_controller.edit);
 
     router.all('*', (req, res, next) => {
         res.status(404)

@@ -29,6 +29,10 @@
     background-size: cover;
 }
 
+#nav-container{
+	margin: 20px auto;
+}
+
 #brief-intro{
 	background-color: rgba(250,255,249, 0.8);
 }

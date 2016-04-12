@@ -96,8 +96,7 @@
         uname = false;
 			}
 
-			$http.post(
-				"faculty_user/check_faculty_user_username/",
+			$http.post("faculty_user/check_faculty_user_username/",
 				 {faculty_user_username: faculty_user_username}
 			).then(function successCallback(response) {
 				if (response.data==true){

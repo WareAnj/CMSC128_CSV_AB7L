@@ -4,6 +4,7 @@
 	angular
 		.module("app")
 		.factory("RegisterService", RegisterService);
+	
 
 	RegisterService.$inject = ["$http", "$q"];
 
@@ -17,7 +18,7 @@
 
 			var deferred = $q.defer();
 
-			$http.post("/faculty_user/register", newFacultyUser)
+			$http.post(url + "/faculty_user/register", newFacultyUser)
 			.success(function(data) {
 				deferred.resolve(data);
 			})
