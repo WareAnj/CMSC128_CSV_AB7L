@@ -4,7 +4,7 @@
 	angular
 		.module("app")
 		.factory("RegisterService", RegisterService);
-	
+
 
 	RegisterService.$inject = ["$http", "$q"];
 
