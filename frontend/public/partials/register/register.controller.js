@@ -44,8 +44,8 @@
   		$http.post(
   			"faculty_user/check_faculty_user_username/",
   			{faculty_user_username: faculty_user_username}
-  				if (response.data){
           ).then(function(response){
+            if (response.data){
   					document.querySelector('#uidwarning').innerText = "Username already taken!";
   					$("#submit-button").attr('disabled', 'disabled');
           			uname = false;
