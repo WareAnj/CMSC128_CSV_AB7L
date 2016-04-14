@@ -2,6 +2,8 @@ DROP DATABASE IF EXISTS cmsc128ab7l;
 CREATE DATABASE cmsc128ab7l;
 USE cmsc128ab7l;
 
+
+-- Table 'admin'
 DROP TABLE IF EXISTS admin;
 CREATE TABLE admin(
 	admin_id INT NOT NULL AUTO_INCREMENT,
@@ -10,6 +12,8 @@ CREATE TABLE admin(
 	PRIMARY KEY(admin_id)
 );
 
+
+-- Table 'faculty_user'
 DROP TABLE IF EXISTS faculty_user;
 CREATE TABLE faculty_user(
 	faculty_user_id INT NOT NULL AUTO_INCREMENT,
@@ -20,11 +24,13 @@ CREATE TABLE faculty_user(
 	faculty_user_given_name VARCHAR(64) NOT NULL,
 	faculty_user_middle_name VARCHAR(32) NOT NULL,
 	faculty_user_last_name VARCHAR(32) NOT NULL,
-	faculty_user_is_approved BOOLEAN NOT NULL,
+	faculty_user_is_approved BOOLEAN NOT NULL DEFAULT FALSE,
 	faculty_user_date_approved TIMESTAMP,
 	PRIMARY KEY(faculty_user_id)
 );
 
+
+-- Table 'course'
 DROP TABLE IF EXISTS course;
 CREATE TABLE course(
 	course_code VARCHAR(16) NOT NULL,
@@ -33,6 +39,7 @@ CREATE TABLE course(
 	PRIMARY KEY(course_code)
 );
 
+-- Table 'section'
 DROP TABLE IF EXISTS section;
 CREATE TABLE section(
 	section_id INT NOT NULL AUTO_INCREMENT,
@@ -42,6 +49,8 @@ CREATE TABLE section(
 	FOREIGN KEY(section_course_code) REFERENCES course(course_code)
 );
 
+
+-- Table 'student'
 DROP TABLE IF EXISTS student;
 CREATE TABLE student(
 	student_number VARCHAR(10) NOT NULL,
@@ -56,6 +65,8 @@ CREATE TABLE student(
 	PRIMARY KEY(student_number)
 );
 
+
+-- Table 'student_section'
 DROP TABLE IF EXISTS student_section;
 CREATE TABLE student_section(
 	ss_student_number VARCHAR(10) NOT NULL,
@@ -65,16 +76,20 @@ CREATE TABLE student_section(
 	FOREIGN KEY(ss_section_id) REFERENCES section(section_id)
 );
 
+
+-- Table 'faculty_user_course_section'
 DROP TABLE IF EXISTS faculty_user_course_section;
 CREATE TABLE faculty_user_course_section(
 	uc_user_id INT NOT NULL,
 	uc_course_code VARCHAR(16) NOT NULL,
 	uc_section_id INT NOT NULL,
-	FOREIGN KEY(uc_course_code) REFERENCES course(course_code),
 	FOREIGN KEY(uc_user_id) REFERENCES faculty_user(faculty_user_id),
+	FOREIGN KEY(uc_course_code) REFERENCES course(course_code),
 	FOREIGN KEY(uc_section_id) REFERENCES section(section_id)
 );
 
+
+-- Table 'login_logs'
 DROP TABLE IF EXISTS login_logs;
 CREATE TABLE login_logs(
 	login_logs_date_login TIMESTAMP NOT NULL,
@@ -82,6 +97,8 @@ CREATE TABLE login_logs(
 	FOREIGN KEY(login_logs_faculty_user_id) REFERENCES faculty_user(faculty_user_id)
 );
 
+
+-- Table 'logout_logs'
 DROP TABLE IF EXISTS logout_logs;
 CREATE TABLE logout_logs(
 	logout_logs_date_logout TIMESTAMP NOT NULL,
@@ -89,6 +106,8 @@ CREATE TABLE logout_logs(
 	FOREIGN KEY(logout_logs_faculty_user_id) REFERENCES faculty_user(faculty_user_id)
 );
 
+
+-- Table 'randomizer_logs'
 DROP TABLE IF EXISTS randomizer_logs;
 CREATE TABLE randomizer_logs(
 	randomizer_logs_id INT NOT NULL AUTO_INCREMENT,
@@ -98,6 +117,8 @@ CREATE TABLE randomizer_logs(
 	FOREIGN KEY(randomizer_logs_faculty_user_id) REFERENCES faculty_user(faculty_user_id)
 );
 
+
+-- Table 'randomizer_logs_students'
 DROP TABLE IF EXISTS randomizer_logs_students;
 CREATE TABLE randomizer_logs_students(
 	rls_randomizer_logs_id INT NOT NULL,
