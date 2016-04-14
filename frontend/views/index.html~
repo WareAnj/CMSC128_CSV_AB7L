@@ -13,7 +13,7 @@
 	<body>
 
 	<!-- NAV BAR -->
-		<div class="navbar-fixed">
+
 		<nav>
 		 	<div class="nav-wrapper container">
 		 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -42,7 +42,6 @@
 		    	</ul>
 		    </div>
 		</nav>
-		</div>
 
 		<main>
 
@@ -153,14 +152,10 @@
 					<div class="col s12 m12 l5">
 						<p> All rights reserved. </p>
 					</div>
-				</div>
+				</div
 			</div>
 		</footer>
-		<script>
-			$(document).ready(function() {
-	      		$('input.employee-counter').characterCounter();
-	    	});
-		</script>
+
 	    <script type="text/javascript" src="js/jquery.js"></script>
 	    <script type="text/javascript" src="js/materialize.min.js"></script>
 	    <script type="text/javascript" src="js/index.js"></script>
@@ -175,6 +170,7 @@
 
 		<script src="partials/register/register.service.js"></script>
 		<script src="partials/register/register.controller.js"></script>
+		<script src="partials/register/register.check_faculty_user_username.js"></script>
 		<script src="partials/register/register.check_faculty_user_employee_id.js"></script>
 	</body>
 </html>

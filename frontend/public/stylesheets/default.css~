@@ -15,7 +15,7 @@
 
 @font-face{
 	font-family: reasons;
-	src: url("../font/TFPironv2.otf");
+	src: url("../font/FontleroyBrown.ttf");
 }
 
 @font-face{

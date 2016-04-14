@@ -31,25 +31,12 @@ nav {
 
 /* BRIEF INTRO */
 
-
 #brief-intro-container{
 	background: url("../img/cover-f.jpg") no-repeat center;
 	-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
-
-.center-label{
-	/*display: block;*/
-    text-align: center;
-    line-height: 150%;
-    font-size: .85em;
-    display: inline-block;
-}
-
-#nav-container{
-	margin: 20px auto;
 }
 
 #brief-intro{
@@ -116,7 +103,7 @@ nav {
 }
 
 #reason-1, #reason-2, #reason-3{
-	
+	margin-top: 10px;
 	padding-bottom: 30px;
 	
 }
