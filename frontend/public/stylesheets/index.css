@@ -21,12 +21,21 @@
 
 /* BRIEF INTRO */
 
+
 #brief-intro-container{
 	background: url("../img/cover-f.jpg") no-repeat center;
 	-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.center-label{
+	/*display: block;*/
+    text-align: center;
+    line-height: 150%;
+    font-size: .85em;
+    display: inline-block;
 }
 
 #nav-container{

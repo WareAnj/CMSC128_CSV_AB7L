@@ -34,7 +34,7 @@
     <div class="row">
       <div class="col s12 m7 l7">
         <div class="input-field">
-          <input placeholder="Employee ID" type="text" id="employeeinput" ng-model="newFacultyUser.faculty_user_employee_id" ng-keyup="check_employee_id()" required="required" minlength="10" maxlength="10" pattern="[0-9]*">
+          <input placeholder="Employee ID" type="text" class="employee-counter" id="employeeinput" ng-model="newFacultyUser.faculty_user_employee_id" ng-keyup="check_employee_id()" required="required" minlength="10" length="10" maxlength="10" pattern="[0-9]*">
           <label for="employeeid-input" class="active">Employee ID</label>
         </div>
       </div>
@@ -48,3 +48,9 @@
       <button class="btn waves-effect waves-light" type="submit" id="submit-button" onclick="submitClick()" disabled>Create an Account</button>
   </form>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('input.employee-counter').characterCounter();
+  });
+</script>
