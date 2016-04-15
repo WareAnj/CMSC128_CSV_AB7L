@@ -52,7 +52,9 @@
   	$scope.check_username = function(){
   		var username = document.querySelector('#nameinput').value;
   		if (username===""){
-  			document.querySelector('#uidwarning').innerText = "";
+  			if($("#nameinput").hasClass('invalid')){
+  				$("#nameinput").removeClass('invalid');
+  			}	
   			$("#submit-button").attr('disabled', 'disabled');
           	uname = false;
           	return;
@@ -62,15 +64,19 @@
   			{username: username}
           ).then(function(response){
             if (response.data){
-  					document.querySelector('#uidwarning').innerText = "Username already taken!";
+  					if(!($("#nameinput").hasClass('invalid'))){
+  						$("#nameinput").addClass('invalid');
+  					}
   					$("#submit-button").attr('disabled', 'disabled');
           			uname = false;
           		}
           		else{
-            			document.querySelector('#uidwarning').innerText = "";
-            			uname = true;
-            			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
-            				$("#submit-button").removeAttr('disabled');
+          			if($("#nameinput").hasClass('invalid')){
+  						$("#nameinput").removeClass('invalid');
+  					}
+            		uname = true;
+            		if(fname && mname && lname && uname && pword && cword && empid && clasfn)
+            			$("#submit-button").removeAttr('disabled');
           		}
   			}
   		);
@@ -79,7 +85,9 @@
   	$scope.check_employee_id = function(){
   		var employee_id = document.querySelector('#employeeinput').value;
   		if (employee_id===""){
-  			document.querySelector('#eidwarning').innerText = "";
+  			if($("#employeeinput").hasClass('invalid')){
+  				$("#employeeinput").removeClass('invalid');
+  			}
   			$("#submit-button").attr('disabled', 'disabled');
           	empid = false;
   			return;
@@ -89,14 +97,18 @@
   			{employee_id: employee_id}
   			).then(function(response){
   				if (response.data){
-  					document.querySelector('#eidwarning').innerText = "Employee ID already used!";
+					if(!($("#employeeinput").hasClass('invalid'))){
+						$("#employeeinput").addClass('invalid');
+					}
   					empid = false;
           		}
           		else{
-            			document.querySelector('#eidwarning').innerText = "";
-            			empid = true;
-            			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
-            				$("#submit-button").removeAttr('disabled');
+					if($("#employeeinput").hasClass('invalid')){
+						$("#employeeinput").removeClass('invalid');
+					}
+            		empid = true;
+            		if(fname && mname && lname && uname && pword && cword && empid && clasfn)
+            			$("#submit-button").removeAttr('disabled');
           		}
   			}
   		);
@@ -126,7 +138,7 @@
   		else {
   			mname = true;
   			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
-            		$("#submit-button").removeAttr('disabled');
+            	$("#submit-button").removeAttr('disabled');
   		}
   	}
 

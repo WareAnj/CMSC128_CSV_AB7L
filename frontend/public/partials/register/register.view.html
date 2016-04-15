@@ -20,7 +20,7 @@
       <div class="col s12 m4 l4">
         <div class="input-field">
           <input placeholder="Username" type="text" id="nameinput" ng-model="newFacultyUser.username" ng-keyup="check_username()" required="required" pattern="[A-Za-z0-9_]*">
-          <label for="name-input" class="active">Username</label>
+          <label for="nameinput" class="active" data-error="Username already taken!">Username</label>
         </div>
       </div>
       <div class="col s12 m4 l4">
@@ -41,7 +41,7 @@
       <div class="col s12 m6 l6">
         <div class="input-field">
           <input placeholder="Employee ID" type="text" class="employee-counter" id="employeeinput" ng-model="newFacultyUser.employee_id" ng-keyup="check_employee_id()" required="required" minlength="10" length="10" maxlength="10" pattern="[0-9]*">
-          <label for="employeeidinput" class="active">Employee ID</label>
+          <label for="employeeidinput" class="active" data-error="Employee ID already used!">Employee ID</label>
         </div>
       </div>
       <div class="col s12 m6 l6">
