@@ -47,8 +47,8 @@
 	}
 
   	$scope.check_username = function(){
-  		var faculty_user_username = document.querySelector('#nameinput').value;
-  		if (faculty_user_username===""){
+  		var username = document.querySelector('#nameinput').value;
+  		if (username===""){
   			document.querySelector('#uidwarning').innerText = "";
   			$("#submit-button").attr('disabled', 'disabled');
           	uname = false;
@@ -56,7 +56,7 @@
   		}
   		$http.post(
   			"faculty_user/check_faculty_user_username/",
-  			{faculty_user_username: faculty_user_username}
+  			{username: username}
           ).then(function(response){
             if (response.data){
   					document.querySelector('#uidwarning').innerText = "Username already taken!";
@@ -74,8 +74,8 @@
   	}
 
   	$scope.check_employee_id = function(){
-  		var faculty_user_employee_id = document.querySelector('#employeeinput').value;
-  		if (faculty_user_employee_id===""){
+  		var employee_id = document.querySelector('#employeeinput').value;
+  		if (employee_id===""){
   			document.querySelector('#eidwarning').innerText = "";
   			$("#submit-button").attr('disabled', 'disabled');
           	empid = false;
@@ -83,7 +83,7 @@
   		}
   		$http.post(
   			"faculty_user/check_faculty_user_employee_id/",
-  			{faculty_user_employee_id: faculty_user_employee_id}
+  			{employee_id: employee_id}
   			).then(function(response){
   				if (response.data){
   					document.querySelector('#eidwarning').innerText = "Employee ID already used!";

@@ -21,6 +21,11 @@ nav {
 	height: 64px;
 }
 
+table {
+    border-collapse:collapse;
+    padding: 0px;
+
+}
 .nav-right{
 	font-family: nav-side;
 }
