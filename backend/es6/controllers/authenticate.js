@@ -33,6 +33,7 @@ exports.login = (req, res, next) => {
             return next(err);
         }
 
+        // If the username is invalid
         if (!result[0].length) {
             response = status.INV_USERNAME;
 
@@ -41,8 +42,18 @@ exports.login = (req, res, next) => {
 
         let is_password_valid = result[0][0].is_password_valid;
 
+        // If the password is invalid
         if (!is_password_valid) {
             response = status.INV_PASSWORD;
+
+            return res.status(response.status).send(response.message);
+        }
+
+        let is_approved = result[0][0].is_approved;
+
+        // If the user is not yet approved
+        if (!is_approved) {
+            response = status.USER_NOT_APPROVED;
 
             return res.status(response.status).send(response.message);
         }
@@ -54,7 +65,9 @@ exports.login = (req, res, next) => {
             classification:     result[0][0].classification,
             given_name:         result[0][0].given_name,
             middle_name:        result[0][0].middle_name,
-            last_name:          result[0][0].last_name
+            last_name:          result[0][0].last_name,
+            is_approved:        result[0][0].is_approved,
+            date_approved:      result[0][0].date_approved
         };
 
         req.session.user = user;
@@ -88,12 +101,10 @@ exports.logout = (req, res, next) => {
         }
 
         let user_id = req.session.user.id;
-        
+
         req.session.destroy();
 
         res.send({message: 'Successfully logged out'});
-
-        console.log(user_id);
 
         db.query('CALL INSERT_LOGOUT_LOGS(?)', [user_id], (err, result, args, last_query) => {
             if (err) {
