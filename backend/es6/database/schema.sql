@@ -54,7 +54,7 @@ CREATE TABLE section(
 -- Table 'lecture_section'
 DROP TABLE IF EXISTS lecture_section;
 CREATE TABLE lecture_section(
-	section_id INT NOT NULL AUTO_INCREMENT,
+	section_id INT NOT NULL,
 	FOREIGN KEY(section_id) REFERENCES section(id)
 );
 
@@ -62,7 +62,9 @@ CREATE TABLE lecture_section(
 -- Table 'sub_section'
 DROP TABLE IF EXISTS sub_section;
 CREATE TABLE sub_section(
-	section_id INT NOT NULL AUTO_INCREMENT,
+	section_id INT NOT NULL,
+	code VARCHAR(4) NOT NULL,
+	PRIMARY KEY(code),
 	FOREIGN KEY(section_id) REFERENCES section(id)
 );
 
