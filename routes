@@ -1,0 +1,12 @@
+POST    /faculty_user/register
+
+POST    /faculty_user/post_volunteer
+GET     /faculty_user/volunteers
+PUT     /faculty_user/volunteer/:section_id/:student_number
+DELETE  /faculty_user/volunteer/:section_id/:student_number
+
+GET     /faculty_user/randomize
+GET     /faculty_user/randomize_with_restriction        (if already called or not)
+
+POST    /authenticate/login
+GET     /authenticate/logout
