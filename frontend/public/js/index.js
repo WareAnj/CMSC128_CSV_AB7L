@@ -9,9 +9,9 @@ $('.modal-trigger').leanModal({
   );
 
 function submitClick(){
-    setTimeout(function(){
+    //setTimeout(function(){
       $('#signupModal').closeModal();
-    }, 3000);
+    //}, 3000);
 };
 
 $(window).scroll(function(){

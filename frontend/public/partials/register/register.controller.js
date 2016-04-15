@@ -28,11 +28,12 @@
           		$scope.newFacultyUser.middle_name = "";
           		$scope.newFacultyUser.last_name = "";
           		$scope.newFacultyUser.username = "";
-      				$scope.newFacultyUser.password = "";
-      				$scope.newFacultyUser.confirm = "";
-      				$scope.newFacultyUser.employee_id = "";
-      				$scope.newFacultyUser.classification = '0';
-      				$scope.faculty_user_data.push(data);
+				$scope.newFacultyUser.password = "";
+				$scope.newFacultyUser.confirm = "";
+				$scope.newFacultyUser.employee_id = "";
+				$scope.newFacultyUser.classification = '0';
+  				$("#confirmpassword").attr('disabled', 'disabled');
+				$scope.faculty_user_data.push(data);
 				Materialize.toast('Faculty User added!', 3000, 'rounded');
 				fname = false;
     			mname = false;
@@ -144,6 +145,7 @@
   	$scope.check_pword = function(){
   		var pass = document.querySelector("#passwordinput").value;
   		if (pass===""){
+  			document.querySelector("#confirmpassword").value = "";
   			$("#submit-button").attr('disabled', 'disabled');
   			$("#confirmpassword").attr('disabled', 'disabled');
   			pword = false;
