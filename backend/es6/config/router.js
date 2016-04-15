@@ -34,7 +34,24 @@ module.exports = (router) => {
     router.post('/authenticate/login/',                                                     __.authenticate.login);
     router.get ('/authenticate/logout',                                 $,                  __.authenticate.logout);
 
+    // authentication for administrator
+    router.post('/admin/authenticate_login',                                                __.admin.authenticate_login);
+    router.get ('/admin/authenticate_logout',                           $('Administrator'), __.admin.authenticate_logout);
 
+    // route for approving a user
+    router.put ('/admin/approve_user/:faculty_user_id',                 $('Administrator'), __.admin.approve_user);
+
+    // login_logs
+    router.get ('/admin/login_logs',                                    $('Administrator'), __.admin.get_login_logs);
+    //router.get ('/admin/login_logs/:faculty_user_id',                   $('Administrator'), __.admin.get_login_logs_by_user);
+
+    // logout_logs
+    router.get ('/admin/logout_logs',                                   $('Administrator'), __.admin.get_login_logs);
+    //router.get ('/admin/login_logs/:faculty_user_id',                   $('Administrator'), __.admin.get_login_logs_by_user);
+
+
+
+    // Unmatched route
     router.all('*', (req, res, next) => {
         res.status(404)
             .send({message: 'Nothing to do here.'});
