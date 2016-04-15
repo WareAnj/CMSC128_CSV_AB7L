@@ -7,22 +7,22 @@ const winston   = require('winston');
 exports.register = (req, res, next) => {
 
     const data = {
-        faculty_user_username:          req.body.faculty_user_username,
-        faculty_user_password:          req.body.faculty_user_password,
-        faculty_user_employee_id:       req.body.faculty_user_employee_id,
-        faculty_user_classification:    req.body.faculty_user_classification,
-        faculty_user_given_name:        req.body.faculty_user_given_name,
-        faculty_user_middle_name:       req.body.faculty_user_middle_name,
-        faculty_user_last_name:         req.body.faculty_user_last_name
+        username:          req.body.username,
+        password:          req.body.password,
+        employee_id:       req.body.employee_id,
+        classification:    req.body.classification,
+        given_name:        req.body.given_name,
+        middle_name:       req.body.middle_name,
+        last_name:         req.body.last_name
     };
 
 
     function start () {
         db.query('CALL REGISTER(?, ?, ?, ?, ?, ?, ?)',
-                 [data.faculty_user_username, data.faculty_user_password,
-                  data.faculty_user_employee_id, data.faculty_user_classification,
-                  data.faculty_user_given_name, data.faculty_user_middle_name,
-                  data.faculty_user_last_name],
+                 [data.username, data.password,
+                  data.employee_id, data.classification,
+                  data.given_name, data.middle_name,
+                  data.last_name],
                   send_response);
     }
 
@@ -41,14 +41,14 @@ exports.register = (req, res, next) => {
 };
 
 exports.check_faculty_user_username = (req, res, next) => {
-  const faculty_user_username = req.body.faculty_user_username;
+  const username = req.body.username;
 
   db.query(
     [
-      'SELECT faculty_user_username FROM faculty_user',
-      'WHERE faculty_user_username = ?; '
+      'SELECT username FROM faculty_user',
+      'WHERE username = ?; '
     ].join(' '),
-	   [faculty_user_username],
+	   [username],
      responder
   );
 
@@ -64,14 +64,14 @@ exports.check_faculty_user_username = (req, res, next) => {
 };
 
 exports.check_faculty_user_employee_id = (req, res, next) => {
-  const faculty_user_employee_id = req.body.faculty_user_employee_id;
+  const employee_id = req.body.employee_id;
 
   db.query(
     [
-      'SELECT faculty_user_employee_id FROM faculty_user',
-      'WHERE faculty_user_employee_id = ?; '
+      'SELECT employee_id FROM faculty_user',
+      'WHERE employee_id = ?; '
     ].join(' '),
-	   [faculty_user_employee_id],
+	   [employee_id],
      responder
   );
 
@@ -90,13 +90,12 @@ exports.post_volunteer = (req, res, next) => {
 
     const data = {
         student_number:         req.body.student_number,
-        student_given_name:     req.body.student_given_name,
-        student_middle_name:    req.body.student_middle_name,
-        student_last_name:      req.body.student_last_name,
-        student_degree:         req.body.student_degree,
-        student_classification: req.body.student_classification,
-        student_college:        req.body.student_college,
-
+        given_name:             req.body.given_name,
+        middle_name:            req.body.middle_name,
+        last_name:              req.body.last_name,
+        degree:                 req.body.degree,
+        classification:         req.body.classification,
+        college:                req.body.college,
         section_id:             req.body.section_id
     };
 
@@ -120,18 +119,18 @@ exports.post_volunteer = (req, res, next) => {
             db.query(
                 [
                     'INSERT INTO student',
-                    '(student_number, student_given_name, student_middle_name,',
-                    'student_last_name, student_degree, student_classification, student_college)',
+                    '(student_number, given_name, middle_name,',
+                    'last_name, degree, classification, college)',
                     'VALUES (?, ?, ?, ?, ?, ?, ?);'
                 ].join(' '),
                 [
                     data.student_number,
-                    data.student_given_name,
-                    data.student_middle_name,
-                    data.student_last_name,
-                    data.student_degree,
-                    data.student_classification,
-                    data.student_college
+                    data.given_name,
+                    data.middle_name,
+                    data.last_name,
+                    data.degree,
+                    data.classification,
+                    data.college
                 ],
                 update_section
             );
@@ -176,7 +175,7 @@ exports.get_volunteers = (req, res, next) => {
     function start() {
         db.query (
             [
-                'SELECT s.student_number, s.student_last_name, s.student_given_name, ss_section_id',
+                'SELECT s.student_number, s.last_name, s.given_name, ss_section_id',
                 'FROM faculty_user_course_section uc, student s, student_section ss WHERE',
                 'uc.uc_user_id = ? and uc.uc_course_code = ? and uc.uc_section_id = ?',
                 'and ss.ss_section_id = uc.uc_section_id and',
@@ -274,7 +273,7 @@ exports.randomize = (req, res, next) => {
             return next(err);
         }
         db.query(
-                'SELECT * FROM student WHERE student_number = (SELECT student_number FROM temporary_view ORDER BY rand() LIMIT '+ data.limit + ') LIMIT 1;',
+                'SELECT * FROM student WHERE student_number = (SELECT student_number FROM temporary_view ORDER BY rand() LIMIT ' + data.limit + ') LIMIT 1;',
                 send_response
             );
     }
