@@ -1,32 +1,38 @@
-<div class="modal-content center">
+<div id="modalF" class="modal-content center">
   <h4>Sign Up</h4>
-  <form ng-submit="AddFacultyUser()" action="/#/" method="GET" ng-controller="RegisterCtrl">
+  <form ng-submit="AddFacultyUser()" ng-controller="RegisterCtrl">
     <div class="row">
       <div class="input-field">
         <div class="col s12 m12 l4">
-          <input placeholder="First Name" type="text" id="fname-input" ng-model="newFacultyUser.faculty_user_given_name" ng-keyup="check_fname()" required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+">
+          <input placeholder="First Name" type="text" id="fname-input" ng-model="newFacultyUser.given_name" ng-keyup="check_fname()" required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+">
         </div>
         <div class="col s12 m12 l4">
-          <input placeholder="Middle Name" type="text" id="mname-input" ng-model="newFacultyUser.faculty_user_middle_name" ng-keyup="check_mname()" required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+">
+          <input placeholder="Middle Name" type="text" id="mname-input" ng-model="newFacultyUser.middle_name" ng-keyup="check_mname()" required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+">
         </div>
         <div class="col s12 m12 l4">
-          <input placeholder="Last Name" type="text" id="lname-input" ng-model="newFacultyUser.faculty_user_last_name" ng-keyup="check_lname()" required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+">
+          <input placeholder="Last Name" type="text" id="lname-input" ng-model="newFacultyUser.last_name" ng-keyup="check_lname()" required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+">
           <label for="lname-input">Name</label>
         </div>
       </div>
     </div>
     <span id="uidwarning"> </span>
     <div class="row">
-      <div class="col s12 m6 l6">
+      <div class="col s12 m4 l4">
         <div class="input-field">
-          <input placeholder="Username" type="text" id="nameinput" ng-model="newFacultyUser.faculty_user_username" ng-keyup="check_username()" required="required" pattern="[A-Za-z0-9_]*">
+          <input placeholder="Username" type="text" id="nameinput" ng-model="newFacultyUser.username" ng-keyup="check_username()" required="required" pattern="[A-Za-z0-9_]*">
           <label for="name-input" class="active">Username</label>
         </div>
       </div>
-      <div class="col s12 m6 l6">
+      <div class="col s12 m4 l4">
         <div class="input-field">
-          <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="passwordinput" ng-model="newFacultyUser.faculty_user_password" ng-change="check_pword()" required="required" minlength="8">
+          <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="passwordinput" ng-model="newFacultyUser.password" ng-change="check_pword()" required="required" minlength="8">
           <label for="password-input" class="active">Password</label>
+        </div>
+      </div>
+      <div class="col s12 m12 l4">
+        <div class="input-field">
+          <input type="password" id="confirmpassword" ng-model="newFacultyUser.confirm" ng-change="check_cpword()" required="required" minlength="8" disabled="disabled">
+          <label for="password-input">Re-Enter Password</label>
         </div>
       </div>
     </div>
@@ -34,26 +40,38 @@
     <div class="row">
       <div class="col s12 m6 l6">
         <div class="input-field">
-          <input placeholder="Employee ID" type="text" class="employee-counter" id="employeeinput" ng-model="newFacultyUser.faculty_user_employee_id" ng-keyup="check_employee_id()" required="required" minlength="10" length="10" maxlength="10" pattern="[0-9]*">
-          <label for="employeeid-input" class="active">Employee ID</label>
+          <input placeholder="Employee ID" type="text" class="employee-counter" id="employeeinput" ng-model="newFacultyUser.employee_id" ng-keyup="check_employee_id()" required="required" minlength="10" length="10" maxlength="10" pattern="[0-9]*">
+          <label for="employeeidinput" class="active">Employee ID</label>
         </div>
       </div>
-        <!-- <input placeholder="Professor, Instructor 3, etc." type="text" id="classification-input" ng-model="newFacultyUser.faculty_user_classification" ng-keyup="check_clasfn()" required="required"  pattern="(Instructor|Assistant Professor|Professor)\s*[1-9]"> -->
       <div class="col s12 m6 l6">
-        <div class="input-field">
-    		  <select>
-      			 <option value="" disabled selected>Choose your option</option>
-      			 <option value="1">Professor I</option>
-      			 <option value="2">Professor II</option>
-      			 <option value="3">Instructor I</option>
-      			 <option value="4">Instructor II</option>
-      			 <option value="5">Instructor III</option>
+        <div>
+    		  <select id="classification-input" class="input-field" ng-model="newFacultyUser.classification" ng-change="check_clasfn()">
+      			 <option value="" disabled selected>Classification</option>
+      			 <option value="Instructor I">Instructor I</option>
+      			 <option value="Instructor II">Instructor II</option>
+      			 <option value="Instructor III">Instructor III</option>
+      			 <option value="Instructor IV">Instructor IV</option>
+      			 <option value="Instructor V">Instructor V</option>
+      			 <option value="Instructor VI">Instructor VI</option>
+      			 <option value="Assistant Professor I">Assistant Professor I</option>
+      			 <option value="Assistant Professor II">Assistant Professor II</option>
+      			 <option value="Assistant Professor III">Assistant Professor III</option>
+      			 <option value="Assistant Professor IV">Assistant Professor IV</option>
+      			 <option value="Assistant Professor V">Assistant Professor V</option>
+      			 <option value="Assistant Professor VI">Assistant Professor VI</option>
+      			 <option value="Professor I">Professor I</option>
+      			 <option value="Professor II">Professor II</option>
+      			 <option value="Professor III">Professor III</option>
+      			 <option value="Professor IV">Professor IV</option>
+      			 <option value="Professor V">Professor V</option>
+      			 <option value="Professor VI">Professor VI</option>
     		  </select>
-    		  <label>Classification</label>
+    		  <label for="classification-input">Classification</label>
         </div>
       </div>
     </div>
-      <button class="btn waves-effect waves-light" type="submit">Create an Account</button>
+      <button id="submit-button" class="btn waves-effect waves-light" type="submit" disabled>Create an Account</button>
   </form>
 </div>
 

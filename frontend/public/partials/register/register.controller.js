@@ -15,23 +15,36 @@
     var lname = false;
     var uname = false;
     var pword = false;
+    var cword = false;
     var empid = false;
     var clasfn = false;
 
     $scope.AddFacultyUser = function(){
-      RegisterService.AddFacultyUser($scope.newFacultyUser)
-				.then(function(data) {
-          			$scope.newFacultyUser.faculty_user_given_name = "";
-          			$scope.newFacultyUser.faculty_user_middle_name = "";
-          			$scope.newFacultyUser.faculty_user_last_name = "";
-          			$scope.newFacultyUser.faculty_user_username = "";
-					$scope.newFacultyUser.faculty_user_password = "";
-					$scope.newFacultyUser.faculty_user_employee_id = "";
-					$scope.newFacultyUser.faculty_user_classification = "";
-					$scope.faculty_user_data.push(data);
-          Materialize.toast('Faculty User added!', 3000, 'rounded');
-				});
-	  }
+    	if(!(fname && mname && lname && uname && pword && cword && empid && clasfn))
+    		return;
+    	RegisterService.AddFacultyUser($scope.newFacultyUser)
+			.then(function(data) {
+          		$scope.newFacultyUser.given_name = "";
+          		$scope.newFacultyUser.middle_name = "";
+          		$scope.newFacultyUser.last_name = "";
+          		$scope.newFacultyUser.username = "";
+      				$scope.newFacultyUser.password = "";
+      				$scope.newFacultyUser.confirm = "";
+      				$scope.newFacultyUser.employee_id = "";
+      				$scope.newFacultyUser.classification = '0';
+      				$scope.faculty_user_data.push(data);
+				Materialize.toast('Faculty User added!', 3000, 'rounded');
+				fname = false;
+    			mname = false;
+    			lname = false;
+    			uname = false;
+    			pword = false;
+    			cword = false;
+    			empid = false;
+    			clasfn = false;
+			}
+		);
+	}
 
   	$scope.check_username = function(){
   		var faculty_user_username = document.querySelector('#nameinput').value;
@@ -53,7 +66,7 @@
           		else{
             			document.querySelector('#uidwarning').innerText = "";
             			uname = true;
-            			if(fname && mname && lname && uname && pword && empid && clasfn)
+            			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
             				$("#submit-button").removeAttr('disabled');
           		}
   			}
@@ -79,7 +92,7 @@
           		else{
             			document.querySelector('#eidwarning').innerText = "";
             			empid = true;
-            			if(fname && mname && lname && uname && pword && empid && clasfn)
+            			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
             				$("#submit-button").removeAttr('disabled');
           		}
   			}
@@ -95,7 +108,7 @@
   		}
   		else {
   			fname = true;
-  			if(fname && mname && lname && uname && pword && empid && clasfn)
+  			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
             		$("#submit-button").removeAttr('disabled');
   		}
   	}
@@ -109,7 +122,7 @@
   		}
   		else {
   			mname = true;
-  			if(fname && mname && lname && uname && pword && empid && clasfn)
+  			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
             		$("#submit-button").removeAttr('disabled');
   		}
   	}
@@ -123,7 +136,7 @@
   		}
   		else {
   			lname = true;
-  			if(fname && mname && lname && uname && pword && empid && clasfn)
+  			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
             		$("#submit-button").removeAttr('disabled');
   		}
   	}
@@ -132,13 +145,30 @@
   		var pass = document.querySelector("#passwordinput").value;
   		if (pass===""){
   			$("#submit-button").attr('disabled', 'disabled');
+  			$("#confirmpassword").attr('disabled', 'disabled');
   			pword = false;
   			return;
   		}
   		else {
   			pword = true;
-  			if(fname && mname && lname && uname && pword && empid && clasfn)
+  			$("#confirmpassword").removeAttr('disabled');
+  			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
             		$("#submit-button").removeAttr('disabled');
+  		}
+  	}
+
+  	$scope.check_cpword = function(){
+  		var opas = document.querySelector("#passwordinput").value;
+  		var cpas = document.querySelector("#confirmpassword").value;
+  		if(opas===cpas){
+  			cword = true;
+  			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
+            		$("#submit-button").removeAttr('disabled');
+  		}
+  		else{
+  			Materialize.toast('Passwords do not match!', 1000, 'rounded');
+  			cword = false;
+  			return;
   		}
   	}
 
@@ -151,7 +181,7 @@
   		}
   		else {
   			clasfn = true;
-  			if(fname && mname && lname && uname && pword && empid && clasfn)
+  			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
             		$("#submit-button").removeAttr('disabled');
   		}
   	}

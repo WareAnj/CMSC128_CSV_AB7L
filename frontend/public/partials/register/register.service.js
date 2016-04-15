@@ -18,7 +18,7 @@
 
 			var deferred = $q.defer();
 
-			$http.post(url + "/faculty_user/register", newFacultyUser)
+			$http.post("faculty_user/register", newFacultyUser)
 			.success(function(data) {
 				deferred.resolve(data);
 			})
