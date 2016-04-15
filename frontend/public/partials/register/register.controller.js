@@ -33,6 +33,7 @@
 				$scope.newFacultyUser.employee_id = "";
 				$scope.newFacultyUser.classification = '0';
   				$("#confirmpassword").attr('disabled', 'disabled');
+  				$("#submit-button").attr('disabled', 'disabled');
 				$scope.faculty_user_data.push(data);
 				Materialize.toast('Faculty User added!', 3000, 'rounded');
 				fname = false;
