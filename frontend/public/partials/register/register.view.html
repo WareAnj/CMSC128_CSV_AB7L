@@ -1,6 +1,6 @@
 <div class="modal-content center">
   <h4>Sign Up</h4>
-  <form ng-submit="AddFacultyUser()" ng-controller="RegisterCtrl">
+  <form ng-submit="AddFacultyUser()" ng-controller="RegisterCtrl" autocomplete="off">
     <div class="row">
       <div class="input-field">
         <div class="col s12 m12 l4">
@@ -17,22 +17,22 @@
     </div>
     <span id="uidwarning"> </span>
     <div class="row">
-      <div class="col s12 m4 l4">
+      <div class="col s12 m12 l4">
         <div class="input-field">
           <input placeholder="Username" type="text" id="nameinput" ng-model="newFacultyUser.username" ng-keyup="check_username()" required="required" pattern="[A-Za-z0-9_]*">
           <label for="nameinput" class="active" data-error="Username already taken!">Username</label>
         </div>
       </div>
-      <div class="col s12 m4 l4">
+      <div class="col s12 m6 l4">
         <div class="input-field">
           <input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" id="passwordinput" ng-model="newFacultyUser.password" ng-change="check_pword()" required="required" minlength="8">
           <label for="password-input" class="active">Password</label>
         </div>
       </div>
-      <div class="col s12 m12 l4">
+      <div class="col s12 m6 l4">
         <div class="input-field">
           <input type="password" id="confirmpassword" ng-model="newFacultyUser.confirm" ng-change="check_cpword()" required="required" minlength="8" disabled="disabled">
-          <label for="password-input">Re-Enter Password</label>
+          <label for="password-input" data-error="Passwords do not match!">Re-Enter Password</label>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@
       </div>
       <div class="col s12 m6 l6">
         <div>
-    		  <select id="classification-input" class="input-field" ng-model="newFacultyUser.classification" ng-change="check_clasfn()">
+    		  <select id="classificationinput" class="input-field" ng-model="newFacultyUser.classification" ng-change="check_clasfn()">
       			 <option value="" disabled selected>Classification</option>
       			 <option value="Instructor I">Instructor I</option>
       			 <option value="Instructor II">Instructor II</option>

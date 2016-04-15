@@ -31,10 +31,11 @@
 				$scope.newFacultyUser.password = "";
 				$scope.newFacultyUser.confirm = "";
 				$scope.newFacultyUser.employee_id = "";
-				$scope.newFacultyUser.classification = '0';
+				//$scope.newFacultyUser.classification = '0';
   				$("#confirmpassword").attr('disabled', 'disabled');
   				$("#submit-button").attr('disabled', 'disabled');
   				$('#signupModal').closeModal();
+  				$('#classificationinput').val("");
 				$scope.faculty_user_data.push(data);
 				Materialize.toast('Faculty User added!', 3000, 'rounded');
 				fname = false;
@@ -160,6 +161,9 @@
   		var pass = document.querySelector("#passwordinput").value;
   		if (pass===""){
   			document.querySelector("#confirmpassword").value = "";
+  			if($("#confirmpassword").hasClass('invalid')){
+  				$("#confirmpassword").removeClass('invalid');
+  			}
   			$("#submit-button").attr('disabled', 'disabled');
   			$("#confirmpassword").attr('disabled', 'disabled');
   			pword = false;
@@ -177,19 +181,25 @@
   		var opas = document.querySelector("#passwordinput").value;
   		var cpas = document.querySelector("#confirmpassword").value;
   		if(opas===cpas){
+  			if($("#confirmpassword").hasClass('invalid')){
+  				$("#confirmpassword").removeClass('invalid');
+  			}
   			cword = true;
   			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
             		$("#submit-button").removeAttr('disabled');
   		}
   		else{
-  			Materialize.toast('Passwords do not match!', 1000, 'rounded');
+  			if(!($("#confirmpassword").hasClass('invalid'))){
+  				$("#confirmpassword").addClass('invalid');
+  			}
+  			$("#submit-button").attr('disabled', 'disabled');
   			cword = false;
   			return;
   		}
   	}
 
   	$scope.check_clasfn = function(){
-  		var classific = document.querySelector("#classification-input").value;
+  		var classific = document.querySelector("#classificationinput").value;
   		if (classific===""){
   			$("#submit-button").attr('disabled', 'disabled');
   			clasfn = false;
