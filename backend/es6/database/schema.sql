@@ -63,9 +63,11 @@ CREATE TABLE lecture_section(
 DROP TABLE IF EXISTS sub_section;
 CREATE TABLE sub_section(
 	section_id INT NOT NULL,
+	lecture_section_name  VARCHAR(8) NOT NULL,
 	code VARCHAR(4) NOT NULL,
 	PRIMARY KEY(code),
-	FOREIGN KEY(section_id) REFERENCES section(id)
+	FOREIGN KEY(section_id) REFERENCES section(id),
+	FOREIGN KEY(lecture_section_name) REFERENCES lecture_section(name)
 );
 
 
