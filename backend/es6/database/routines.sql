@@ -63,7 +63,18 @@ DROP PROCEDURE IF EXISTS INSERT_LOGIN_LOGS;
 DELIMITER $$
 CREATE PROCEDURE INSERT_LOGIN_LOGS (user_id INT)
 BEGIN
-	INSERT INTO login_logs (login_logs_date_login, login_logsid)
-	VALUES (now(), user_id);
+	INSERT INTO login_logs (faculty_user_id, date_login)
+	VALUES (user_id, now());
+END $$
+DELIMITER ;
+
+
+-- INSERT_LOGOUT_LOGS procedure
+DROP PROCEDURE IF EXISTS INSERT_LOGOUT_LOGS;
+DELIMITER $$
+CREATE PROCEDURE INSERT_LOGOUT_LOGS (user_id INT)
+BEGIN
+	INSERT INTO logout_logs (faculty_user_id, date_logout)
+	VALUES (user_id, now());
 END $$
 DELIMITER ;

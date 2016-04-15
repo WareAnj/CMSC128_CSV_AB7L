@@ -140,5 +140,5 @@ CREATE TABLE randomizer_logs_students(
 	randomizer_logs_id INT NOT NULL,
 	student_number VARCHAR(10) NOT NULL,
 	FOREIGN KEY(randomizer_logs_id) REFERENCES randomizer_logs(id),
-	FOREIGN KEY(student_number) REFERENCES student(student_number)
+	FOREIGN KEY(student_number) REFERENCES student_section(student_number)
 );
