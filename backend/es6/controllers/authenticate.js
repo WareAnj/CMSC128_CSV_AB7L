@@ -87,9 +87,20 @@ exports.logout = (req, res, next) => {
             return res.status(response.status).send(response.message);
         }
 
+        let user_id = req.session.user.id;
+        
         req.session.destroy();
 
         res.send({message: 'Successfully logged out'});
+
+        console.log(user_id);
+
+        db.query('CALL INSERT_LOGOUT_LOGS(?)', [user_id], (err, result, args, last_query) => {
+            if (err) {
+                winston.error('Error in creating login logs', last_query);
+                return next(err);
+            }
+        });
     }
 
     start();
