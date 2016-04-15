@@ -33,26 +33,43 @@ CREATE TABLE faculty_user(
 -- Table 'course'
 DROP TABLE IF EXISTS course;
 CREATE TABLE course(
-	course_code VARCHAR(16) NOT NULL,
-	course_title VARCHAR(64) NOT NULL,
-	course_description VARCHAR(256) NOT NULL,
-	PRIMARY KEY(course_code)
+	code VARCHAR(16) NOT NULL,
+	title VARCHAR(64) NOT NULL,
+	description VARCHAR(256) NOT NULL,
+	PRIMARY KEY(code)
 );
+
 
 -- Table 'section'
 DROP TABLE IF EXISTS section;
 CREATE TABLE section(
-	section_id INT NOT NULL AUTO_INCREMENT,
-	section_name VARCHAR(8) NOT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(8) NOT NULL,
 	course_code VARCHAR(16) NOT NULL,
-	PRIMARY KEY(section_id),
-	FOREIGN KEY(course_code) REFERENCES course(course_code)
+	PRIMARY KEY(id),
+	FOREIGN KEY(course_code) REFERENCES course(code)
 );
 
 
--- Table 'student'
-DROP TABLE IF EXISTS student;
-CREATE TABLE student(
+-- Table 'lecture_section'
+DROP TABLE IF EXISTS lecture_section;
+CREATE TABLE lecture_section(
+	section_id INT NOT NULL AUTO_INCREMENT,
+	FOREIGN KEY(section_id) REFERENCES section(id)
+);
+
+
+-- Table 'sub_section'
+DROP TABLE IF EXISTS sub_section;
+CREATE TABLE sub_section(
+	section_id INT NOT NULL AUTO_INCREMENT,
+	FOREIGN KEY(section_id) REFERENCES section(id)
+);
+
+
+-- Table 'student_section'
+DROP TABLE IF EXISTS student_section;
+CREATE TABLE student_section(
 	student_number VARCHAR(10) NOT NULL,
 	given_name VARCHAR(64) NOT NULL,
 	middle_name VARCHAR(32) NOT NULL,
@@ -61,39 +78,38 @@ CREATE TABLE student(
 	classification ENUM('Freshman', 'Sophomore', 'Junior', 'Senior', 'Masteral', 'PhD') NOT NULL,
 	college VARCHAR(8) NOT NULL,
 	picture BLOB DEFAULT NULL,
-	times_called INT NOT NULL DEFAULT 0,
-	PRIMARY KEY(student_number)
+	section_id INT NOT NULL,
+	frequency INT NOT NULL DEFAULT 0,
+	PRIMARY KEY(student_number),
+	FOREIGN KEY(section_id) REFERENCES section(id)
 );
 
 
--- Table 'student_section'
-DROP TABLE IF EXISTS student_section;
-CREATE TABLE student_section(
-	ss_student_number VARCHAR(10) NOT NULL,
-	ss_section_id INT NOT NULL,
-	ss_frequency INT NOT NULL DEFAULT 0,
-	FOREIGN KEY(ss_student_number) REFERENCES student(student_number),
-	FOREIGN KEY(ss_section_id) REFERENCES section(section_id)
+-- Table 'faculty_user_course'
+DROP TABLE IF EXISTS faculty_user_course;
+CREATE TABLE faculty_user_course(
+	faculty_user_id INT NOT NULL,
+	course_code VARCHAR(16) NOT NULL,
+	FOREIGN KEY(faculty_user_id) REFERENCES faculty_user(id),
+	FOREIGN KEY(course_code) REFERENCES course(code)
 );
 
 
--- Table 'faculty_user_course_section'
-DROP TABLE IF EXISTS faculty_user_course_section;
-CREATE TABLE faculty_user_course_section(
-	uc_user_id INT NOT NULL,
-	uc_course_code VARCHAR(16) NOT NULL,
-	uc_section_id INT NOT NULL,
-	FOREIGN KEY(uc_user_id) REFERENCES faculty_user(id),
-	FOREIGN KEY(uc_course_code) REFERENCES course(course_code),
-	FOREIGN KEY(uc_section_id) REFERENCES section(section_id)
+-- Table 'course_section'
+DROP TABLE IF EXISTS course_section;
+CREATE TABLE course_section(
+	course_code VARCHAR(16) NOT NULL,
+	section_id INT NOT NULL,
+	FOREIGN KEY(course_code) REFERENCES course(code),
+	FOREIGN KEY(section_id) REFERENCES section(id)
 );
 
 
 -- Table 'login_logs'
 DROP TABLE IF EXISTS login_logs;
 CREATE TABLE login_logs(
-	date_login TIMESTAMP NOT NULL,
 	faculty_user_id INT NOT NULL,
+	date_login TIMESTAMP NOT NULL,
 	FOREIGN KEY(faculty_user_id) REFERENCES faculty_user(id)
 );
 
@@ -101,8 +117,8 @@ CREATE TABLE login_logs(
 -- Table 'logout_logs'
 DROP TABLE IF EXISTS logout_logs;
 CREATE TABLE logout_logs(
-	date_logout TIMESTAMP NOT NULL,
 	faculty_user_id INT NOT NULL,
+	date_logout TIMESTAMP NOT NULL,
 	FOREIGN KEY(faculty_user_id) REFERENCES faculty_user(id)
 );
 
@@ -121,8 +137,8 @@ CREATE TABLE randomizer_logs(
 -- Table 'randomizer_logs_students'
 DROP TABLE IF EXISTS randomizer_logs_students;
 CREATE TABLE randomizer_logs_students(
-	rls_randomizer_logs_id INT NOT NULL,
-	rls_student_number VARCHAR(10) NOT NULL,
-	FOREIGN KEY(rls_randomizer_logs_id) REFERENCES randomizer_logs(id),
-	FOREIGN KEY(rls_student_number) REFERENCES student(student_number)
+	randomizer_logs_id INT NOT NULL,
+	student_number VARCHAR(10) NOT NULL,
+	FOREIGN KEY(randomizer_logs_id) REFERENCES randomizer_logs(id),
+	FOREIGN KEY(student_number) REFERENCES student(student_number)
 );
