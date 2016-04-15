@@ -51,9 +51,32 @@ DELIMITER $$
 CREATE PROCEDURE LOGIN (_username VARCHAR(32), _password VARCHAR(32))
 BEGIN
 	SELECT 	id, username,
-			IF(SHA1(_password) = password, TRUE, FALSE) AS is_password_valid,
-			classification, given_name, middle_name,
-			last_name FROM faculty_user WHERE username = _username;
+	IF(SHA1(_password) = password, TRUE, FALSE) AS is_password_valid,
+	classification, given_name, middle_name, last_name, is_approved, date_approved
+	FROM faculty_user WHERE username = _username;
+END $$
+DELIMITER ;
+
+
+-- ADMIN_LOGIN procedure
+DROP PROCEDURE IF EXISTS ADMIN_LOGIN;
+DELIMITER $$
+CREATE PROCEDURE ADMIN_LOGIN (_username VARCHAR(32), _password VARCHAR(32))
+BEGIN
+	SELECT username,
+	IF(SHA1(_password) = password, TRUE, FALSE) AS is_password_valid
+	FROM admin WHERE username = _username;
+END $$
+DELIMITER ;
+
+
+-- APPROVE_USER procedure
+DROP PROCEDURE IF EXISTS APPROVE_USER;
+DELIMITER $$
+CREATE PROCEDURE APPROVE_USER (_faculty_user_id INT)
+BEGIN
+	UPDATE faculty_user SET is_approved = TRUE WHERE id = _faculty_user_id;
+	SELECT 'Faculty user successfully approved!' AS message;
 END $$
 DELIMITER ;
 
@@ -76,5 +99,29 @@ CREATE PROCEDURE INSERT_LOGOUT_LOGS (user_id INT)
 BEGIN
 	INSERT INTO logout_logs (faculty_user_id, date_logout)
 	VALUES (user_id, now());
+END $$
+DELIMITER ;
+
+
+-- GET_LOGIN_LOGS procedure
+DROP PROCEDURE IF EXISTS GET_LOGIN_LOGS;
+DELIMITER $$
+CREATE PROCEDURE GET_LOGIN_LOGS ()
+BEGIN
+	SELECT fu.id, fu.username, fu.employee_id, fu.classification, fu.given_name,
+	fu.middle_name, fu.last_name, fu.is_approved, fu.date_approved, ll.date_login
+	FROM login_logs ll, faculty_user fu WHERE ll.faculty_user_id = fu.id;
+END $$
+DELIMITER ;
+
+
+-- GET_LOGOUT_LOGS procedure
+DROP PROCEDURE IF EXISTS GET_LOGOUT_LOGS;
+DELIMITER $$
+CREATE PROCEDURE GET_LOGOUT_LOGS ()
+BEGIN
+	SELECT fu.id, fu.username, fu.employee_id, fu.classification, fu.given_name,
+	fu.middle_name, fu.last_name, fu.is_approved, fu.date_approved, ll.date_logout
+	FROM logout_logs ll, faculty_user fu WHERE ll.faculty_user_id = fu.id;
 END $$
 DELIMITER ;

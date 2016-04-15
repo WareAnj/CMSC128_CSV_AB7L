@@ -40,5 +40,13 @@ module.exports = {
             code: 'MISSING_SESSION',
             context: 'No session found'
         }
+    },
+
+    USER_NOT_APPROVED: {
+        status: 403,
+        message: {
+            code: 'USER_NOT_APPROVED',
+            context: 'User is not yet approved by the administrator'
+        }
     }
 };
