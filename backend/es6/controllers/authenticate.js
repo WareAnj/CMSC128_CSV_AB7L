@@ -5,6 +5,7 @@ const status    = require(__dirname + '/../lib/status');
 const winston   = require('winston');
 
 
+// Login as a faculty user
 exports.login = (req, res, next) => {
     let response;
 
@@ -22,7 +23,7 @@ exports.login = (req, res, next) => {
             return res.status(response.status).send(response.message);
         }
 
-        db.query('CALL LOGIN(?, ?)', [data.username, data.password],
+        db.query('CALL LOGIN(?, ?);', [data.username, data.password],
                     send_response);
     }
 
@@ -76,7 +77,7 @@ exports.login = (req, res, next) => {
 
         let user_id = result[0][0].id;
 
-        db.query('CALL INSERT_LOGIN_LOGS(?)', [user_id], (err, result, args, last_query) => {
+        db.query('CALL INSERT_LOGIN_LOGS(?);', [user_id], (err, result, args, last_query) => {
             if (err) {
                 winston.error('Error in creating login logs', last_query);
                 return next(err);
@@ -89,6 +90,7 @@ exports.login = (req, res, next) => {
 };
 
 
+// Logout as a faculty user
 exports.logout = (req, res, next) => {
     let response;
 
@@ -106,9 +108,9 @@ exports.logout = (req, res, next) => {
 
         res.send({message: 'Successfully logged out'});
 
-        db.query('CALL INSERT_LOGOUT_LOGS(?)', [user_id], (err, result, args, last_query) => {
+        db.query('CALL INSERT_LOGOUT_LOGS(?);', [user_id], (err, result, args, last_query) => {
             if (err) {
-                winston.error('Error in creating login logs', last_query);
+                winston.error('Error in creating logout logs', last_query);
                 return next(err);
             }
         });

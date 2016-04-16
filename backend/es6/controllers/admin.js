@@ -5,6 +5,7 @@ const status    = require(__dirname + '/../lib/status');
 const winston   = require('winston');
 
 
+// Login as administrator
 exports.authenticate_login = (req, res, next) => {
     let response;
 
@@ -61,6 +62,7 @@ exports.authenticate_login = (req, res, next) => {
 };
 
 
+// Logout as administrator
 exports.authenticate_logout = (req, res, next) => {
     let response;
 
@@ -81,6 +83,7 @@ exports.authenticate_logout = (req, res, next) => {
 };
 
 
+// Approve the user
 exports.approve_user = (req, res, next) => {
     let response;
 
@@ -108,6 +111,7 @@ exports.approve_user = (req, res, next) => {
 };
 
 
+// Get all the login logs
 exports.get_login_logs = (req, res, next) => {
 
     function start () {
@@ -128,6 +132,7 @@ exports.get_login_logs = (req, res, next) => {
 };
 
 
+// Get all the logout logs
 exports.get_logout_logs = (req, res, next) => {
 
     function start () {
