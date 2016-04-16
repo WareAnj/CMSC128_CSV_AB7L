@@ -164,12 +164,22 @@
   			if($("#confirmpassword").hasClass('invalid')){
   				$("#confirmpassword").removeClass('invalid');
   			}
+  			if($("#passwordinput").hasClass('invalid')){
+  				$("#passwordinput").removeClass('invalid');
+  			}
   			$("#submit-button").attr('disabled', 'disabled');
   			$("#confirmpassword").attr('disabled', 'disabled');
   			pword = false;
   			return;
   		}
   		else {
+  			document.querySelector("#confirmpassword").value = "";
+  			if($("#confirmpassword").hasClass('invalid')){
+  				$("#confirmpassword").removeClass('invalid');
+  			}
+  			if($("#passwordinput").hasClass('invalid')){
+  				$("#passwordinput").removeClass('invalid');
+  			}
   			pword = true;
   			$("#confirmpassword").removeAttr('disabled');
   			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
@@ -184,6 +194,9 @@
   			if($("#confirmpassword").hasClass('invalid')){
   				$("#confirmpassword").removeClass('invalid');
   			}
+  			if($("#passwordinput").hasClass('invalid')){
+  				$("#passwordinput").removeClass('invalid');
+  			}
   			cword = true;
   			if(fname && mname && lname && uname && pword && cword && empid && clasfn)
             		$("#submit-button").removeAttr('disabled');
@@ -191,6 +204,9 @@
   		else{
   			if(!($("#confirmpassword").hasClass('invalid'))){
   				$("#confirmpassword").addClass('invalid');
+  			}
+  			if(!($("#passwordinput").hasClass('invalid'))){
+  				$("#passwordinput").addClass('invalid');
   			}
   			$("#submit-button").attr('disabled', 'disabled');
   			cword = false;
