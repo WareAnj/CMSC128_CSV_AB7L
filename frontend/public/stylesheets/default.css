@@ -1,6 +1,21 @@
 @font-face{
 	font-family: logo;
-	src: url("../font/CODE Bold.otf");
+	src: url("../font/Sliced AB.ttf");
+}
+
+@font-face{
+	font-family: sample;
+	src: url("../font/TFPironv2.otf");
+}
+
+@font-face{
+	font-family: for_h4;
+	src: url("../font/cicle-shadow.ttf");
+}
+
+@font-face{
+	font-family: reasons;
+	src: url("../font/TFPironv2.otf");
 }
 
 @font-face{
@@ -47,13 +62,23 @@ main {
 	background-color: #E6EBE0;
 }
 
-main h4{
-	font-family: header-text;
-	font-size: 45px;
+#logo-text{
+	font-family: sample;
+	font-size: 37px;
 }
 
 nav{
 	background-color: #629d95;
+}
+
+h4{
+	font-family: for_h4;
+	font-weight: bold;
+	text-align: center;
+}
+
+h3{
+	text-align: center;
 }
 
 .logo-img-side{
@@ -69,6 +94,6 @@ nav{
 }
 
 footer.page-footer{
-	margin-top: -8px;
-	background-color: #5CA4A9;
+	margin: -8px 0px 0px 0px;
+	background-color: #629d95;
 }
