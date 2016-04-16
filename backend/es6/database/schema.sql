@@ -44,7 +44,6 @@ CREATE TABLE course(
 DROP TABLE IF EXISTS section;
 CREATE TABLE section(
 	id INT NOT NULL AUTO_INCREMENT,
-	name VARCHAR(8) NOT NULL,
 	course_code VARCHAR(16) NOT NULL,
 	PRIMARY KEY(id),
 	FOREIGN KEY(course_code) REFERENCES course(code)
@@ -55,6 +54,7 @@ CREATE TABLE section(
 DROP TABLE IF EXISTS lecture_section;
 CREATE TABLE lecture_section(
 	section_id INT NOT NULL,
+	name VARCHAR(8) NOT NULL,
 	FOREIGN KEY(section_id) REFERENCES section(id)
 );
 
@@ -63,9 +63,11 @@ CREATE TABLE lecture_section(
 DROP TABLE IF EXISTS sub_section;
 CREATE TABLE sub_section(
 	section_id INT NOT NULL,
+	lecture_section_name  VARCHAR(8) NOT NULL,
 	code VARCHAR(4) NOT NULL,
 	PRIMARY KEY(code),
-	FOREIGN KEY(section_id) REFERENCES section(id)
+	FOREIGN KEY(section_id) REFERENCES section(id),
+	FOREIGN KEY(lecture_section_name) REFERENCES lecture_section(name)
 );
 
 
