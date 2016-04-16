@@ -83,6 +83,62 @@ exports.authenticate_logout = (req, res, next) => {
 };
 
 
+// Get the login logs of the specified user
+exports.get_login_logs_by_user = (req, res, next) => {
+    let response;
+
+    const data = {
+        faculty_user_id:        req.params.faculty_user_id
+    };
+
+
+    function start() {
+        db.query('CALL GET_LOGIN_LOGS_BY_USER(?);', [data.faculty_user_id],
+                send_response);
+    }
+
+
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in retrieving the login logs of the user', last_query);
+            return next(err);
+        }
+
+        res.send(result[0]);
+    }
+
+    start();
+};
+
+
+// Get the logout logs of the specified user
+exports.get_logout_logs_by_user = (req, res, next) => {
+    let response;
+
+    const data = {
+        faculty_user_id:        req.params.faculty_user_id
+    };
+
+
+    function start() {
+        db.query('CALL GET_LOGOUT_LOGS_BY_USER(?);', [data.faculty_user_id],
+                send_response);
+    }
+
+
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in retrieving the logout logs of the user', last_query);
+            return next(err);
+        }
+
+        res.send(result[0]);
+    }
+
+    start();
+};
+
+
 // Approve the user
 exports.approve_user = (req, res, next) => {
     let response;
@@ -121,7 +177,7 @@ exports.get_login_logs = (req, res, next) => {
 
     function send_response (err, result, args, last_query) {
         if (err) {
-            winston.error('Error in retrieving all the login_logs', last_query);
+            winston.error('Error in retrieving all the login logs', last_query);
             return next(err);
         }
 
@@ -142,7 +198,7 @@ exports.get_logout_logs = (req, res, next) => {
 
     function send_response (err, result, args, last_query) {
         if (err) {
-            winston.error('Error in retrieving all the logout_logs', last_query);
+            winston.error('Error in retrieving all the logout logs', last_query);
             return next(err);
         }
 

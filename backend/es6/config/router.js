@@ -43,11 +43,11 @@ module.exports = (router) => {
 
     // login_logs
     router.get ('/admin/login_logs',                                    $('Administrator'), __.admin.get_login_logs);
-    //router.get ('/admin/login_logs/:faculty_user_id',                   $('Administrator'), __.admin.get_login_logs_by_user);
+    router.get ('/admin/login_logs/:faculty_user_id',                   $('Administrator'), __.admin.get_login_logs_by_user);
 
     // logout_logs
-    router.get ('/admin/logout_logs',                                   $('Administrator'), __.admin.get_login_logs);
-    //router.get ('/admin/login_logs/:faculty_user_id',                   $('Administrator'), __.admin.get_login_logs_by_user);
+    router.get ('/admin/logout_logs',                                   $('Administrator'), __.admin.get_logout_logs);
+    router.get ('/admin/logout_logs/:faculty_user_id',                  $('Administrator'), __.admin.get_logout_logs_by_user);
 
 
 
