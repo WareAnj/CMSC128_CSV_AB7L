@@ -15,3 +15,7 @@ exports.edit = (req, res, next) => {
 exports.randomize_notuser = (req, res, next) =>{
 	res.render('randomize_notuser');
 };
+
+exports.randomizer_notuser = (req, res, next) =>{
+	res.render('randomizer_notuser');
+};

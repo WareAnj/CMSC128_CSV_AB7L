@@ -8,15 +8,20 @@
   AuthenticationCtrl.$inject = ["$scope", "$location", "AuthenticationService"];
 
   function AuthenticationCtrl($scope, $location, AuthenticationService){
+
+    console.log("inside ctrl");
   	
     $scope.faculty_user_data = [];
 
     $scope.Login = function(){
+      
 			AuthenticationService.Login($scope.facultyUser)
-				.then(function(data) {
-				$scope.faculty_user_data.push(data);
+				.then(function(data){
+				  $scope.faculty_user_data.push(data);
 				});
 		}
+
+
   }
 
 })();
