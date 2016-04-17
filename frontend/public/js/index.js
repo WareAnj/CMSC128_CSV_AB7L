@@ -8,6 +8,12 @@ $('.modal-trigger').leanModal({
     }
   );
 
+function submitClick(){
+    //setTimeout(function(){
+      $('#signupModal').closeModal();
+    //}, 3000);
+};
+
 $(window).scroll(function(){
     var aTop = $('#reason-1').height();
     if($(this).scrollTop()>=aTop){
@@ -17,7 +23,7 @@ $(window).scroll(function(){
 });
 
 $(window).scroll(function(){
-    var aTop = ($('#reason-1').height() * 2) + 80;
+    var aTop = ($('#reason-1').height() * 2) + 100;
     if($(this).scrollTop()>=aTop){
     $('#reason-2').removeClass("reason");
     $('#reason-2').addClass("animated fadeInRight");

@@ -13,7 +13,7 @@
 	<body>
 
 	<!-- NAV BAR -->
-
+		<div class="navbar-fixed">
 		<nav>
 		 	<div class="nav-wrapper container">
 		 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -22,7 +22,8 @@
 		    			<a href="#">
 		    			<img id="nav-logo" src="img/logo-2.png">
 		    			</a></div></li>
-		    	-->	<li><a href="#/" class="brand-logos">REGINYZR</a></li>
+
+		    	-->	<li><a href="#" class="brand-logos">Reginyzr</a></li>
 		    	</ul>
 
 		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
@@ -41,6 +42,7 @@
 		    	</ul>
 		    </div>
 		</nav>
+		</div>
 
 		<main>
 
@@ -55,7 +57,7 @@
 						<div class="row">
 							<div class="col s12 m12 l10">
 								<div class="center animated fadeIn">
-								<h4>The best web application for a fun and interactive class discussion.</h4>
+								<p id="logo-text">The best web application for a fun and interactive class discussion.</p>
 									<a href="#signupModal" class="modal-trigger waves-effect waves-light btn-large">Sign Up</a>
 									<a href="/randomize_notuser" class="waves-effect waves-light btn-large">Try Now</a>
 								</div>
@@ -70,7 +72,7 @@
 
 			<div id="more-info">
 				<div class="container" id="content">
-					<h4>HOW DOES IT WORK?</h4>
+					<h4>HOW DOES IT WORK?</h4><br/><br/><br/>
 					<div class="row">
 						<div class="col s12 m4 l4">
 							<div class="center">
@@ -102,20 +104,35 @@
 
 			<div id="more-info-2">
 				<div class="container" id="content">
-					<h4>WHY SIGN UP?</h4>
-					<h5 class="center">//Will fix layout, background, and images//</h5>
+					<h4>WHY SIGN UP?</h4> <br/> <br/>
+					<!-- <h5 class="center">//Will fix layout, background, and images//</h5> -->
 					<div class="row">
-						<div class="reason col s12 m12 l5" id="reason-1">
-							<img src="img/blank.png">
-							<h4>Save and access all your classes</h4>
+						<div class="reason col s12" id="reason-1">
+							<div class="col s6">
+								<img src="img/window1.png">
+							</div>
+							<div class="col s6" id="p1">
+								<h3>Save and access all your classes!</h3>
+								<p> Simplify your life by organizing your class! You can add, modify and remove classes and students with just a few clicks! </p>
+							</div>
 						</div>
-						<div class="reason col s12 m12 l5 offset-l7" id="reason-2">
-							<img src="img/blank.png">
-							<h4>More functionalities</h4>
+						<div class="reason col s12" id="reason-2">
+							<div class="col s6" id="p2">
+								<h3>More functionalities!</h3>
+								<p> Spice up your teaching with this feature! Introducing the Cheat Mode! You can now increase or decrease the chances of a certain student appearing in the randomizer! </p>
+							</div>
+							<div class="col s6">
+								<img src="img/window2.png">
+							</div>
 						</div>
-						<div class="reason col s12 m12 l5" id="reason-3">
-							<img src="img/blank.png">
-							<h4>Lorem Ipsum Dolor Sit Amet</h4>
+						<div class="reason col s12" id="reason-3">
+							<div class="col s6">
+								<img src="img/windows.png">
+							</div>
+							<div class="col s6" id="p3">
+								<h3>Track their luck!</h3>
+								<p> You can track you student's luck by viewing the history logs! You can see the number of times your students have appeared in the randomizer, as well as the number of times you used it. </p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -123,7 +140,7 @@
 
 	<!-- MODALS: LOGIN AND SIGN UP -->
 			<div ng-view="">
-			</div
+			</div>
 
 		</main>
 
@@ -131,15 +148,14 @@
 			<div class="container">
 				<div class="row center">
 					<div class="col s12 m12 l7">
-					footer content
+						<p> CMSC 128 AB-7L. 2016. </p>
 					</div>
 					<div class="col s12 m12 l5">
-					more footer content
+						<p> All rights reserved. </p>
 					</div>
-				</div
+				</div>
 			</div>
 		</footer>
-
 	    <script type="text/javascript" src="js/jquery.js"></script>
 	    <script type="text/javascript" src="js/materialize.min.js"></script>
 	    <script type="text/javascript" src="js/index.js"></script>
@@ -154,6 +170,5 @@
 
 		<script src="partials/register/register.service.js"></script>
 		<script src="partials/register/register.controller.js"></script>
-
 	</body>
 </html>

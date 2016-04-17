@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 	<head>
 		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
 		<title>Reginyzr</title>
@@ -35,9 +35,12 @@
 		    	<ul id="mobile-demo" class="side-nav">
 		    		<div class="logo-img-side"><a href="#">
 		    			<img id="logo-img-side" src="img/logo-2.png">
-		    		</a></div>
-				    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
-				    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
+		    		</a>
+						</div>
+						<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
+					    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
+					    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
+			    	</ul>
 		    	</ul>
 		    </div>
 		</nav>
@@ -47,14 +50,11 @@
 			<div class="container" id="results-container">
 				<div class="container center" id="content">
 					<h4>NOT FINAL UI!!!</h4>
-					<img id="volunteerPic" src="img/logo-1.png" class="circle">
+					<button ng-controller="RandomCtrl" ng-click="Randomize()"> <img id="volunteerPic" src="img/logo-1.png"  class="circle"> </button>
 					<h4 id="lettersContainer"></h4>
 				</div>
 			</div>
-
-		<!-- MODALS: LOGIN AND SIGN UP -->
-			<div ng-view="">
-			</div>
+			<div ng-view=""> </div>
 		</main>
 
 		<footer class="page-footer">
@@ -74,7 +74,7 @@
 	    <script type="text/javascript" src="js/materialize.min.js"></script>
 	    <script type="text/javascript" src="js/randomizer-2.js"></script>
 
-			<script src="js/angular.min.js"></script>
+ 			<script src="js/angular.min.js"></script>
 			<script src="js/angular-route.min.js"></script>
 
 			<script src="app.js"></script>
@@ -86,5 +86,8 @@
 			<script src="partials/register/register.controller.js"></script>
 			<script src="partials/register/register.check_faculty_user_username.js"></script>
 			<script src="partials/register/register.check_faculty_user_employee_id.js"></script>
+
+			<script src="partials/random.service.js"></script>
+			<script src="partials/random.controller.js"></script>
 	</body>
 </html>

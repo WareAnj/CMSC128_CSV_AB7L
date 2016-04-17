@@ -4,7 +4,8 @@ const _    = require('lodash');
 const path = require('path');
 
 const config = {
-    APP_NAME: 'CMSC 128 CSV AB-7L',
+    APP_NAME: 'REGINYZR',
+    APP_URL: 'http://localhost:8000',
 
     PORT: 8000,
 
@@ -18,8 +19,8 @@ const config = {
 
     /*UPLOAD_DIR: path.normalize(__dirname + '/../uploads/'),
     ASSETS_DIR: path.normalize(__dirname + '/../assets'),
-    VIEWS_DIR: path.normalize(__dirname + '/../views'),
-    LOGS_DIR: path.normalize(__dirname + '/../logs'),*/
+    VIEWS_DIR: path.normalize(__dirname + '/../views'),*/
+    LOGS_DIR: path.normalize(__dirname + '/../logs'),
 
     use: (env) => {
         _.assign(config, require(__dirname + '/env/' + env));

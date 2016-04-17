@@ -78,6 +78,20 @@ The CSVs is an online application that allows teachers to select random ‘volun
 gulp
 ```
 
+## To run tests
+-----
+```
+sudo npm install -g mocha
+npm test
+```
+
+If the output is too long and the terminal can't scroll up anymore, output the test to a file
+```
+npm test >> tests.log
+```
+
+DON'T FORGET to also put the test cases in the test/cases folder
+
 ## Author
 
 CMSC 128 AB-7L Students

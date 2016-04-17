@@ -7,29 +7,29 @@ const winston   = require('winston');
 exports.register = (req, res, next) => {
 
     const data = {
-        faculty_user_username:          req.body.faculty_user_username,
-        faculty_user_password:          req.body.faculty_user_password,
-        faculty_user_employee_id:       req.body.faculty_user_employee_id,
-        faculty_user_classification:    req.body.faculty_user_classification,
-        faculty_user_given_name:        req.body.faculty_user_given_name,
-        faculty_user_middle_name:       req.body.faculty_user_middle_name,
-        faculty_user_last_name:         req.body.faculty_user_last_name
+        username:          req.body.username,
+        password:          req.body.password,
+        employee_id:       req.body.employee_id,
+        classification:    req.body.classification,
+        given_name:        req.body.given_name,
+        middle_name:       req.body.middle_name,
+        last_name:         req.body.last_name
     };
 
 
     function start () {
-        db.query('CALL REGISTER(?, ?, ?, ?, ?, ?, ?)',
-                 [data.faculty_user_username, data.faculty_user_password,
-                  data.faculty_user_employee_id, data.faculty_user_classification,
-                  data.faculty_user_given_name, data.faculty_user_middle_name,
-                  data.faculty_user_last_name, data.faculty_user_username],
+        db.query('CALL REGISTER(?, ?, ?, ?, ?, ?, ?);',
+                 [data.username, data.password,
+                  data.employee_id, data.classification,
+                  data.given_name, data.middle_name,
+                  data.last_name],
                   send_response);
     }
 
 
     function send_response (err, result, args, last_query) {
         if (err) {
-            winston.error('Error in creating faculty users', last_query);
+            winston.error('Error in creating a faculty user', last_query);
             return next(err);
         }
 
@@ -40,37 +40,106 @@ exports.register = (req, res, next) => {
     start();
 };
 
+exports.check_faculty_user_username = (req, res, next) => {
+  const username = req.body.username;
+
+  db.query(
+    [
+      'SELECT username FROM faculty_user',
+      'WHERE username = ?; '
+    ].join(' '),
+	   [username],
+     responder
+  );
+
+	function responder(err, result){
+		if (err) winston.error('Error! ', err);
+		const rows = result.length;
+		if (rows === 1) {
+			res.status(200).send(true);
+		} else {
+			res.status(200).send(false);
+		}
+	}
+};
+
+exports.check_faculty_user_employee_id = (req, res, next) => {
+  const employee_id = req.body.employee_id;
+
+  db.query(
+    [
+      'SELECT employee_id FROM faculty_user',
+      'WHERE employee_id = ?; '
+    ].join(' '),
+	   [employee_id],
+     responder
+  );
+
+	function responder(err, result){
+		if (err) winston.error('Error! ', err);
+		const rows = result.length;
+		if (rows === 1) {
+			res.status(200).send(true);
+		} else {
+			res.status(200).send(false);
+		}
+	}
+};
+
 exports.post_volunteer = (req, res, next) => {
+
     const data = {
         student_number:         req.body.student_number,
-        student_given_name:     req.body.student_given_name,
-        student_middle_name:    req.body.student_middle_name,
-        student_last_name:      req.body.student_last_name,
-        student_degree:         req.body.student_degree,
-        student_classification: req.body.student_classification,
-        student_college:        req.body.student_college,
-        ss_section_id:          req.body.ss_section_id
+        given_name:             req.body.given_name,
+        middle_name:            req.body.middle_name,
+        last_name:              req.body.last_name,
+        degree:                 req.body.degree,
+        classification:         req.body.classification,
+        college:                req.body.college,
+        section_id:             req.body.section_id
     };
 
     function start () {
-        db.query(
-            [
-                'INSERT INTO student',
-                '(student_number, student_given_name, student_middle_name,',
-                'student_last_name, student_degree, student_classification, student_college)',
-                'VALUES (?, ?, ?, ?, ?, ?, ?);'
-            ].join(' '),
-            [
-                data.student_number,
-                data.student_given_name,
-                data.student_middle_name,
-                data.student_last_name,
-                data.student_degree,
-                data.student_classification,
-                data.student_college, 
-            ],
-            update_section
+        db.query (
+            'SELECT COUNT(*) as n FROM student WHERE student_number = ?;',
+            [data.student_number],
+            student_existence
         );
+    }
+
+    function student_existence (err, result, args, last_query) {
+        var string = JSON.stringify(result);
+        var count = JSON.parse(string);
+        if(err) {
+            winston.error('Error in Creating Volunteer', last_query);
+            return next(err);
+        }
+
+        if(count[0].n == '0') {
+            db.query(
+                [
+                    'INSERT INTO student',
+                    '(student_number, given_name, middle_name,',
+                    'last_name, degree, classification, college)',
+                    'VALUES (?, ?, ?, ?, ?, ?, ?);'
+                ].join(' '),
+                [
+                    data.student_number,
+                    data.given_name,
+                    data.middle_name,
+                    data.last_name,
+                    data.degree,
+                    data.classification,
+                    data.college
+                ],
+                update_section
+            );
+        } else {
+            db.query (
+                update_section
+            );
+        }
+
     }
 
     function update_section () {
@@ -80,11 +149,10 @@ exports.post_volunteer = (req, res, next) => {
                 '(ss_student_number, ss_section_id)',
                 'VALUES (?, ?);'
             ].join(' '),
-            [data.student_number, data.ss_section_id],
+            [data.student_number, data.section_id],
             send_response
         );
     }
-        
     function send_response (err, result, args, last_query) {
         if (err) {
             winston.error('Error in Creating Volunteer', last_query);
@@ -107,7 +175,7 @@ exports.get_volunteers = (req, res, next) => {
     function start() {
         db.query (
             [
-                'SELECT s.student_number, s.student_last_name, s.student_given_name, ss_section_id',
+                'SELECT s.student_number, s.last_name, s.given_name, ss_section_id',
                 'FROM faculty_user_course_section uc, student s, student_section ss WHERE',
                 'uc.uc_user_id = ? and uc.uc_course_code = ? and uc.uc_section_id = ?',
                 'and ss.ss_section_id = uc.uc_section_id and',
@@ -135,6 +203,29 @@ exports.update_volunteer = (req, res, next) => {
 
 exports.delete_volunteer = (req, res, next) => {
 
+    const data = {
+        section_id:             req.body.section_id,
+        student_number:         req.body.student_number
+    }
+
+    function start () {
+        db.query (
+            'DELETE from student_section where ss_section_id = ? AND ss_student_number = ?;',
+            [data.section_id, data.student_number], send_response
+        );
+    }
+
+
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in deleting student', last_query);
+            return next(err);
+        }
+
+        res.send(result);
+    }
+
+    start();
 };
 
 exports.randomize = (req, res, next) => {
@@ -182,7 +273,7 @@ exports.randomize = (req, res, next) => {
             return next(err);
         }
         db.query(
-                'SELECT * FROM temporary_view ORDER BY rand() LIMIT '+ data.limit + ';',
+                'SELECT * FROM student WHERE student_number = (SELECT student_number FROM temporary_view ORDER BY rand() LIMIT ' + data.limit + ') LIMIT 1;',
                 send_response
             );
     }
@@ -192,6 +283,7 @@ exports.randomize = (req, res, next) => {
             winston.error('Error in randomizing students', last_query);
             return next(err);
         }
+
         res.send(result);
     }
 

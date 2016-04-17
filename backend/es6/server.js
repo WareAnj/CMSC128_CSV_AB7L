@@ -1,8 +1,12 @@
 'use strict';
 
 const config        = require(__dirname + '/config/config');
+const util          = require(__dirname + '/helpers/util');
 const body_parser   = require('body-parser');
 const winston       = require('winston');
+const helmet        = require('helmet');
+const morgan        = require('morgan');
+const compression   = require('compression');
 const express       = require('express');
 const session       = require('express-session');
 const redis_store   = require('connect-redis')(session);
@@ -29,8 +33,7 @@ function start () {
 
     // view engines
     app.set('views', path.join(__dirname, '../../frontend/views'));
-    app.engine('html', require('ejs')
-        .renderFile);
+    app.engine('html', require('ejs').renderFile);
     app.set('view engine', 'html');
 
     // set config
@@ -40,10 +43,6 @@ function start () {
     // configure logger
     winston.cli();
     winston.level = config.LOG_LEVEL || 'silly';
-
-    // configure mysql
-    /*mysql.set_logger(winston)
-        .add('cmsc128ab7l', config.DB);*/
 
 
     winston.log('info', 'Starting', config.APP_NAME, 'on', config.ENV, 'environment');
@@ -64,21 +63,22 @@ function start () {
     }));
 
     // configure express app
+    app.use(helmet());
     app.set('case sensitive routing', true);
-    app.set('x-powered-by', false);
+    //app.set('x-powered-by', false);
+    app.set('trust proxy', 1)
 
     winston.log('verbose', 'Binding 3rd-party middlewares');
-    //app.use(require('morgan')('combined', {stream: util.get_log_stream(config.LOGS_DIR)}));
+    app.use(morgan('combined', {stream: util.configure_logger(config.LOGS_DIR)}));
     //app.use(express.static(config.ASSETS_DIR));
     app.use(require('method-override')());
     app.use(body_parser.urlencoded({extended: false}));
     app.use(body_parser.json());
-    //app.use(require('compression')());
+    app.use(compression());
 
 
     winston.log('verbose', 'Binding custom middlewares');
     //app.use(require('anytv-node-cors')(config.CORS));
-    //app.use(require(__dirname + '/lib/res_extended')());
     app.use(require(__dirname + '/config/router')(express.Router()));
     //app.use(require('anytv-node-error-handler')(winston));
 
