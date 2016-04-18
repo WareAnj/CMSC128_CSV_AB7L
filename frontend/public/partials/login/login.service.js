@@ -20,11 +20,12 @@
 				var deferred = $q.defer();
 				
 				$http.post(url + "/authenticate/login", facultyUser)
-				.success(function (data){
+				.success(function(data){
 					deferred.resolve(data);
 				})
 				.error(function(data) {
 					deferred.reject("Error: Cannot Login Faculty User");
+					alert(data.context);
 				});
 				
 				return deferred.promise;

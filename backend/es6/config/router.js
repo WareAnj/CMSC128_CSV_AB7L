@@ -13,6 +13,7 @@ module.exports = (router) => {
     router.get ('/',                                                                        __.render_controller.index);
     router.get ('/randomize_notuser',                                                       __.render_controller.randomize_notuser);
     router.get ('/randomizer_notuser',                                                      __.render_controller.randomizer_notuser);
+    router.get ('/home',                                                                    __.render_controller.home);
 
     // faculty_user routes
     router.post('/faculty_user/register/',                                                  __.faculty_user.register);
@@ -31,7 +32,7 @@ module.exports = (router) => {
     router.get ('/faculty_user/randomize',                              $('Faculty User'),  __.faculty_user.randomize);
 
     // authentication routes
-    router.post('/authenticate/login',                                                     __.authenticate.login);
+    router.post('/authenticate/login',                                                      __.authenticate.login);
     router.get ('/authenticate/logout',                                 $,                  __.authenticate.logout);
 
 
