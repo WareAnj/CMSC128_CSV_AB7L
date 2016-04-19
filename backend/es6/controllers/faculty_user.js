@@ -154,32 +154,7 @@ exports.post_volunteer = (req, res, next) => {
             send_response
         );
     }
-<<<<<<< HEAD
 
-    function  get_section_id () { //di ko po sure ito pero more or less dapat ganto sya
-        var sect_id;
-        sect_id = db.query(
-            [
-                'SELECT section_id FROM section WHERE section_name = ? AND section_course_code = ? LIMIT 1;'
-            ],
-            [data.section_name, data.section_course_code]
-        );
-        return sect_id;
-    }
-
-    function check_student_exists () {
-        var count = db.query(
-            [
-                SELECT COUNT(student_number) FROM student WHERE student_number = ?;
-            ],
-            [data.student_number]
-        );
-        if(count){
-            return true;
-        }
-        return false;
-    }
-    
     function send_response (err, result, args, last_query) {
         if (err) {
             winston.error('Error in Creating Volunteer', last_query);
