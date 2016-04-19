@@ -18,7 +18,7 @@ exports.register = (req, res, next) => {
 
 
     function start () {
-        db.query('CALL REGISTER(?, ?, ?, ?, ?, ?, ?)',
+        db.query('CALL REGISTER(?, ?, ?, ?, ?, ?, ?);',
                  [data.username, data.password,
                   data.employee_id, data.classification,
                   data.given_name, data.middle_name,
@@ -29,7 +29,7 @@ exports.register = (req, res, next) => {
 
     function send_response (err, result, args, last_query) {
         if (err) {
-            winston.error('Error in creating faculty users', last_query);
+            winston.error('Error in creating a faculty user', last_query);
             return next(err);
         }
 

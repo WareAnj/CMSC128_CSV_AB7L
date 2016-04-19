@@ -34,6 +34,7 @@ module.exports = (router) => {
     router.post('/authenticate/login/',                                                     __.authenticate.login);
     router.get ('/authenticate/logout',                                 $,                  __.authenticate.logout);
 
+
     // authentication for administrator
     router.post('/admin/authenticate_login',                                                __.admin.authenticate_login);
     router.get ('/admin/authenticate_logout',                           $('Administrator'), __.admin.authenticate_logout);
@@ -43,13 +44,14 @@ module.exports = (router) => {
 
     // login_logs
     router.get ('/admin/login_logs',                                    $('Administrator'), __.admin.get_login_logs);
-    //router.get ('/admin/login_logs/:faculty_user_id',                   $('Administrator'), __.admin.get_login_logs_by_user);
+    router.get ('/admin/login_logs/:faculty_user_id',                   $('Administrator'), __.admin.get_login_logs_by_user);
 
     // logout_logs
-    router.get ('/admin/logout_logs',                                   $('Administrator'), __.admin.get_login_logs);
-    //router.get ('/admin/login_logs/:faculty_user_id',                   $('Administrator'), __.admin.get_login_logs_by_user);
+    router.get ('/admin/logout_logs',                                   $('Administrator'), __.admin.get_logout_logs);
+    router.get ('/admin/logout_logs/:faculty_user_id',                  $('Administrator'), __.admin.get_logout_logs_by_user);
 
-
+    // route for CRUD students (integration)
+    router.get('/edit',				                                             __.render_controller.edit);
 
     // Unmatched route
     router.all('*', (req, res, next) => {

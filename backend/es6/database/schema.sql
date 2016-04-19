@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS subDB;
-CREATE DATABASE subDB;
-USE subDB;
+DROP DATABASE IF EXISTS cmsc128ab7l;
+CREATE DATABASE cmsc128ab7l;
+USE cmsc128ab7l;
 
 
 -- Table 'admin'
@@ -69,7 +69,23 @@ CREATE TABLE student(
 );
 
 
+<<<<<<< HEAD
 -- Table 'student_section' separated the student table
+=======
+-- Table 'sub_section'
+DROP TABLE IF EXISTS sub_section;
+CREATE TABLE sub_section(
+	section_id INT NOT NULL,
+	lecture_section_name VARCHAR(8) NOT NULL,
+	code VARCHAR(4) NOT NULL,
+	PRIMARY KEY(code),
+	FOREIGN KEY(section_id) REFERENCES section(id),
+	FOREIGN KEY(lecture_section_name) REFERENCES lecture_section(name)
+);
+
+
+-- Table 'student_section'
+>>>>>>> 2ef93e7a07f6afe04eb96cb24434432d6595d0aa
 DROP TABLE IF EXISTS student_section;
 CREATE TABLE student_section(
     student_id INT NOT NULL,
