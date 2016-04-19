@@ -1,0 +1,227 @@
+/* BRIEF INTRO */
+
+main #brief-intro{
+	background-color: rgba(250,255,249, 0.85);
+}
+
+#brief-intro-container{
+	background: url("../img/cover-f.jpg") no-repeat center;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#brief-intro #content{
+	padding: 5% 0 3% 10%;
+}
+
+#brief-intro #content a{
+	margin-right: 20px;
+	background-color: #50514F;
+}
+
+#intro-logo{
+	height: 220px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+/* MORE INFO - HOW DOES IT WORK */
+
+#more-info, #get-started{
+	background-color: #BEE3DB;
+}
+
+#more-info #content, #more-info-2 #content{
+	padding: 3% 0 3% 0;
+}
+
+#content h4{
+	font-size: 50px;
+	text-align: center;
+	padding: 0 0 1% 0;
+}
+
+#more-info #content i{
+	font-size: 80px;
+}
+
+#more-info #content .caption{
+	font-size: 30px;
+	font-weight: 300;
+	margin-bottom: -5px;
+}
+
+/* MORE INFO - WHY SIGN UP */
+#more-info-2 img{
+	height: 250px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.reason{
+	visibility: hidden;
+}
+
+/* MODALS */
+
+#loginModal{
+	margin-top: 10%;
+	width: 400px;
+}
+
+#signupModal{
+	width: 60%;
+}
+
+.modal .input-field i{
+	color: #50514F;
+}
+
+.modal .col{
+	margin-top: 20px;
+}
+
+.tabs .indicator {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background-color: black;
+  will-change: left, right;
+}
+
+.tabs {
+  background-color: #CCDDD8 ;
+}
+
+.custom.lighten-1 {
+  background-color: #CCDDD8 !important;
+}
+
+.custom-text.text-lighten-1 {
+  color: #CCDDD8 !important;
+}
+
+.custom {
+  background-color: #629D95 !important;
+}
+
+.custom-text {
+  color: #629D95 !important;
+}
+
+.custom.darken-1 {
+  background-color: #028090 !important;
+}
+
+.custom-text.text-darken-1 {
+  color: #028090 !important;
+}
+
+.waves-effect.waves-custom .waves-ripple {
+  background-color: rgba(150, 163, 159, 0.7);
+}
+
+.brand-logos{
+	font-family: logo;
+	font-size: 55px;
+	display: inline-block;
+	color: #303030;
+}
+
+.side-nav {
+  position: fixed;
+  width: 250px;
+  left: -105%;
+  top: 0;
+  margin: 0;
+  height: 100%;
+  height: calc(100% + 60px);
+  height: -moz-calc(100%);
+  padding-bottom: 60px;
+  background-color: #fff;
+  z-index: 999;
+  overflow-y: auto;
+  will-change: left;
+}
+
+/* label color */
+   .input-field label {
+     color: black;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: black;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+    color: black;
+   }
+   /* valid color */
+   .input-field input[type=text].valid {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+   color: black;
+   }
+   /* invalid color */
+   .input-field input[type=text].invalid {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+   color: black;
+   }
+   
+    /* label focus color */
+   .input-field input[type=password]:focus + label {
+     color: black;
+   }
+   /* label underline focus color */
+   .input-field input[type=password]:focus {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+   color: black;
+   }
+   /* valid color */
+   .input-field input[type=password].valid {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+   color: black;
+   }
+   /* invalid color */
+   .input-field input[type=password].invalid {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+   color: black;
+   }
+   
+   /* label focus color */
+   .input-field input[type=email]:focus + label {
+     color: black;
+   }
+   /* label underline focus color */
+   .input-field input[type=email]:focus {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+   color: black;
+   }
+   /* valid color */
+   .input-field input[type=email].valid {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+   color: black;
+   }
+   /* invalid color */
+   .input-field input[type=email].invalid {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+   color: black;
+   }
+   
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: black;
+   }

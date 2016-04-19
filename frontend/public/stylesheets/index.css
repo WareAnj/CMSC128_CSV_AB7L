@@ -1,21 +1,3 @@
-/* NAV BAR */
-
-nav {
-	background-color: #52B4AF;
-	margin: 0px;
-}
-
-#nav-logo{
-	height: 75px;
-}
-
-.brand-logos{
-	font-family: logo;
-	font-size: 95px;
-	display: inline-block;
-	color: #303030;
-}
-
 #brand{
 	width: 100px;
 	height: 64px;
@@ -25,9 +7,6 @@ table {
     border-collapse:collapse;
     padding: 0px;
 
-}
-.nav-right{
-	font-family: nav-side;
 }
 
 .logo-img a:hover, .logo-img-side a:hover{
@@ -143,24 +122,4 @@ table {
 	font-family: reasons;
 	font-size: 20px;
 	text-align: center;
-}
-
-
-/* MODALS */
-
-#loginModal{
-	margin-top: 10%;
-	width: 400px;
-}
-
-#signupModal{
-	width: 60%;
-}
-
-.modal .input-field i{
-	color: #50514F;
-}
-
-.modal .col{
-	margin-top: 20px;
 }
