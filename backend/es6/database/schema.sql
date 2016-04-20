@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS cmsc128ab7l;
 CREATE DATABASE cmsc128ab7l;
-USE cmsc128ab7l;
+USE cmsc128ab7l
 
 
 -- Table 'admin'
@@ -37,7 +37,9 @@ CREATE TABLE course(
     code VARCHAR(16) NOT NULL,
     title VARCHAR(64) NOT NULL,
     description VARCHAR(256) NOT NULL,
-    PRIMARY KEY(id)
+    user_id INT NOT NULL,
+    PRIMARY KEY(code),
+    FOREIGN KEY(user_id) REFERENCES faculty_user(id)
 );
 
 
