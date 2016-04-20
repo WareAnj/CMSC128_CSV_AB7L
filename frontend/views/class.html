@@ -1,50 +1,141 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	 <!-- 
-	 NAV BAR
-	 	- will contain logo and name of site (center)
-		- button (?) to toggle side navbar
-	 -->
-	<header>
-		
-		<!-- TOP NAV ? w/ logo -->
-		<nav class="top-nav" id="user-navbar">
-		  	<div id="navbar-contents">
-					<a href="#" class="brand-logo">Logo</a>
-		  	</div>
-		</nav>
-		<div>
-			<a href="" data-activates="slide-out"><i class="mdi-navigation-menu"></i></a>
-		</div>
+<html ng-app="app">
+	<head>
+		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
+		<title>Reginyzr</title>
+    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+       	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
+       	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
+    	<link type="text/css" rel="stylesheet" href="stylesheets/class.css">
+	</head>
+	<body>
 
-		<!-- SIDE NAV -->
-		<ul id="nav-bar">
-			<li id="prof-pic"><img src=""></li>
-			<li id="prof-name">Name</li>
-			<li id="">more info</li>
-			<!-- CLASSES??? -->
-			<li id="log-out"><button>Log Out</button></li>
-		</ul>
-	</header>
+	<!-- NAV BAR -->
 
-	<div id="home-body">
-		<div id="class-form">
-			<div id="class-info">CMSC 128 AB</div>
-			<form action="" method="POST">
-				<input type="checkbox" name="lec-section"> AB
-				<div id="lab-sections">
-					<input type="checkbox" name="lab-section-1"> 1L
-					<input type="checkbox" name="lab-section-2"> 2L
-					<input type="checkbox" name="lab-section-3"> 3L
+	<div class="navbar">
+		<nav>
+		 	<div class="nav-wrapper container">
+		 		
+		 		<ul>
+		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
+		    	</ul>
+		    	
+				<div class="center">
+			 		<a href="/" class="brand-logos"> <img id="logo" src="img/text2.png"></a>
+			    </div>
+
+	    		<!-- SIDE NAV  -->
+				<div id="slide-out" class="side-nav center">
+					<h5 class="teal-text text-lighten-2">NAME</h5>
+						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 128</a></li>
+						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 132</a></li>
+						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 125</a></li>
+						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 170</a></li>
+						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 141</a></li>
+						<div class = "center">
+							<a href="#logout" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
+						</div>
 				</div>
-				<div id="total-volunteers"></div>
-			</form>
-		</div>
+		    </div>
+		</nav>
 	</div>
+		<!--NAV BAR-->
 
-</body>
-</html>
+		<!--MAIN-->
+		<main>
+			<div id="mainContainer"class="container">
+				<div class="row">
+					<div class="col s12 m4 l4">
+						<div id="course-info" class="card-panel custom lighten-1">
+							<div class="row">
+								<h4>CMSC 128 AB</h4>
+							</div>
+							<div class="row">
+								<strong>Title</strong>: Introduction to Software Engineering
+							</div>
+							<div class="row">
+								<strong>Description</strong>: Principles and methods for the design, implementation, validation, evaluation and maintenance of software systems.
+							</div>
+						</div>
+						<div id="buttons-class" class="row">
+							<div class="col s12 m12 l12">
+								<a href="/edit" class="waves-effect waves-light btn">Edit</a>
+							</div>
+							<div class="col s12 m12 l12">
+								<a href="/settings_randomize" class="waves-effect waves-light btn">Randomize</a>
+							</div>
+						</div>
+					</div>
+					<div class="col s12 m8 l8">
+						<div id="classList">
+							<div class="card-panel custom">
+								<h3 id="headerText" class="center-align">Class List</h3>
+								<table class="table highlight">
+									<thead>
+										<tr>
+											<th class="center-align">NAME</th>
+											<th class="center-align">STUDENT NUMBER</th>			
+										</tr>
+									</thead>
+									<tbody >
+										<!--<tr ng-repeat=""></tr>-->
+										<tr>
+											<td>Calum Hood</td>
+											<td>1234-12345</td>
+										</tr>
+										<tr>
+											<td>Calum Hood</td>
+											<td>1234-12345</td>
+										</tr>
+										<tr>
+											<td>Calum Hood</td>
+											<td>1234-12345</td>
+										</tr>
+										<tr>
+											<td>Calum Hood</td>
+											<td>1234-12345</td>
+										</tr>
+										<tr>
+											<td>Calum Hood</td>
+											<td>1234-12345</td>
+										</tr>
+										<tr>
+											<td>Calum Hood</td>
+											<td>1234-12345</td>
+										</tr>
+										<tr>
+											<td>Calum Hood</td>
+											<td>1234-12345</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!--MAIN-->
+		<footer class="page-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m8 l8">
+					Reginyzr by CMSC 128 AB-7L
+					</div>
+					<div class="col s12 m4 l4">
+					Insert Contact, Links, Etc.
+					</div>
+				</div>
+			</div>
+		</footer>
+
+
+		<!--SCRIPTS-->
+		 <script type="text/javascript" src="js/jquery.js"></script>
+	    <script type="text/javascript" src="js/materialize.min.js"></script>
+	    <script type="text/javascript" src="js/index.js"></script>
+	    <script type="text/javascript" src="js/home.js"></script>
+	    <script type="text/javascript" src="js/default.js"></script>
+	</body>
+</html>	

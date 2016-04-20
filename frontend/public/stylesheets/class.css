@@ -1,0 +1,62 @@
+/*NAV BAR*/
+
+#nav-logo{
+	margin-top: 20px;
+	height: 100px;
+}
+
+#mainContainer {
+  padding-top: 3%;
+}
+
+#bodyText {
+  font-family: bodytext;
+}
+
+.custom.lighten-1 {
+  background-color: white !important;
+}
+
+.custom-text.text-lighten-1 {
+  color: #BEE3DB !important;
+}
+
+.custom {
+  background-color: white !important;
+}
+
+.custom-text {
+  color: #89B0AE !important;
+}
+
+.custom.darken-1 {
+  background-color: #028090 !important;
+}
+
+.custom-text.text-darken-1 {
+  color: #028090 !important;
+}
+
+td{
+  text-align: center;
+}
+
+a.btn {
+  width: 97%;
+  height: 10%;
+  margin-bottom: 3%;
+  background-color: #50514F;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#course-info{
+  padding: 10%;
+  background-color: white;
+}
+
+h3{
+  font-family: header-text;
+  font-size: 50px;
+}

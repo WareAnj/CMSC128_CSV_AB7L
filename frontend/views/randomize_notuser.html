@@ -5,10 +5,10 @@
 		<title>Reginyzr</title>
     	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
     	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-       	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
-       	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
+    	
+    	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
+    	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
     	<link type="text/css" rel="stylesheet" href="stylesheets/randomize_notuser.css">
-			<script type="text/javascript" src="js/jquery.js"></script>
 	</head>
 
 	<body>
@@ -16,14 +16,19 @@
 	<!-- NAV BAR -->
 
 		<nav id="navbar">
-		 	<div class="row">
-		 		<div class="col s5 offset-s5">
-		 			<img src="img/logo-2.png" id="logo" class="animated flipInY"></div>
+		 	<div class="nav-wrapper">
+		 		<div class="row">
+		 			<div class="col s9 m9 l9">
+		 				<h4>Logo here</h4>
+		 			</div>
+		 			<div class="col s3 m3 l3">
+		 				<h4>Button here</h4>
+		 			</div>
 		 		</div>
 		    </div>
 		</nav>
 
-		<main class="container">
+		<main class="container">		
 			<div class="row">
 
 				<!-- COLUMN FOR FORM -->
@@ -32,20 +37,30 @@
 						<form onSubmit="return false;" id="form">
 
 							<div class="section">
-								<h6>Enter names manually: </h6>
 								<div class="row">
-									<div class="col s10">
-										<div class="input-field">
-											<i class="material-icons prefix">account_circle</i>
-											<input id="input" type="text" class="validate" placeholder="Name">
-
-										</div>
+									<div class="input-field col s12">
+										<h6>Enter names manually</h6>
 									</div>
-									<div class="col s2">
-						  				<a id="add" class="btn-floating btn waves-effect waves-light teal"><i class="material-icons">add</i></a>
-						  			</div>
-					  			</div>
+								</div>
+								<div class="row">
+									<form class="col s12">										
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="input" id="disabled" type="text" class="validate" pattern="^[A-Za-z][A-Za-z\,\.\'\-\s]*$">
+												<label for="input" data-error="Invalid" data-success="">Name</label>
+
+												
+											</div>
+										</div>										
+									</form>
+								<div class="row">
+									<div class="input-field col s12">
+										<button id="add" class="btn waves-effect waves-light" disabled>Add Name</button>
+									</div>
+								</div>
+								</div>
 					  		</div>
+					  		
 
 					  		<div class="section">
 					  			<h6>Or input a file:</h6>
@@ -76,15 +91,16 @@
 						</form>
 					</div>
 				</div>
-<p></p>
+
 				<!-- COLUMN FOR TABLE -->
 				<div class="col s6">
 					<div class="container">
-						<table class="striped">
+						<p></p>
+						<table class="centered bordered responsive-table">
 							<thead>
 								<tr>
-									<th>NAMES</th>
-									<th>DELETE BUTTON</th>
+									<th>Names</th>
+									<th>Delete</th>
 								</tr>
 							</thead>
 							<tbody id="table">
@@ -95,10 +111,10 @@
 
 			</div>
 		</main>
-
-	    <script type="text/javascript" src="js/jquery.js"></script>
-	    <script type="text/javascript" src="js/materialize.min.js"></script>
-	    <script type="text/javascript" src="js/index.js"></script>
+		
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
 
 		<script src="js/angular.min.js"></script>
 		<script src="js/angular-route.min.js"></script>
@@ -115,37 +131,115 @@
 		 <script>
 		  //randomize and add name
 		  var arr = [];
-		  	$("#add").click(function(){
+		  var fromIndex = true;
 
-			  //var new_field = $('<tr><td>' + document.getElementById('input').value + '<td/><td><button >Delete</button></td><tr/>').attr({class:'fields', value:document.getElementById('input').value});
+		   $(document).ready(function() {
 
-			  var delButton = $('<button>Delete</button>').attr({value:document.getElementById('input').value, onclick:'deleteRow(this.value)'});
-			  var detTD = $('<td>').add(delButton);
-			  var nameTD = $('<td>' + document.getElementById('input').value + '</td>');
+		   		var cookie = document.cookie.split(';');
+		   		var checker;
+		   		var names;
+		   		for(i=0; i<cookie.length; i++){
+		   			checker = cookie[i].split('=');
 
-			  var spacesToUnderscore =document.getElementById('input').value.replace(/ /g,"_");
-			  var new_field = $('<tr>').attr({class:'fields', id:spacesToUnderscore}).append(nameTD).append(delButton);
+		   			if(checker[0].trim() == "arr"){
+		   				names = checker[1];
+		   				console.log("inside");
+		   			}
 
-			  if(inArray(document.getElementById('input').value, arr)){
-				alert("'"+  document.getElementById('input').value  + "' already exists");
-			  }else if(document.getElementById('input').value == ""){
-				alert("Name is blank");
-			  }else{
-			   	$("#table").append(new_field);
-			  	arr.push(document.getElementById('input').value);
-			  }
-			  document.getElementById('input').value = '';
+		   		}
+				
+				console.log(checker[0]);
+				var getter = JSON.parse(names);
+							
+				for(i=0; i<getter.length; i++){
+					console.log(getter[i]);
+
+					var string = getter[i];
+				 	var stringFormatted = getter[i];
+				 	stringFormatted =  stringFormatted.replace(/ /g,"&nbsp;")
+
+				 	fromIndex = false;
+				 	addToTable(string, stringFormatted);
+				 	$('.tooltipped').tooltip({delay: 50});
+				}
+
+				fromIndex = true;	   		
 			});
+		  
+			$('input[id=input]').keyup(function(){		
+				tooltipAlert();
+			});
+			
+			
+			function tooltipAlert(){
+				var delButton = $('<span class="tooltiptext">Tooltip text</span>');
+				var string = document.getElementById('input').value.trim();
+				if(string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){					
+					$('#add').attr('disabled', false);
+				}else{
+					$('#add').attr('disabled', true);
+				}
+			}			
+		  
+		  
+		  	$("#add").click(function(){		  			  
+			 	var string = document.getElementById('input').value.trim();
+			 	var stringFormatted = string;
+			 	stringFormatted =  stringFormatted.replace(/ /g,"&nbsp;")
 
+				if(!string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){
+					$('#add').attr('disabled', true);
+					return;
+				}
+
+				if(arr.length == 10){
+					Materialize.toast("List is already full", 1000);
+					return;
+				}
+
+				if(inArray(string, arr)){
+					Materialize.toast(string + " is already in the list", 1000);
+					return;
+				}
+
+<<<<<<< HEAD
+			function add(e){
+				
+			}
+
+=======
+				addToTable(string, stringFormatted);			  	  
+				
+			});
+			
+			
+>>>>>>> 6f5b47953ec5840ee1af499312dfef848606bbf5
 			$("#rand").click(function(){
 				if(arr.length == 0){
 					alert("The list is empty");
 					return false;
 				}
-			    var x = arr[Math.floor((Math.random() * arr.length))];
-			    $("p").html("Randomized Name: "+x);
-			});
 
+			    var x = arr[Math.floor((Math.random() * arr.length))];
+			    var cookier = "name="+x;
+			    var json_arr = "arr="+JSON.stringify(arr);
+			    document.cookie=cookier;
+			    document.cookie=json_arr;
+
+			    var url = "/randomizer_notuser";
+			    window.location = url;
+			});			
+			
+			$("#clear").click(function(){
+				arr = [];
+				var deleter = document.getElementsByClassName('fields');
+				while(deleter[0]) {
+					deleter[0].parentNode.removeChild(deleter[0]);
+				}
+
+				Materialize.toast("Cleared all names", 1000);
+			});
+			
 			function inArray(word,array){
     			var count=array.length;
    				for(var i=0;i<count;i++){
@@ -153,74 +247,123 @@
     			}
     			return false;
 			}
-
-			$("#clear").click(function(){
-				arr = [];
-				var deleter = document.getElementsByClassName('fields');
-
-				while(deleter[0]) {
-					deleter[0].parentNode.removeChild(deleter[0]);
-				}
-			});
-
-
+			
+			
 			function deleteRow(value){
 				var index = arr.indexOf(value);
 				arr.splice(index,1);
-
 				var spacesToUnderscore = value.replace(/ /g,"_");
-
 				$("#"+ spacesToUnderscore).remove();
 				$("#"+ spacesToUnderscore).empty();
+
+				Materialize.toast("Removed " + value + " from the list", 1000);
 			};
 
 
+			function addToTable(string, stringFormatted){
+				var delButton = $('<button>not_interested</button>').attr({class:"btn btn-floating waves-effects waves-light material-icons", value:string, onclick:'deleteRow(this.value)'});
+				var detTD = $('<td>').append(delButton);
+
+				var spanName = $('<span>').attr({class:"tooltipped", "data-position":"bottom", "data-delay":"50", "data-tooltip":string}).append(stringFormatted);
+				var nameTD = $('<td>').append(spanName);
+
+				var spacesToUnderscore = string.replace(/ /g,"_");
+				var new_field = $('<tr>').attr({class:'fields', id:spacesToUnderscore}).append(nameTD).append(detTD);		  
+				
+				$("#table").append(new_field);
+				arr.push(string);
+
+				document.getElementById('input').value = '';					
+				
+				if(fromIndex)
+					Materialize.toast("Successfully Added " + string, 1000);
+
+				$('#add').attr('disabled', true);
+
+				$('.tooltipped').tooltip({delay: 50});
+			};
+
 			/*
 				src: http://www.html5rocks.com/en/tutorials/file/dndfiles/
-				src: http://www.htmlgoodies.com/beyond/javascript/read-text-files-using-the-javascript-filereader.html#fbid=jkQONyBE0Ht
+				src: http://www.htmlgoodies.com/beyond/javascript/read-text-files-using-the-javascript-filereader.html#fbid=jkQONyBE0Ht				
+				
 			*/
-
 			//filereading
 			document.getElementById('file').onchange = function(){
-
 				// Check for the various File API support.
 				if (window.File && window.FileReader && window.FileList && window.Blob) {
 					var file = this.files[0];
 					var reader = new FileReader();
+
+					//checking file type
+					var ext = $('#file').val().split('.').pop().toLowerCase();
+					if($.inArray(ext, ['txt']) == -1) {
+					    alert('Only .txt files are allowed');
+					    return;
+					}
+
+
 					reader.onload = function(progressEvent){
 						var lines = this.result.split('\n');
+						var checkerArr = [];
+
+						//first loop for file validation
 						for(var line = 0; line < lines.length; line++){
 
-							//var new_field = $('<label/>' + lines[line].trim() + '<label/><br>').attr({class:'fields', value:lines[line].trim()});
+							var string = lines[line].trim();							
 
-							 var delButton = $('<button>Delete</button>').attr({class:'delButton', value:lines[line].trim(), onclick:'deleteRow(this.value)'});
-							 var detTD = $('<td>').add(delButton);
-							 var nameTD = $('<td>' + lines[line].trim() + '</td>');
+							if(lines.length > 10){
+								console.log(line);
+								alert("Input file have more than 10 lines");
+								return;
+							}
 
-							 var spacesToUnderscore = lines[line].trim().replace(/ /g,"_");
-							 var new_field = $('<tr>').attr({class:'fields', id:spacesToUnderscore}).append(nameTD).append(delButton);
+							if(!string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){
+								console.log(line);
+								alert("Input file contains invalid characters");
+								return;
+							}
 
+							if(arr.length + lines.length > 10){
+								console.log(line);
+								alert("Input file's number of names will exceed the limit");
+								return;
+							}
 
-							 if(inArray(lines[line].trim(), arr)){
-								alert("Input at line " + line + "\n'"+  lines[line].trim()  + "' already exists");
-							  }else if(lines[line].trim() == ""){
-								alert("Input at line " + line + " is blank");
-							  }else{
+							if(inArray(string, checkerArr)){
+								console.log(line);
+								alert("Input file contains duplicates");
+								return;
+							}
 
-								$("#table").append(new_field);
-								arr.push(lines[line].trim());
-							  }
+							if(inArray(string, arr)){
+								console.log(arr.length);
+								console.log(line);
+								alert("Input file contains duplicates with the names in the current list");
+								return;
+							}
+
+							checkerArr.push(string);
+						}
+
+						//second loop for getting the values
+						for(var line = 0; line < lines.length; line++){							
+
+							var string = lines[line].trim();
+							var stringFormatted = string;
+			 				stringFormatted =  stringFormatted.replace(/ /g,"&nbsp;");
+
+							addToTable(string, stringFormatted);
+
 						}
 					};
 				reader.readAsText(file);
 				}
-
 				else {
 					alert('The File APIs are not fully supported by your browser.');
 				}
-
-			};
-
+			};			
+			
 		  </script>
 	</body>
 </html>

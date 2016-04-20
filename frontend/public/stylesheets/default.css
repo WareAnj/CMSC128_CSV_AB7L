@@ -59,10 +59,14 @@
 /* NAV BAR */
 
 .brand-logos{
-	font-family: logo;
-	font-size: 95px;
-	display: inline-block;
-	color: #303030;
+}
+
+.brand-logos:hover{
+	background-color: rgba(0,0,0,0);
+}
+
+#logo{
+	height: 80px;
 }
 
 nav {
