@@ -46,12 +46,10 @@ DROP TABLE IF EXISTS section;
 CREATE TABLE section(
     id INT NOT NULL AUTO_INCREMENT,
     course_id INT NOT NULL,
-    course_code VARCHAR(16) NOT NULL,
     name VARCHAR(8) NOT NULL,
     code VARCHAR(4),
     PRIMARY KEY(id),
     FOREIGN KEY(course_id) REFERENCES course(id),
-    FOREIGN KEY(course_code) REFERENCES course(code)
 );
 
 
