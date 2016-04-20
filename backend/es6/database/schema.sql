@@ -38,7 +38,7 @@ CREATE TABLE course(
     title VARCHAR(64) NOT NULL,
     description VARCHAR(256) NOT NULL,
     user_id INT NOT NULL,
-    PRIMARY KEY(code),
+    PRIMARY KEY(id),
     FOREIGN KEY(user_id) REFERENCES faculty_user(id)
 );
 
