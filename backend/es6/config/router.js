@@ -11,13 +11,15 @@ module.exports = (router) => {
 
     // render_controller
     router.get ('/',                                                                        __.render_controller.index);
-    router.get ('/randomize_notuser',                                                       __.render_controller.randomize_notuser);
     router.get ('/randomize',                                                               __.render_controller.randomize);
+    router.get ('/edit',                                                                    __.render_controller.edit);
     router.get('/logs',                                                                     __.render_controller.logs);
-    router.get('/home',                                                                     __.render_controller.home);
     router.get('/settings_randomize',                                                       __.render_controller.settings_randomize);
-
-
+    router.get ('/randomize_notuser',                                                      __.render_controller.randomize_notuser);
+    router.get ('/home',                                                                    __.render_controller.home);
+    router.get ('/admin',                                                                   __.render_controller.admin);
+    router.get ('/class',                                                                   __.render_controller.class);
+    
     // faculty_user routes
     router.post('/faculty_user/register/',                                                  __.faculty_user.register);
 
@@ -35,7 +37,7 @@ module.exports = (router) => {
     router.get ('/faculty_user/randomize',                              $('Faculty User'),  __.faculty_user.randomize);
 
     // authentication routes
-    router.post('/authenticate/login/',                                                     __.authenticate.login);
+    router.post('/authenticate/login',                                                      __.authenticate.login);
     router.get ('/authenticate/logout',                                 $,                  __.authenticate.logout);
 
 
@@ -58,10 +60,7 @@ module.exports = (router) => {
     router.get('/edit',				                                             __.render_controller.edit);
 
     // Unmatched route
-    router.all('*', (req, res, next) => {
-        res.status(404)
-            .send({message: 'Nothing to do here.'});
-    });
+    router.all('*',                                                              __.render_controller.error_404);
 
     return router;
 };

@@ -12,6 +12,7 @@ CREATE TABLE admin(
     PRIMARY KEY(id)
 );
 
+INSERT INTO admin(id, username, password) VALUES (1, 'admin', 'admin');
 
 -- Table 'faculty_user'
 DROP TABLE IF EXISTS faculty_user;
@@ -33,10 +34,11 @@ CREATE TABLE faculty_user(
 -- Table 'course'
 DROP TABLE IF EXISTS course;
 CREATE TABLE course(
+    id INT NOT NULL AUTO_INCREMENT,
     code VARCHAR(16) NOT NULL,
     title VARCHAR(64) NOT NULL,
     description VARCHAR(256) NOT NULL,
-    PRIMARY KEY(code)
+    PRIMARY KEY(id)
 );
 
 
@@ -44,18 +46,17 @@ CREATE TABLE course(
 DROP TABLE IF EXISTS section;
 CREATE TABLE section(
     id INT NOT NULL AUTO_INCREMENT,
-    course_code VARCHAR(16) NOT NULL,
+    course_id INT NOT NULL,
     name VARCHAR(8) NOT NULL,
     code VARCHAR(4),
     PRIMARY KEY(id),
-    FOREIGN KEY(course_code) REFERENCES course(code)
+    FOREIGN KEY(course_id) REFERENCES course(id),
 );
 
 
--- Table 'student' created table students with id as primary key takes into account the possibility of multiple students with the same student number
+-- Table 'student'
 DROP TABLE IF EXISTS student;
 CREATE TABLE student(
-    id INT NOT NULL AUTO_INCREMENT,
     student_number VARCHAR(10) NOT NULL,
     given_name VARCHAR(64) NOT NULL,
     middle_name VARCHAR(32) NOT NULL,
@@ -65,13 +66,10 @@ CREATE TABLE student(
     college VARCHAR(8) NOT NULL,
     picture BLOB DEFAULT NULL,
     frequency INT NOT NULL DEFAULT 0,
-    PRIMARY KEY (id)
+    PRIMARY KEY (student_number)
 );
 
 
-<<<<<<< HEAD
--- Table 'student_section' separated the student table
-=======
 -- Table 'sub_section'
 DROP TABLE IF EXISTS sub_section;
 CREATE TABLE sub_section(
@@ -84,13 +82,13 @@ CREATE TABLE sub_section(
 );
 
 
--- Table 'student_section'
->>>>>>> 2ef93e7a07f6afe04eb96cb24434432d6595d0aa
+-- Table 'student_section' separated the student table
+>>>>>>> ec7b37c83dcf8232c7025d7e9725bb9b3d916d7c
 DROP TABLE IF EXISTS student_section;
 CREATE TABLE student_section(
-    student_id INT NOT NULL,
+    student_number INT NOT NULL,
     section_id INT NOT NULL,
-    FOREIGN KEY(student_id) REFERENCES student(id),
+    FOREIGN KEY(student_number) REFERENCES student(student_number),
     FOREIGN KEY(section_id) REFERENCES section(id)
 );
 
@@ -134,11 +132,11 @@ CREATE TABLE randomizer_logs(
 );
 
 
--- Table 'randomizer_logs_students' changed student_number to student_id to take into account the changes above
+-- Table 'randomizer_logs_students'
 DROP TABLE IF EXISTS randomizer_logs_students;
 CREATE TABLE randomizer_logs_students(
     randomizer_logs_id INT NOT NULL,
-    student_id INT NOT NULL,
+    student_number INT NOT NULL,
     FOREIGN KEY(randomizer_logs_id) REFERENCES randomizer_logs(id),
-    FOREIGN KEY(student_id) REFERENCES student(id)
+    FOREIGN KEY(student_number) REFERENCES student(student_number)
 );

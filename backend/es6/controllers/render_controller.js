@@ -24,6 +24,22 @@ exports.settings_randomize = (req, res, next) =>{
 	res.render('settings_randomize');
 };
 
+exports.randomizer_notuser = (req, res, next) =>{
+	res.render('randomizer_notuser');
+};
+
 exports.home = (req, res, next) =>{
 	res.render('home');
+};
+
+exports.admin = (req, res, next) => {
+	res.render('admin');
+};
+
+exports.class = (req, res, next) =>{
+	res.render('class');
+};
+
+exports.error_404 = (req, res, next) =>{
+	res.render('error_404');
 };
