@@ -59,7 +59,7 @@ table {
 /* MORE INFO - HOW DOES IT WORK */
 
 #more-info, #get-started{
-	background-color: #F6E7D2;
+	background-color: #FCF4D9;
 }
 
 #more-info #content{
@@ -91,6 +91,7 @@ table {
 }
 
 #more-info-2 #content{
+	background-color: #F6F7F8;
 	padding-top: 3%; 
 	padding-bottom: 3%;
 }
