@@ -1,14 +1,13 @@
-#logo{
-	height:100px;
-	width: 100px;
+#intro-logo{
+    height: 60px;
+    width: 60px;
 }
-
 #navbar{
 	height: 100px;
 }
 
 .center{
-	padding-top: 30%;
+    margin-top: 10%
 }
 
 #input{
@@ -23,7 +22,7 @@ td {
 }
 
 
-#navbar li {    
+/*#navbar li {    
     float: left
 }
 
@@ -32,4 +31,13 @@ td {
     
     line-height: 100px;
     display: block
+}
+*/
+.logo-img a:hover, .logo-img-side a:hover{
+    background-color: initial;
+}
+
+#brand{
+    width: 100px;
+    height: 64px;
 }

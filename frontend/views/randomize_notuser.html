@@ -13,20 +13,34 @@
 
 	<body>
 
-	<!-- NAV BAR -->
+		<!-- NAV BAR -->
+		<div class="navbar-fixed">
+		<nav>
+		 	<div class="nav-wrapper container">
+		 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+		 		<ul id="nav-mobile">
+		 			<li><a href="#" class="brand-logos"><img id="logo" src="img/text2.png"></a></li>
+		    	</ul>
 
-		<nav id="navbar">
-		 	<div class="nav-wrapper">
-		 		<div class="row">
-		 			<div class="col s9 m9 l9">
-		 				<h4>Logo here</h4>
-		 			</div>
-		 			<div class="col s3 m3 l3">
-		 				<h4>Button here</h4>
-		 			</div>
-		 		</div>
+		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
+				    <li><a href="#">Home</a></li>
+				    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
+				    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
+		    	</ul>
+
+	    		<!-- SIDE NAV (WHEN VIEWED IN SMALLER SCREENS) -->
+
+		    	<ul id="mobile-demo" class="side-nav">
+		    		<div class="logo-img-side"><a href="#">
+		    			<img id="logo-img-side" src="img/logo-2.png">
+		    		</a></div>
+		    		<li><a href="#" class="modal-trigger">Home</a></li>
+				    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
+				    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
+		    	</ul>
 		    </div>
 		</nav>
+		</div>
 
 		<main class="container">		
 			<div class="row">
@@ -48,8 +62,6 @@
 											<div class="input-field col s12">
 												<input id="input" id="disabled" type="text" class="validate" pattern="^[A-Za-z][A-Za-z\,\.\'\-\s]*$">
 												<label for="input" data-error="Invalid" data-success="">Name</label>
-
-												
 											</div>
 										</div>										
 									</form>
