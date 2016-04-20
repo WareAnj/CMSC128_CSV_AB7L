@@ -16,9 +16,15 @@ module.exports = (router) => {
     router.get('/settings_randomize',                                                       __.render_controller.settings_randomize);
     router.get ('/randomizer_notuser',                                                      __.render_controller.randomizer_notuser);
     router.get ('/home',                                                                    __.render_controller.home);
-    
+
     // faculty_user routes
     router.post('/faculty_user/register/',                                                  __.faculty_user.register);
+
+    // course routes
+    router.post('/course/post_course/',                                                  __.course.post_course);
+    router.put('/course/put_course/',                                                  __.course.put_course);
+    router.get('/course/get_course/',                                                  __.course.get_course);
+    router.del('/course/delete_course/',                                                  __.course.delete_course);
 
     // CRUD of volunteers/students
     router.post('/faculty_user/post_volunteer/',                        $('Faculty User'),  __.faculty_user.post_volunteer);
