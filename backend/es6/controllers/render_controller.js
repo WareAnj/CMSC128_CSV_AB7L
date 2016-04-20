@@ -34,6 +34,7 @@ exports.home = (req, res, next) =>{
 
 exports.admin = (req, res, next) => {
 	res.render('admin');
+};
 
 exports.class = (req, res, next) =>{
 	res.render('class');

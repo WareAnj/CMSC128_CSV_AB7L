@@ -34,10 +34,11 @@ CREATE TABLE faculty_user(
 -- Table 'course'
 DROP TABLE IF EXISTS course;
 CREATE TABLE course(
+    id INT NOT NULL AUTO_INCREMENT,
     code VARCHAR(16) NOT NULL,
     title VARCHAR(64) NOT NULL,
     description VARCHAR(256) NOT NULL,
-    PRIMARY KEY(code)
+    PRIMARY KEY(id)
 );
 
 
@@ -45,10 +46,12 @@ CREATE TABLE course(
 DROP TABLE IF EXISTS section;
 CREATE TABLE section(
     id INT NOT NULL AUTO_INCREMENT,
+    course_id INT NOT NULL,
     course_code VARCHAR(16) NOT NULL,
     name VARCHAR(8) NOT NULL,
     code VARCHAR(4),
     PRIMARY KEY(id),
+    FOREIGN KEY(course_id) REFERENCES course(id),
     FOREIGN KEY(course_code) REFERENCES course(code)
 );
 
@@ -69,6 +72,7 @@ CREATE TABLE student(
     PRIMARY KEY (id)
 );
 
+
 -- Table 'sub_section'
 DROP TABLE IF EXISTS sub_section;
 CREATE TABLE sub_section(
@@ -81,7 +85,8 @@ CREATE TABLE sub_section(
 );
 
 
--- Table 'student_section'
+-- Table 'student_section' separated the student table
+>>>>>>> ec7b37c83dcf8232c7025d7e9725bb9b3d916d7c
 DROP TABLE IF EXISTS student_section;
 CREATE TABLE student_section(
     student_id INT NOT NULL,

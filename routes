@@ -10,3 +10,11 @@ GET     /faculty_user/randomize_with_restriction        (if already called or no
 
 POST    /authenticate/login
 GET     /authenticate/logout
+
+GET     /admin/login_logs
+GET     /admin/login_logs/:faculty_user_id
+
+POST    /course/post_course
+GET     /course/courses
+PUT     /course/:faculty_user_id/:course_id
+DELETE  /course/:faculty_user_id/:course_id
