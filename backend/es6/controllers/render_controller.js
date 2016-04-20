@@ -31,3 +31,11 @@ exports.randomizer_notuser = (req, res, next) =>{
 exports.home = (req, res, next) =>{
 	res.render('home');
 };
+
+exports.class = (req, res, next) =>{
+	res.render('class');
+};
+
+exports.error_404 = (req, res, next) =>{
+	res.render('error_404');
+};
