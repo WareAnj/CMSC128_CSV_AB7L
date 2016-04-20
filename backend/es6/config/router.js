@@ -15,7 +15,7 @@ module.exports = (router) => {
     router.get ('/edit',                                                                    __.render_controller.edit);
     router.get('/logs',                                                                     __.render_controller.logs);
     router.get('/settings_randomize',                                                       __.render_controller.settings_randomize);
-    router.get ('/randomizer_notuser',                                                      __.render_controller.randomizer_notuser);
+    router.get ('/randomize_notuser',                                                      __.render_controller.randomize_notuser);
     router.get ('/home',                                                                    __.render_controller.home);
     router.get ('/admin',                                                                   __.render_controller.admin);
     router.get ('/class',                                                                   __.render_controller.class);
