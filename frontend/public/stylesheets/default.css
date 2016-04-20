@@ -28,6 +28,11 @@
 	src: url("../font/Champagne & Limousines.ttf");
 }
 
+@font-face{
+  font-family: header-text-2;
+  src: url("../font/rolade.ttf");
+}
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -51,6 +56,28 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* NAV BAR */
+
+.brand-logos{
+	font-family: logo;
+	font-size: 95px;
+	display: inline-block;
+	color: #303030;
+}
+
+nav {
+	background-color: #52B4AF;
+	margin: 0px;
+}
+
+#nav-logo{
+	height: 75px;
+}
+
+.nav-right{
+	font-family: nav-side;
+}
+
 body {
   display: flex;
   min-height: 100vh;
@@ -65,10 +92,6 @@ main {
 #logo-text{
 	font-family: sample;
 	font-size: 37px;
-}
-
-nav{
-	background-color: #629d95;
 }
 
 h4{
@@ -96,4 +119,25 @@ h3{
 footer.page-footer{
 	margin: -8px 0px 0px 0px;
 	background-color: #629d95;
+}
+
+
+
+/* MODALS */
+
+#loginModal{
+	margin-top: 10%;
+	width: 400px;
+}
+
+#signupModal{
+	width: 60%;
+}
+
+.modal .input-field i{
+	color: #50514F;
+}
+
+.modal .col{
+	margin-top: 20px;
 }
