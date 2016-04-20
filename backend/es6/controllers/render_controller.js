@@ -32,6 +32,10 @@ exports.home = (req, res, next) =>{
 	res.render('home');
 };
 
+exports.admin = (req, res, next) => {
+	res.render('admin');
+};
+
 exports.class = (req, res, next) =>{
 	res.render('class');
 };

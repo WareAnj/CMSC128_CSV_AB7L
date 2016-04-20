@@ -12,13 +12,14 @@ module.exports = (router) => {
     // render_controller
     router.get ('/',                                                                        __.render_controller.index);
     router.get ('/randomize',                                                               __.render_controller.randomize);
+    router.get ('/edit',                                                                    __.render_controller.edit);
     router.get('/logs',                                                                     __.render_controller.logs);
     router.get('/settings_randomize',                                                       __.render_controller.settings_randomize);
     router.get ('/randomizer_notuser',                                                      __.render_controller.randomizer_notuser);
     router.get ('/home',                                                                    __.render_controller.home);
-    router.get ('/class',                                                                    __.render_controller.class);
-
-
+    router.get ('/admin',                                                                   __.render_controller.admin);
+    router.get ('/class',                                                                   __.render_controller.class);
+    
     // faculty_user routes
     router.post('/faculty_user/register/',                                                  __.faculty_user.register);
 
