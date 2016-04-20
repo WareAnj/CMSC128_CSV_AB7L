@@ -17,7 +17,9 @@ module.exports = (router) => {
     router.get ('/randomizer_notuser',                                                      __.render_controller.randomizer_notuser);
     router.get ('/admin',                                                                   __.render_controller.admin);
     router.get ('/home',                                                                    __.render_controller.home);
-    
+    router.get ('/class',                                                                    __.render_controller.class);
+
+
     // faculty_user routes
     router.post('/faculty_user/register/',                                                  __.faculty_user.register);
 
@@ -58,10 +60,7 @@ module.exports = (router) => {
     router.get('/edit',				                                             __.render_controller.edit);
 
     // Unmatched route
-    router.all('*', (req, res, next) => {
-        res.status(404)
-            .send({message: 'Nothing to do here.'});
-    });
+    router.all('*',                                                              __.render_controller.error_404);
 
     return router;
 };
