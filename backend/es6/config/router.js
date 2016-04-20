@@ -15,6 +15,7 @@ module.exports = (router) => {
     router.get('/logs',                                                                     __.render_controller.logs);
     router.get('/settings_randomize',                                                       __.render_controller.settings_randomize);
     router.get ('/randomizer_notuser',                                                      __.render_controller.randomizer_notuser);
+    router.get ('/admin',                                                                   __.render_controller.admin);
     router.get ('/home',                                                                    __.render_controller.home);
     
     // faculty_user routes

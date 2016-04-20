@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html ng-app="app">
+	<head>
+		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
+		<title>Reginyzr</title>
+    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+       	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
+       	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
+    	<link type="text/css" rel="stylesheet" href="stylesheets/home.css">
+	</head>
+
+	<body>
+
+	<!-- NAV BAR -->
+	<div class="navbar-fixed">
+		<nav>
+		 	<div class="nav-wrapper container">
+		 		<ul>
+		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
+		    	</ul>
+		    	
+				<div class="center">
+			 		<a href="/" class="brand-logos"> Reginyzr</a>
+			    </div>
+
+			    <div class="row">
+			    	<div class="col s6 m6 l6">
+			    		<h4 class="center black-text">Pending Accounts</h1>
+			    			<div class="row">
+			    				<div class="col s6">
+					    			  <div class="card">
+										    <div class="card-image waves-effect waves-block waves-light">
+										      <img class="activator" src="img/sample.png">
+										    </div>
+										    <div class="card-content">
+										      <span class="card-title activator grey-text text-darken-4">Name<i class="material-icons right">more_vert</i></span>
+										      <p>
+										    </div>
+										    <div class="card-reveal">
+										      <span class="card-title grey-text text-darken-4">Name<i class="material-icons right">close</i></span>
+										      <a href="/admin" class="waves-effect waves-light btn-large">Approve</a>
+										    </div>
+										</div>
+								</div>
+							</div>
+			    	</div>
+			    	<div class="col s6">
+			    		<h4 class="center black-text">Approved Users</h4>
+			    	</div>
+			    </div>
+
+
+	    		<!-- SIDE NAV  -->
+				<div id="slide-out" class="side-nav center">
+						<div class = "center">
+							<a href="#logout" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
+						</div>
+				</div>
+		    </div>
+		</nav>
+	</div>
+	<!--<img src="img/stripes2.jpg" />-->
+		<main>
+			<div class="container col s12 m12" style="padding-top: 3%;">
+			
+				</div>
+			</div>
+		</main>
+		<!--FOOTER-->
+		<footer class="page-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m8 l8">
+					Reginyzr by CMSC 128 AB-7L
+					</div>
+					<div class="col s12 m4 l4">
+					Insert Contact, Links, Etc.
+					</div>
+				</div>
+			</div>
+		</footer>
+	    	    <script type="text/javascript" src="js/jquery.js"></script>
+	    <script type="text/javascript" src="js/materialize.min.js"></script>
+	    <script type="text/javascript" src="js/default.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-route.min.js"></script>
+		<script src="app.js"></script>
+		<script>
+		$('.showsidenav').sideNav({
+			menuWidth: 350, // Default is 240
+		});
+		$(document).ready(function(){
+			$('ul.tabs').tabs();
+		});
+		</script>
+	</body>
+</html>

@@ -31,3 +31,7 @@ exports.randomizer_notuser = (req, res, next) =>{
 exports.home = (req, res, next) =>{
 	res.render('home');
 };
+
+exports.admin = (req, res, next) => {
+	res.render('admin');
+};

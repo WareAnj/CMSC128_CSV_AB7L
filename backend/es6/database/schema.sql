@@ -12,6 +12,7 @@ CREATE TABLE admin(
     PRIMARY KEY(id)
 );
 
+INSERT INTO admin(id, username, password) VALUES (1, 'admin', 'admin');
 
 -- Table 'faculty_user'
 DROP TABLE IF EXISTS faculty_user;
@@ -68,10 +69,6 @@ CREATE TABLE student(
     PRIMARY KEY (id)
 );
 
-
-<<<<<<< HEAD
--- Table 'student_section' separated the student table
-=======
 -- Table 'sub_section'
 DROP TABLE IF EXISTS sub_section;
 CREATE TABLE sub_section(
@@ -85,7 +82,6 @@ CREATE TABLE sub_section(
 
 
 -- Table 'student_section'
->>>>>>> 2ef93e7a07f6afe04eb96cb24434432d6595d0aa
 DROP TABLE IF EXISTS student_section;
 CREATE TABLE student_section(
     student_id INT NOT NULL,
