@@ -8,5 +8,28 @@
 }
 
 .center{
-	padding-top: 10%;
+	padding-top: 30%;
+}
+
+#input{
+	text-align: center;
+}
+
+td {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+#navbar li {    
+    float: left
+}
+
+
+#navbar li a {
+    
+    line-height: 100px;
+    display: block
 }

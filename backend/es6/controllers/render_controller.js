@@ -24,6 +24,10 @@ exports.settings_randomize = (req, res, next) =>{
 	res.render('settings_randomize');
 };
 
+exports.randomizer_notuser = (req, res, next) =>{
+	res.render('randomizer_notuser');
+};
+
 exports.home = (req, res, next) =>{
 	res.render('home');
 };
