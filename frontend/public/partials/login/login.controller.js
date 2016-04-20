@@ -5,18 +5,25 @@
     .module('app')
     .controller('AuthenticationCtrl', AuthenticationCtrl);
 
-  AuthenticationCtrl.$inject = ["$scope", "$location", "AuthenticationService"];
+  AuthenticationCtrl.$inject = ["$scope", "$location", "$window", "AuthenticationService"];
 
-  function AuthenticationCtrl($scope, $location, AuthenticationService){
+  function AuthenticationCtrl($scope, $location, $window, AuthenticationService){
+
+    console.log("inside ctrl");
   	
     $scope.faculty_user_data = [];
 
     $scope.Login = function(){
+      
 			AuthenticationService.Login($scope.facultyUser)
-				.then(function(data) {
-				$scope.faculty_user_data.push(data);
+				.then(function(data){
+          $window.location.href = '/home';
+				  $scope.faculty_user_data.push(data);
+          console.log(data);
 				});
 		}
+
+
   }
 
 })();

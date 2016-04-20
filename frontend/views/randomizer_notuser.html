@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
+		<title>Reginyzr</title>
+    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+       	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
+       	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
+    	<link type="text/css" rel="stylesheet" href="stylesheets/results.css">
+    	<link type="text/css" rel="stylesheet" href="stylesheets/randomize_notuser.css">
+	</head>
+
+	<body>
+
+		<!-- NAV BAR -->
+		<nav id="navbar">
+		 	<div class="nav-wrapper">
+		 		<div class="col s5 offset-s5">
+		 			<img src="img/logo-2.png" id="logo" class="brand-logo center">
+		 			<ul id="nav-mobile" class="left hide-on-med-and-down">
+				        <li><a href="/randomize_notuser">Back</a></li>
+				    </ul>
+		 		</div>
+		    </div>
+		</nav>
+
+		<main>
+
+			<div class="container" id="results-container">
+				<div class="container center" id="content">
+					<h4>NOT FINAL UI!!!</h4>
+					<button ng-controller="RandomCtrl" ng-click="Randomize()"> <img id="volunteerPic" src="img/logo-1.png"  class="circle"> </button>
+					<h4 id="lettersContainer"></h4>
+				</div>
+			</div>
+			<div ng-view=""> </div>
+		</main>
+
+		<footer class="page-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m8 l8">
+					Reginyzr by CMSC 128 AB-7L
+					</div>
+					<div class="col s12 m4 l4">
+					Insert Contact, Links, Etc.
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	    <script type="text/javascript" src="js/jquery.js"></script>
+	    <script type="text/javascript" src="js/materialize.min.js"></script>
+	    <script type="text/javascript" src="js/randomizer_notuser.js"></script>
+
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-route.min.js"></script>
+
+		<script src="app.js"></script>
+
+		<script src="partials/login/login.service.js"></script>
+		<script src="partials/login/login.controller.js"></script>
+
+		<script src="partials/register/register.service.js"></script>
+		<script src="partials/register/register.controller.js"></script>
+		<script src="partials/register/register.check_faculty_user_username.js"></script>
+		<script src="partials/register/register.check_faculty_user_employee_id.js"></script>
+
+		<script src="partials/random.service.js"></script>
+		<script src="partials/random.controller.js"></script>
+	</body>
+</html>
