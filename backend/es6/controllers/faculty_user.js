@@ -153,6 +153,7 @@ exports.post_volunteer = (req, res, next) => {
             send_response
         );
     }
+
     function send_response (err, result, args, last_query) {
         if (err) {
             winston.error('Error in Creating Volunteer', last_query);
