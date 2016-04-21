@@ -12,8 +12,8 @@
 			<input placeholder="password" type="password" id="password-input" ng-model="facultyUser.password" required="required">
 		</div>
 		
-		 <!-- Switch -->
-  		<div class="switch">
+		 <!-- Switch 
+  		<div class="switch" >
     	<label>
 	      	Faculty user
 	      		<input type="checkbox">
@@ -21,6 +21,17 @@
 	      	Admin
     	</label>
   		</div>
+		-->
+
+
+		<div class="input-field">
+			<select name="type" ng-model="facultyUser.type">
+				<option value="" disabled="">Type of User</option>
+			    <option value="user" selected>Faculty User</option>
+			    <option value="admin">Admin</option>
+			</select>
+		</div>
+	
 
   		<br/>
 

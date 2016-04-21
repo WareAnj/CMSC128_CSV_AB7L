@@ -21,6 +21,9 @@ var app =	angular
 		})
 		.when("/home",{
 			"controller" 	: "HomeCtrl",
+		})
+		.when("/admin",{
+			"controller" 	: "AdminCtrl",
 		});
 	}
 
@@ -42,6 +45,27 @@ var app =	angular
 			var deferred = $q.defer();
 				
 			$http.get(url + "/authenticate/logout")
+			.success(function(data){
+				$window.location.href = '/';
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Login Faculty User");
+				alert(data.context);
+			});
+		}
+	});
+
+
+	app.controller('AdminCtrl', function($scope, $location, $window, $http, $q){
+
+		var url = "http://localhost:8000";
+
+		$scope.Logout = function(){ 
+
+			var deferred = $q.defer();
+				
+			$http.get(url + "/admin/authenticate_logout")
 			.success(function(data){
 				$window.location.href = '/';
 				deferred.resolve(data);
