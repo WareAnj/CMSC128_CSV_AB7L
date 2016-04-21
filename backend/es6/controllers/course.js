@@ -100,16 +100,16 @@ exports.get_course = (req, res, next) => {
 
 exports.delete_course = (req, res, next) => {
   const data = {
-      user_id:                   req.body.user_id,
-      course_code:               req.body.course_code
+      user_id:                   req.query.user_id,
+      id:                        req.query.id
   };
 
   function start () {
       db.query([
                   'DELETE from course',
-                  'WHERE user_id = ? and code = ?;'
+                  'WHERE user_id = ? and id = ?;'
                ].join(' '),
-               [data.user_id, data.course_code],
+               [data.user_id, data.id],
                 send_response);
   }
 

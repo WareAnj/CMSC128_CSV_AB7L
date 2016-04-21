@@ -80,17 +80,17 @@
 					<!--CLASSES-->
 					<div id="classes">
 						<div class="row">
-							<div ng-repeat="classes in faculty_user_classes">
+							<div ng-repeat="class in faculty_user_classes">
 								<div class="col s12 m4">
 								  <div class="card-panel custom lighten-1">
 								    <div class="center">
-											<a class="btn-floating btn-large waves-effect waves-light white">
+											<a class="btn-floating btn-large waves-effect waves-light white" ng-click="Delete_Class(class.id)">
 												<i class="material-icons custom-text text-darken-1">delete</i>
 											</a>
 											<a class="btn-floating btn-large waves-effect waves-light white">
 												<i class="material-icons custom-text text-darken-1">mode_edit</i>
 											</a>
-											<h5>{{classes}}</h5>
+											<h5>{{class.code}}</h5>
 								    </div>
 								    <!-- <ul class="collapsible popout" data-collapsible="expandable">
 								      <li>

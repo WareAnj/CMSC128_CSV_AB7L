@@ -12,7 +12,8 @@
 		var service = {};
 		service.Get_User_Id = Get_User_Id;
     service.Get_Classes = Get_Classes;
-		return service;
+    service.Delete_Class = Delete_Class;
+    return service;
 
 		function Get_User_Id() {
 			var deferred = $q.defer();
@@ -41,5 +42,19 @@
 
 			return deferred.promise;
 		}
+
+    function Delete_Class(user_id, id) {
+      var deferred = $q.defer();
+
+      $http.delete(url + "/course/delete_course?user_id=" + user_id + "&id=" + id)
+      .success(function(data) {
+        deferred.resolve(data);
+      })
+      .error(function(data) {
+        deferred.reject("Error: Cannot Delete Classes");
+      });
+
+      return deferred.promise;
+    }
 	}
 })();

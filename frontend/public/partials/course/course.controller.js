@@ -23,11 +23,25 @@
         .then(function(data){
           $scope.faculty_user_classes = [];
           for(var i = 0; i < data.length; i++){
-            $scope.faculty_user_classes.push(data[i].code);
+            $scope.faculty_user_classes.push({'code':data[i].code, id:data[i].id});
           }
         });
     }
 
+    $scope.Delete_Class = function(id){
+      CourseService.Delete_Class(user_id, id)
+        .then(function(data){
+
+        });
+        
+      CourseService.Get_Classes(user_id)
+        .then(function(data){
+          $scope.faculty_user_classes = [];
+          for(var i = 0; i < data.length; i++){
+            $scope.faculty_user_classes.push({'code':data[i].code, id:data[i].id});
+          }
+        });
+    }
   }
 
 })();
