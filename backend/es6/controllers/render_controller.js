@@ -32,14 +32,6 @@ exports.home = (req, res, next) =>{
 	res.render('home');
 };
 
-exports.admin = (req, res, next) => {
-	res.render('admin');
-};
-
-exports.class = (req, res, next) =>{
-	res.render('class');
-};
-
-exports.error_404 = (req, res, next) =>{
-	res.render('error_404');
+exports.admin_home = (req, res, next) =>{
+	res.render('admin_home');
 };

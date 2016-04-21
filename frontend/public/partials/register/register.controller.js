@@ -24,21 +24,21 @@
     		return;
     	RegisterService.AddFacultyUser($scope.newFacultyUser)
 			.then(function(data) {
-      		$scope.newFacultyUser.given_name = "";
-      		$scope.newFacultyUser.middle_name = "";
-      		$scope.newFacultyUser.last_name = "";
-      		$scope.newFacultyUser.username = "";
-  				$scope.newFacultyUser.password = "";
-  				$scope.newFacultyUser.confirm = "";
-  				$scope.newFacultyUser.employee_id = "";
-  				$scope.newFacultyUser.classification = '0';
+          		$scope.newFacultyUser.given_name = "";
+          		$scope.newFacultyUser.middle_name = "";
+          		$scope.newFacultyUser.last_name = "";
+          		$scope.newFacultyUser.username = "";
+				$scope.newFacultyUser.password = "";
+				$scope.newFacultyUser.confirm = "";
+				$scope.newFacultyUser.employee_id = "";
+				//$scope.newFacultyUser.classification = '0';
   				$("#confirmpassword").attr('disabled', 'disabled');
   				$("#submit-button").attr('disabled', 'disabled');
   				$('#signupModal').closeModal();
   				$('#classificationinput').val("");
 				$scope.faculty_user_data.push(data);
 				Materialize.toast('Faculty User added!', 3000, 'rounded');
-				  fname = false;
+				fname = false;
     			mname = false;
     			lname = false;
     			uname = false;
@@ -55,7 +55,7 @@
   		if (username===""){
   			if($("#nameinput").hasClass('invalid')){
   				$("#nameinput").removeClass('invalid');
-  			}
+  			}	
   			$("#submit-button").attr('disabled', 'disabled');
           	uname = false;
           	return;
