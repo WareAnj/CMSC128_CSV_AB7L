@@ -7,5 +7,5 @@ $(document).ready(function(){
 });
 
 $('.showsidenav').sideNav({
-	menuWidth: 350, // Default is 240
+//	menuWidth: 300, // Default is 240
 });
