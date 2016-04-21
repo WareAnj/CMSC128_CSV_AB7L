@@ -19,8 +19,6 @@
           $scope.faculty_user_data.push(data);
 				});
 		}
-
-
   }
 
 })();

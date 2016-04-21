@@ -18,6 +18,9 @@ var app =	angular
 		.when("/edit",{
 			"controller" 	: "RouteCtrl",
 			"templateUrl" 	: "uirouter.html"
+		})
+		.when("/home",{
+			"controller" 	: "HomeCtrl",
 		});
 	}
 
@@ -27,4 +30,27 @@ var app =	angular
 			"login"	: "partials/login/login.view.html"
 	  	}
 	});
+
+
+
+	app.controller('HomeCtrl', function($scope, $location, $window, $http, $q){
+
+		var url = "http://localhost:8000";
+
+		$scope.Logout = function(){ 
+
+			var deferred = $q.defer();
+				
+			$http.get(url + "/authenticate/logout")
+			.success(function(data){
+				$window.location.href = '/';
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Login Faculty User");
+				alert(data.context);
+			});
+		}
+	});
+
 })();
