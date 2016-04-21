@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html>
 	<head>
 		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
 		<title>Reginyzr</title>
@@ -23,7 +23,7 @@
 		    	</ul>
 
 		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
-				    <li><a href="#">Home</a></li>
+				    <li><a href="/">Home</a></li>
 				    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
 				    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
 		    	</ul>
@@ -84,7 +84,7 @@
 							        <input type="file" name="file" id="file">
 							      </div>
 							      <div class="file-path-wrapper">
-							        <input class="file-path validate" type="text">
+							        <input class="file-path validate" type="text" id="text-file-area">
 							      </div>
 							    </div>
 							</div>
@@ -94,9 +94,12 @@
 				  				</button>
 				  			</div>
 				  			<div class="section">
-				  				<button id="rand" class="btn waves-effect waves-light">Randomize
+				  				<a href="#modal1" class="modal-trigger">
+				  				<button id="rand" class="btn waves-effect waves-light ">
+				  					Randomize
 					  				<i class="material-icons right">assignment</i>
 					  			</button>
+					  			</a>
 					  		</div>
 				  			<!-- <button type="button">Randomize</button><br> -->
 
@@ -123,6 +126,20 @@
 
 			</div>
 		</main>
+
+
+		<!-- DIV FOR RESULTS -->
+		<div class="modal" id="modal1">
+			<div class="modal-content center">
+				<div class="container" id="results-container">
+					<div class="container center" id="content">
+						<h4>NOT FINAL UI!!!</h4>
+						<!--<button> <img id="volunteerPic" src="img/logo-1.png"  class="circle"> </button> -->
+						<h4 id="lettersContainer"></h4>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>
@@ -139,50 +156,17 @@
 		<script src="partials/register/register.service.js"></script>
 		<script src="partials/register/register.controller.js"></script>
 
+		<script src="js/randomize_notuser.js"></script>
 
-		 <script>
-		  //randomize and add name
-		  var arr = [];
-		  var fromIndex = true;
 
-		   $(document).ready(function() {
+		<script>		   
+		  	//other functions are in randomize_notuser.js
 
-		   		var cookie = document.cookie.split(';');
-		   		var checker;
-		   		var names;
-		   		for(i=0; i<cookie.length; i++){
-		   			checker = cookie[i].split('=');
-
-		   			if(checker[0].trim() == "arr"){
-		   				names = checker[1];
-		   				console.log("inside");
-		   			}
-
-		   		}
-				
-				console.log(checker[0]);
-				var getter = JSON.parse(names);
-							
-				for(i=0; i<getter.length; i++){
-					console.log(getter[i]);
-
-					var string = getter[i];
-				 	var stringFormatted = getter[i];
-				 	stringFormatted =  stringFormatted.replace(/ /g,"&nbsp;")
-
-				 	fromIndex = false;
-				 	addToTable(string, stringFormatted);
-				 	$('.tooltipped').tooltip({delay: 50});
-				}
-
-				fromIndex = true;	   		
-			});
-		  
 			$('input[id=input]').keyup(function(){		
 				tooltipAlert();
-			});
+			});			
 			
-			
+			//for enabling and disabling add button
 			function tooltipAlert(){
 				var delButton = $('<span class="tooltiptext">Tooltip text</span>');
 				var string = document.getElementById('input').value.trim();
@@ -191,191 +175,8 @@
 				}else{
 					$('#add').attr('disabled', true);
 				}
-			}			
-		  
-		  
-		  	$("#add").click(function(){		  			  
-			 	var string = document.getElementById('input').value.trim();
-			 	var stringFormatted = string;
-			 	stringFormatted =  stringFormatted.replace(/ /g,"&nbsp;")
-
-				if(!string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){
-					$('#add').attr('disabled', true);
-					return;
-				}
-
-				if(arr.length == 10){
-					Materialize.toast("List is already full", 1000);
-					return;
-				}
-
-				if(inArray(string, arr)){
-					Materialize.toast(string + " is already in the list", 1000);
-					return;
-				}
-
-<<<<<<< HEAD
-			function add(e){
-				
-			}
-
-=======
-				addToTable(string, stringFormatted);			  	  
-				
-			});
-			
-			
->>>>>>> 6f5b47953ec5840ee1af499312dfef848606bbf5
-			$("#rand").click(function(){
-				if(arr.length == 0){
-					alert("The list is empty");
-					return false;
-				}
-
-			    var x = arr[Math.floor((Math.random() * arr.length))];
-			    var cookier = "name="+x;
-			    var json_arr = "arr="+JSON.stringify(arr);
-			    document.cookie=cookier;
-			    document.cookie=json_arr;
-
-			    var url = "/randomizer_notuser";
-			    window.location = url;
-			});			
-			
-			$("#clear").click(function(){
-				arr = [];
-				var deleter = document.getElementsByClassName('fields');
-				while(deleter[0]) {
-					deleter[0].parentNode.removeChild(deleter[0]);
-				}
-
-				Materialize.toast("Cleared all names", 1000);
-			});
-			
-			function inArray(word,array){
-    			var count=array.length;
-   				for(var i=0;i<count;i++){
-        			if(array[i].toLowerCase()===word.toLowerCase()){return true;}
-    			}
-    			return false;
 			}
 			
-			
-			function deleteRow(value){
-				var index = arr.indexOf(value);
-				arr.splice(index,1);
-				var spacesToUnderscore = value.replace(/ /g,"_");
-				$("#"+ spacesToUnderscore).remove();
-				$("#"+ spacesToUnderscore).empty();
-
-				Materialize.toast("Removed " + value + " from the list", 1000);
-			};
-
-
-			function addToTable(string, stringFormatted){
-				var delButton = $('<button>not_interested</button>').attr({class:"btn btn-floating waves-effects waves-light material-icons", value:string, onclick:'deleteRow(this.value)'});
-				var detTD = $('<td>').append(delButton);
-
-				var spanName = $('<span>').attr({class:"tooltipped", "data-position":"bottom", "data-delay":"50", "data-tooltip":string}).append(stringFormatted);
-				var nameTD = $('<td>').append(spanName);
-
-				var spacesToUnderscore = string.replace(/ /g,"_");
-				var new_field = $('<tr>').attr({class:'fields', id:spacesToUnderscore}).append(nameTD).append(detTD);		  
-				
-				$("#table").append(new_field);
-				arr.push(string);
-
-				document.getElementById('input').value = '';					
-				
-				if(fromIndex)
-					Materialize.toast("Successfully Added " + string, 1000);
-
-				$('#add').attr('disabled', true);
-
-				$('.tooltipped').tooltip({delay: 50});
-			};
-
-			/*
-				src: http://www.html5rocks.com/en/tutorials/file/dndfiles/
-				src: http://www.htmlgoodies.com/beyond/javascript/read-text-files-using-the-javascript-filereader.html#fbid=jkQONyBE0Ht				
-				
-			*/
-			//filereading
-			document.getElementById('file').onchange = function(){
-				// Check for the various File API support.
-				if (window.File && window.FileReader && window.FileList && window.Blob) {
-					var file = this.files[0];
-					var reader = new FileReader();
-
-					//checking file type
-					var ext = $('#file').val().split('.').pop().toLowerCase();
-					if($.inArray(ext, ['txt']) == -1) {
-					    alert('Only .txt files are allowed');
-					    return;
-					}
-
-
-					reader.onload = function(progressEvent){
-						var lines = this.result.split('\n');
-						var checkerArr = [];
-
-						//first loop for file validation
-						for(var line = 0; line < lines.length; line++){
-
-							var string = lines[line].trim();							
-
-							if(lines.length > 10){
-								console.log(line);
-								alert("Input file have more than 10 lines");
-								return;
-							}
-
-							if(!string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){
-								console.log(line);
-								alert("Input file contains invalid characters");
-								return;
-							}
-
-							if(arr.length + lines.length > 10){
-								console.log(line);
-								alert("Input file's number of names will exceed the limit");
-								return;
-							}
-
-							if(inArray(string, checkerArr)){
-								console.log(line);
-								alert("Input file contains duplicates");
-								return;
-							}
-
-							if(inArray(string, arr)){
-								console.log(arr.length);
-								console.log(line);
-								alert("Input file contains duplicates with the names in the current list");
-								return;
-							}
-
-							checkerArr.push(string);
-						}
-
-						//second loop for getting the values
-						for(var line = 0; line < lines.length; line++){							
-
-							var string = lines[line].trim();
-							var stringFormatted = string;
-			 				stringFormatted =  stringFormatted.replace(/ /g,"&nbsp;");
-
-							addToTable(string, stringFormatted);
-
-						}
-					};
-				reader.readAsText(file);
-				}
-				else {
-					alert('The File APIs are not fully supported by your browser.');
-				}
-			};			
-			
-		  </script>
+		</script>
 	</body>
 </html>
