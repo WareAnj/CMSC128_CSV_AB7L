@@ -59,11 +59,11 @@ table {
 /* MORE INFO - HOW DOES IT WORK */
 
 #more-info, #get-started{
-	background-color: #B6DEDC;
+	background-color: #FCF4D9;
 }
 
 #more-info #content{
-	padding: 10% 0 9% 0;
+	padding: 3% 0 3% 0;
 }
 
 #content h4{
@@ -91,8 +91,9 @@ table {
 }
 
 #more-info-2 #content{
-	padding-top: 8%; 
-	padding-bottom: 5%;
+	background-color: #F6F7F8;
+	padding-top: 3%; 
+	padding-bottom: 3%;
 }
 
 .reason{
@@ -100,25 +101,10 @@ table {
 }
 
 #reason-1, #reason-2, #reason-3{
-	
 	padding-bottom: 30px;
-	
 }
 
-#p1{
-	font-family: reasons;
-	font-size: 20px;
-	text-align: center;
-}
-
-#p2{
-	font-family: reasons;
-	font-size: 20px;
-	text-align: center;
-}
-
-
-#p3{
+#p1, #p2, #p3{
 	font-family: reasons;
 	font-size: 20px;
 	text-align: center;

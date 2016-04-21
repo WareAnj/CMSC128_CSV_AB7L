@@ -59,10 +59,14 @@
 /* NAV BAR */
 
 .brand-logos{
-	font-family: logo;
-	font-size: 95px;
-	display: inline-block;
-	color: #303030;
+}
+
+.brand-logos:hover{
+	background-color: rgba(0,0,0,0);
+}
+
+#logo{
+	height: 80px;
 }
 
 nav {
@@ -117,8 +121,8 @@ h3{
 }
 
 footer.page-footer{
-	margin: -8px 0px 0px 0px;
-	background-color: #629d95;
+	padding: 2px;
+	background-color: #505050;
 }
 
 
@@ -140,4 +144,5 @@ footer.page-footer{
 
 .modal .col{
 	margin-top: 20px;
+	font-color: white;
 }

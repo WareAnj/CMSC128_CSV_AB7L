@@ -3,8 +3,7 @@
 (function(){
 	angular
 		.module("app")
-		.factory("AuthenticationService", AuthenticationService);
-	
+		.factory("AuthenticationService", AuthenticationService);	
 
 	AuthenticationService.$inject = ['$http', '$q'];
 	function AuthenticationService($http, $q){
@@ -28,7 +27,6 @@
 				});
 				
 				return deferred.promise;
-		
-		}
+		} 
 	}
 })();

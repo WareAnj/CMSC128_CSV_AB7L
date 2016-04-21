@@ -12,13 +12,15 @@
     $scope.faculty_user_data = [];
 
     $scope.Login = function(){
-      
+
 			AuthenticationService.Login($scope.facultyUser)
 				.then(function(data){
           $window.location.href = '/home';
-				  $scope.faculty_user_data.push(data);
+          $scope.faculty_user_data.push(data);
 				});
 		}
+
+
   }
 
 })();

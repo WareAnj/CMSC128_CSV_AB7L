@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS cmsc128ab7l;
 CREATE DATABASE cmsc128ab7l;
-USE cmsc128ab7l;
+USE cmsc128ab7l
 
 
 -- Table 'admin'
@@ -37,7 +37,9 @@ CREATE TABLE course(
     code VARCHAR(16) NOT NULL,
     title VARCHAR(64) NOT NULL,
     description VARCHAR(256) NOT NULL,
-    PRIMARY KEY(id)
+    user_id INT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(user_id) REFERENCES faculty_user(id)
 );
 
 
@@ -46,19 +48,16 @@ DROP TABLE IF EXISTS section;
 CREATE TABLE section(
     id INT NOT NULL AUTO_INCREMENT,
     course_id INT NOT NULL,
-    course_code VARCHAR(16) NOT NULL,
     name VARCHAR(8) NOT NULL,
     code VARCHAR(4),
     PRIMARY KEY(id),
     FOREIGN KEY(course_id) REFERENCES course(id),
-    FOREIGN KEY(course_code) REFERENCES course(code)
 );
 
 
--- Table 'student' created table students with id as primary key takes into account the possibility of multiple students with the same student number
+-- Table 'student'
 DROP TABLE IF EXISTS student;
 CREATE TABLE student(
-    id INT NOT NULL AUTO_INCREMENT,
     student_number VARCHAR(10) NOT NULL,
     given_name VARCHAR(64) NOT NULL,
     middle_name VARCHAR(32) NOT NULL,
@@ -68,16 +67,28 @@ CREATE TABLE student(
     college VARCHAR(8) NOT NULL,
     picture BLOB DEFAULT NULL,
     frequency INT NOT NULL DEFAULT 0,
-    PRIMARY KEY (id)
+    PRIMARY KEY (student_number)
+);
+
+
+-- Table 'sub_section'
+DROP TABLE IF EXISTS sub_section;
+CREATE TABLE sub_section(
+	section_id INT NOT NULL,
+	lecture_section_name VARCHAR(8) NOT NULL,
+	code VARCHAR(4) NOT NULL,
+	PRIMARY KEY(code),
+	FOREIGN KEY(section_id) REFERENCES section(id),
+	FOREIGN KEY(lecture_section_name) REFERENCES lecture_section(name)
 );
 
 
 -- Table 'student_section' separated the student table
 DROP TABLE IF EXISTS student_section;
 CREATE TABLE student_section(
-    student_id INT NOT NULL,
+    student_number INT NOT NULL,
     section_id INT NOT NULL,
-    FOREIGN KEY(student_id) REFERENCES student(id),
+    FOREIGN KEY(student_number) REFERENCES student(student_number),
     FOREIGN KEY(section_id) REFERENCES section(id)
 );
 
@@ -86,9 +97,9 @@ CREATE TABLE student_section(
 DROP TABLE IF EXISTS faculty_user_course;
 CREATE TABLE faculty_user_course(
     faculty_user_id INT NOT NULL,
-    course_code VARCHAR(16) NOT NULL,
+    course_id VARCHAR(16) NOT NULL,
     FOREIGN KEY(faculty_user_id) REFERENCES faculty_user(id),
-    FOREIGN KEY(course_code) REFERENCES course(code)
+    FOREIGN KEY(course_id) REFERENCES course(id)
 );
 
 
@@ -121,11 +132,11 @@ CREATE TABLE randomizer_logs(
 );
 
 
--- Table 'randomizer_logs_students' changed student_number to student_id to take into account the changes above
+-- Table 'randomizer_logs_students'
 DROP TABLE IF EXISTS randomizer_logs_students;
 CREATE TABLE randomizer_logs_students(
     randomizer_logs_id INT NOT NULL,
-    student_id INT NOT NULL,
+    student_number INT NOT NULL,
     FOREIGN KEY(randomizer_logs_id) REFERENCES randomizer_logs(id),
-    FOREIGN KEY(student_id) REFERENCES student(id)
+    FOREIGN KEY(student_number) REFERENCES student(student_number)
 );
