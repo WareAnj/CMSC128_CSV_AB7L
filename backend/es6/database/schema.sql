@@ -26,6 +26,7 @@ CREATE TABLE faculty_user(
     last_name VARCHAR(32) NOT NULL,
     is_approved BOOLEAN NOT NULL DEFAULT FALSE,
     date_approved TIMESTAMP,
+    date_signed_up TIMESTAMP,
     PRIMARY KEY(id)
 );
 
@@ -51,13 +52,14 @@ CREATE TABLE section(
     name VARCHAR(8) NOT NULL,
     code VARCHAR(4),
     PRIMARY KEY(id),
-    FOREIGN KEY(course_id) REFERENCES course(id),
+    FOREIGN KEY(course_id) REFERENCES course(id)
 );
 
 
 -- Table 'student'
 DROP TABLE IF EXISTS student;
 CREATE TABLE student(
+    id INT NOT NULL AUTO_INCREMENT,
     student_number VARCHAR(10) NOT NULL,
     given_name VARCHAR(64) NOT NULL,
     middle_name VARCHAR(32) NOT NULL,
@@ -67,28 +69,16 @@ CREATE TABLE student(
     college VARCHAR(8) NOT NULL,
     picture BLOB DEFAULT NULL,
     frequency INT NOT NULL DEFAULT 0,
-    PRIMARY KEY (student_number)
-);
-
-
--- Table 'sub_section'
-DROP TABLE IF EXISTS sub_section;
-CREATE TABLE sub_section(
-	section_id INT NOT NULL,
-	lecture_section_name VARCHAR(8) NOT NULL,
-	code VARCHAR(4) NOT NULL,
-	PRIMARY KEY(code),
-	FOREIGN KEY(section_id) REFERENCES section(id),
-	FOREIGN KEY(lecture_section_name) REFERENCES lecture_section(name)
+    PRIMARY KEY (id)
 );
 
 
 -- Table 'student_section' separated the student table
 DROP TABLE IF EXISTS student_section;
 CREATE TABLE student_section(
-    student_number INT NOT NULL,
+    student_id INT NOT NULL,
     section_id INT NOT NULL,
-    FOREIGN KEY(student_number) REFERENCES student(student_number),
+    FOREIGN KEY(student_id) REFERENCES student(id),
     FOREIGN KEY(section_id) REFERENCES section(id)
 );
 
@@ -97,7 +87,7 @@ CREATE TABLE student_section(
 DROP TABLE IF EXISTS faculty_user_course;
 CREATE TABLE faculty_user_course(
     faculty_user_id INT NOT NULL,
-    course_id VARCHAR(16) NOT NULL,
+    course_id INT NOT NULL,
     FOREIGN KEY(faculty_user_id) REFERENCES faculty_user(id),
     FOREIGN KEY(course_id) REFERENCES course(id)
 );
@@ -136,7 +126,7 @@ CREATE TABLE randomizer_logs(
 DROP TABLE IF EXISTS randomizer_logs_students;
 CREATE TABLE randomizer_logs_students(
     randomizer_logs_id INT NOT NULL,
-    student_number INT NOT NULL,
+    student_id INT NOT NULL,
     FOREIGN KEY(randomizer_logs_id) REFERENCES randomizer_logs(id),
-    FOREIGN KEY(student_number) REFERENCES student(student_number)
+    FOREIGN KEY(student_id) REFERENCES student(id)
 );
