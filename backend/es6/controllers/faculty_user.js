@@ -86,6 +86,26 @@ exports.check_faculty_user_employee_id = (req, res, next) => {
 	}
 };
 
+exports.get_logged_in_faculty_user_id = (req, res, next) => {
+  db.query(
+    [
+      'SELECT faculty_user_id FROM login_logs',
+      'ORDER BY date_login',
+      'DESC LIMIT 1; '
+    ].join(' '),
+    send_response
+  );
+
+  function send_response (err, result, args, last_query) {
+      if (err) {
+          winston.error('Error in creating a faculty user', last_query);
+          return next(err);
+      }
+
+      res.send(result);
+  }
+};
+
 exports.post_volunteer = (req, res, next) => {
 
     const data = {
