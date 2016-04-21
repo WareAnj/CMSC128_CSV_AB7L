@@ -91,6 +91,7 @@ body {
 main {
  	flex: 1 0 auto;
 	background-color: #E6EBE0;
+	margin-bottom: -2%;
 }
 
 #logo-text{
@@ -99,7 +100,7 @@ main {
 }
 
 h4{
-	font-family: for_h4;
+	font-family: header-text;
 	font-weight: bold;
 	text-align: center;
 }
@@ -125,8 +126,6 @@ footer.page-footer{
 	background-color: #505050;
 }
 
-
-
 /* MODALS */
 
 #loginModal{
@@ -145,4 +144,13 @@ footer.page-footer{
 .modal .col{
 	margin-top: 20px;
 	font-color: white;
+}
+
+.side-nav {
+	width: 250px !important;
+}
+
+#sidenav-logo{
+	padding-top: 10px;
+	height: 20%;
 }
