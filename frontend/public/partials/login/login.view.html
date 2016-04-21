@@ -1,26 +1,18 @@
 <div class="modal-content center">
 	<h4>Log In</h4>
-	<form ng-submit="Login()" ng-controller="AuthenticationCtrl" method="get">
 	<form ng-submit="Login()" ng-controller="AuthenticationCtrl">
 	
 		<div class="input-field">
 			<i class="material-icons prefix">account_circle</i>
-@@ -12,18 +12,6 @@
+			<input placeholder="username" type="text" id="name-input" ng-model="facultyUser.username" required="required">
+		</div>
+		
+		<div class="input-field">
+			<i class="material-icons prefix">vpn_key</i>
 			<input placeholder="password" type="password" id="password-input" ng-model="facultyUser.password" required="required">
 		</div>
 		
-		 <!-- Switch -->
-  		<div class="switch">
-    	<label>
-	      	Faculty user
-	      		<input type="checkbox">
-	      		<span class="lever"></span>
-	      	Admin
-    	</label>
-  		</div>
-
-  		<br/>
-
 		<button class="btn waves-effect waves-light" type="submit">Log In</button>
 		
 	</form>
+</div>
