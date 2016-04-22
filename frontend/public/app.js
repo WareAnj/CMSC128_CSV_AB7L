@@ -27,6 +27,9 @@ var app =	angular
 		})
 		.when("/admin_approve",{
 			"controller" 	: "AdminCtrl"
+		})
+		.when("/admin_viewlogs",{
+			"controller" 	: "AdminCtrl"
 		});
 	}
 
@@ -100,8 +103,6 @@ var app =	angular
 		};
 
 		$scope.ApproveUser = function(id, username){
-			console.log("inside approve");	
-			console.log(id);
 
 			$http.put(url + "/admin/approve_user/:" + id)
 			.success(function(data){				
@@ -113,25 +114,84 @@ var app =	angular
 			});
 		};
 
-
-		$scope.ApproveUser = function(id, username){
-
-			$http.put(url + "/admin/approve_user/:" + id)
-			.success(function(data){				
-				alert("Successfully Approved User: " + username);
-				console.log(data);
-			})
-			.error(function(data) {
-				alert(data.context);
-			});
-		};
 
 		$scope.GetAllLogin = function(){
 
-			$http.put(url + "/admin/approve_user/:")
-			.success(function(data){				
-				alert("Successfully Approved User: " + username);
+			var deferred = $q.defer();
+			$scope.userList = [];
+
+
+			$http.get(url + "/admin/login_logs")
+			.success(function(data){
+				console.log(data[0]);
+				var length = data.length;
+				var i;
+				for(i = 0; i < length; i++ ){
+					$scope.userList.push(data[i]);
+				}
+				
+			})
+			.error(function(data) {
+				alert(data.context);
+			});
+		};
+
+
+		$scope.GetAllLogout = function(){
+
+			var deferred = $q.defer();
+			$scope.userList = [];
+
+
+			$http.get(url + "/admin/logout_logs")
+			.success(function(data){
+				console.log(data[0]);
+				var length = data.length;
+				var i;
+				for(i = 0; i < length; i++ ){
+					$scope.userList.push(data[i]);
+				}
+				
+			})
+			.error(function(data) {
+				alert(data.context);
+			});
+		};
+
+		$scope.GetSpecificLogin = function(id){
+
+			var deferred = $q.defer();
+			$scope.userList = [];
+
+			$http.get(url + "/admin/login_logs/:" + id)
+			.success(function(data){
 				console.log(data);
+				var length = data.length;
+				var i;
+				for(i = 0; i < length; i++ ){
+					$scope.userList.push(data[i]);
+				}
+				
+			})
+			.error(function(data) {
+				alert(data.context);
+			});
+		};
+
+		$scope.GetSpecificLogout = function(id){
+			
+			var deferred = $q.defer();
+			$scope.userList = [];
+
+			$http.get(url + "/admin/logout_logs/:" + id)
+			.success(function(data){
+				console.log(data);
+				var length = data.length;
+				var i;
+				for(i = 0; i < length; i++ ){
+					$scope.userList.push(data[i]);
+				}
+				
 			})
 			.error(function(data) {
 				alert(data.context);

@@ -19,6 +19,7 @@ module.exports = (router) => {
     router.get ('/home',                                                                    __.render_controller.home);
     router.get ('/admin',                                                                   __.render_controller.admin);
     router.get ('/admin_approve',                                                           __.render_controller.admin_approve);
+    router.get ('/admin_viewlogs',                                                           __.render_controller.admin_viewlogs);
     router.get ('/class',                                                                   __.render_controller.class);
     
     // faculty_user routes

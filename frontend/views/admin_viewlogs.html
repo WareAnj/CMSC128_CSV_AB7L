@@ -49,40 +49,29 @@
 	</div>
 
 		<main class="container">
-			<table data-ng-init="GetUsers()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table tablesorter">
+			<button class="waves-effect waves-light btn" id="login-all">View all Login</button>
+			<button class="waves-effect waves-light btn" id="logout-all">View all Logout</button>
+			<button class="waves-effect waves-light btn" id="login-specific">View all Login by a User</button>
+			<button class="waves-effect waves-light btn" id="logout-specific">View all Logout by a User</button>
+			<table data-ng-init="GetAllLogin()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table tablesorter">
 				<thead>
 					<tr>
-						<th>First Name</th>
-						<th>Last Name</th>
+						<th>User id</th>
 						<th>Username</th>
-						<th>Employee ID</th>
-						<th>Classification</th>
-						<th>Date of Sign Up</th>
+						<th id="dynamicth">Date Login</th>
 					</tr>
 				</thead>
 				<tbody>					
 					 <tr ng-repeat="user in userList">
-				       <td data-title="given_name" >
-				           {{user.given_name}}
-				       </td>
-				       <td data-title="last_name" >
-				           {{user.last_name}}
+				       <td data-title="id" >
+				           {{user.id}}
 				       </td>
 				       <td data-title="username" >
 				           {{user.username}}
 				       </td>    
-				       <td data-title="employee_id" >
-				           {{user.employee_id}}
-				       </td>    
-				       <td data-title="classification">
-				           {{user.classification}}
-				       </td>    
-				       <td data-title="date_signed_up" >
-				           {{user.date_signed_up}}
+				       <td data-title="date_login" id="dynamictd">
+				           {{user.date_login}}
 				       </td>
-				       <td data-title="approve_button">
-				           <button class="waves-effect waves-light btn" ng-click="ApproveUser(user.id, user.username)">Approve</button>
-				       </td>     
 				   </tr>					
 				</tbody>
 			</table>
@@ -96,9 +85,52 @@
 		<script src="app.js"></script>
 
 		<script>
+			$("#login-all").click(function(){		
 
+				$("#admintable").attr("data-ng-init", "GetAllLogin()");
+				$("#dynamicth").html("Date Login");
+				$("#dynamictd").html("{{user.date_login}}");
+
+				angular.element(document.getElementById('admintable')).scope().GetAllLogin();
+
+			});			
+
+			$("#logout-all").click(function(){		
+
+				$("#admintable").attr("data-ng-init", "GetAllLogout()");
+				$("#dynamicth").html("Date Logout");
+				$("#dynamictd").html("{{user.date_logout}}");
+
+				angular.element(document.getElementById('admintable')).scope().GetAllLogout();
+
+			});
+
+
+			$("#login-specific").click(function(){		
+
+				var id = prompt("Please enter ID of Faculty User");
+
+				$("#admintable").attr("data-ng-init", "GetSpecificLogin()");
+				$("#dynamicth").html("Date Login");
+				$("#dynamictd").html("{{user.date_login}}");
+
+				angular.element(document.getElementById('admintable')).scope().GetSpecificLogin(id);
+
+			});
+
+			$("#logout-specific").click(function(){		
+
+				var id = prompt("Please enter ID of Faculty User");
+
+				$("#admintable").attr("data-ng-init", "GetSpecificLogout()");
+				$("#dynamicth").html("Date Login");
+				$("#dynamictd").html("{{user.date_login}}");
+
+				angular.element(document.getElementById('admintable')).scope().GetSpecificLogout(id);
+
+			});
+			
 		</script>
-
 	</body>
 
 </html>

@@ -40,6 +40,10 @@ exports.admin_approve = (req, res, next) => {
 	res.render('admin_approve');
 };
 
+exports.admin_viewlogs = (req, res, next) => {
+	res.render('admin_viewlogs');
+};
+
 exports.class = (req, res, next) =>{
 	res.render('class');
 };
