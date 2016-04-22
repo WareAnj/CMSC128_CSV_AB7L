@@ -10,11 +10,21 @@
   function CourseCtrl($scope, $location, CourseService){
     var user_id;
     $scope.faculty_user_classes = [];
+    $scope.faculty_user_info = [];
 
     $scope.Get_User_Id = function(){
       CourseService.Get_User_Id()
         .then(function(data){
-          user_id = data[0].faculty_user_id;
+          $scope.faculty_user_info = [];
+          $scope.faculty_user_info.push({
+            'given_name':data[0].given_name,
+            'middle_name':data[0].middle_name,
+            'last_name':data[0].last_name,
+            'classification':data[0].classification,
+            'employee_id':data[0].employee_id,
+            'username':data[0].username
+          });
+          user_id = data[0].id;
         });
     }
 

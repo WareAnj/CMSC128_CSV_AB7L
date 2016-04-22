@@ -27,14 +27,14 @@
 			    </div>
 
 	    		<!-- SIDE NAV  -->
-				<div id="slide-out" class="side-nav center">
+				<div id="slide-out" class="side-nav center" ng-click="Get_Classes()">
 					<img id="sidenav-logo" src="img/logo-2.png">
-					<h5 class="teal-text text-lighten-2">Reginald Recario</h5>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 128</a></li>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 132</a></li>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 125</a></li>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 170</a></li>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 141</a></li>
+						<div ng-repeat="info in faculty_user_info">
+							<h5 class="teal-text text-lighten-2"> {{info.given_name}} {{info.middle_name}}  {{info.last_name}}</h5>
+						</div>
+						<div ng-repeat="class in faculty_user_classes">
+							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">{{class.code}}</a></li>
+						</div>
 						<div class = "center" ng-controller="HomeCtrl">
 							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
 						</div>
@@ -61,14 +61,14 @@
 							<div class="col s12">
 								<div class="card-panel custom lighten-1">
 									<span>
-										<div>
-											<h3>Reginald Recario</h3>
+										<div ng-repeat="info in faculty_user_info">
+											<h3> {{info.given_name}} {{info.middle_name}}  {{info.last_name}}</h3>
 											<div class="row">
 												<div class="col s6">
 													<h5><i class="material-icons left">info</i>Basic Information</h5>
-													<p>Classification: Professor</p>
-													<p>Employee ID: 1901234567</p>
-													<p>Username: rncrecario</p>
+													<p>Classification: {{info.classification}}</p>
+													<p>Employee ID: {{info.employee_id}}</p>
+													<p>Username: {{info.username}}</p>
 												</div>
 											</div>
 										</div>
@@ -138,7 +138,7 @@
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-											<textarea id="desc-input" class="materialize-textarea" ng-model="newCourse.course_description"></textarea>
+											<textarea id="desc-input" class="materialize-textarea custom-text text-darken-1" ng-model="newCourse.course_description"></textarea>
 											<label for="desc-input">Course Description</label>
 										</div>
 						      </div>
