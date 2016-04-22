@@ -24,9 +24,7 @@
 		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
 		    	</ul>
 		    	
-				<div class="center">
-			 		<a href="/" class="brand-logos"> Reginyzr</a>
-			    </div>			 
+							 
 
 
 	    		<!-- SIDE NAV  -->
@@ -48,12 +46,37 @@
 		</nav>
 	</div>
 
-		<main class="container">
+		<main class="container" >
 			<button class="waves-effect waves-light btn" id="login-all">View all Login</button>
 			<button class="waves-effect waves-light btn" id="logout-all">View all Logout</button>
 			<button class="waves-effect waves-light btn" id="login-specific">View all Login by a User</button>
 			<button class="waves-effect waves-light btn" id="logout-specific">View all Logout by a User</button>
-			<table data-ng-init="GetAllLogin()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table tablesorter">
+			<div id="logouttable">
+			<table ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintableout" class="highlight responsive-table tablesorter">
+				<thead>
+					<tr>
+						<th>User id</th>
+						<th>Username</th>
+						<th id="dynamicth">Date Logout</th>
+					</tr>
+				</thead>
+				<tbody>					
+					 <tr ng-repeat="user in userList">
+				       <td data-title="id" >
+				           {{user.id}}
+				       </td>
+				       <td data-title="username" >
+				           {{user.username}}
+				       </td>    
+				       <td data-title="date_login" id="dynamictd">
+				           {{user.date_logout}}
+				       </td>
+				   </tr>					
+				</tbody>
+			</table>
+			</div>
+			<div id="logintable">
+				<table ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintablein" class="highlight responsive-table tablesorter">
 				<thead>
 					<tr>
 						<th>User id</th>
@@ -75,7 +98,8 @@
 				   </tr>					
 				</tbody>
 			</table>
-		</main>
+			</div>
+		</main>		
 
 		<script type="text/javascript" src="js/jquery.js"></script>
 	    <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -85,48 +109,54 @@
 		<script src="app.js"></script>
 
 		<script>
-			$("#login-all").click(function(){		
+
+			$( document ).ready(function() {
+			     $('#logintable').show();
+			     $('#logouttable').hide();
+			});
+
+			$("#login-all").click(function(){
 
 				$("#admintable").attr("data-ng-init", "GetAllLogin()");
-				$("#dynamicth").html("Date Login");
-				$("#dynamictd").html("{{user.date_login}}");
+				 $('#logintable').show();
+			     $('#logouttable').hide();
 
-				angular.element(document.getElementById('admintable')).scope().GetAllLogin();
+				angular.element(document.getElementById('admintablein')).scope().GetAllLogin();
 
 			});			
 
 			$("#logout-all").click(function(){		
 
 				$("#admintable").attr("data-ng-init", "GetAllLogout()");
-				$("#dynamicth").html("Date Logout");
-				$("#dynamictd").html("{{user.date_logout}}");
+				$('#logintable').hide();
+			    $('#logouttable').show();
 
-				angular.element(document.getElementById('admintable')).scope().GetAllLogout();
+				angular.element(document.getElementById('admintableout')).scope().GetAllLogout();
 
 			});
 
 
-			$("#login-specific").click(function(){		
-
-				var id = prompt("Please enter ID of Faculty User");
+			$("#login-specific").click(function(){
 
 				$("#admintable").attr("data-ng-init", "GetSpecificLogin()");
-				$("#dynamicth").html("Date Login");
-				$("#dynamictd").html("{{user.date_login}}");
+				$('#logintable').show();
+			    $('#logouttable').hide();
 
-				angular.element(document.getElementById('admintable')).scope().GetSpecificLogin(id);
+				var id = prompt("Please enter ID of Faculty User");			
+
+				angular.element(document.getElementById('admintablein')).scope().GetSpecificLogin(id);
 
 			});
 
-			$("#logout-specific").click(function(){		
-
-				var id = prompt("Please enter ID of Faculty User");
-
+			$("#logout-specific").click(function(){						
+				
 				$("#admintable").attr("data-ng-init", "GetSpecificLogout()");
-				$("#dynamicth").html("Date Login");
-				$("#dynamictd").html("{{user.date_login}}");
+				$('#logintable').hide();
+			    $('#logouttable').show();
 
-				angular.element(document.getElementById('admintable')).scope().GetSpecificLogout(id);
+			    var id = prompt("Please enter ID of Faculty User");
+
+				angular.element(document.getElementById('admintableout')).scope().GetSpecificLogout(id);
 
 			});
 			

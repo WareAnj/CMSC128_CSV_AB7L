@@ -165,7 +165,7 @@ var app =	angular
 
 			$http.get(url + "/admin/login_logs/" + id)
 			.success(function(data){
-				console.log(data);
+				console.log(data[0]);
 				var length = data.length;
 				var i;
 				for(i = 0; i < length; i++ ){
@@ -200,9 +200,6 @@ var app =	angular
 
 
 	});
-
-
-
 	
 
 })();

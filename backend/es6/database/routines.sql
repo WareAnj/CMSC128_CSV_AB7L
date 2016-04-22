@@ -83,7 +83,7 @@ DROP PROCEDURE IF EXISTS APPROVE_USER;
 DELIMITER $$
 CREATE PROCEDURE APPROVE_USER (_faculty_user_id INT)
 BEGIN
-	UPDATE faculty_user SET is_approved = 1 WHERE id = _faculty_user_id;
+	UPDATE faculty_user SET is_approved = TRUE WHERE id = _faculty_user_id;
 	SELECT 'Faculty user successfully approved!' AS message;
 END $$
 DELIMITER ;
