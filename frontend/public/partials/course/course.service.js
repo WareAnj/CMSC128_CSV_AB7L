@@ -14,7 +14,8 @@
     service.Get_Classes = Get_Classes;
     service.Delete_Class = Delete_Class;
 		service.Add_Class = Add_Class;
-    return service;
+		service.Edit_Class = Edit_Class;
+		return service;
 
 		function Get_User_Id() {
 			var deferred = $q.defer();
@@ -69,6 +70,20 @@
 			})
 			.error(function(data) {
 				deferred.reject("Error: Cannot Create Class");
+			});
+
+			return deferred.promise;
+		}
+
+		function Edit_Class(user_id, id, course) {
+			var deferred = $q.defer();
+
+			$http.put(url + "/course/put_course?user_id=" + user_id + "id=" + id, course)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Edit Class");
 			});
 
 			return deferred.promise;

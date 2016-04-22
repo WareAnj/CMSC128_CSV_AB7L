@@ -73,6 +73,31 @@
           });
     }
 
+    $scope.Edit_Class = function(id){
+      $("#editModal").openModal();
+      CourseService.Edit_Class(user_id, id, $scope.course)
+        .then(function(data){
+          $scope.course.course_code = "";
+          $scope.course.course_title = "";
+          $scope.course.course_description = "";
+          Materialize.toast('Course Edited!', 3000, 'rounded');
+          $('#editModal').closeModal();
+        });
+
+        CourseService.Get_Classes(user_id)
+          .then(function(data){
+            $scope.faculty_user_classes = [];
+            for(var i = 0; i < data.length; i++){
+              $scope.faculty_user_classes.push({
+                'code':data[i].code,
+                id:data[i].id,
+                'description':data[i].description,
+                'title': data[i].title
+              });
+            }
+          });
+    }
+
     $scope.Delete_Class = function(id){
       CourseService.Delete_Class(user_id, id)
         .then(function(data){
