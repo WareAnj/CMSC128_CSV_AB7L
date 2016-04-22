@@ -30,6 +30,8 @@
 			return deferred.promise;
 		}
 
+
+
     function Get_Classes(user_id) {
 			var deferred = $q.defer();
 

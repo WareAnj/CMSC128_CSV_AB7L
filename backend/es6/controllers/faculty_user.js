@@ -102,6 +102,22 @@ exports.get_logged_in_faculty_user_id = (req, res, next) => {
           return next(err);
       }
 
+      db.query(
+        [
+          'SELECT * FROM faculty_user',
+          'where id = ?;'
+        ].join(' '),
+    	   [result[0].faculty_user_id],
+         send
+      );
+  }
+
+  function send (err, result, args, last_query) {
+      if (err) {
+          winston.error('Error in creating a faculty user', last_query);
+          return next(err);
+      }
+
       res.send(result);
   }
 };
