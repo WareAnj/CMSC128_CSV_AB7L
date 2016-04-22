@@ -13,6 +13,7 @@
 		service.Get_User_Id = Get_User_Id;
     service.Get_Classes = Get_Classes;
     service.Delete_Class = Delete_Class;
+		service.Add_Class = Add_Class;
     return service;
 
 		function Get_User_Id() {
@@ -56,5 +57,20 @@
 
       return deferred.promise;
     }
+
+		function Add_Class(newCourse, user_id) {
+
+			var deferred = $q.defer();
+
+			$http.post(url + "/course/post_course?user_id=" + user_id, newCourse)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Create Class");
+			});
+
+			return deferred.promise;
+		}
 	}
 })();

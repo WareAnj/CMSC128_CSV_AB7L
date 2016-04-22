@@ -79,6 +79,11 @@
 					</div>
 					<!--CLASSES-->
 					<div id="classes">
+						<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+					    <a class="btn-floating btn-large white modal-trigger" id="addButton">
+					      <i class="material-icons custom-text text-darken-1">add</i>
+					    </a>
+					  </div>
 						<div class="row">
 							<div ng-repeat="class in faculty_user_classes">
 								<div class="col s12 m4">
@@ -87,12 +92,12 @@
 											<a class="btn-floating btn-large waves-effect waves-light white" ng-click="Delete_Class(class.id)">
 												<i class="material-icons custom-text text-darken-1">delete</i>
 											</a>
-											<a class="btn-floating btn-large waves-effect waves-light white">
+											<a class="btn-floating btn-large waves-effect waves-light white modal-trigger">
 												<i class="material-icons custom-text text-darken-1">mode_edit</i>
 											</a>
 											<h5>{{class.code}}</h5>
 								    </div>
-								    <!-- <ul class="collapsible popout" data-collapsible="expandable">
+								    <ul class="collapsible popout" data-collapsible="expandable">
 								      <li>
 								        <div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-1L</div>
 								        <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
@@ -105,12 +110,46 @@
 								        <div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-3L</div>
 								        <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
 								      </li>
-								    </ul> -->
+								    </ul>
 								  </div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<!--MODALS-->
+					<div id="addModal" class="modal">
+				    <div class="modal-content">
+				      <h5>Add Course</h5>
+							<form ng-submit="Add_Class()" ng-controller="CourseCtrl" autocomplete="off">
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+						          <input placeholder="Course Code" type="text" id="code-input" ng-model="newCourse.course_code" required="required">
+						        </div>
+						      </div>
+						    </div>
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+						          <input placeholder="Course Title" type="text" id="title-input" ng-model="newCourse.course_title" required="required">
+						        </div>
+						      </div>
+						    </div>
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+											<textarea id="desc-input" class="materialize-textarea" ng-model="newCourse.course_description"></textarea>
+											<label for="desc-input">Course Description</label>
+											<!--<input placeholder="Course Code" type="text" id="code-input" ng-model="newFacultyUser.given_name" ng-keyup="check_fname()" required="required">
+											-->
+										</div>
+						      </div>
+						    </div>
+							</form>
+				    </div>
+							<button id="submit-button" class="btn waves-effect waves-light" type="submit">Add Course</button>
+							<!-- <button id="cancel-button" class="btn waves-effect waves-light left">Cancel</button> -->
+				  </div>
 					<!--SETTINGS-->
 					<div id="settings">
 						<div class="row">

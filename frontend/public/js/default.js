@@ -9,3 +9,9 @@ $(document).ready(function(){
 $('.showsidenav').sideNav({
 //	menuWidth: 300, // Default is 240
 });
+
+$(document).ready(function(){
+  $("#addButton").on('click', function(){
+    $("#addModal").openModal();
+  });
+});

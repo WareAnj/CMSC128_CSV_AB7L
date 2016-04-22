@@ -23,7 +23,12 @@
         .then(function(data){
           $scope.faculty_user_classes = [];
           for(var i = 0; i < data.length; i++){
-            $scope.faculty_user_classes.push({'code':data[i].code, id:data[i].id});
+            $scope.faculty_user_classes.push({
+              'code':data[i].code,
+              id:data[i].id,
+              'description':data[i].description,
+              'title': data[i].title
+            });
           }
         });
     }
@@ -33,7 +38,7 @@
         .then(function(data){
 
         });
-        
+
       CourseService.Get_Classes(user_id)
         .then(function(data){
           $scope.faculty_user_classes = [];
@@ -42,6 +47,16 @@
           }
         });
     }
-  }
 
+    $scope.Add_Class = function(){
+      CourseService.Add_Class($scope.newCourse, user_id)
+        .then(function(data){
+          $scope.newCourse.course_code = "";
+          $scope.newCourse.course_title = "";
+          $scope.newCourse.course_description = "";
+          $scope.faculty_user_classes.push(data);
+          Materialize.toast('Course added!', 3000, 'rounded');
+        });
+    }
+  }
 })();
