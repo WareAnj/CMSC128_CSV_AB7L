@@ -9,6 +9,7 @@
 
   function CourseCtrl($scope, $location, CourseService){
     var user_id;
+    var toedit;
     $scope.faculty_user_classes = [];
     $scope.faculty_user_info = [];
 
@@ -73,9 +74,13 @@
           });
     }
 
-    $scope.Edit_Class = function(id){
+    $scope.openModal = function(id){
       $("#editModal").openModal();
-      CourseService.Edit_Class(user_id, id, $scope.course)
+      toedit = id;
+    }
+
+    $scope.Edit_Class = function(){
+      CourseService.Edit_Class(user_id, toedit, $scope.course)
         .then(function(data){
           $scope.course.course_code = "";
           $scope.course.course_title = "";

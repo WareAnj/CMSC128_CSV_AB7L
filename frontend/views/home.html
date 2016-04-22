@@ -92,7 +92,7 @@
 											<a class="btn-floating btn-large waves-effect waves-light white" ng-click="Delete_Class(class.id)">
 												<i class="material-icons custom-text text-darken-1">delete</i>
 											</a>
-											<a class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="Edit_Class(class.id)">
+											<a class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(class.id)">
 												<i class="material-icons custom-text text-darken-1">mode_edit</i>
 											</a>
 											<h5>{{class.code}}</h5>
@@ -149,7 +149,6 @@
 							</form>
 				    </div>
 				  </div>
-
 					<div id="editModal" class="modal">
 				    <div class="modal-content">
 				      <h5>Edit Course</h5>

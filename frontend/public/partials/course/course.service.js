@@ -78,7 +78,7 @@
 		function Edit_Class(user_id, id, course) {
 			var deferred = $q.defer();
 
-			$http.put(url + "/course/put_course?user_id=" + user_id + "id=" + id, course)
+			$http.put(url + "/course/put_course?user_id=" + user_id + "&id=" + id, course)
 			.success(function(data) {
 				deferred.resolve(data);
 			})
