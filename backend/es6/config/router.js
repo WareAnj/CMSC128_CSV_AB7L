@@ -18,6 +18,7 @@ module.exports = (router) => {
     router.get ('/randomize_notuser',                                                      __.render_controller.randomize_notuser);
     router.get ('/home',                                                                    __.render_controller.home);
     router.get ('/admin',                                                                   __.render_controller.admin);
+    router.get ('/admin_approve',                                                           __.render_controller.admin_approve);
     router.get ('/class',                                                                   __.render_controller.class);
     
     // faculty_user routes
@@ -50,6 +51,9 @@ module.exports = (router) => {
     // authentication for administrator
     router.post('/admin/authenticate_login',                                                __.admin.authenticate_login);
     router.get ('/admin/authenticate_logout',                           $('Administrator'), __.admin.authenticate_logout);
+
+    // route for getting all pending users
+    router.get('/admin/get_pending_users',                                                  __.admin.get_pending_users);
 
     // route for approving a user
     router.put ('/admin/approve_user/:faculty_user_id',                 $('Administrator'), __.admin.approve_user);

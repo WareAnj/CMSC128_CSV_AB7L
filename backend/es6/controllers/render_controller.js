@@ -36,6 +36,10 @@ exports.admin = (req, res, next) => {
 	res.render('admin');
 };
 
+exports.admin_approve = (req, res, next) => {
+	res.render('admin_approve');
+};
+
 exports.class = (req, res, next) =>{
 	res.render('class');
 };

@@ -20,10 +20,13 @@ var app =	angular
 			"templateUrl" 	: "uirouter.html"
 		})
 		.when("/home",{
-			"controller" 	: "HomeCtrl",
+			"controller" 	: "HomeCtrl"
 		})
 		.when("/admin",{
-			"controller" 	: "AdminCtrl",
+			"controller" 	: "AdminCtrl"
+		})
+		.when("/admin_approve",{
+			"controller" 	: "AdminCtrl"
 		});
 	}
 
@@ -57,7 +60,8 @@ var app =	angular
 	});
 
 
-	app.controller('AdminCtrl', function($scope, $location, $window, $http, $q){
+	
+		app.controller('AdminCtrl', function($scope, $location, $window, $http, $q){
 
 		var url = "http://localhost:8000";
 
@@ -75,6 +79,70 @@ var app =	angular
 				alert(data.context);
 			});
 		}
+
+		$scope.GetUsers = function(){
+
+			var deferred = $q.defer();
+			$scope.userList = [];
+
+			$http.get(url + "/admin/get_pending_users")
+			.success(function(data){				
+				var length = data[0].length;
+				var i;
+				for(i = 0; i < length; i++ ){
+					$scope.userList.push(data[0][i]);
+				}
+
+			})
+			.error(function(data) {
+				alert(data.context);
+			});
+		};
+
+		$scope.ApproveUser = function(id, username){
+			console.log("inside approve");	
+			console.log(id);
+
+			$http.put(url + "/admin/approve_user/:" + id)
+			.success(function(data){				
+				alert("Successfully Approved User: " + username);
+				console.log(data);
+			})
+			.error(function(data) {
+				alert(data.context);
+			});
+		};
+
+
+		$scope.ApproveUser = function(id, username){
+
+			$http.put(url + "/admin/approve_user/:" + id)
+			.success(function(data){				
+				alert("Successfully Approved User: " + username);
+				console.log(data);
+			})
+			.error(function(data) {
+				alert(data.context);
+			});
+		};
+
+		$scope.GetAllLogin = function(){
+
+			$http.put(url + "/admin/approve_user/:")
+			.success(function(data){				
+				alert("Successfully Approved User: " + username);
+				console.log(data);
+			})
+			.error(function(data) {
+				alert(data.context);
+			});
+		};
+
+
 	});
+
+
+
+	
 
 })();
