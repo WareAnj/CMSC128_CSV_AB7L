@@ -23,12 +23,6 @@
 		 		<ul>
 		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
 		    	</ul>
-		    	
-				<div class="center">
-			 		<a href="/" class="brand-logos"> Reginyzr</a>
-			    </div>			 
-
-
 	    		<!-- SIDE NAV  -->
 				<div id="slide-out" class="side-nav center">
 						<div class = "center" ng-controller="AdminCtrl">
@@ -48,8 +42,8 @@
 		</nav>
 	</div>
 
-		<main class="container">
-			<table data-ng-init="GetUsers()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table tablesorter">
+		<div class="container">
+			<table data-ng-init="GetUsers()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table tablesorter bordered centered stripped">
 				<thead>
 					<tr>
 						<th>First Name</th>
@@ -81,12 +75,12 @@
 				           {{user.date_signed_up}}
 				       </td>
 				       <td data-title="approve_button">
-				           <button class="waves-effect waves-light btn" ng-click="ApproveUser(user.id, user.username)">Approve</button>
+				           <button class="waves-effect waves-light btn material-icons" ng-click="ApproveUser(user.id, user.username)">done</button>
 				       </td>     
 				   </tr>					
 				</tbody>
 			</table>
-		</main>
+		</div>
 
 		<script type="text/javascript" src="js/jquery.js"></script>
 	    <script type="text/javascript" src="js/materialize.min.js"></script>
