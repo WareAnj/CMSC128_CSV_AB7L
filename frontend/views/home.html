@@ -190,24 +190,26 @@
 									<button class="btn waves-effect waves-teal" type="submit"><i class="material-icons right">done</i> Save</button>
 									<form action="" method="UPDATE">
 									<br>
+									<div ng-repeat="info in faculty_user_info">
 										<div class="row">
 											<div class="input-field">
 												<div class="col s12 m12 l4">
-													<input placeholder="First Name" type="text" name="user-fname" id="fname-input">
+													<input placeholder="First Name" type="text" name="user-fname" id="fname-input" value="{{info.given_name}}">
 													<label for="fname-input" class="black-text"><i class="black-text material-icons left">info</i>Name</label>
 												</div>
 												<div class="col s12 m12 l4">
-													<input placeholder="Middle Name" type="text" name="user-mname" id="mname-input">
+													<input placeholder="Middle Name" type="text" name="user-mname" id="mname-input" value="{{info.middle_name}}">
 												</div>
 												<div class="col s12 m12 l4">
-													<input placeholder="Last Name" type="text" name="user-lname" id="lname-input">
+													<input placeholder="Last Name" type="text" name="user-lname" id="lname-input"
+													value="{{info.last_name}}">
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col s6 m6 l6">
 												<div class="input-field">
-													<input placeholder="Username" type="text" name="username" id="name-input">
+													<input placeholder="Username" type="text" name="username" id="name-input" value="{{info.username}}">
 													<label for="name-input" class="black-text"><i class="material-icons left">account_circle</i>Username</label>
 												</div>
 											</div>
@@ -221,7 +223,7 @@
 										<div class="row">
 											<div class="col s12 m7 l5">
 												<div class="input-field">
-													<input placeholder="XXXXXXXXXX" type="text" name="employee-id" id="employee-input">
+													<input placeholder="XXXXXXXXXX" type="text" name="employee-id" id="employee-input" value="{{info.employee_id}}">
 													<label for="employeeid-input" class="black-text"><i class="material-icons left">assignment_ind</i>Employee ID</label>
 												</div>
 											</div>
@@ -229,11 +231,12 @@
 										<div class="row">
 											<div class="col s12 m5 l5">
 												<div class="input-field">
-													<input placeholder="Instructor 1, Professor, etc." type="text" name="user-classification" id="classification-input">
+													<input placeholder="Instructor 1, Professor, etc." type="text" name="user-classification" id="classification-input" value="{{info.classification}}">
 													<label for="classification-input" class="black-text"><i class="material-icons left">perm_identity</i>Classification</label>
 												</div>
 											</div>
 										</div>
+									 </div>
 									</form>
 								</div>
 							</div>
