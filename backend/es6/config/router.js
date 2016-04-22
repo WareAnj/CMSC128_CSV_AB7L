@@ -26,15 +26,15 @@ module.exports = (router) => {
 
     // course routes
     router.post('/course/post_course/',                                                  __.course.post_course);
-    router.put('/course/put_course/',                                                  __.course.put_course);
-    router.get('/course/get_course/',                                                  __.course.get_course);
-    router.del('/course/delete_course/',                                                  __.course.delete_course);
+    router.put ('/course/put_course/',                                                  __.course.put_course);
+    router.get ('/course/get_course/',                                                  __.course.get_course);
+    router.del ('/course/delete_course/',                                                  __.course.delete_course);
 
     // CRUD of volunteers/students
     router.post('/faculty_user/post_volunteer/',                        $('Faculty User'),  __.faculty_user.post_volunteer);
     router.get ('/faculty_user/volunteers',                             $('Faculty User'),  __.faculty_user.get_volunteers);
-    router.put ('/faculty_user/volunteer/:user_id/:student_number',     $('Faculty User'),  __.faculty_user.update_volunteer);
-    router.del ('/faculty_user/volunteer/',                             $('Faculty User'),  __.faculty_user.delete_volunteer);
+    router.put ('/faculty_user/update_volunteer',                       $('Faculty User'),  __.faculty_user.update_volunteer);
+    router.del ('/faculty_user/delete_volunteer/',                      $('Faculty User'),  __.faculty_user.delete_volunteer);
 
     // routes to check the username or employee_id if it is already existing in the database
     router.post('/faculty_user/check_faculty_user_username/',                               __.faculty_user.check_faculty_user_username);
