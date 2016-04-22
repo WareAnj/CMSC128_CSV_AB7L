@@ -31,8 +31,9 @@
 
 			<div id="page-not-found" class="container">
 				<div id="content">
-					<h4>page not found</h4>
-					<h3>[under construction :p]</h3>
+					 <img class="js-randomimage" src="#" alt="">
+					<h3>Oops! This page doesn't exist.</h3>
+					<p class="center">back button/link hereee</p>
 				</div>
 			</div>
 		</main>
@@ -52,11 +53,19 @@
 	    <script type="text/javascript" src="js/jquery.js"></script>
 	    <script type="text/javascript" src="js/materialize.min.js"></script>
 	    <script type="text/javascript" src="js/default.js"></script>
+	    <script type="text/javascript" src="js/error_404.js"></script>
 
 		<script src="js/angular.min.js"></script>
 		<script src="js/angular-route.min.js"></script>
 		<script src="js/highcharts.js"></script>
 
 		<script src="app.js"></script>
+		<script type="text/javascript">
+		  $('.js-randomimage').chickenDinner({
+		      path: '../img/notfound/',
+		      fadeInTime:500,
+		      TheImages: ['n1.gif', 'n2.gif', 'n3.gif', 'n4.gif' ]
+		  });
+		</script>
 	</body>
 </html>
