@@ -104,7 +104,7 @@ var app =	angular
 
 		$scope.ApproveUser = function(id, username){
 
-			$http.put(url + "/admin/approve_user/:" + id)
+			$http.put(url + "/admin/approve_user/" + id)
 			.success(function(data){				
 				alert("Successfully Approved User: " + username);
 				console.log(data);
@@ -163,7 +163,7 @@ var app =	angular
 			var deferred = $q.defer();
 			$scope.userList = [];
 
-			$http.get(url + "/admin/login_logs/:" + id)
+			$http.get(url + "/admin/login_logs/" + id)
 			.success(function(data){
 				console.log(data);
 				var length = data.length;
@@ -183,7 +183,7 @@ var app =	angular
 			var deferred = $q.defer();
 			$scope.userList = [];
 
-			$http.get(url + "/admin/logout_logs/:" + id)
+			$http.get(url + "/admin/logout_logs/" + id)
 			.success(function(data){
 				console.log(data);
 				var length = data.length;
