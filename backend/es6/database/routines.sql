@@ -149,6 +149,7 @@ BEGIN
 END $$
 DELIMITER ;
 
+
 -- POST_VOLUNTEER function
 DROP FUNCTION IF EXISTS POST_VOLUNTEER;
 DELIMITER $$
@@ -248,3 +249,49 @@ BEGIN
 END $$
 DELIMITER ;
 
+
+-- INSERT_LECTURE_SECTION procedure
+DROP PROCEDURE IF EXISTS INSERT_LECTURE_SECTION;
+DELIMITER $$
+CREATE PROCEDURE INSERT_LECTURE_SECTION (_faculty_user_id INT, _course_code VARCHAR(16), _name VARCHAR(8))
+BEGIN
+	DECLARE _course_id INT;
+
+	-- Check if there is already a lecture section under that course
+	IF (SELECT COUNT(*) FROM section s, course c WHERE s.course_id = c.id AND s.name = _name AND c.code = _course_code) THEN
+		SELECT CONCAT('Lecture section ', _name, ' under that course is already existing') AS message;
+	ELSE
+		INSERT INTO course (code, title, description) VALUES ('CMSC 128', 'Introduction to Software Engineering', '*insert desc here*');
+
+		SELECT COUNT(*) INTO _course_id FROM course;
+
+		INSERT INTO section (course_id, name) VALUES (_course_id, _name);
+		INSERT INTO faculty_user_course (faculty_user_id, course_id) VALUES (_faculty_user_id, _course_id);
+
+		SELECT 'Lecture section was successfully created' AS message;
+	END IF;
+END $$
+DELIMITER ;
+
+
+-- UPDATE_LECTURE_SECTION procedure
+DROP PROCEDURE IF EXISTS UPDATE_LECTURE_SECTION;
+DELIMITER $$
+CREATE PROCEDURE UPDATE_LECTURE_SECTION (_faculty_user_id INT, _course_code VARCHAR(16), _section_name VARCHAR(8), _new_section_name VARCHAR(8))
+BEGIN
+	DECLARE _course_id INT DEFAULT 0;
+
+	SELECT DISTINCT c.id INTO _course_id FROM course c, section s, faculty_user_course fc WHERE c.id = fc.faculty_user_id AND c.code = _course_code AND s.name = _section_name AND c.id = s.course_id AND fc.course_id = c.id;
+
+	IF (_course_id = 0) THEN
+		SELECT CONCAT('Section name ', _section_name, ' does not exist') AS message;
+	ELSEIF (SELECT COUNT(*) FROM section s, course c WHERE s.course_id = _course_id AND s.name = _new_section_name AND c.code = _course_code)
+	THEN
+		SELECT CONCAT('Lecture section name ', _new_section_name, ' under ', _course_code, ' already exists') AS message;
+	ELSE
+		UPDATE section SET name = _new_section_name WHERE course_id = _course_id;
+
+		SELECT 'Lecture section name was successfully updated' AS message;
+	END IF;
+END $$
+DELIMITER ;
