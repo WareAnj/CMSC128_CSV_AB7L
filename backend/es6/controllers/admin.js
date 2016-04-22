@@ -16,7 +16,7 @@ exports.authenticate_login = (req, res, next) => {
 
 
     function start () {
-
+        
         if (req.session && req.session.user) {
             response = status.ALREADY_LOGGED_IN;
 
@@ -133,6 +133,27 @@ exports.get_logout_logs_by_user = (req, res, next) => {
         }
 
         res.send(result[0]);
+    }
+
+    start();
+};
+
+
+// Get all pending user
+exports.get_pending_users = (req, res, next) => {
+    let response;
+
+    function start() {
+        db.query('CALL GET_PENDING_USERS();', send_response);
+    }
+
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in getting pending users', last_query);
+            return next(err);
+        }
+
+        res.send(result);
     }
 
     start();
