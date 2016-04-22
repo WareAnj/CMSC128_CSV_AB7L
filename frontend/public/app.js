@@ -37,10 +37,10 @@ var app =	angular
 
 		var url = "http://localhost:8000";
 
-		$scope.Logout = function(){ 
+		$scope.Logout = function(){
 
 			var deferred = $q.defer();
-				
+
 			$http.get(url + "/authenticate/logout")
 			.success(function(data){
 				$window.location.href = '/';

@@ -6,7 +6,7 @@ const winston   = require('winston');
 exports.post_course = (req, res, next) => {
 
   const data = {
-      user_id:               req.body.user_id,
+      user_id:               req.query.user_id,
       course_code:           req.body.course_code,
       course_title:          req.body.course_title,
       course_description:    req.body.course_description
@@ -39,21 +39,21 @@ exports.post_course = (req, res, next) => {
 exports.put_course = (req, res, next) => {
 
   const data = {
-      user_id:                   req.body.user_id,
-      old_course_code:           req.body.old_course_code,
-      new_course_code:           req.body.new_course_code,
-      new_course_title:          req.body.new_course_title,
-      new_course_description:    req.body.new_course_description
+      user_id:                   req.query.user_id,
+      id:                        req.query.id,
+      new_course_code:           req.body.course_code,
+      new_course_title:          req.body.course_title,
+      new_course_description:    req.body.course_description
   };
 
   function start () {
       db.query([
                   'UPDATE course',
                   'SET code = ?, title = ?, description = ?',
-                  'WHERE code = ? and user_id = ?;'
+                  'WHERE id = ? and user_id = ?;'
                ].join(' '),
                [data.new_course_code, data.new_course_title,
-                data.new_course_description, data.old_course_code,
+                data.new_course_description, data.id,
                 data.user_id],
                 send_response);
   }
@@ -100,16 +100,16 @@ exports.get_course = (req, res, next) => {
 
 exports.delete_course = (req, res, next) => {
   const data = {
-      user_id:                   req.body.user_id,
-      course_code:               req.body.course_code
+      user_id:                   req.query.user_id,
+      id:                        req.query.id
   };
 
   function start () {
       db.query([
                   'DELETE from course',
-                  'WHERE user_id = ? and code = ?;'
+                  'WHERE user_id = ? and id = ?;'
                ].join(' '),
-               [data.user_id, data.course_code],
+               [data.user_id, data.id],
                 send_response);
   }
 
