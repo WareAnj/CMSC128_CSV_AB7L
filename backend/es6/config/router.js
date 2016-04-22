@@ -19,9 +19,10 @@ module.exports = (router) => {
     router.get ('/home',                                                                    __.render_controller.home);
     router.get ('/admin',                                                                   __.render_controller.admin);
     router.get ('/class',                                                                   __.render_controller.class);
-    
+
     // faculty_user routes
     router.post('/faculty_user/register/',                                                  __.faculty_user.register);
+    router.get('/faculty_user/get_user_id',                            __.faculty_user.get_logged_in_faculty_user_id);
 
     // course routes
     router.post('/course/post_course/',                                                  __.course.post_course);

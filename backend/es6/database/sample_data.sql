@@ -2,10 +2,10 @@ use cmsc128ab7l;
 
 INSERT INTO admin(id, username, password) VALUES (1, 'admin', SHA1('admin'));
 
-insert into course (code, title, description) values ('CMSC 128', 'Introduction to Software Engineering', '*insert desc here*');
-insert into course (code, title, description) values ('CMSC 132', 'Computer Architecture', '*insert desc here*');
-insert into course (code, title, description) values ('CMSC 141', 'Automata and Language Theory', '*insert desc here*');
-insert into course (code, title, description) values ('CMSC 170', 'Introduction to Artifial Intelligence', '*insert desc here*');
+insert into course (code, title, description, user_id) values ('CMSC 128', 'Introduction to Software Engineering', '*insert desc here*', 1);
+insert into course (code, title, description, user_id) values ('CMSC 132', 'Computer Architecture', '*insert desc here*', 1);
+insert into course (code, title, description, user_id) values ('CMSC 141', 'Automata and Language Theory', '*insert desc here*', 1);
+insert into course (code, title, description, user_id) values ('CMSC 170', 'Introduction to Artifial Intelligence', '*insert desc here*', 1);
 
 insert into section (course_id, name, code) values (1, 'AB', '1L');
 insert into section (course_id, name, code) values (1, 'AB', '2L');

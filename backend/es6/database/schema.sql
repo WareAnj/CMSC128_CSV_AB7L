@@ -25,8 +25,8 @@ CREATE TABLE faculty_user(
     middle_name VARCHAR(32) NOT NULL,
     last_name VARCHAR(32) NOT NULL,
     is_approved BOOLEAN NOT NULL DEFAULT FALSE,
-    date_approved TIMESTAMP,
-    date_signed_up TIMESTAMP,
+    date_approved TIMESTAMP NULL,
+    date_signed_up TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id)
 );
 
