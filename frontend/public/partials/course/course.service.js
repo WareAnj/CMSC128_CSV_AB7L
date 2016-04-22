@@ -58,8 +58,7 @@
       return deferred.promise;
     }
 
-		function Add_Class(newCourse, user_id) {
-
+		function Add_Class(user_id, newCourse) {
 			var deferred = $q.defer();
 
 			$http.post(url + "/course/post_course?user_id=" + user_id, newCourse)
