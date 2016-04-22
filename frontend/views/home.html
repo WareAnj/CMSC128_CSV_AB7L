@@ -92,7 +92,7 @@
 											<a class="btn-floating btn-large waves-effect waves-light white" ng-click="Delete_Class(class.id)">
 												<i class="material-icons custom-text text-darken-1">delete</i>
 											</a>
-											<a class="btn-floating btn-large waves-effect waves-light white modal-trigger">
+											<a class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(class.id)">
 												<i class="material-icons custom-text text-darken-1">mode_edit</i>
 											</a>
 											<h5>{{class.code}}</h5>
@@ -145,6 +145,38 @@
 						    </div>
 								<div class="modal-footer">
 									<button id="submit-button" class="btn waves-effect waves-light" type="submit">Add Course</button>
+								</div>
+							</form>
+				    </div>
+				  </div>
+					<div id="editModal" class="modal">
+				    <div class="modal-content">
+				      <h5>Edit Course</h5>
+							<form ng-submit="Edit_Class()" autocomplete="off">
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+						          <input placeholder="New Course Code" type="text" id="new-code-input" ng-model="course.course_code" required="required">
+						        </div>
+						      </div>
+						    </div>
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+						          <input placeholder="New Course Title" type="text" id="new-title-input" ng-model="course.course_title" required="required">
+						        </div>
+						      </div>
+						    </div>
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+											<textarea id="new-desc-input" class="materialize-textarea" ng-model="course.course_description"></textarea>
+											<label for="new-desc-input">Course Description</label>
+										</div>
+						      </div>
+						    </div>
+								<div class="modal-footer">
+									<button id="submit-button" class="btn waves-effect waves-light" type="submit">Edit Course</button>
 								</div>
 							</form>
 				    </div>

@@ -9,6 +9,7 @@
 
   function CourseCtrl($scope, $location, CourseService){
     var user_id;
+    var toedit;
     $scope.faculty_user_classes = [];
     $scope.faculty_user_info = [];
 
@@ -57,6 +58,35 @@
           });
           Materialize.toast('Course added!', 3000, 'rounded');
           $('#addModal').closeModal();
+        });
+
+        CourseService.Get_Classes(user_id)
+          .then(function(data){
+            $scope.faculty_user_classes = [];
+            for(var i = 0; i < data.length; i++){
+              $scope.faculty_user_classes.push({
+                'code':data[i].code,
+                id:data[i].id,
+                'description':data[i].description,
+                'title': data[i].title
+              });
+            }
+          });
+    }
+
+    $scope.openModal = function(id){
+      $("#editModal").openModal();
+      toedit = id;
+    }
+
+    $scope.Edit_Class = function(){
+      CourseService.Edit_Class(user_id, toedit, $scope.course)
+        .then(function(data){
+          $scope.course.course_code = "";
+          $scope.course.course_title = "";
+          $scope.course.course_description = "";
+          Materialize.toast('Course Edited!', 3000, 'rounded');
+          $('#editModal').closeModal();
         });
 
         CourseService.Get_Classes(user_id)
