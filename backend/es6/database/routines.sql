@@ -148,3 +148,103 @@ BEGIN
 	FROM logout_logs ll, faculty_user fu WHERE fu.id = _id AND ll.faculty_user_id = fu.id;
 END $$
 DELIMITER ;
+
+-- POST_VOLUNTEER function
+DROP FUNCTION IF EXISTS POST_VOLUNTEER;
+DELIMITER $$
+CREATE FUNCTION POST_VOLUNTEER (_id INT, _course_code VARCHAR(32), _section_name VARCHAR(8), _section_code VARCHAR(4), _student_number VARCHAR(16), _last_name VARCHAR(32), _given_name VARCHAR(64), _middle_name VARCHAR(32), _classification VARCHAR(32), _college VARCHAR(8), _degree VARCHAR(8)) RETURNS VARCHAR(64)
+-- CREATE FUNCTION POST_VOLUNTEER (_id INT, _course_code VARCHAR(32), _section_name VARCHAR(8), _section_code VARCHAR(4), _student_number VARCHAR(16), _last_name VARCHAR(32), _given_name VARCHAR(64), _middle_name VARCHAR(32), _classification VARCHAR(32), _college VARCHAR(8), _degree VARCHAR(8)) RETURNS INT
+BEGIN
+	 DECLARE _count INT DEFAULT 0;
+	 DECLARE _student_id INT;
+	 DECLARE _section_id INT;
+	 DECLARE _return_message VARCHAR(64) DEFAULT '';
+
+	 SELECT COUNT(*) INTO _count
+	 FROM student s, section sect, student_section ss, faculty_user f, course c, faculty_user_course fc
+	 WHERE s.id = ss.student_id AND ss.section_id = sect.id AND sect.course_id = c.id AND f.id = fc.faculty_user_id
+	 AND c.id = fc.course_id AND f.id = _id AND c.code = _course_code AND sect.name = _section_name AND s.student_number = _student_number;
+
+	IF (_count = 1) THEN
+		SET _return_message := 'Student already exists';
+	ELSE
+		INSERT INTO student(student_number, given_name, middle_name, last_name, degree, classification, college)
+		VALUES (_student_number, _given_name, _middle_name, _last_name, _degree, _classification, _college);
+
+		SELECT MAX(id) INTO _student_id FROM student s;
+
+		SELECT sect.id INTO _section_id FROM section sect, course c
+		WHERE c.id = sect.course_id AND sect.name = _section_name
+		AND sect.code = _section_code AND c.code = _course_code;
+
+		INSERT INTO student_section(student_id, section_id) VALUES (_student_id, _section_id);
+
+		SET _return_message := 'Student created';
+	END IF;
+
+	RETURN _return_message;
+	-- RETURN _student_id;
+
+END $$
+DELIMITER ;
+
+-- POST_VOLUNTEER procedure
+DROP PROCEDURE IF EXISTS POST_VOLUNTEER;
+DELIMITER $$
+CREATE PROCEDURE POST_VOLUNTEER (_id INT, _course_code VARCHAR(32), _section_name VARCHAR(8), _section_code VARCHAR(4), _student_number VARCHAR(16), _last_name VARCHAR(32), _given_name VARCHAR(64), _middle_name VARCHAR(32), _classification VARCHAR(32), _college VARCHAR(8), _degree VARCHAR(8))
+BEGIN
+	 SELECT POST_VOLUNTEER(_id, _course_code, _section_name, _section_code, _student_number, _last_name, _given_name, _middle_name, _classification, _college, _degree) AS message;
+
+END $$
+DELIMITER ;
+
+
+-- DELETE_VOLUNTEER function
+DROP FUNCTION IF EXISTS DELETE_VOLUNTEER;
+DELIMITER $$
+CREATE FUNCTION DELETE_VOLUNTEER (_id INT, _course_code VARCHAR(32), _section_name VARCHAR(8), _section_code VARCHAR(4), _student_number VARCHAR(16)) RETURNS VARCHAR(64)
+BEGIN
+	 DECLARE _count INT DEFAULT 0;
+	 DECLARE _student_id INT;
+	 DECLARE _section_id INT;
+	 DECLARE _return_message VARCHAR(64) DEFAULT '';
+
+	 SELECT COUNT(*) INTO _count
+	 FROM student s, section sect, student_section ss, faculty_user f, course c, faculty_user_course fc
+	 WHERE s.id = ss.student_id AND ss.section_id = sect.id AND sect.course_id = c.id AND f.id = fc.faculty_user_id
+	 AND c.id = fc.course_id AND f.id = _id AND c.code = _course_code AND sect.name = _section_name AND s.student_number = _student_number;
+
+	IF (_count = 1) THEN
+		SELECT s.id INTO _student_id
+		FROM student s, section sect, student_section ss, faculty_user f, course c, faculty_user_course fc
+		WHERE s.id = ss.student_id AND ss.section_id = sect.id AND sect.course_id = c.id AND f.id = fc.faculty_user_id
+		AND c.id = fc.course_id AND f.id = _id AND c.code = _course_code AND sect.name = _section_name AND s.student_number = _student_number;
+
+		SELECT sect.id INTO _section_id FROM section sect, course c
+		WHERE c.id = sect.course_id AND sect.name = _section_name AND sect.code = _section_code
+		AND c.code = _course_code;
+
+		DELETE FROM student_section WHERE section_id = _section_id AND student_id = _student_id;
+
+		DELETE FROM student WHERE id = _student_id;
+
+		SET _return_message := 'Student deleted';
+	ELSE
+		SET _return_message := 'Student does not exist';
+	END IF;
+
+	RETURN _return_message;
+
+END $$
+DELIMITER ;
+
+-- DELETE_VOLUNTEER procedure
+DROP PROCEDURE IF EXISTS DELETE_VOLUNTEER;
+DELIMITER $$
+CREATE PROCEDURE DELETE_VOLUNTEER (_id INT, _course_code VARCHAR(32), _section_name VARCHAR(8), _section_code VARCHAR(4), _student_number VARCHAR(16))
+BEGIN
+	 SELECT DELETE_VOLUNTEER(_id, _course_code, _section_name, _section_code, _student_number) AS message;
+
+END $$
+DELIMITER ;
+

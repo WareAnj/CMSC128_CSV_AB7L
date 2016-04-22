@@ -11,7 +11,7 @@ module.exports = (router) => {
 
     // render_controller
     router.get ('/',                                                                        __.render_controller.index);
-    router.get ('/randomize',                                                               __.render_controller.randomize);
+    // router.get ('/randomize',                                                               __.render_controller.randomize);
     router.get ('/edit',                                                                    __.render_controller.edit);
     router.get('/logs',                                                                     __.render_controller.logs);
     router.get('/settings_randomize',                                                       __.render_controller.settings_randomize);
@@ -40,7 +40,7 @@ module.exports = (router) => {
     router.post('/faculty_user/check_faculty_user_employee_id/',                            __.faculty_user.check_faculty_user_employee_id);
 
     // randomize n students from a course with the specified section
-    router.get ('/faculty_user/randomize',                              $('Faculty User'),  __.faculty_user.randomize);
+    router.post('/faculty_user/randomize',                              $('Faculty User'),  __.faculty_user.randomize);
 
     // authentication routes
     router.post('/authenticate/login',                                                      __.authenticate.login);
