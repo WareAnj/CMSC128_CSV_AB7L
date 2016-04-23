@@ -11,7 +11,7 @@ module.exports = (router) => {
 
     // render_controller
     router.get ('/',                                                                        __.render_controller.index);
-    // router.get ('/randomize',                                                               __.render_controller.randomize);
+    router.get ('/randomize',                                                               __.render_controller.randomize);
     router.get ('/edit',                                                                    __.render_controller.edit);
     router.get ('/logs',                                                                    __.render_controller.logs);
     router.get ('/settings_randomize',                                                      __.render_controller.settings_randomize);
@@ -19,18 +19,18 @@ module.exports = (router) => {
     router.get ('/home',                                                                    __.render_controller.home);
     router.get ('/admin',                                                                   __.render_controller.admin);
     router.get ('/admin_approve',                                                           __.render_controller.admin_approve);
-    router.get ('/admin_viewlogs',                                                           __.render_controller.admin_viewlogs);
+    router.get ('/admin_viewlogs',                                                          __.render_controller.admin_viewlogs);
     router.get ('/class',                                                                   __.render_controller.class);
 
     // faculty_user routes
     router.post('/faculty_user/register/',                                                  __.faculty_user.register);
-    router.get('/faculty_user/get_user_id',                            __.faculty_user.get_logged_in_faculty_user_id);
+    router.get ('/faculty_user/get_user_id',                                                __.faculty_user.get_logged_in_faculty_user_id);
 
     // course routes
-    router.post('/course/post_course/',                                                  __.course.post_course);
-    router.put('/course/put_course/',                                                  __.course.put_course);
-    router.get('/course/get_course/',                                                  __.course.get_course);
-    router.del('/course/delete_course/',                                                  __.course.delete_course);
+    router.post('/course/post_course/',                                 $('Faculty User'),  __.course.post_course);
+    router.get ('/course/get_course/',                                  $('Faculty User'),  __.course.get_course);
+    router.put ('/course/put_course/',                                  $('Faculty User'),  __.course.put_course);
+    router.del ('/course/delete_course/',                               $('Faculty User'),  __.course.delete_course);
 
     // CRUD of volunteers/students
     router.post('/faculty_user/post_volunteer/',                        $('Faculty User'),  __.faculty_user.post_volunteer);
@@ -73,7 +73,7 @@ module.exports = (router) => {
     router.get ('/admin/logout_logs/:faculty_user_id',                  $('Administrator'), __.admin.get_logout_logs_by_user);
 
     // route for CRUD students (integration)
-    router.get('/edit',				                                             __.render_controller.edit);
+    router.get ('/edit',				                                             __.render_controller.edit);
 
     // Unmatched route
     router.all('*',                                                              __.render_controller.error_404);
