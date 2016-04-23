@@ -10,10 +10,11 @@ exports.post_lecture_section = (req, res, next) => {
     let response;
 
     const data = {
-        faculty_user_id:    req.body.faculty_user_id,
+        faculty_user_id:    req.session.user.id,
         course_code:        req.body.course_code,
-        name:               req.body.name,
+        name:               req.body.name
     };
+
 
     function start () {
         db.query('CALL INSERT_LECTURE_SECTION(?, ?, ?);',
@@ -40,11 +41,12 @@ exports.update_lecture_section = (req, res, next) => {
     let response;
 
     const data = {
-        faculty_user_id:        req.body.faculty_user_id,
+        faculty_user_id:        req.session.user.id,
         course_code:            req.body.course_code,
         section_name:           req.body.section_name,
         new_section_name:       req.body.new_section_name
     };
+
 
     function start () {
         db.query('CALL UPDATE_LECTURE_SECTION(?, ?, ?, ?);',
@@ -55,7 +57,38 @@ exports.update_lecture_section = (req, res, next) => {
 
     function send_response (err, result, args, last_query) {
         if (err) {
-            winston.error('Error in inserting a lecture section', last_query);
+            winston.error('Error in updating a lecture section', last_query);
+            return next(err);
+        }
+
+        res.send(result[0][0]);
+    }
+
+    start();
+};
+
+
+// Deletes a lecture section and students under that lecture section
+exports.delete_lecture_section = (req, res, next) => {
+    let response;
+
+    const data = {
+        faculty_user_id:        req.session.user.id,
+        course_code:            req.body.course_code,
+        name:                   req.body.name
+    };
+
+
+    function start () {
+        db.query('CALL DELETE_LECTURE_SECTION(?, ?, ?);',
+                [data.faculty_user_id, data.course_code, data.name],
+                send_response);
+    }
+
+
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in deleting a lecture section', last_query);
             return next(err);
         }
 

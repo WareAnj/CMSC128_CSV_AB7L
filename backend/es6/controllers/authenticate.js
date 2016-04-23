@@ -102,6 +102,12 @@ exports.logout = (req, res, next) => {
             return res.status(response.status).send(response.message);
         }
 
+        if (req.session.user.role !== 'Faculty User') {
+            response = status.UNAUTHORIZED;
+
+            return res.status(response.status).send(response.message);
+        }
+
         let user_id = req.session.user.id;
 
         req.session.destroy();

@@ -41,6 +41,7 @@ module.exports = (router) => {
     // CRUD for lecture section
     router.post('/section/post_lecture_section',                        $('Faculty User'),  __.section.post_lecture_section);
     router.put ('/section/update_lecture_section',                      $('Faculty User'),  __.section.update_lecture_section);
+    router.del ('/section/delete_lecture_section',                      $('Faculty User'),  __.section.delete_lecture_section);
 
     // routes to check the username or employee_id if it is already existing in the database
     router.post('/faculty_user/check_faculty_user_username/',                               __.faculty_user.check_faculty_user_username);
@@ -59,7 +60,7 @@ module.exports = (router) => {
     router.get ('/admin/authenticate_logout',                           $('Administrator'), __.admin.authenticate_logout);
 
     // route for getting all pending users
-    router.get('/admin/get_pending_users',                                                  __.admin.get_pending_users);
+    router.get('/admin/get_pending_users',                              $('Administrator'), __.admin.get_pending_users);
 
     // route for approving a user
     router.put ('/admin/approve_user/:faculty_user_id',                 $('Administrator'), __.admin.approve_user);
