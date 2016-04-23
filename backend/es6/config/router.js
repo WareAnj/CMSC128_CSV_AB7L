@@ -35,8 +35,8 @@ module.exports = (router) => {
     // CRUD of volunteers/students
     router.post('/faculty_user/post_volunteer/',                        $('Faculty User'),  __.faculty_user.post_volunteer);
     router.get ('/faculty_user/volunteers',                             $('Faculty User'),  __.faculty_user.get_volunteers);
-    router.put ('/faculty_user/volunteer/:user_id/:student_number',     $('Faculty User'),  __.faculty_user.update_volunteer);
-    router.del ('/faculty_user/volunteer/',                             $('Faculty User'),  __.faculty_user.delete_volunteer);
+    router.put ('/faculty_user/update_volunteer',                       $('Faculty User'),  __.faculty_user.update_volunteer);
+    router.del ('/faculty_user/delete_volunteer/',                      $('Faculty User'),  __.faculty_user.delete_volunteer);
 
     // CRUD for lecture section
     router.post('/section/post_lecture_section',                        $('Faculty User'),  __.section.post_lecture_section);

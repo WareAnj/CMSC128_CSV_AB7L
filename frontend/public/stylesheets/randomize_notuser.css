@@ -1,3 +1,11 @@
+#rand-not-user{
+  margin-top: 4%;
+  margin-bottom: 4%;
+  background-color: white;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  }
+
 #intro-logo{
     height: 60px;
     width: 60px;
@@ -8,7 +16,6 @@
 
 .center{
     margin-top: 10%
-}
 
 #input{
 	text-align: center;
