@@ -68,12 +68,13 @@ BEGIN
 END $$
 DELIMITER ;
 
+
 -- GET_PENDING_USERS procedure
 DROP PROCEDURE IF EXISTS GET_PENDING_USERS;
 DELIMITER $$
 CREATE PROCEDURE GET_PENDING_USERS()
 BEGIN
-	SELECT * from faculty_user WHERE is_approved = 0;
+	SELECT * FROM faculty_user WHERE is_approved = 0;
 END $$
 DELIMITER ;
 
@@ -268,11 +269,11 @@ BEGIN
 
 	-- Check if there is already a lecture section under that course
 	IF (SELECT COUNT(*) FROM section s, course c WHERE s.course_id = c.id AND s.name = _name AND c.code = _course_code) THEN
-		SELECT CONCAT('Lecture section ', _name, ' under that course is already existing') AS message;
+		SELECT CONCAT('Lecture section ', _name, ' under ', _course_code, ' already exists') AS message;
 	ELSE
 		INSERT INTO course (code, title, description) VALUES ('CMSC 128', 'Introduction to Software Engineering', '*insert desc here*');
 
-		SELECT COUNT(*) INTO _course_id FROM course;
+		SELECT LAST_INSERT_ID() INTO _course_id;
 
 		INSERT INTO section (course_id, name) VALUES (_course_id, _name);
 		INSERT INTO faculty_user_course (faculty_user_id, course_id) VALUES (_faculty_user_id, _course_id);
@@ -290,17 +291,45 @@ CREATE PROCEDURE UPDATE_LECTURE_SECTION (_faculty_user_id INT, _course_code VARC
 BEGIN
 	DECLARE _course_id INT DEFAULT 0;
 
-	SELECT DISTINCT c.id INTO _course_id FROM course c, section s, faculty_user_course fc WHERE c.id = fc.faculty_user_id AND c.code = _course_code AND s.name = _section_name AND c.id = s.course_id AND fc.course_id = c.id;
+	SELECT DISTINCT c.id INTO _course_id FROM course c, section s, faculty_user_course fc WHERE fc.faculty_user_id = _faculty_user_id AND c.code = _course_code AND s.name = _section_name AND c.id = s.course_id AND c.id = fc.course_id;
 
 	IF (_course_id = 0) THEN
 		SELECT CONCAT('Section name ', _section_name, ' does not exist') AS message;
-	ELSEIF (SELECT COUNT(*) FROM section s, course c WHERE s.course_id = _course_id AND s.name = _new_section_name AND c.code = _course_code)
-	THEN
-		SELECT CONCAT('Lecture section name ', _new_section_name, ' under ', _course_code, ' already exists') AS message;
+	ELSEIF (SELECT COUNT(*) FROM section s, course c WHERE s.course_id = _course_id AND s.name = _new_section_name AND c.code = _course_code) THEN
+		SELECT CONCAT('Lecture section ', _new_section_name, ' under ', _course_code, ' already exists') AS message;
 	ELSE
 		UPDATE section SET name = _new_section_name WHERE course_id = _course_id;
 
 		SELECT 'Lecture section name was successfully updated' AS message;
+	END IF;
+END $$
+DELIMITER ;
+
+
+-- DELETE_LECTURE_SECTION procedure
+DROP PROCEDURE IF EXISTS DELETE_LECTURE_SECTION;
+DELIMITER $$
+CREATE PROCEDURE DELETE_LECTURE_SECTION (_faculty_user_id INT, _course_code VARCHAR(16), _name VARCHAR(8))
+BEGIN
+	-- Check for invalid course code and section name
+	IF ((SELECT COUNT(*) FROM course c WHERE c.code = _course_code) = 0) THEN
+		SELECT CONCAT('Course code ', _course_code, ' does not exist') AS message;
+	ELSEIF ((SELECT COUNT(*) FROM course c, section s WHERE c.id = s.course_id AND c.code = _course_code AND s.name = _name) = 0) THEN
+		SELECT CONCAT('Section name ', _name, ' under ', _name, ' does not exist') AS message;
+	ELSE
+		-- Delete the students referencing to the section ids
+		DELETE FROM student_section WHERE section_id IN
+		(SELECT sid FROM (SELECT DISTINCT s.id AS sid FROM section s, course c, student_section ss, student st WHERE ss.section_id = s.id AND ss.student_id = st.id AND c.id = s.course_id AND c.code = _course_code AND s.name = _name) AS id);
+
+		-- Delete the reference to the course
+		DELETE FROM faculty_user_course WHERE faculty_user_id = _faculty_user_id AND course_id =
+		(SELECT cid FROM (SELECT DISTINCT c.id AS cid FROM course c, section s WHERE s.course_id = c.id AND c.code = _course_code AND s.name = _name) AS cid);
+
+		-- Finally, delete the sections with the specified name and course_code
+		DELETE FROM section WHERE course_id IN
+		(SELECT cid FROM (SELECT DISTINCT c.id AS cid FROM course c, section s WHERE s.course_id = c.id AND c.code = _course_code AND s.name = _name) AS id);
+
+		SELECT 'Lecture section was deleted successfully' AS message;
 	END IF;
 END $$
 DELIMITER ;
