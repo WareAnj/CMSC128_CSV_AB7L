@@ -43,6 +43,11 @@ module.exports = (router) => {
     router.put ('/section/update_lecture_section',                      $('Faculty User'),  __.section.update_lecture_section);
     router.del ('/section/delete_lecture_section',                      $('Faculty User'),  __.section.delete_lecture_section);
 
+    // CRUD for sub section
+    router.post('/section/post_sub_section',                            $('Faculty User'),  __.section.post_sub_section);
+
+
+
     // routes to check the username or employee_id if it is already existing in the database
     router.post('/faculty_user/check_faculty_user_username/',                               __.faculty_user.check_faculty_user_username);
     router.post('/faculty_user/check_faculty_user_employee_id/',                            __.faculty_user.check_faculty_user_employee_id);

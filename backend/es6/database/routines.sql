@@ -333,3 +333,30 @@ BEGIN
 	END IF;
 END $$
 DELIMITER ;
+
+
+-- INSERT_SUB_SECTION procedure
+DROP PROCEDURE IF EXISTS INSERT_SUB_SECTION;
+DELIMITER $$
+CREATE PROCEDURE INSERT_SUB_SECTION (_faculty_user_id INT, _course_code VARCHAR(16), _name VARCHAR(8), _code VARCHAR(4))
+BEGIN
+	DECLARE _course_id INT;
+
+	-- Check if there is a lecture section under that course
+	IF (SELECT COUNT(*) FROM section s, course c, faculty_user_course fc WHERE fc.course_id = c.id AND s.course_id = c.id AND s.name = _name AND c.code = _course_code AND fc.faculty_user_id = _faculty_user_id AND s.code IS NULL) THEN
+		UPDATE section SET code = _code WHERE id =
+		(SELECT sid FROM (SELECT MIN(s.id) AS sid FROM section s, course c, faculty_user_course fc WHERE fc.faculty_user_id = 1 AND c.code = _course_code AND s.name = _name AND fc.course_id = c.id AND s.course_id = c.id) AS sid);
+
+		SELECT 'Sub section was successfully created' AS message;
+	ELSEIF (SELECT COUNT(*) FROM section s, course c, faculty_user_course fc WHERE fc.course_id = c.id AND s.course_id = c.id AND s.name = _name AND c.code = _course_code AND fc.faculty_user_id = _faculty_user_id AND s.code = _code) THEN
+		SELECT CONCAT('Sub section with course code ', _code, ' already exist under lecture section ', _name) AS message;
+	ELSE
+		SELECT DISTINCT c.id INTO _course_id FROM section s, course c, faculty_user_course fc WHERE s.course_id = c.id AND fc.course_id = c.id AND fc.faculty_user_id = _faculty_user_id AND c.code = _course_code AND s.name = _name;
+
+		-- Insert a new lecture section if there are no rows with NULL section code
+		INSERT INTO section (course_id, name, code) VALUES (_course_id, _name, _code);
+
+		SELECT 'Sub section was successfully created' AS message;
+	END IF;
+END $$
+DELIMITER ;

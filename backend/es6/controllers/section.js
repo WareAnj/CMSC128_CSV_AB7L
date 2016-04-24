@@ -97,3 +97,37 @@ exports.delete_lecture_section = (req, res, next) => {
 
     start();
 };
+
+
+/**************** CRUD for sub section ****************/
+
+// Inserts a new sub section
+exports.post_sub_section = (req, res, next) => {
+    let response;
+
+    const data = {
+        faculty_user_id:    req.session.user.id,
+        course_code:        req.body.course_code,
+        name:               req.body.name,
+        code:               req.body.code
+    };
+
+
+    function start () {
+        db.query('CALL INSERT_SUB_SECTION(?, ?, ?, ?);',
+                [data.faculty_user_id, data.course_code, data.name, data.code],
+                send_response);
+    }
+
+
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in inserting a sub section', last_query);
+            return next(err);
+        }
+
+        res.send(result[0][0]);
+    }
+
+    start();
+};
