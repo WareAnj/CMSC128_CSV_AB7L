@@ -33,7 +33,7 @@
 				}
 
 				if(facultyUser.type == "admin"){
-					$http.post(url + "/admin/authenticate_login", facultyUser)
+					$http.post("admin/authenticate_login", facultyUser)
 					.success(function(data){
 						deferred.resolve(data);
 					})
