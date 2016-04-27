@@ -33,7 +33,7 @@
 							<h5 class="teal-text text-lighten-2"> {{info.given_name}} {{info.middle_name}}  {{info.last_name}}</h5>
 						</div>
 						<div ng-repeat="class in faculty_user_classes">
-							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">{{class.code}}</a></li>
+							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Course_Id(class.id)">{{class.code}}</a></li>
 						</div>
 						<div class = "center" ng-controller="HomeCtrl">
 							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>

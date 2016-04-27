@@ -26,6 +26,9 @@ module.exports = (router) => {
     router.post('/faculty_user/register/',                                                  __.faculty_user.register);
     router.get ('/faculty_user/get_user_id',                                                __.faculty_user.get_logged_in_faculty_user_id);
 
+    // class routes
+    router.get ('/class/get_lecture_class',                                                __.class.get_lecture_class);
+
     // course routes
     router.post('/course/post_course/',                                 $('Faculty User'),  __.course.post_course);
     router.get ('/course/get_course/',                                  $('Faculty User'),  __.course.get_course);
@@ -42,6 +45,11 @@ module.exports = (router) => {
     router.post('/section/post_lecture_section',                        $('Faculty User'),  __.section.post_lecture_section);
     router.put ('/section/update_lecture_section',                      $('Faculty User'),  __.section.update_lecture_section);
     router.del ('/section/delete_lecture_section',                      $('Faculty User'),  __.section.delete_lecture_section);
+
+    // CRUD for sub section
+    router.post('/section/post_sub_section',                            $('Faculty User'),  __.section.post_sub_section);
+    router.del ('/section/delete_sub_section',                          $('Faculty User'),  __.section.delete_sub_section);
+
 
     // routes to check the username or employee_id if it is already existing in the database
     router.post('/faculty_user/check_faculty_user_username/',                               __.faculty_user.check_faculty_user_username);
