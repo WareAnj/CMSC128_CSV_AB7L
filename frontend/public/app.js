@@ -44,13 +44,11 @@ var app =	angular
 
 	app.controller('HomeCtrl', function($scope, $location, $window, $http, $q){
 
-		var url = "http://localhost:8000";
-
 		$scope.Logout = function(){
 
 			var deferred = $q.defer();
 
-			$http.get(url + "/authenticate/logout")
+			$http.get("authenticate/logout")
 			.success(function(data){
 				$window.location.href = '/';
 				deferred.resolve(data);
@@ -66,13 +64,11 @@ var app =	angular
 	
 		app.controller('AdminCtrl', function($scope, $location, $window, $http, $q){
 
-		var url = "http://localhost:8000";
-
 		$scope.Logout = function(){ 
 
 			var deferred = $q.defer();
 				
-			$http.get(url + "/admin/authenticate_logout")
+			$http.get("admin/authenticate_logout")
 			.success(function(data){
 				$window.location.href = '/';
 				deferred.resolve(data);
@@ -88,7 +84,7 @@ var app =	angular
 			var deferred = $q.defer();
 			$scope.userList = [];
 
-			$http.get(url + "/admin/get_pending_users")
+			$http.get("admin/get_pending_users")
 			.success(function(data){				
 				var length = data[0].length;
 				var i;
@@ -104,7 +100,7 @@ var app =	angular
 
 		$scope.ApproveUser = function(id, username){
 
-			$http.put(url + "/admin/approve_user/" + id)
+			$http.put("admin/approve_user/" + id)
 			.success(function(data){				
 				alert("Successfully Approved User: " + username);
 				console.log(data);
@@ -121,7 +117,7 @@ var app =	angular
 			$scope.userList = [];
 
 
-			$http.get(url + "/admin/login_logs")
+			$http.get("admin/login_logs")
 			.success(function(data){
 				console.log(data[0]);
 				var length = data.length;
@@ -143,7 +139,7 @@ var app =	angular
 			$scope.userList = [];
 
 
-			$http.get(url + "/admin/logout_logs")
+			$http.get("admin/logout_logs")
 			.success(function(data){
 				console.log(data[0]);
 				var length = data.length;
@@ -183,7 +179,7 @@ var app =	angular
 			var deferred = $q.defer();
 			$scope.userList = [];
 
-			$http.get(url + "/admin/logout_logs/" + id)
+			$http.get("admin/logout_logs/" + id)
 			.success(function(data){
 				console.log(data);
 				var length = data.length;
