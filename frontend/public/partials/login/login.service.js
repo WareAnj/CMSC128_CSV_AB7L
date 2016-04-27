@@ -7,8 +7,6 @@
 
 	AuthenticationService.$inject = ['$http', '$q'];
 	function AuthenticationService($http, $q){
-		var url = "http://localhost:8000";
-
 		var service = {}; 
 		service.Login = Login;
 		return service;
@@ -22,7 +20,7 @@
 
 
 				if(facultyUser.type == "user"){					
-					$http.post(url + "/authenticate/login", facultyUser)
+					$http.post("authenticate/login", facultyUser)
 					.success(function(data){
 						deferred.resolve(data);
 					})
