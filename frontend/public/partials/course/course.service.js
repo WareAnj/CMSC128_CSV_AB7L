@@ -15,7 +15,22 @@
     service.Delete_Class = Delete_Class;
 		service.Add_Class = Add_Class;
 		service.Edit_Class = Edit_Class;
+		service.Get_Lecture_Class = Get_Lecture_Class;
 		return service;
+
+		function Get_Lecture_Class(course_id) {
+			var deferred = $q.defer();
+
+			$http.get(url + "/class/get_lecture_class?course_id=" + course_id)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Get Lecture Class");
+			});
+
+			return deferred.promise;
+		}
 
 		function Get_User_Id() {
 			var deferred = $q.defer();
