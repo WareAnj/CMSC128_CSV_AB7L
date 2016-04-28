@@ -1,4 +1,3 @@
-
 		  //randomize and add name
 		  var arr = [];		  	
 		  
@@ -29,6 +28,8 @@
 			
 			$("#rand").click(function(){
 				
+
+
 				if(arr.length == 0){
 					alert("The list is empty");
 					return false;
@@ -36,8 +37,8 @@
 
 				$("#lettersContainer").empty();
 
-			    var name = arr[Math.floor((Math.random() * arr.length))];			    
-				var alphabet = "abcdefghijklmnopqrstuvwxyz ".split("");
+			    var name = (arr[Math.floor((Math.random() * arr.length))]).toLowerCase();			    
+				var alphabet = "abcdefghijklmnopqrstuvwxyz. ".split("");
 				var j;
 
 				for(j = 0; j < name.length + (name.length/4); j ++){
@@ -53,15 +54,11 @@
 						$('span#lettersContainer' + counter).html(alphabet[j]);
 						if(alphabet[j] == name.charAt(counter)) return;
 						j++;
-						if(j == 27) j = 0;
+						if(j == 28) j = 0;
 					};
 
-					function loopImages(){
-			//			$('img#volunteerPic').toggleClass("animated flip");
-					}
 
 					setInterval(loopRandomize, 8);	// speed of letters
-					setInterval(loopImages, 270);
 
 				    counter++;
 				    if(counter === name.length) {	// if all spans are filled
@@ -71,7 +68,7 @@
 				        clearInterval(loop);		// it will stop the loop
 				    }
 
-				}, 216);	// interval of each loop (each letter)
+				}, 224).delay(300);	// interval of each loop (each letter)
 
 				/*
 					For fillers only

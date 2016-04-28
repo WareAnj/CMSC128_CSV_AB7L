@@ -11,30 +11,30 @@
     	<link type="text/css" rel="stylesheet" href="stylesheets/home.css">
 	</head>
 
-	<body>
+	<body ng-controller="CourseCtrl" data-ng-init="Get_User_Id()">
 
 	<!-- NAV BAR -->
 	<div class="navbar">
 		<nav>
 		 	<div class="nav-wrapper container">
-		 		
+
 		 		<ul>
 		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
 		    	</ul>
-		    	
+
 				<div class="center">
 			 		<a href="/" class="brand-logos"> <img id="logo" src="img/text2.png"></a>
 			    </div>
 
 	    		<!-- SIDE NAV  -->
-				<div id="slide-out" class="side-nav center">
+				<div id="slide-out" class="side-nav center" ng-click="Get_Classes()">
 					<img id="sidenav-logo" src="img/logo-2.png">
-					<h5 class="teal-text text-lighten-2">Reginald Recario</h5>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 128</a></li>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 132</a></li>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 125</a></li>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 170</a></li>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 141</a></li>
+						<div ng-repeat="info in faculty_user_info">
+							<h5 class="teal-text text-lighten-2"> {{info.given_name}} {{info.middle_name}}  {{info.last_name}}</h5>
+						</div>
+						<div ng-repeat="class in faculty_user_classes">
+							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">{{class.code}}</a></li>
+						</div>
 						<div class = "center" ng-controller="HomeCtrl">
 							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
 						</div>
@@ -51,7 +51,7 @@
 					<div>
 						<ul class="tabs">
 							<li class="tab"><a href="#profile" class="black-text waves-effect waves-custom">Profile</a></li>
-							<li class="tab"><a href="#classes" class="black-text waves-effect waves-custom">Classes</a></li>
+							<li class="tab"><a href="#classes" class="black-text waves-effect waves-custom" ng-click="Get_Classes()">Classes</a></li>
 							<li class="tab"><a href="#settings" class="black-text waves-effect waves-custom">Settings</a></li>
 						</ul>
 					</div>
@@ -61,14 +61,14 @@
 							<div class="col s12">
 								<div class="card-panel custom lighten-1">
 									<span>
-										<div>
-											<h3>Reginald Recario</h3>
+										<div ng-repeat="info in faculty_user_info">
+											<h3> {{info.given_name}} {{info.middle_name}}  {{info.last_name}}</h3>
 											<div class="row">
 												<div class="col s6">
 													<h5><i class="material-icons left">info</i>Basic Information</h5>
-													<p>Classification: Professor</p>
-													<p>Employee ID: 1901234567</p>
-													<p>Username: rncrecario</p>
+													<p>Classification: {{info.classification}}</p>
+													<p>Employee ID: {{info.employee_id}}</p>
+													<p>Username: {{info.username}}</p>
 												</div>
 											</div>
 										</div>
@@ -79,114 +79,108 @@
 					</div>
 					<!--CLASSES-->
 					<div id="classes">
+						<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+					    <a class="btn-floating btn-large white modal-trigger" id="addButton">
+					      <i class="material-icons custom-text text-darken-1">add</i>
+					    </a>
+					  </div>
 						<div class="row">
-							<div class="col s12 m4">
-								<div class="card-panel custom lighten-1">
-									<div id="class1" class="center">
-										<h5>CMSC 128</h5>
-									</div>
-									<ul class="collapsible popout" data-collapsible="expandable">
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-1L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-2L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-3L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col s12 m4">
-								<div class="card-panel custom lighten-1">
-									<div id="class2" class="center">
-										<h5>CMSC 132</h5>
-									</div>
-									<ul class="collapsible popout" data-collapsible="expandable">
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>T-1L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>T-2L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>T-3L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col s12 m4">
-								<div class="card-panel custom lighten-1">
-									<div id="class3" class="center">
-										<h5>CMSC 125</h5>
-									</div>
-									<ul class="collapsible popout" data-collapsible="expandable">
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>ST-1L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>ST-2L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>ST-3L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col s12 m4">
-								<div class="card-panel custom lighten-1">
-									<div id="class4" class="center">
-										<h5>CMSC 170</h5>
-									</div>
-									<ul class="collapsible popout" data-collapsible="expandable">
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>U-1L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>U-2L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>U-3L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col s12 m4">
-								<div class="card-panel custom lighten-1">
-									<div id="class5" class="center">
-										<h5>CMSC 141</h5>
-									</div>
-									<ul class="collapsible popout" data-collapsible="expandable">
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>V-1L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>V-2L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-										<li>
-											<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>V-3L</div>
-											<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-										</li>
-									</ul>
+							<div ng-repeat="class in faculty_user_classes">
+								<div class="col s12 m4">
+								  <div class="card-panel custom lighten-1">
+								    <div class="center">
+											<a class="btn-floating btn-large waves-effect waves-light white" ng-click="Delete_Class(class.id)">
+												<i class="material-icons custom-text text-darken-1">delete</i>
+											</a>
+											<a class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(class.id)">
+												<i class="material-icons custom-text text-darken-1">mode_edit</i>
+											</a>
+											<h5>{{class.code}}</h5>
+								    </div>
+								    <ul class="collapsible popout" data-collapsible="expandable">
+								      <li>
+								        <div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-1L</div>
+								        <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
+								      </li>
+								      <li>
+								        <div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-2L</div>
+								        <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
+								      </li>
+								      <li>
+								        <div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-3L</div>
+								        <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
+								      </li>
+								    </ul>
+								  </div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<!--MODALS-->
+					<div id="addModal" class="modal">
+				    <div class="modal-content">
+				      <h5>Add Course</h5>
+							<form ng-submit="Add_Class()" autocomplete="off">
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+						          <input placeholder="Course Code" type="text" id="code-input" ng-model="newCourse.course_code" required="required">
+						        </div>
+						      </div>
+						    </div>
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+						          <input placeholder="Course Title" type="text" id="title-input" ng-model="newCourse.course_title" required="required">
+						        </div>
+						      </div>
+						    </div>
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+											<textarea id="desc-input" class="materialize-textarea custom-text text-darken-1" ng-model="newCourse.course_description"></textarea>
+											<label for="desc-input">Course Description</label>
+										</div>
+						      </div>
+						    </div>
+								<div class="modal-footer">
+									<button id="submit-button" class="btn waves-effect waves-light" type="submit">Add Course</button>
+								</div>
+							</form>
+				    </div>
+				  </div>
+					<div id="editModal" class="modal">
+				    <div class="modal-content">
+				      <h5>Edit Course</h5>
+							<form ng-submit="Edit_Class()" autocomplete="off">
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+						          <input placeholder="New Course Code" type="text" id="new-code-input" ng-model="course.course_code" required="required">
+						        </div>
+						      </div>
+						    </div>
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+						          <input placeholder="New Course Title" type="text" id="new-title-input" ng-model="course.course_title" required="required">
+						        </div>
+						      </div>
+						    </div>
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+											<textarea id="new-desc-input" class="materialize-textarea" ng-model="course.course_description"></textarea>
+											<label for="new-desc-input">Course Description</label>
+										</div>
+						      </div>
+						    </div>
+								<div class="modal-footer">
+									<button id="submit-button" class="btn waves-effect waves-light" type="submit">Edit Course</button>
+								</div>
+							</form>
+				    </div>
+				  </div>
 					<!--SETTINGS-->
 					<div id="settings">
 						<div class="row">
@@ -196,24 +190,26 @@
 									<button class="btn waves-effect waves-teal" type="submit"><i class="material-icons right">done</i> Save</button>
 									<form action="" method="UPDATE">
 									<br>
+									<div ng-repeat="info in faculty_user_info">
 										<div class="row">
 											<div class="input-field">
 												<div class="col s12 m12 l4">
-													<input placeholder="First Name" type="text" name="user-fname" id="fname-input">
+													<input placeholder="First Name" type="text" name="user-fname" id="fname-input" value="{{info.given_name}}">
 													<label for="fname-input" class="black-text"><i class="black-text material-icons left">info</i>Name</label>
 												</div>
 												<div class="col s12 m12 l4">
-													<input placeholder="Middle Name" type="text" name="user-mname" id="mname-input">
+													<input placeholder="Middle Name" type="text" name="user-mname" id="mname-input" value="{{info.middle_name}}">
 												</div>
 												<div class="col s12 m12 l4">
-													<input placeholder="Last Name" type="text" name="user-lname" id="lname-input">
+													<input placeholder="Last Name" type="text" name="user-lname" id="lname-input"
+													value="{{info.last_name}}">
 												</div>
 											</div>
-										</div>	
+										</div>
 										<div class="row">
 											<div class="col s6 m6 l6">
 												<div class="input-field">
-													<input placeholder="Username" type="text" name="username" id="name-input">
+													<input placeholder="Username" type="text" name="username" id="name-input" value="{{info.username}}">
 													<label for="name-input" class="black-text"><i class="material-icons left">account_circle</i>Username</label>
 												</div>
 											</div>
@@ -227,7 +223,7 @@
 										<div class="row">
 											<div class="col s12 m7 l5">
 												<div class="input-field">
-													<input placeholder="XXXXXXXXXX" type="text" name="employee-id" id="employee-input">
+													<input placeholder="XXXXXXXXXX" type="text" name="employee-id" id="employee-input" value="{{info.employee_id}}">
 													<label for="employeeid-input" class="black-text"><i class="material-icons left">assignment_ind</i>Employee ID</label>
 												</div>
 											</div>
@@ -235,11 +231,12 @@
 										<div class="row">
 											<div class="col s12 m5 l5">
 												<div class="input-field">
-													<input placeholder="Instructor 1, Professor, etc." type="text" name="user-classification" id="classification-input">
+													<input placeholder="Instructor 1, Professor, etc." type="text" name="user-classification" id="classification-input" value="{{info.classification}}">
 													<label for="classification-input" class="black-text"><i class="material-icons left">perm_identity</i>Classification</label>
 												</div>
 											</div>
 										</div>
+									 </div>
 									</form>
 								</div>
 							</div>
@@ -264,11 +261,14 @@
 	   	<script type="text/javascript" src="js/jquery.js"></script>
 	    <script type="text/javascript" src="js/materialize.min.js"></script>
 	    <script type="text/javascript" src="js/default.js"></script>
+
 		<script src="js/angular.min.js"></script>
 		<script src="js/angular-route.min.js"></script>
-		<script src="app.js"></script>
-		<script>
 
-		</script>
+		<script src="app.js"></script>
+
+		<script src="partials/course/course.service.js"></script>
+		<script src="partials/course/course.controller.js"></script>
+
 	</body>
 </html>

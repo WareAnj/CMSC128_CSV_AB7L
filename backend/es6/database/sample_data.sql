@@ -2,6 +2,8 @@ use cmsc128ab7l;
 
 INSERT INTO admin(id, username, password) VALUES (1, 'admin', SHA1('admin'));
 
+insert into faculty_user (username, password, employee_id, classification, given_name, middle_name, last_name, is_approved) values ('user1', SHA1('user1'), '001', 'Professor', 'Reginald', 'NC', 'Recario', 1);
+
 insert into course (code, title, description) values ('CMSC 128', 'Introduction to Software Engineering', '*insert desc here*');
 insert into course (code, title, description) values ('CMSC 132', 'Computer Architecture', '*insert desc here*');
 insert into course (code, title, description) values ('CMSC 141', 'Automata and Language Theory', '*insert desc here*');
@@ -104,8 +106,6 @@ insert into student (student_number, given_name, middle_name, last_name, degree,
 insert into student (student_number, given_name, middle_name, last_name, degree, classification, college) values ('2013-56969', 'WOLTER', 'MIGUEL', 'AURE', 'BSBIO', 'Junior', 'CAS');
     insert into student_section (student_id, section_id) values (40, 8);
 
-
-insert into faculty_user (username, password, employee_id, classification, given_name, middle_name, last_name) values ('user1', SHA1('user1'), '001', 'Professor', 'Reginald', 'NC', 'Reccario');
 insert into faculty_user (username, password, employee_id, classification, given_name, middle_name, last_name) values ('user2', SHA1('user2'), '002', 'Instructor 3', 'Betel', 'Marie', 'De Robles');
 insert into faculty_user (username, password, employee_id, classification, given_name, middle_name, last_name) values ('user3', SHA1('user3'), '003', 'Instructor 1', 'Angelica', 'Geeca', 'Ware');
 

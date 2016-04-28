@@ -25,8 +25,8 @@ CREATE TABLE faculty_user(
     middle_name VARCHAR(32) NOT NULL,
     last_name VARCHAR(32) NOT NULL,
     is_approved BOOLEAN NOT NULL DEFAULT FALSE,
-    date_approved TIMESTAMP,
-    date_signed_up TIMESTAMP,
+    date_approved TIMESTAMP NULL,
+    date_signed_up TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id)
 );
 
@@ -38,9 +38,7 @@ CREATE TABLE course(
     code VARCHAR(16) NOT NULL,
     title VARCHAR(64) NOT NULL,
     description VARCHAR(256) NOT NULL,
-    user_id INT NOT NULL,
-    PRIMARY KEY(id),
-    FOREIGN KEY(user_id) REFERENCES faculty_user(id)
+    PRIMARY KEY(id)
 );
 
 

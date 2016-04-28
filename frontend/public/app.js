@@ -46,10 +46,10 @@ var app =	angular
 
 		var url = "http://localhost:8000";
 
-		$scope.Logout = function(){ 
+		$scope.Logout = function(){
 
 			var deferred = $q.defer();
-				
+
 			$http.get(url + "/authenticate/logout")
 			.success(function(data){
 				$window.location.href = '/';
@@ -67,6 +67,11 @@ var app =	angular
 		app.controller('AdminCtrl', function($scope, $location, $window, $http, $q){
 
 		var url = "http://localhost:8000";
+
+		 $scope.order = function(predicate) {
+		    $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+		    $scope.predicate = predicate;
+		  };
 
 		$scope.Logout = function(){ 
 

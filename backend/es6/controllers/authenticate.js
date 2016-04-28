@@ -9,8 +9,6 @@ const winston   = require('winston');
 exports.login = (req, res, next) => {
     let response;
 
-
-
     const data = {
         username:   req.body.username,
         password:   req.body.password
@@ -18,13 +16,12 @@ exports.login = (req, res, next) => {
 
 
     function start () {
-    
+
         if (req.session && req.session.user) {
             response = status.ALREADY_LOGGED_IN;
 
             return res.status(response.status).send(response.message);
         }
-    
 
         db.query('CALL LOGIN(?, ?);', [data.username, data.password],
                     send_response);
@@ -101,6 +98,12 @@ exports.logout = (req, res, next) => {
 
         if (!req.session.user) {
             response = status.MISSING_SESSION;
+
+            return res.status(response.status).send(response.message);
+        }
+
+        if (req.session.user.role !== 'Faculty User') {
+            response = status.UNAUTHORIZED;
 
             return res.status(response.status).send(response.message);
         }
