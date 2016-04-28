@@ -7,9 +7,12 @@
 		<title>Reginyzr</title>
     	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
     	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
        	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
        	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/admin_approve.css">
+    	<link type="text/css" rel="stylesheet" href="stylesheets/admin_tables.css">
+
+    	<script type="text/javascript" src="js/jquery.js"></script>	
 
 	</head>
 
@@ -43,19 +46,43 @@
 	</div>
 
 		<div class="container">
-			<table data-ng-init="GetUsers()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table tablesorter bordered centered stripped">
+			<table data-ng-init="GetUsers()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table bordered centered stripped">
 				<thead>
 					<tr>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Username</th>
-						<th>Employee ID</th>
-						<th>Classification</th>
-						<th>Date of Sign Up</th>
+						<th>
+							<a ng-click="order('given_name')" class="waves-effect waves-light btn">First Name
+							<span class="sortorder" ng-show="predicate === 'given_name'" ng-class="{reverse:reverse}"></span>
+							</a>							
+						</th>
+						<th>
+							<a ng-click="order('last_name')" class="waves-effect waves-light btn">Last Name
+							<span class="sortorder" ng-show="predicate === 'last_name'" ng-class="{reverse:reverse}"></span>
+							</a>	
+						</th>
+						<th>
+							<a ng-click="order('username')" class="waves-effect waves-light btn">Username
+							<span class="sortorder" ng-show="predicate === 'username'" ng-class="{reverse:reverse}"></span>
+							</a>
+						</th>
+						<th>
+							<a ng-click="order('employee_id')" class="waves-effect waves-light btn">Employee ID
+							<span class="sortorder" ng-show="predicate === 'employee_id'" ng-class="{reverse:reverse}"></span>
+							</a>
+						</th>
+						<th>
+							<a ng-click="order('classification')" class="waves-effect waves-light btn">Classification
+							<span class="sortorder" ng-show="predicate === 'classification'" ng-class="{reverse:reverse}"></span>
+							</a>
+						</th>
+						<th>
+							<a ng-click="order('date_signed_up')" class="waves-effect waves-light btn">Date of Sign Up
+							<span class="sortorder" ng-show="predicate === 'date_signed_up'" ng-class="{reverse:reverse}"></span>
+							</a>
+						</th>
 					</tr>
 				</thead>
 				<tbody>					
-					 <tr ng-repeat="user in userList">
+					 <tr ng-repeat="user in userList | orderBy:predicate:reverse">
 				       <td data-title="given_name" >
 				           {{user.given_name}}
 				       </td>
@@ -89,10 +116,5 @@
 		<script src="js/angular-route.min.js"></script>
 		<script src="app.js"></script>
 
-		<script>
-
-		</script>
-
 	</body>
-
 </html>

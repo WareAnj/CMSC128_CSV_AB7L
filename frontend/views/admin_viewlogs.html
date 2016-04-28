@@ -45,8 +45,8 @@
 		 <div class="row">
 			<div class="col s12">
 			  <ul class="tabs">
-				<li class="tab col s3 text-color-teal"><a href="#test1" id="login-all">View all Login</a></li>
-				<li class="tab col s3"><a class="active" href="#test2" id="logout-all">View all Logout</a></li>
+				<li class="tab col s3 text-color-teal"><a class="active" href="#test1" id="login-all">View all Login</a></li>
+				<li class="tab col s3"><a href="#test2" id="logout-all">View all Logout</a></li>
 				<li class="tab col s3"><a href="#test3" id="login-specific"> View Login by User</a></li>
 				<li class="tab col s3"><a href="#test4" id="logout-specific"> View Logout by User</a></li>
 			  </ul>
@@ -57,13 +57,25 @@
 			<table ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintableout" class="highlight responsive-table tablesorter bordered centered stripped">
 				<thead>
 					<tr>
-						<th>User id</th>
-						<th>Username</th>
-						<th id="dynamicth">Date Logout</th>
+						<th>
+							<a ng-click="order('id')" class="waves-effect waves-light btn">User id
+							<span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span>
+							</a>
+						</th>
+						<th>
+							<a ng-click="order('username')" class="waves-effect waves-light btn">Username
+							<span class="sortorder" ng-show="predicate === 'username'" ng-class="{reverse:reverse}"></span>
+							</a>
+						</th>
+						<th id="dynamicth">
+							<a ng-click="order('date_logout')" class="waves-effect waves-light btn">Date Logout
+							<span class="sortorder" ng-show="predicate === 'date_logout'" ng-class="{reverse:reverse}"></span>
+							</a>
+						</th>
 					</tr>
 				</thead>
 				<tbody>					
-					 <tr ng-repeat="user in userList">
+					 <tr ng-repeat="user in userList | orderBy:predicate:reverse">
 				       <td data-title="id" >
 				           {{user.id}}
 				       </td>
@@ -81,13 +93,25 @@
 				<table ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintablein" class="highlight responsive-table tablesorter bordered centered stripped">
 				<thead>
 					<tr>
-						<th>User id</th>
-						<th>Username</th>
-						<th id="dynamicth">Date Login</th>
+						<th>
+							<a ng-click="order('id')" class="waves-effect waves-light btn">User id
+							<span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span>
+							</a>
+						</th>
+						<th>
+							<a ng-click="order('username')" class="waves-effect waves-light btn">Username
+							<span class="sortorder" ng-show="predicate === 'username'" ng-class="{reverse:reverse}"></span>
+							</a>
+						</th>
+						<th id="dynamicth">
+							<a ng-click="order('date_login')" class="waves-effect waves-light btn">Date Login
+							<span class="sortorder" ng-show="predicate === 'date_login'" ng-class="{reverse:reverse}"></span>
+							</a>
+						</th>
 					</tr>
 				</thead>
 				<tbody>					
-					 <tr ng-repeat="user in userList">
+					 <tr ng-repeat="user in userList | orderBy:predicate:reverse">
 				       <td data-title="id" >
 				           {{user.id}}
 				       </td>
@@ -113,15 +137,18 @@
 		<script>
 
 			$( document ).ready(function() {
-			     $('#logintable').show();
-			     $('#logouttable').hide();
+			    $("#admintable").attr("data-ng-init", "GetAllLogin()");
+				$('#logintable').show();
+			    $('#logouttable').hide();
+
+				angular.element(document.getElementById('admintablein')).scope().GetAllLogin();
 			});
 
 			$("#login-all").click(function(){
 
 				$("#admintable").attr("data-ng-init", "GetAllLogin()");
-				 $('#logintable').show();
-			     $('#logouttable').hide();
+				$('#logintable').show();
+			    $('#logouttable').hide();
 
 				angular.element(document.getElementById('admintablein')).scope().GetAllLogin();
 
