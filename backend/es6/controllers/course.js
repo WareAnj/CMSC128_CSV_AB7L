@@ -15,11 +15,11 @@ exports.post_course = (req, res, next) => {
   function start () {
       db.query([
                   'INSERT INTO course',
-                  '(code, title, description, user_id)',
-                  'VALUES (?, ?, ?, ?);'
+                  '(code, title, description)',
+                  'VALUES (?, ?, ?);'
                ].join(' '),
                [data.course_code, data.course_title,
-                data.course_description, data.user_id],
+                data.course_description],
                 send_response);
   }
 
@@ -28,6 +28,13 @@ exports.post_course = (req, res, next) => {
           winston.error('Error in creating a course', last_query);
           return next(err);
       }
+
+      db.query([
+                  'INSERT INTO faculty_user_course',
+                  '(faculty_user_id, course_id)',
+                  'VALUES (?, (SELECT id FROM course ORDER BY id DESC LIMIT 1));'
+               ].join(' '),
+               [data.user_id]);
 
       res.send(result);
   }
@@ -39,7 +46,6 @@ exports.post_course = (req, res, next) => {
 exports.put_course = (req, res, next) => {
 
   const data = {
-      user_id:                   req.query.user_id,
       id:                        req.query.id,
       new_course_code:           req.body.course_code,
       new_course_title:          req.body.course_title,
@@ -50,11 +56,10 @@ exports.put_course = (req, res, next) => {
       db.query([
                   'UPDATE course',
                   'SET code = ?, title = ?, description = ?',
-                  'WHERE id = ? and user_id = ?;'
+                  'WHERE id = ?;'
                ].join(' '),
                [data.new_course_code, data.new_course_title,
-                data.new_course_description, data.id,
-                data.user_id],
+                data.new_course_description, data.id],
                 send_response);
   }
 
@@ -78,8 +83,8 @@ exports.get_course = (req, res, next) => {
 
   function start () {
       db.query([
-                  'SELECT * from course',
-                  'WHERE user_id = ?;'
+                  'SELECT * from course c, faculty_user_course fc',
+                  'WHERE fc.faculty_user_id = ? and c.id = fc.course_id;'
                ].join(' '),
                [data.user_id],
                 send_response);
@@ -100,16 +105,15 @@ exports.get_course = (req, res, next) => {
 
 exports.delete_course = (req, res, next) => {
   const data = {
-      user_id:                   req.query.user_id,
       id:                        req.query.id
   };
 
   function start () {
       db.query([
-                  'DELETE from course',
-                  'WHERE user_id = ? and id = ?;'
+                  'DELETE from faculty_user_course',
+                  'WHERE course_id = ?;'
                ].join(' '),
-               [data.user_id, data.id],
+               [data.id],
                 send_response);
   }
 
@@ -118,6 +122,12 @@ exports.delete_course = (req, res, next) => {
           winston.error('Error in retriving a course', last_query);
           return next(err);
       }
+
+      db.query([
+                  'DELETE from course',
+                  'WHERE id = ?;'
+               ].join(' '),
+               [data.id]);
 
       res.send(result);
   }
