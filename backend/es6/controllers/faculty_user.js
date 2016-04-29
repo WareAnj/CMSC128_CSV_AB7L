@@ -123,7 +123,80 @@ exports.get_logged_in_faculty_user_id = (req, res, next) => {
 };
 
 exports.post_volunteer = (req, res, next) => {
-    
+
+    const data = {
+        user_id:                req.body.user_id,
+        course_code:            req.body.course_code,
+        section_name:           req.body.section_name,
+        section_code:           req.body.section_code,
+        student_number:         req.body.student_number,
+        given_name:             req.body.given_name,
+        middle_name:            req.body.middle_name,
+        last_name:              req.body.last_name,
+        degree:                 req.body.degree,
+        classification:         req.body.classification,
+        college:                req.body.college
+    };
+
+    function start () {
+        db.query (
+            'CALL POST_VOLUNTEER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [
+                data.user_id, data.course_code, data.section_name,
+                data.section_code, data.student_number, data.last_name,
+                data.given_name, data.middle_name, data.classification,
+                data.college, data.degree
+            ],
+            send_response
+        );
+    }
+
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in Creating Volunteer', last_query);
+            return next(err);
+        }
+        res.send(result[0][0]);
+    }
+
+    start();
+};
+
+exports.get_volunteers = (req, res, next) => {
+
+    const data = {
+        user_id:               req.query.user_id,
+        course_code:           req.query.course_code,
+        section_name:          req.query.section_name
+    };
+
+    function start() {
+        db.query (
+            [
+                'SELECT s.student_number, s.last_name, s.given_name, sect.code',
+                'FROM faculty_user f, course c, faculty_user_course fc,',
+                'student s, section sect, student_section ss',
+                'WHERE f.id = fc.faculty_user_id and c.id = fc.course_id',
+                'and sect.course_id = c.id and sect.id = ss.section_id and s.id = ss.student_id',
+                'and f.id = ? and c.code = ? and sect.name = ?;'
+            ].join(' '),
+            [data.user_id, data.course_code, data.section_name],
+            send_response
+        );
+    }
+
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in getting students', last_query);
+            return next(err);
+        }
+        res.send(result);
+    }
+
+    start();
+};
+
+exports.update_volunteer = (req, res, next) => {
     const data = {
         user_id:                req.body.user_id,                   //*
         course_code:            req.body.course_code,//CMSC 128     //*
@@ -163,81 +236,6 @@ exports.post_volunteer = (req, res, next) => {
     }
 
     start();
-
-    // const data = {
-    //     user_id:                req.body.user_id,
-    //     course_code:            req.body.course_code,
-    //     section_name:           req.body.section_name,
-    //     section_code:           req.body.section_code,
-    //     student_number:         req.body.student_number,
-    //     given_name:             req.body.given_name,
-    //     middle_name:            req.body.middle_name,
-    //     last_name:              req.body.last_name,
-    //     degree:                 req.body.degree,
-    //     classification:         req.body.classification,
-    //     college:                req.body.college
-    // };
-
-    // function start () {
-    //     db.query (
-    //         'CALL POST_VOLUNTEER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-    //         [
-    //             data.user_id, data.course_code, data.section_name,
-    //             data.section_code, data.student_number, data.last_name,
-    //             data.given_name, data.middle_name, data.classification,
-    //             data.college, data.degree
-    //         ],
-    //         send_response
-    //     );
-    // }
-
-    // function send_response (err, result, args, last_query) {
-    //     if (err) {
-    //         winston.error('Error in Creating Volunteer', last_query);
-    //         return next(err);
-    //     }
-    //     res.send(result[0][0]);
-    // }
-
-    // start();
-};
-
-exports.get_volunteers = (req, res, next) => {
-
-    const data = {
-        user_id:               req.query.user_id,
-        course_code:           req.query.course_code,
-        section_name:          req.query.section_name
-    };
-
-    function start() {
-        db.query (
-            [
-                'SELECT s.student_number, s.last_name, s.given_name, sect.code',
-                'FROM faculty_user f, course c, faculty_user_course fc,',
-                'student s, section sect, student_section ss',
-                'WHERE f.id = fc.faculty_user_id and c.id = fc.course_id',
-                'and sect.course_id = c.id and sect.id = ss.section_id and s.id = ss.student_id',
-                'and f.id = ? and c.code = ? and sect.name = ?;'
-            ].join(' '),
-            [data.user_id, data.course_code, data.section_name],
-            send_response
-        );
-    }
-
-    function send_response (err, result, args, last_query) {
-        if (err) {
-            winston.error('Error in getting students', last_query);
-            return next(err);
-        }
-        res.send(result);
-    }
-
-    start();
-};
-
-exports.update_volunteer = (req, res, next) => {
-
 };
 
 exports.delete_volunteer = (req, res, next) => {
