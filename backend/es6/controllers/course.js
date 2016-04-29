@@ -6,7 +6,7 @@ const winston   = require('winston');
 exports.post_course = (req, res, next) => {
 
   const data = {
-      user_id:               req.query.user_id,
+      user_id:               req.session.user.id,
       course_code:           req.body.course_code,
       course_title:          req.body.course_title,
       course_description:    req.body.course_description
@@ -78,13 +78,13 @@ exports.put_course = (req, res, next) => {
 
 exports.get_course = (req, res, next) => {
   const data = {
-      user_id:                   req.query.user_id,
+      user_id:                   req.session.user.id,
   };
 
   function start () {
       db.query([
-                  'SELECT distinct c.id, c.code, name from course c, faculty_user_course fc, section s',
-                  'WHERE fc.faculty_user_id = ? and c.id = fc.course_id and s.course_id = c.id;'
+                  'SELECT * from course c, faculty_user_course fc',
+                  'WHERE fc.faculty_user_id = ? and c.id = fc.course_id;'
                ].join(' '),
                [data.user_id],
                 send_response);

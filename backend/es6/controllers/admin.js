@@ -144,7 +144,7 @@ exports.get_approved_users = (req, res, next) => {
     let response
 
     function start() {
-        db.query('CALL GET_PENDING_USERS();', send_response);
+        db.query('CALL GET_APPROVED_USERS();', send_response);
     }
 
     function send_response (err, result, args, last_query) {
@@ -164,7 +164,7 @@ exports.get_pending_users = (req, res, next) => {
     let response;
 
     function start() {
-        db.query('CALL GET_APPROVED_USERS();', send_response);
+        db.query('CALL GET_PENDING_USERS();', send_response);
     }
 
     function send_response (err, result, args, last_query) {

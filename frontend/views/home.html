@@ -11,7 +11,7 @@
     	<link type="text/css" rel="stylesheet" href="stylesheets/home.css">
 	</head>
 
-	<body ng-controller="CourseCtrl" data-ng-init="Get_User_Id()">
+	<body ng-controller="CourseCtrl" data-ng-init="Get_User()">
 
 	<!-- NAV BAR -->
 	<div class="navbar">
@@ -27,13 +27,13 @@
 			    </div>
 
 	    		<!-- SIDE NAV  -->
-				<div id="slide-out" class="side-nav center" data-ng-init="Get_Classes()">
+				<div id="slide-out" class="side-nav center" data-ng-init="Get_Course()">
 					<img id="sidenav-logo" src="img/logo-2.png">
 						<div ng-repeat="info in faculty_user_info">
 							<h5 class="teal-text text-lighten-2"> {{info.given_name}} {{info.middle_name}}  {{info.last_name}}</h5>
 						</div>
 						<div ng-repeat="class in faculty_user_classes">
-							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Course_Id(class.id)">{{class.code}} {{class.name}}</a></li>
+							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Course_Id(class.id)">{{class.code}}</a></li>
 						</div>
 						<div class = "center" ng-controller="HomeCtrl">
 							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
@@ -51,7 +51,7 @@
 					<div>
 						<ul class="tabs">
 							<li class="tab"><a href="#profile" class="black-text waves-effect waves-custom">Profile</a></li>
-							<li class="tab"><a href="#classes" class="black-text waves-effect waves-custom" ng-click="Get_Classes()">Classes</a></li>
+							<li class="tab"><a href="#classes" class="black-text waves-effect waves-custom" ng-click="Get_Course()">Classes</a></li>
 							<li class="tab"><a href="#settings" class="black-text waves-effect waves-custom">Settings</a></li>
 						</ul>
 					</div>
@@ -95,9 +95,9 @@
 											<a class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(class.id)">
 												<i class="material-icons custom-text text-darken-1">mode_edit</i>
 											</a>
-											<h5>{{class.code}} {{class.name}}</h5>
+											<h5>{{class.code}}</h5>
 								    </div>
-								    <ul class="collapsible popout" data-collapsible="expandable" data-ng-init="Get_Lab_Section(class.code)">
+								    <ul class="collapsible popout" data-collapsible="expandable" data-ng-init="Get_Lecture_Section(class.code)">
 								      <li ng-repeat="">
 								        <div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-1L</div>
 								        <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
