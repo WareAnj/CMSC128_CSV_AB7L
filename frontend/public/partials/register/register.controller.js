@@ -66,6 +66,7 @@
 			}
 			$("#submit-button").attr('disabled', 'disabled');
 			uname = false;
+			return;
   		}
   		$http.post(
   			"faculty_user/check_faculty_user_username/",
