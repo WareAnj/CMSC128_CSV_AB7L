@@ -2,6 +2,7 @@
 
 module.exports = {
     ENV: 'development',
+    APP_URL: 'http://localhost:8000',
 
     DB: {
         host: 'localhost',

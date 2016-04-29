@@ -162,7 +162,7 @@ exports.get_volunteers = (req, res, next) => {
     function start() {
         db.query (
             [
-                'SELECT s.student_number, s.last_name, s.given_name, sect.code',
+                'SELECT s.student_number, s.last_name, s.given_name, sect.code, s.frequency',
                 'FROM faculty_user f, course c, faculty_user_course fc,',
                 'student s, section sect, student_section ss',
                 'WHERE f.id = fc.faculty_user_id and c.id = fc.course_id',
@@ -269,10 +269,6 @@ exports.randomize = (req, res, next) => {
     };
 
     function start () {
-        // console.log("user_id: " + data.user_id);
-        // console.log("course_code: " + data.course_code);
-        // console.log("section_name: " + data.section_name);
-        // console.log("limit: " + data.limit);
         db.query (
             'DROP VIEW IF EXISTS temporary_view;',
             create_view
@@ -321,13 +317,13 @@ exports.randomize = (req, res, next) => {
         }
         if(typeof data.limit === 'undefined') {
             db.query(
-                    'SELECT * FROM temporary_view ORDER BY rand() LIMIT 1;',
+                    'SELECT * FROM temporary_view WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT 1;',
                     [parseInt(data.limit)],
                     send_response
                 );
         } else {
             db.query(
-                    'SELECT * FROM temporary_view ORDER BY rand() LIMIT ?;',
+                    'SELECT * FROM temporary_view WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT ?;',
                     [parseInt(data.limit)],
                     send_response
                 );
