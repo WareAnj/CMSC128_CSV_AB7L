@@ -57,30 +57,27 @@
         });
     }
 
-    $scope.Get_Classes = function(){
-      CourseService.Get_Classes(user_id)
+    $scope.Get_Course = function(){
+      CourseService.Get_Course(user_id)
         .then(function(data){
           $scope.faculty_user_classes = [];
           for(var i = 0; i < data.length; i++){
-            $scope.faculty_user_classes.push({
-              id:data[i].id,
-              'code':data[i].code,
-              'name':data[i].name
-            });
+            $scope.faculty_user_classes.push(data[i]);
           }
         });
+    }
+
+    $scope.Get_Lecture_Section = function(course_code){
+      CourseService.Get_Lecture_Section(course_code)
+      .then(function(data){
+
+      });
     }
 
     $scope.Get_Course_Id = function(c_id){
       localStorage.setItem("Course_id", c_id);
     }
 
-    $scope.Get_Lab_Section = function(course_code){
-      CourseService.Get_Lab_Section(course_code)
-        .then(function(data){
-          
-        });
-    }
 
     $scope.Add_Class = function(){
       CourseService.Add_Class(user_id, $scope.newCourse)

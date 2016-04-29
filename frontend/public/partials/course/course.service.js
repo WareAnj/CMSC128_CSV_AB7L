@@ -9,13 +9,27 @@
 
 	function CourseService($http, $q) {
 		var service = {};
+		service.Get_Course = Get_Course;
 		service.Get_User_Id = Get_User_Id;
-        service.Get_Classes = Get_Classes;
-        service.Delete_Class = Delete_Class;
+    service.Delete_Class = Delete_Class;
 		service.Add_Class = Add_Class;
 		service.Edit_Class = Edit_Class;
 		service.Get_Lecture_Class = Get_Lecture_Class;
 		return service;
+
+		function Get_Course(user_id) {
+			var deferred = $q.defer();
+
+			$http.get("course/get_course?user_id=" + user_id)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Get Classes");
+			});
+
+			return deferred.promise;
+		}
 
 		function Get_Lecture_Class(course_id) {
 			var deferred = $q.defer();
@@ -49,20 +63,6 @@
 			var deferred = $q.defer();
 
 			$http.get("course/get_lab_section?course_code=" + course_code)
-			.success(function(data) {
-				deferred.resolve(data);
-			})
-			.error(function(data) {
-				deferred.reject("Error: Cannot Get Classes");
-			});
-
-			return deferred.promise;
-		}
-
-    function Get_Classes(user_id) {
-			var deferred = $q.defer();
-
-			$http.get("course/get_course?user_id=" + user_id)
 			.success(function(data) {
 				deferred.resolve(data);
 			})
