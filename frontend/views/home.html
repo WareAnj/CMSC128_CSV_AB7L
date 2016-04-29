@@ -213,7 +213,10 @@
 											</div>
 											<div class="col s12 m12 l4">
 												<div class="input-field">
-													<input placeholder="Instructor 1, Professor, etc." type="text" name="user-classification" id="classification-input" value="{{info.classification}}"/>
+													<select id="classification-input" class="input-field" ng-model="selectd.repeatSelect">
+														<option value="{{info.classification}}" selected="selected">{{info.classification}}</option>
+														<option ng-repeat="option in selectd.soptions" value="{{option.id}}">{{option.name}}</option>
+													</select>
 													<label for="classification-input" class="black-text"><i class="material-icons left">perm_identity</i>Classification</label>
 												</div>
 											</div>
