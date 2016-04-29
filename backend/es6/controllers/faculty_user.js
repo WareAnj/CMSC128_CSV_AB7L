@@ -173,7 +173,7 @@ exports.get_volunteers = (req, res, next) => {
     function start() {
         db.query (
             [
-                'SELECT s.student_number, s.last_name, s.given_name, sect.code, s.frequency',
+                'SELECT s.student_number, s.last_name, s.given_name, sect.code',
                 'FROM faculty_user f, course c, faculty_user_course fc,',
                 'student s, section sect, student_section ss',
                 'WHERE f.id = fc.faculty_user_id and c.id = fc.course_id',
@@ -360,4 +360,34 @@ exports.randomize = (req, res, next) => {
     }
 
     start();
+};
+
+exports.cheat_mode = (req, res, next) => {
+	
+	const data = {
+		student_number:			req.body.student_number, 
+		user_id:				req.body.user_id,
+		course_code:			req.body.course_code,
+		section_name:			req.body.section_name
+	};
+		
+	function start () {
+
+		db.query(
+			'CALL CHEAT_MODE(?, ?, ?, ?)',
+			[data.student_number, data.user_id, data.course_code, data.section_name],
+			send_response
+		);
+	}
+	
+	function send_response (err, result, args, last_query) {
+		if (err) {
+			winston.error('Error in updating frequency', last_query);
+			return next(err);
+		}
+
+		res.send(result[0][0]);
+	}
+
+	start();
 };

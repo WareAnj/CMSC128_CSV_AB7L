@@ -56,7 +56,10 @@ module.exports = (router) => {
     router.post('/faculty_user/check_faculty_user_employee_id/',                            __.faculty_user.check_faculty_user_employee_id);
 
     // randomize n students from a course with the specified section
-    router.post('/faculty_user/randomize',                              $('Faculty User'),  __.faculty_user.randomize);
+    router.post('/faculty_user/randomize',	                            $('Faculty User'),  __.faculty_user.randomize);
+
+	//cheat mode update the frequency of a student
+    router.post('/faculty_user/cheat_mode',								$('Faculty User'),  __.faculty_user.cheat_mode);
 
     // authentication routes
     router.post('/authenticate/login',                                                      __.authenticate.login);

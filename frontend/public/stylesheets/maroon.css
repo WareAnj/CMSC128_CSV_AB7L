@@ -1,0 +1,157 @@
+@font-face{
+	font-family: logo;
+	src: url("../font/Sliced AB.ttf");
+}
+
+@font-face{
+	font-family: sample;
+	src: url("../font/TFPironv2.otf");
+}
+
+@font-face{
+	font-family: for_h4;
+	src: url("../font/cicle-shadow.ttf");
+}
+
+@font-face{
+	font-family: reasons;
+	src: url("../font/TFPironv2.otf");
+}
+
+@font-face{
+	font-family: nav-side;
+	src: url("../font/LemonMilk.otf");
+}
+
+@font-face{
+	font-family: header-text;
+	src: url("../font/Champagne & Limousines.ttf");
+}
+
+@font-face{
+  font-family: header-text-2;
+  src: url("../font/rolade.ttf");
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url("../font/materialize-icons.woff2") format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV BAR */
+
+.brand-logos{
+}
+
+.brand-logos:hover{
+	background-color: rgba(0,0,0,0);
+}
+
+#logo{
+	height: 80px;
+}
+
+nav {
+	background-color: #935347;
+	margin: 0px;
+}
+
+#nav-logo{
+	height: 75px;
+}
+
+.nav-right{
+	font-family: nav-side;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+ 	flex: 1 0 auto;
+	background-color: #c7ad88;
+	margin-bottom: -2%;
+}
+
+#logo-text{
+	font-family: sample;
+	font-size: 37px;
+}
+
+h4{
+	font-family: header-text;
+	font-weight: bold;
+	text-align: center;
+}
+
+h3{
+	text-align: center;
+}
+
+.logo-img-side{
+	margin-top: 10px;
+  margin-bottom: 100px;
+}
+
+#logo-img-side{
+	height: 150px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+footer.page-footer{
+	padding: 2px;
+	background-color: #64706c;
+}
+
+/* MODALS */
+
+#loginModal{
+	margin-top: 10%;
+	width: 400px;
+}
+
+#signupModal{
+	width: 60%;
+	overflow: visible;
+}
+
+.modal .input-field i{
+	color: #50514F;
+}
+
+.modal .col{
+	margin-top: 20px;
+	font-color: white;
+}
+
+.side-nav {
+	width: 250px !important;
+}
+
+#sidenav-logo{
+	padding-top: 10px;
+	height: 20%;
+}

@@ -3,7 +3,7 @@
 module.exports = {
     ENV: 'production',
     LOG_LEVEL: 'info',
-    APP_URL: 'http://reginyzr.herokuapp.com',
+    APP_URL: 'https://reginyzr.herokuapp.com',
 
     DB: {
         host: 'reginyzr',

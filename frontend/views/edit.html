@@ -313,13 +313,59 @@
 		
 	<!-- MODALS: LOGIN AND SIGN UP -->
 	<div id="add-modal" class="modal">
-	    <div class="modal-content">
-	    	<h4>ADD A STUDENT</h4>
-	    	<p>A bunch of forms</p>
-	    </div>
-	    <div class="modal-footer">
-	      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn btn-default">Add Student</a>
-	    </div>
+	    <div class="modal-content center">
+  <h4>Add a Student</h4>
+  <form ng-submit="AddFacultyUser()" ng-controller="RegisterCtrl" autocomplete="off">
+    <div class="row">
+      <div class="input-field">
+        <div class="col s12 m12 l4">
+          <input placeholder="First Name" type="text" id="fname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+">
+          <label for="fname-input">Name</label>
+        </div>
+        <div class="col s12 m12 l4">
+          <input placeholder="Middle Name" type="text" id="mname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+">
+        </div>
+        <div class="col s12 m12 l4">
+          <input placeholder="Last Name" type="text" id="lname-input"required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+">         
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6 m12 l6">
+        <div class="input-field">
+          <input placeholder="Student Number" type="text" id="stdnuminput">
+          <label for="nameinput">Student Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        </div>
+      </div>
+      <div class="col s6 m12 l6">
+        <div class="input-field">
+          <input placeholder="Degree" type="text">
+          <label>Degree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+            <div class="col s12 m6 l6">
+        <div class="input-field">
+          <input placeholder="College" type="text">
+          <label>College&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        </div>
+      </div>
+      <div class="col s12 m6 l6">
+        <div>
+    		  <select id="classificationinput" class="input-field" ng-model="newFacultyUser.classification" ng-change="check_clasfn()">
+      			 <option value="" disabled selected>Classification</option>
+      			 <option value="Freshman">Freshman</option>
+      			 <option value="Sophomore">Sophomore</option>
+      			 <option value="Junior">Junior</option>
+      			 <option value="Senior">Senior</option>
+    		  </select>    		  
+        </div>
+      </div>
+    </div>
+      <button id="submit-button" class="btn waves-effect waves-light" type="submit">Add Student</button>
+  </form>
+</div>
 	</div>
 
 	<div id="delete-modal" class="modal">
@@ -411,6 +457,9 @@
 	    	  $('ul.tabs').tabs();
  	     	  $('.modal-trigger').leanModal();
 	 	});
+	 	$(document).ready(function() {
+    	$('select').material_select();
+ 		});
 		</script>
 	</body>
 </html>
