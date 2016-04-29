@@ -12,7 +12,6 @@ $('.showsidenav').sideNav({
 
 $(document).ready(function(){
   $("#editButton").on('click', function(){
-    alert("asdassdasd");
     $("#editModal").openModal();
   });
 

@@ -3,6 +3,7 @@
   margin-bottom: 4%;
   background-color: white;
   padding-bottom: 2%;
+  overflow-x: hidden;
 }
 
 h3{
@@ -17,7 +18,7 @@ h4{
 	font-size: 50px;
 }
 
-img{
+#page-not-found img{
 	height: 300px;
 	display: block;
 	margin-left: auto;

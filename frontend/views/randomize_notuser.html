@@ -42,23 +42,26 @@
 			<div id="rand-not-user" class="container">
 			<div class="row">
 				<!-- COLUMN FOR FORM -->
+				<h4 class="center">Randomize</h4>
 				<div class="col s12 m5 l5">
 					<div class="container center">
 						<form onSubmit="return false;" id="form">
 							<div class="section">
 								<div class="row">
 									<div class="input-field col s12">
-										<h6>Enter names manually</h6>
+										<h5>Enter names manually</h5>
 									</div>
 								</div>
 								<div class="row">
-									<form class="col s12">										
-										<div class="row">
-											<div class="input-field col s12">
+									<form class="col s12">	
+											<div class="input-field
+											tooltipped"
+							    	 		data-position="right"
+							    	 		data-delay="50"
+							    	 		data-tooltip="Alphanumeric characters only!">
 												<input id="input" id="disabled" type="text" class="validate" pattern="^[A-Za-z][A-Za-z\,\.\'\-\s]*$">
 												<label for="input" data-error="Invalid" data-success="">Name</label>
 											</div>
-										</div>										
 									</form>
 								<div class="row">
 									<div class="input-field col s12">
@@ -70,12 +73,11 @@
 					  		
 
 					  		<div class="section">
-					  			<h6>Or input a file:</h6>
-
+					  			<h5 id="add-space">Or input a file <a href="#help-file" class="modal-trigger"><sup class="small red-text">[?]</sup></a></h5>
 					  			<!-- FILE READING -->
 							    <div class="file-field input-field">
-							      <div class="btn">
-							        <span>File</span>
+							      <div class="btn grey darken-2">
+							        <span><i class="material-icons">file_upload</i></span>
 							        <input type="file" name="file" id="file">
 							      </div>
 							      <div class="file-path-wrapper">
@@ -85,42 +87,47 @@
 							</div>
 
 							<div class="section">
-				  				<button id="clear" class="btn waves-effect waves-light">Clear All
+				  				<button id="clear" class="btn waves-effect waves-light grey darken-2">Clear All Names
 				  				</button>
 				  			</div>
 				  			<div class="section">
 				  				<a href="#modal1" class="modal-trigger">
-				  				<button id="rand" class="btn waves-effect waves-light ">
+				  				<button id="rand" class="btn waves-effect waves-light">
 				  					Randomize
 					  				<i class="material-icons right">assignment</i>
 					  			</button>
 					  			</a>
 					  		</div>
-				  			<!-- <button type="button">Randomize</button><br> -->
-
 						</form>
 					</div>
 				</div>
 
 				<!-- COLUMN FOR TABLE -->
-				<div class="col s12 m7 l7">
-					<div class="container">
+				<div id="table-names" class="col s12 m7 l7">
 						<p></p>
-						<table class="centered bordered responsive-table">
+						<table class="centered bordered highlight">
 							<thead>
 								<tr>
-									<th>Names</th>
-									<th>Delete</th>
+									<th><h5>Student List</h5></th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody id="table">
 							</tbody>
 						</table>
-					</div>
 				</div>
 
 			</div>
 			</div>
+
+			<div id="help-file" class="modal">
+				<div class="modal-content container">
+					<p>Make sure your .txt file only contains one name per line!</p>
+					<p>image sample image here</p>
+					<p class="center"><button id="closeModal" class="btn waves-effect waves-light">Got it</button></p>
+				</div>
+			</div>
+
 		</main>
 
 		<footer class="page-footer white-text">
@@ -141,7 +148,7 @@
 			<div class="modal-content center">
 				<div class="container" id="results-container">
 					<div class="container center" id="content">
-						<h4>NOT FINAL UI!!!</h4>
+						<h4>to edit</h4>
 						<!--<button> <img id="volunteerPic" src="img/logo-1.png"  class="circle"> </button> -->
 						<h4 id="lettersContainer"></h4>
 					</div>

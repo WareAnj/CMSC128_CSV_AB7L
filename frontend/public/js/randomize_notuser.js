@@ -31,7 +31,7 @@
 
 
 				if(arr.length == 0){
-					alert("The list is empty");
+					alert("The list is empty!");
 					return false;
 				}
 
@@ -117,7 +117,7 @@
 			function deleteRow(value){
 				var index = arr.indexOf(value);
 				arr.splice(index,1);
-				var spacesToUnderscore = value.replace(/ /g,"_");
+				var spacesToUnderscore = value.replace(/ /g,"_").replace(/\./g,"");
 				$("#"+ spacesToUnderscore).remove();
 				$("#"+ spacesToUnderscore).empty();
 
@@ -125,14 +125,15 @@
 			};
 
 
+
 			function addToTable(string, stringFormatted){
-				var delButton = $('<button>not_interested</button>').attr({class:"btn btn-floating waves-effects waves-light material-icons", value:string, onclick:'deleteRow(this.value)'});
-				var detTD = $('<td>').append(delButton);
+				var delButton = $('<button>delete</button>').attr({class:" trash btn btn-floating waves-effects waves-light material-icons red lighten-1", value:string, onclick:'deleteRow(this.value)'});
+				var detTD = $('<td class="shrink">').append(delButton);
 
 				var spanName = $('<span>').attr({class:"tooltipped", "data-position":"bottom", "data-delay":"50", "data-tooltip":string}).append(stringFormatted);
-				var nameTD = $('<td>').append(spanName);
+				var nameTD = $('<td class="expand">').append(spanName);
 
-				var spacesToUnderscore = string.replace(/ /g,"_");
+				var spacesToUnderscore = string.replace(/ /g,"_").replace(/\./g,"");
 				var new_field = $('<tr>').attr({class:'fields', id:spacesToUnderscore}).append(nameTD).append(detTD);		  
 				
 				$("#table").append(new_field);
@@ -163,7 +164,7 @@
 					//checking file type
 					var ext = $('#file').val().split('.').pop().toLowerCase();
 					if($.inArray(ext, ['txt']) == -1) {
-					    alert('Only .txt files are allowed');
+					    alert('Only .txt files are allowed!');
 					    return;
 					}
 
@@ -177,27 +178,27 @@
 							var string = lines[line].trim();							
 
 							if(lines.length > 10){
-								alert("Input file have more than 10 lines");
+								alert("Input file has more than 10 lines!");
 								return;
 							}
 
 							if(!string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){
-								alert("Input file contains invalid characters");
+								alert("Input file contains invalid characters!");
 								return;
 							}
 
 							if(arr.length + lines.length > 10){
-								alert("Input file's number of names will exceed the limit");
+								alert("Number of names will exceed the limit!");
 								return;
 							}
 
 							if(inArray(string, checkerArr)){
-								alert("Input file contains duplicates");
+								alert("Input file has duplicates!");
 								return;
 							}
 
 							if(inArray(string, arr)){
-								alert("Input file contains duplicates with the names in the current list");
+								alert("Input file has duplicates with the names in the list!");
 								return;
 							}
 
@@ -222,4 +223,6 @@
 				}
 			};			
 			
-		  
+		  $("#closeModal").click(function(){
+		  	  $('#help-file').closeModal();
+		  });
