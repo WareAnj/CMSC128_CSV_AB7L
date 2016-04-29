@@ -16,6 +16,11 @@
     var omname;
     var olname;
     var uname;
+    var gnchanged = false;
+    var mnchanged = false;
+    var lnchanged = false;
+    var pwchanged = false;
+    var clchanged = false;
     
     $scope.faculty_user_classes = [];
     $scope.faculty_user_info = [];
@@ -25,20 +30,13 @@
       CourseService.Get_User()
         .then(function(data){
           $scope.faculty_user_info = [];
-          $scope.faculty_user_info.push({
-            'given_name':data[0].given_name,
-            'middle_name':data[0].middle_name,
-            'last_name':data[0].last_name,
-            'classification':data[0].classification,
-            'employee_id':data[0].employee_id,
-            'username':data[0].username
-          });
-          user_id = data[0].id;
-          oclass = data[0].classification;
-          ogname = data[0].given_name;
-          omname = data[0].middle_name;
-          olname = data[0].last_name;
-          uname = data[0].username;
+          $scope.faculty_user_info.push(data);
+          user_id = data.id;
+          oclass = data.classification;
+          ogname = data.given_name;
+          omname = data.middle_name;
+          olname = data.last_name;
+          uname = data.username;
           $scope.selectd = {
           	repeatSelect: null,
           	options: [
@@ -66,19 +64,19 @@
     }
 	
 	$scope.Update_Details = function() {
-		var ngname = document.querySelector('#fname-input').value;
-		if(ogname!=ngname){
+		if(gnchanged){
+			var ngname = document.querySelector('#fname-input').value;
 			$http.post(
 				'faculty_user/update_given_name/',
 				{given_name: ngname, username: uname}
-				).then(
-				function(response){
-					if(response.data){
-						//
-					}
-				}
 			);
+			ogname = ngname;
 		}
+	}
+	
+	$scope.check_gname_changes = function() {
+		var ngname = document.querySelector('#fname-input').value;
+		
 	}
 	
 
