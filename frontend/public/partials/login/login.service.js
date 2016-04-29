@@ -7,7 +7,6 @@
 
 	AuthenticationService.$inject = ['$http', '$q', '$location', '$window'];
 	function AuthenticationService($http, $q, $location, $window){
-		var url = "http://localhost:8000";
 		var service = {};
 		service.Login = Login;
 		return service;
@@ -16,14 +15,14 @@
 
 				var deferred = $q.defer();
 
-				$http.post(url + "/authenticate/login", facultyUser)
+				$http.post("authenticate/login", facultyUser)
 				.success(function(data){
 					$window.location.href = '/home';
 					//$location.path('/home');
 					deferred.resolve(data);
 				})
 				.error(function(data) {
-					$http.post(url + "/admin/authenticate_login", facultyUser)
+					$http.post("admin/authenticate_login", facultyUser)
 					.success(function(data){
 						$window.location.href = '/admin';
 						deferred.resolve(data);
