@@ -15,14 +15,7 @@
 
 		AuthenticationService.Login($scope.facultyUser)
 			.then(function(data){
-				if($scope.facultyUser.type == "user"){
-					$window.location.href = '/home';
-					$scope.faculty_user_data.push(data);	
-				}
-				if($scope.facultyUser.type == "admin"){
-					$window.location.href = '/admin';
-					$scope.faculty_user_data.push(data);
-				}				
+				$scope.faculty_user_data.push(data);				
 			});
 		}
   }
