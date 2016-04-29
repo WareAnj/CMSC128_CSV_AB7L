@@ -11,7 +11,7 @@
 		var service = {};
 		service.Get_User = Get_User;
 		service.Get_Course = Get_Course;
-    service.Delete_Class = Delete_Class;
+        service.Delete_Class = Delete_Class;
 		service.Add_Class = Add_Class;
 		service.Edit_Class = Edit_Class;
 		service.Get_Lecture_Class = Get_Lecture_Class;
