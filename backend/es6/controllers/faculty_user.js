@@ -173,7 +173,7 @@ exports.get_volunteers = (req, res, next) => {
     function start() {
         db.query (
             [
-                'SELECT s.student_number, s.last_name, s.given_name, sect.code',
+                'SELECT s.student_number, s.last_name, s.given_name, sect.code, s.frequency',
                 'FROM faculty_user f, course c, faculty_user_course fc,',
                 'student s, section sect, student_section ss',
                 'WHERE f.id = fc.faculty_user_id and c.id = fc.course_id',
