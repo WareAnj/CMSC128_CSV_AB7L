@@ -80,6 +80,26 @@ exports.update_mname = (req, res, next) => {
 	}
 }
 
+exports.update_lname = (req, res, next) => {
+	const last_name = req.body.last_name;
+	const uname = req.body.username;
+	db.query(
+		[
+			'UPDATE faculty_user SET last_name=?',
+			'WHERE username=?;'
+		].join(' '),[last_name, uname],responder
+	);
+	
+	function responder(err, result){
+		if(err){
+			winston.error('Error in updating Faculty User Middle Name'+err);
+			res.send(false);
+            return next(err);
+        }
+        res.send(true);
+	}
+}
+
 exports.check_faculty_user_username = (req, res, next) => {
   const username = req.body.username;
 
