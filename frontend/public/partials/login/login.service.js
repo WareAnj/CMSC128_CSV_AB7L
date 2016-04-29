@@ -3,20 +3,19 @@
 (function(){
 	angular
 		.module("app")
-		.factory("AuthenticationService", AuthenticationService);	
+		.factory("AuthenticationService", AuthenticationService);
 
 	AuthenticationService.$inject = ['$http', '$q', '$location', '$window'];
 	function AuthenticationService($http, $q, $location, $window){
 		var url = "http://localhost:8000";
-
-		var service = {}; 
+		var service = {};
 		service.Login = Login;
 		return service;
 
 		function Login(facultyUser) {
-		
+
 				var deferred = $q.defer();
-				
+
 				$http.post(url + "/authenticate/login", facultyUser)
 				.success(function(data){
 					$window.location.href = '/home';
@@ -34,8 +33,8 @@
 						alert(data.context);
 					});
 				});
-				
+
 				return deferred.promise;
-		} 
+		}
 	}
 })();
