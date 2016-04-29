@@ -45,7 +45,19 @@
 			return deferred.promise;
 		}
 
+		function Get_Lab_Section(course_code){
+			var deferred = $q.defer();
 
+			$http.get("course/get_lab_section?course_code=" + course_code)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Get Classes");
+			});
+
+			return deferred.promise;
+		}
 
     function Get_Classes(user_id) {
 			var deferred = $q.defer();
