@@ -112,6 +112,33 @@ var app =	angular
 			.error(function(data) {
 				alert(data.context);
 			});
+
+			console.log(username);
+
+       		/*var td = $(username).parent();
+       		var tr = td.parent();
+        
+       		tr.css("background-color","#FF3700");
+       		tr.fadeOut(400, function(){
+           		tr.remove();
+        	}); */
+
+        	var index = -1;		
+			var comArr = eval( $scope.userList );
+			for( var i = 0; i < comArr.length; i++ ) {
+				if( comArr[i].username === username ) {
+					index = i;
+					break;
+				}
+			}
+
+			if( index === -1 ) {
+				alert( "Something gone wrong" );
+				return;
+			}
+
+			$scope.userList.splice( index, 1 );
+
 		};
 
 
