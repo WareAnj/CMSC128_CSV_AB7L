@@ -87,28 +87,8 @@ exports.check_faculty_user_employee_id = (req, res, next) => {
 };
 
 exports.get_logged_in_faculty_user_id = (req, res, next) => {
-
-  const data = {
-      user_id:               req.query.user_id
-  };
-
-  db.query(
-    [
-      'SELECT * FROM faculty_user',
-      'WHERE id = ?'
-    ].join(' '),
-    [data.user_id],
-    send
-  );
-
-  function send (err, result, args, last_query) {
-      if (err) {
-          winston.error('Error in creating a faculty user', last_query);
-          return next(err);
-      }
-
-      res.send(result);
-  }
+  console.log(req.session.user);
+    res.send(req.session.user);
 };
 
 exports.post_volunteer = (req, res, next) => {
@@ -352,14 +332,14 @@ exports.randomize = (req, res, next) => {
 };
 
 exports.cheat_mode = (req, res, next) => {
-	
+
 	const data = {
-		student_number:			req.body.student_number, 
+		student_number:			req.body.student_number,
 		user_id:				req.body.user_id,
 		course_code:			req.body.course_code,
 		section_name:			req.body.section_name
 	};
-		
+
 	function start () {
 
 		db.query(
@@ -368,7 +348,7 @@ exports.cheat_mode = (req, res, next) => {
 			send_response
 		);
 	}
-	
+
 	function send_response (err, result, args, last_query) {
 		if (err) {
 			winston.error('Error in updating frequency', last_query);

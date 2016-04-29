@@ -9,18 +9,32 @@
 
 	function CourseService($http, $q) {
 		var service = {};
+		service.Get_User = Get_User;
 		service.Get_Course = Get_Course;
-		service.Get_User_Id = Get_User_Id;
     service.Delete_Class = Delete_Class;
 		service.Add_Class = Add_Class;
 		service.Edit_Class = Edit_Class;
 		service.Get_Lecture_Class = Get_Lecture_Class;
 		return service;
 
-		function Get_Course(user_id) {
+		function Get_User() {
 			var deferred = $q.defer();
 
-			$http.get("course/get_course?user_id=" + user_id)
+			$http.get("faculty_user/get_user")
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Get User");
+			});
+
+			return deferred.promise;
+		}
+
+		function Get_Course() {
+			var deferred = $q.defer();
+
+			$http.get("course/get_course")
 			.success(function(data) {
 				deferred.resolve(data);
 			})
@@ -45,20 +59,6 @@
 			return deferred.promise;
 		}
 
-		function Get_User_Id(user_id) {
-			var deferred = $q.defer();
-
-			$http.get("faculty_user/get_user_id?user_id=" + user_id)
-			.success(function(data) {
-				deferred.resolve(data);
-			})
-			.error(function(data) {
-				deferred.reject("Error: Cannot Get User ID");
-			});
-
-			return deferred.promise;
-		}
-
 		function Get_Lab_Section(course_code){
 			var deferred = $q.defer();
 
@@ -73,10 +73,10 @@
 			return deferred.promise;
 		}
 
-    function Delete_Class(user_id, id) {
+    function Delete_Class(id) {
       var deferred = $q.defer();
 
-      $http.delete("course/delete_course?user_id=" + user_id + "&id=" + id)
+      $http.delete("course/delete_course?id=" + id)
       .success(function(data) {
         deferred.resolve(data);
       })
@@ -87,10 +87,10 @@
       return deferred.promise;
     }
 
-		function Add_Class(user_id, newCourse) {
+		function Add_Class(newCourse) {
 			var deferred = $q.defer();
 
-			$http.post("course/post_course?user_id=" + user_id, newCourse)
+			$http.post("course/post_course", newCourse)
 			.success(function(data) {
 				deferred.resolve(data);
 			})
@@ -101,10 +101,10 @@
 			return deferred.promise;
 		}
 
-		function Edit_Class(user_id, id, course) {
+		function Edit_Class(id, course) {
 			var deferred = $q.defer();
 
-			$http.put("course/put_course?user_id=" + user_id + "&id=" + id, course)
+			$http.put("course/put_course?id=" + id, course)
 			.success(function(data) {
 				deferred.resolve(data);
 			})
