@@ -5,13 +5,18 @@
     .module('app')
     .controller('CourseCtrl', CourseCtrl);
 
-  CourseCtrl.$inject = ["$scope", "$location", "CourseService"];
+  CourseCtrl.$inject = ["$scope", "$location", "$http", "CourseService"];
 
-  function CourseCtrl($scope, $location, CourseService){
+  function CourseCtrl($scope, $location, $http, CourseService){
     var user_id;
     var toedit;
     var course_id;
     var oclass;
+    var ogname;
+    var omname;
+    var olname;
+    var uname;
+    
     $scope.faculty_user_classes = [];
     $scope.faculty_user_info = [];
     $scope.student_info = [];
@@ -31,9 +36,13 @@
           });
           user_id = data[0].id;
           oclass = data[0].classification;
+          ogname = data[0].given_name;
+          omname = data[0].middle_name;
+          olname = data[0].last_name;
+          uname = data[0].username;
           $scope.selectd = {
           	repeatSelect: null,
-          	soptions: [
+          	options: [
           		{id: "Instructor I", name: "Instructor I"},
           		{id: "Instructor II", name: "Instructor II"},
           		{id: "Instructor III", name: "Instructor III"},
@@ -56,7 +65,23 @@
           };
         });
     }
-
+	
+	$scope.Update_Details = function() {
+		var ngname = document.querySelector('#fname-input').value;
+		if(ogname!=ngname){
+			$http.post(
+				'faculty_user/update_given_name/',
+				{given_name: ngname, username: uname}
+				).then(
+				function(response){
+					if(response.data){
+						//
+					}
+				}
+			);
+		}
+	}
+	
     $scope.Get_Classes = function(){
       CourseService.Get_Classes(user_id)
         .then(function(data){

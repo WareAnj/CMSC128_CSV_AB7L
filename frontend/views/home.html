@@ -179,9 +179,9 @@
 							<div class="col s12">
 								<div class="card-panel custom lighten-1">
 									<h5 style="float:left; width:80%;"><i class="material-icons left">mode_edit</i>Edit Information</h5>
-									<button class="btn waves-effect waves-teal" type="submit"><i class="material-icons right">done</i> Save</button>
-									<form action="" method="UPDATE">
+									<form autocomplete="off">
 									<br>
+									<button class="btn waves-effect waves-teal" ng-click="Update_Details()"><i class="material-icons right">done</i>Save</button>
 									<div ng-repeat="info in faculty_user_info">
 										<div class="row">
 											<div class="input-field">
@@ -213,9 +213,9 @@
 											</div>
 											<div class="col s12 m12 l4">
 												<div class="input-field">
-													<select id="classification-input" class="input-field" ng-model="selectd.repeatSelect">
+													<select id="classification-input" ng-model="selectd.repeatSelect">
 														<option value="{{info.classification}}" selected="selected">{{info.classification}}</option>
-														<option ng-repeat="option in selectd.soptions" value="{{option.id}}">{{option.name}}</option>
+														<option ng-repeat="option in selectd.options" value="{{option.id}}">{{option.name}}</option>
 													</select>
 													<label for="classification-input" class="black-text"><i class="material-icons left">perm_identity</i>Classification</label>
 												</div>

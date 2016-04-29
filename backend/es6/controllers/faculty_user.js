@@ -40,6 +40,25 @@ exports.register = (req, res, next) => {
     start();
 };
 
+exports.update_gname = (req, res, next) => {
+	const given_name = req.body.given_name;
+	const uname = req.body.username;
+	db.query(
+		[
+			'UPDATE faculty_user SET given_name=?',
+			'WHERE username=?;'
+		].join(' '),[given_name, uname],responder);
+	
+	function responder(err, result){
+		if(err){
+			winston.error('Error in updating Faculty User Given Name', last_query);
+			res.send(false);
+            return next(err);
+        }
+        res.send(true);
+	}
+}
+
 exports.check_faculty_user_username = (req, res, next) => {
   const username = req.body.username;
 
