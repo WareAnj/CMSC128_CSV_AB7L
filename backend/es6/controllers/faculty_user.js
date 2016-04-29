@@ -197,7 +197,45 @@ exports.get_volunteers = (req, res, next) => {
 };
 
 exports.update_volunteer = (req, res, next) => {
+    const data = {
+        user_id:                req.body.user_id,                   //*
+        course_code:            req.body.course_code,//CMSC 128     //*
+        section_name:           req.body.section_name,              //*
+        old_section_code:       req.body.old_section_code,//Used to get old section_id
+        section_code:           req.body.section_code,//Used to replace old value of section_id on student_section
+        old_student_number:     req.body.old_student_number,//Needed this because old_SN will be used to get student_id     //*
+        student_number:         req.body.student_number,//This var will be used to replace old value of SN
+        given_name:             req.body.given_name,
+        middle_name:            req.body.middle_name,
+        last_name:              req.body.last_name,
+        degree:                 req.body.degree,
+        classification:         req.body.classification,
+        college:                req.body.college
+    };
 
+    function start () {
+        db.query (
+            'CALL UPDATE_VOLUNTEER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [
+                data.user_id, data.course_code, data.section_name,
+                data.old_section_code, data.section_code, data.old_student_number,
+                data.student_number, data.last_name, data.given_name, 
+                data.middle_name, data.classification,
+                data.college, data.degree
+            ],
+            send_response
+        );
+    }
+
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in Creating Volunteer', last_query);
+            return next(err);
+        }
+        res.send(result[0][0]);
+    }
+
+    start();
 };
 
 exports.delete_volunteer = (req, res, next) => {

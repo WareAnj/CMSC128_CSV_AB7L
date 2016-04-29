@@ -139,12 +139,32 @@ exports.get_logout_logs_by_user = (req, res, next) => {
 };
 
 
+// Get all approved users
+exports.get_approved_users = (req, res, next) => {
+    let response
+
+    function start() {
+        db.query('CALL GET_PENDING_USERS();', send_response);
+    }
+
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in getting approved users', last_query);
+            return next(err);
+        }
+
+        res.send(result);
+    }
+
+    start();
+}
+
 // Get all pending user
 exports.get_pending_users = (req, res, next) => {
     let response;
 
     function start() {
-        db.query('CALL GET_PENDING_USERS();', send_response);
+        db.query('CALL GET_APPROVED_USERS();', send_response);
     }
 
     function send_response (err, result, args, last_query) {
