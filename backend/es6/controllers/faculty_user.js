@@ -299,7 +299,7 @@ exports.randomize = (req, res, next) => {
             db.query (
                 [
                     'CREATE VIEW temporary_view AS',
-                    'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name',
+                    'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name, stud.frequency',
                     'FROM faculty_user u, course c, faculty_user_course uc, student stud, section sect, student_section ss',
                     'where u.id = uc.faculty_user_id and c.id = uc.course_id and sect.course_id = c.id',
                     'and sect.id = ss.section_id and stud.id = ss.student_id',
@@ -313,7 +313,7 @@ exports.randomize = (req, res, next) => {
             db.query (
                 [
                     'CREATE VIEW temporary_view AS',
-                    'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name',
+                    'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name, stud.frequency',
                     'FROM faculty_user u, course c, faculty_user_course uc, student stud, section sect, student_section ss',
                     'where u.id = uc.faculty_user_id and c.id = uc.course_id and sect.course_id = c.id',
                     'and sect.id = ss.section_id and stud.id = ss.student_id',
@@ -349,6 +349,15 @@ exports.randomize = (req, res, next) => {
         if (err) {
             winston.error('Error in randomizing students', last_query);
             return next(err);
+        }
+
+        for (var i = 0; i < result.length; i++) {
+            var id = result[i].id;
+            var frequency = result[i].frequency;
+            db.query (
+                'UPDATE student SET frequency = ? WHERE id = ?',
+                [parseInt(frequency) + 1, id]
+            )
         }
 
         res.send(result);
