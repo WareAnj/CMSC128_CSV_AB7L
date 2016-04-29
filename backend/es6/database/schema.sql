@@ -23,6 +23,7 @@ CREATE TABLE faculty_user(
     classification VARCHAR(32) NOT NULL,
     given_name VARCHAR(64) NOT NULL,
     middle_name VARCHAR(32) NOT NULL,
+    design_setting VARCHAR(32) NOT NULL DEFAULT 'default.css',
     last_name VARCHAR(32) NOT NULL,
     is_approved BOOLEAN NOT NULL DEFAULT FALSE,
     date_approved TIMESTAMP NULL,
