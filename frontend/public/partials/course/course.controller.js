@@ -133,7 +133,6 @@
 
     $scope.Get_Lecture_Class = function(){
       course_id = localStorage.getItem("Course_id");
-      alert(course_id);
       CourseService.Get_Lecture_Class(course_id)
         .then(function(data){
           $scope.student_info = [];
