@@ -73,8 +73,6 @@ exports.login = (req, res, next) => {
 
         req.session.user = user;
 
-        result[0][0].sessionID = req.session.id;
-
         res.send(result[0][0]);
 
         let user_id = result[0][0].id;
