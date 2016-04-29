@@ -37,6 +37,7 @@
           $scope.faculty_user_classes = [];
           for(var i = 0; i < data.length; i++){
             $scope.faculty_user_classes.push({
+              id:data[i].id,
               'code':data[i].code,
               'name':data[i].name
             });
@@ -46,6 +47,13 @@
 
     $scope.Get_Course_Id = function(c_id){
       localStorage.setItem("Course_id", c_id);
+    }
+
+    $scope.Get_Lab_Section = function(course_code){
+      CourseService.Get_Lab_Section(course_code)
+        .then(function(data){
+          
+        });
     }
 
     $scope.Add_Class = function(){

@@ -97,17 +97,9 @@
 											</a>
 											<h5>{{class.code}} {{class.name}}</h5>
 								    </div>
-								    <ul class="collapsible popout" data-collapsible="expandable">
-								      <li>
+								    <ul class="collapsible popout" data-collapsible="expandable" data-ng-init="Get_Lab_Section(class.code)">
+								      <li ng-repeat="">
 								        <div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-1L</div>
-								        <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-								      </li>
-								      <li>
-								        <div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-2L</div>
-								        <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-								      </li>
-								      <li>
-								        <div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-3L</div>
 								        <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
 								      </li>
 								    </ul>

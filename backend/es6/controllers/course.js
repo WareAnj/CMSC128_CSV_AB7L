@@ -83,7 +83,7 @@ exports.get_course = (req, res, next) => {
 
   function start () {
       db.query([
-                  'SELECT distinct c.code, name from course c, faculty_user_course fc, section s',
+                  'SELECT distinct c.id, c.code, name from course c, faculty_user_course fc, section s',
                   'WHERE fc.faculty_user_id = ? and c.id = fc.course_id and s.course_id = c.id;'
                ].join(' '),
                [data.user_id],
