@@ -78,6 +78,15 @@ BEGIN
 END $$
 DELIMITER ;
 
+-- GET_APPROVED_USERS procedure
+DROP PROCEDURE IF EXISTS GET_APPROVED_USERS;
+DELIMITER $$
+CREATE PROCEDURE GET_APPROVED_USERS()
+BEGIN
+	SELECT * FROM faculty_user WHERE is_approved = 1;
+END $$
+DELIMITER ;
+
 
 -- APPROVE_USER procedure
 DROP PROCEDURE IF EXISTS APPROVE_USER;
@@ -255,6 +264,99 @@ DELIMITER $$
 CREATE PROCEDURE DELETE_VOLUNTEER (_id INT, _course_code VARCHAR(32), _section_name VARCHAR(8), _section_code VARCHAR(4), _student_number VARCHAR(16))
 BEGIN
 	 SELECT DELETE_VOLUNTEER(_id, _course_code, _section_name, _section_code, _student_number) AS message;
+
+END $$
+DELIMITER ;
+
+-- UPDATE_VOLUNTEER function
+DROP FUNCTION IF EXISTS UPDATE_VOLUNTEER;
+DELIMITER $$
+CREATE FUNCTION UPDATE_VOLUNTEER (_id INT, _course_code VARCHAR(32), _section_name VARCHAR(8), _old_section_code VARCHAR(4), _section_code VARCHAR(4), _old_student_number VARCHAR(16), _student_number VARCHAR(16), _last_name VARCHAR(32), _given_name VARCHAR(64), _middle_name VARCHAR(32), _classification VARCHAR(32), _college VARCHAR(8), _degree VARCHAR(8)) RETURNS VARCHAR(64)
+-- CREATE FUNCTION UPDATE_VOLUNTEER (_id INT, _course_code VARCHAR(32), _section_name VARCHAR(8), _section_code VARCHAR(4), _student_number VARCHAR(16), _last_name VARCHAR(32), _given_name VARCHAR(64), _middle_name VARCHAR(32), _classification VARCHAR(32), _college VARCHAR(8), _degree VARCHAR(8)) RETURNS INT
+BEGIN
+	DECLARE _student_id INT;
+	DECLARE _old_section_id INT;
+	DECLARE _section_id INT;
+	DECLARE _return_message VARCHAR(64) DEFAULT '';
+
+	SELECT s.id INTO _student_id
+	FROM student s, section sect, student_section ss, faculty_user f, course c, faculty_user_course fc
+	WHERE s.id = ss.student_id AND ss.section_id = sect.id AND sect.course_id = c.id AND f.id = fc.faculty_user_id
+	AND c.id = fc.course_id AND f.id = _id AND c.code = _course_code AND sect.name = _section_name AND s.student_number = _old_student_number;
+
+	SELECT sect.id INTO _section_id FROM section sect, course c
+	WHERE c.id = sect.course_id AND sect.name = _section_name AND sect.code = _section_code
+	AND c.code = _course_code; 
+
+	SELECT sect.id INTO _old_section_id FROM section sect, course c
+	WHERE c.id = sect.course_id AND sect.name = _section_name AND sect.code = _old_section_code
+	AND c.code = _course_code;
+
+	IF (_student_number IS NOT NULL AND _student_number != '') THEN
+		UPDATE student SET 
+		student_number = _student_number
+		WHERE id = _student_id;
+	END IF;
+
+	IF (_given_name IS NOT NULL AND _given_name != '') THEN
+		UPDATE student SET
+		given_name = _given_name
+		WHERE id = _student_id;
+	END IF;
+
+	IF (_middle_name IS NOT NULL AND _middle_name != '') THEN
+		UPDATE student SET 
+		middle_name = _middle_name 
+		WHERE id = _student_id;
+	END IF;
+
+	IF (_last_name IS NOT NULL AND _last_name != '') THEN
+		UPDATE student SET 
+		last_name = _last_name 
+		WHERE id = _student_id;
+	END IF;
+
+	IF (_degree IS NOT NULL AND _degree != '') THEN
+		UPDATE student SET 
+		degree = _degree
+		WHERE id = _student_id;
+	END IF;
+
+	IF (_classification IS NOT NULL AND _classification != '') THEN
+		UPDATE student SET 
+		classification = _classification
+		WHERE id = _student_id;
+	END IF;
+
+	IF (_college IS NOT NULL AND _college != '') THEN
+		UPDATE student SET 
+		college = _college
+		WHERE id = _student_id;
+	END IF;
+	
+	IF (_section_id IS NOT NULL AND _section_id != '') THEN
+		UPDATE student_section SET
+		section_id = _section_id
+		WHERE section_id = _old_section_id AND student_id = _student_id;   
+	END IF;
+
+	IF (_student_id IS NOT NULL) THEN
+		SET _return_message := 'Student updated';
+	ELSE
+		SET _return_message := 'Student does not exist';
+	END IF;
+
+	RETURN _return_message;
+
+END $$
+DELIMITER ;
+
+-- UPDATE_VOLUNTEER procedure
+DROP PROCEDURE IF EXISTS UPDATE_VOLUNTEER;
+DELIMITER $$
+CREATE PROCEDURE UPDATE_VOLUNTEER (_id INT, _course_code VARCHAR(32), _section_name VARCHAR(8), _old_section_code VARCHAR(4), _section_code VARCHAR(4), _old_student_number VARCHAR(16), _student_number VARCHAR(16), _last_name VARCHAR(32), _given_name VARCHAR(64), _middle_name VARCHAR(32), _classification VARCHAR(32), _college VARCHAR(8), _degree VARCHAR(8))
+BEGIN
+	 SELECT UPDATE_VOLUNTEER(_id, _course_code, _section_name, _old_section_code, _section_code, _old_student_number, _student_number, _last_name, _given_name, _middle_name, _classification, _college, _degree) AS message;
 
 END $$
 DELIMITER ;

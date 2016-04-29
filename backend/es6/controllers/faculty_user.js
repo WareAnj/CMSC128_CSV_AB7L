@@ -173,7 +173,7 @@ exports.get_volunteers = (req, res, next) => {
     function start() {
         db.query (
             [
-                'SELECT s.student_number, s.last_name, s.given_name, sect.code',
+                'SELECT s.student_number, s.last_name, s.given_name, sect.code, s.frequency',
                 'FROM faculty_user f, course c, faculty_user_course fc,',
                 'student s, section sect, student_section ss',
                 'WHERE f.id = fc.faculty_user_id and c.id = fc.course_id',
@@ -197,7 +197,45 @@ exports.get_volunteers = (req, res, next) => {
 };
 
 exports.update_volunteer = (req, res, next) => {
+    const data = {
+        user_id:                req.body.user_id,                   //*
+        course_code:            req.body.course_code,//CMSC 128     //*
+        section_name:           req.body.section_name,              //*
+        old_section_code:       req.body.old_section_code,//Used to get old section_id
+        section_code:           req.body.section_code,//Used to replace old value of section_id on student_section
+        old_student_number:     req.body.old_student_number,//Needed this because old_SN will be used to get student_id     //*
+        student_number:         req.body.student_number,//This var will be used to replace old value of SN
+        given_name:             req.body.given_name,
+        middle_name:            req.body.middle_name,
+        last_name:              req.body.last_name,
+        degree:                 req.body.degree,
+        classification:         req.body.classification,
+        college:                req.body.college
+    };
 
+    function start () {
+        db.query (
+            'CALL UPDATE_VOLUNTEER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [
+                data.user_id, data.course_code, data.section_name,
+                data.old_section_code, data.section_code, data.old_student_number,
+                data.student_number, data.last_name, data.given_name, 
+                data.middle_name, data.classification,
+                data.college, data.degree
+            ],
+            send_response
+        );
+    }
+
+    function send_response (err, result, args, last_query) {
+        if (err) {
+            winston.error('Error in Creating Volunteer', last_query);
+            return next(err);
+        }
+        res.send(result[0][0]);
+    }
+
+    start();
 };
 
 exports.delete_volunteer = (req, res, next) => {
@@ -242,10 +280,6 @@ exports.randomize = (req, res, next) => {
     };
 
     function start () {
-        // console.log("user_id: " + data.user_id);
-        // console.log("course_code: " + data.course_code);
-        // console.log("section_name: " + data.section_name);
-        // console.log("limit: " + data.limit);
         db.query (
             'DROP VIEW IF EXISTS temporary_view;',
             create_view
@@ -261,7 +295,7 @@ exports.randomize = (req, res, next) => {
             db.query (
                 [
                     'CREATE VIEW temporary_view AS',
-                    'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name',
+                    'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name, stud.frequency',
                     'FROM faculty_user u, course c, faculty_user_course uc, student stud, section sect, student_section ss',
                     'where u.id = uc.faculty_user_id and c.id = uc.course_id and sect.course_id = c.id',
                     'and sect.id = ss.section_id and stud.id = ss.student_id',
@@ -275,7 +309,7 @@ exports.randomize = (req, res, next) => {
             db.query (
                 [
                     'CREATE VIEW temporary_view AS',
-                    'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name',
+                    'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name, stud.frequency',
                     'FROM faculty_user u, course c, faculty_user_course uc, student stud, section sect, student_section ss',
                     'where u.id = uc.faculty_user_id and c.id = uc.course_id and sect.course_id = c.id',
                     'and sect.id = ss.section_id and stud.id = ss.student_id',
@@ -294,13 +328,13 @@ exports.randomize = (req, res, next) => {
         }
         if(typeof data.limit === 'undefined') {
             db.query(
-                    'SELECT * FROM temporary_view ORDER BY rand() LIMIT 1;',
+                    'SELECT * FROM temporary_view WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT 1;',
                     [parseInt(data.limit)],
                     send_response
                 );
         } else {
             db.query(
-                    'SELECT * FROM temporary_view ORDER BY rand() LIMIT ?;',
+                    'SELECT * FROM temporary_view WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT ?;',
                     [parseInt(data.limit)],
                     send_response
                 );
@@ -311,6 +345,15 @@ exports.randomize = (req, res, next) => {
         if (err) {
             winston.error('Error in randomizing students', last_query);
             return next(err);
+        }
+
+        for (var i = 0; i < result.length; i++) {
+            var id = result[i].id;
+            var frequency = result[i].frequency;
+            db.query (
+                'UPDATE student SET frequency = ? WHERE id = ?',
+                [parseInt(frequency) + 1, id]
+            )
         }
 
         res.send(result);

@@ -8,19 +8,33 @@
 	CourseService.$inject = ["$http", "$q"];
 
 	function CourseService($http, $q) {
-		var url = "http://localhost:8000";
 		var service = {};
 		service.Get_User_Id = Get_User_Id;
-    service.Get_Classes = Get_Classes;
-    service.Delete_Class = Delete_Class;
+        service.Get_Classes = Get_Classes;
+        service.Delete_Class = Delete_Class;
 		service.Add_Class = Add_Class;
 		service.Edit_Class = Edit_Class;
+		service.Get_Lecture_Class = Get_Lecture_Class;
 		return service;
+
+		function Get_Lecture_Class(course_id) {
+			var deferred = $q.defer();
+
+			$http.get("class/get_lecture_class?course_id=" + course_id)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Get Lecture Class");
+			});
+
+			return deferred.promise;
+		}
 
 		function Get_User_Id() {
 			var deferred = $q.defer();
 
-			$http.get(url + "/faculty_user/get_user_id")
+			$http.get("faculty_user/get_user_id")
 			.success(function(data) {
 				deferred.resolve(data);
 			})
@@ -36,7 +50,7 @@
     function Get_Classes(user_id) {
 			var deferred = $q.defer();
 
-			$http.get(url + "/course/get_course?user_id=" + user_id)
+			$http.get("course/get_course?user_id=" + user_id)
 			.success(function(data) {
 				deferred.resolve(data);
 			})
@@ -50,7 +64,7 @@
     function Delete_Class(user_id, id) {
       var deferred = $q.defer();
 
-      $http.delete(url + "/course/delete_course?user_id=" + user_id + "&id=" + id)
+      $http.delete("course/delete_course?user_id=" + user_id + "&id=" + id)
       .success(function(data) {
         deferred.resolve(data);
       })
@@ -64,7 +78,7 @@
 		function Add_Class(user_id, newCourse) {
 			var deferred = $q.defer();
 
-			$http.post(url + "/course/post_course?user_id=" + user_id, newCourse)
+			$http.post("course/post_course?user_id=" + user_id, newCourse)
 			.success(function(data) {
 				deferred.resolve(data);
 			})
@@ -78,7 +92,7 @@
 		function Edit_Class(user_id, id, course) {
 			var deferred = $q.defer();
 
-			$http.put(url + "/course/put_course?user_id=" + user_id + "&id=" + id, course)
+			$http.put("course/put_course?user_id=" + user_id + "&id=" + id, course)
 			.success(function(data) {
 				deferred.resolve(data);
 			})
