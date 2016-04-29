@@ -38,9 +38,7 @@
           for(var i = 0; i < data.length; i++){
             $scope.faculty_user_classes.push({
               'code':data[i].code,
-              id:data[i].id,
-              'description':data[i].description,
-              'title': data[i].title
+              'name':data[i].name
             });
           }
         });
