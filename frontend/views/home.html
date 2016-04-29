@@ -27,13 +27,13 @@
 			    </div>
 
 	    		<!-- SIDE NAV  -->
-				<div id="slide-out" class="side-nav center" ng-click="Get_Classes()">
+				<div id="slide-out" class="side-nav center" data-ng-init="Get_Classes()">
 					<img id="sidenav-logo" src="img/logo-2.png">
 						<div ng-repeat="info in faculty_user_info">
 							<h5 class="teal-text text-lighten-2"> {{info.given_name}} {{info.middle_name}}  {{info.last_name}}</h5>
 						</div>
 						<div ng-repeat="class in faculty_user_classes">
-							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Course_Id(class.id)">{{class.code}}</a></li>
+							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Course_Id(class.id)">{{class.code}} {{class.name}}</a></li>
 						</div>
 						<div class = "center" ng-controller="HomeCtrl">
 							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
@@ -95,7 +95,7 @@
 											<a class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(class.id)">
 												<i class="material-icons custom-text text-darken-1">mode_edit</i>
 											</a>
-											<h5>{{class.code}}</h5>
+											<h5>{{class.code}} {{class.name}}</h5>
 								    </div>
 								    <ul class="collapsible popout" data-collapsible="expandable">
 								      <li>

@@ -87,30 +87,19 @@ exports.check_faculty_user_employee_id = (req, res, next) => {
 };
 
 exports.get_logged_in_faculty_user_id = (req, res, next) => {
+
+  const data = {
+      user_id:               req.query.user_id
+  };
+
   db.query(
     [
-      'SELECT faculty_user_id FROM login_logs',
-      'ORDER BY date_login',
-      'DESC LIMIT 1; '
+      'SELECT * FROM faculty_user',
+      'WHERE id = ?'
     ].join(' '),
-    send_response
+    [data.user_id],
+    send
   );
-
-  function send_response (err, result, args, last_query) {
-      if (err) {
-          winston.error('Error in creating a faculty user', last_query);
-          return next(err);
-      }
-
-      db.query(
-        [
-          'SELECT * FROM faculty_user',
-          'where id = ?;'
-        ].join(' '),
-    	   [result[0].faculty_user_id],
-         send
-      );
-  }
 
   function send (err, result, args, last_query) {
       if (err) {
@@ -173,7 +162,7 @@ exports.get_volunteers = (req, res, next) => {
     function start() {
         db.query (
             [
-                'SELECT s.student_number, s.last_name, s.given_name, sect.code',
+                'SELECT s.student_number, s.last_name, s.given_name, sect.code, s.frequency',
                 'FROM faculty_user f, course c, faculty_user_course fc,',
                 'student s, section sect, student_section ss',
                 'WHERE f.id = fc.faculty_user_id and c.id = fc.course_id',
@@ -219,7 +208,7 @@ exports.update_volunteer = (req, res, next) => {
             [
                 data.user_id, data.course_code, data.section_name,
                 data.old_section_code, data.section_code, data.old_student_number,
-                data.student_number, data.last_name, data.given_name, 
+                data.student_number, data.last_name, data.given_name,
                 data.middle_name, data.classification,
                 data.college, data.degree
             ],
@@ -241,10 +230,10 @@ exports.update_volunteer = (req, res, next) => {
 exports.delete_volunteer = (req, res, next) => {
 
     const data = {
-        user_id:                req.body.user_id, 
+        user_id:                req.body.user_id,
         course_code:            req.body.course_code,
         section_name:           req.body.section_name,
-        section_code:           req.body.section_code, 
+        section_code:           req.body.section_code,
         student_number:         req.body.student_number
     }
 
@@ -280,10 +269,6 @@ exports.randomize = (req, res, next) => {
     };
 
     function start () {
-        // console.log("user_id: " + data.user_id);
-        // console.log("course_code: " + data.course_code);
-        // console.log("section_name: " + data.section_name);
-        // console.log("limit: " + data.limit);
         db.query (
             'DROP VIEW IF EXISTS temporary_view;',
             create_view
@@ -332,13 +317,13 @@ exports.randomize = (req, res, next) => {
         }
         if(typeof data.limit === 'undefined') {
             db.query(
-                    'SELECT * FROM temporary_view ORDER BY rand() LIMIT 1;',
+                    'SELECT * FROM temporary_view WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT 1;',
                     [parseInt(data.limit)],
                     send_response
                 );
         } else {
             db.query(
-                    'SELECT * FROM temporary_view ORDER BY rand() LIMIT ?;',
+                    'SELECT * FROM temporary_view WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT ?;',
                     [parseInt(data.limit)],
                     send_response
                 );

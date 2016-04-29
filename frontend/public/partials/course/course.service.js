@@ -31,10 +31,10 @@
 			return deferred.promise;
 		}
 
-		function Get_User_Id() {
+		function Get_User_Id(user_id) {
 			var deferred = $q.defer();
 
-			$http.get("faculty_user/get_user_id")
+			$http.get("faculty_user/get_user_id?user_id=" + user_id)
 			.success(function(data) {
 				deferred.resolve(data);
 			})

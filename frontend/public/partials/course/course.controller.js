@@ -17,7 +17,8 @@
     $scope.student_info = [];
 
     $scope.Get_User_Id = function(){
-      CourseService.Get_User_Id()
+      user_id = localStorage.getItem("User_id");
+      CourseService.Get_User_Id(user_id)
         .then(function(data){
           $scope.faculty_user_info = [];
           $scope.faculty_user_info.push({
@@ -53,7 +54,6 @@
           		{id: "Professor VI", name: "Professor VI"}
           	]
           };
-          
         });
     }
 
@@ -64,16 +64,13 @@
           for(var i = 0; i < data.length; i++){
             $scope.faculty_user_classes.push({
               'code':data[i].code,
-              id:data[i].id,
-              'description':data[i].description,
-              'title': data[i].title
+              'name':data[i].name
             });
           }
         });
     }
 
     $scope.Get_Course_Id = function(c_id){
-      localStorage.clear();
       localStorage.setItem("Course_id", c_id);
     }
 
