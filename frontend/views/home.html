@@ -27,7 +27,7 @@
 			    </div>
 
 	    		<!-- SIDE NAV  -->
-				<div id="slide-out" class="side-nav center" ng-click="Get_Classes()">
+				<div id="slide-out" class="side-nav center" data-ng-init="Get_Classes()">
 					<img id="sidenav-logo" src="img/logo-2.png">
 						<div ng-repeat="info in faculty_user_info">
 							<h5 class="teal-text text-lighten-2"> {{info.given_name}} {{info.middle_name}}  {{info.last_name}}</h5>

@@ -16,7 +16,8 @@
     $scope.student_info = [];
 
     $scope.Get_User_Id = function(){
-      CourseService.Get_User_Id()
+      user_id = localStorage.getItem("User_id");
+      CourseService.Get_User_Id(user_id)
         .then(function(data){
           $scope.faculty_user_info = [];
           $scope.faculty_user_info.push({
@@ -27,7 +28,6 @@
             'employee_id':data[0].employee_id,
             'username':data[0].username
           });
-          user_id = data[0].id;
         });
     }
 
@@ -47,7 +47,6 @@
     }
 
     $scope.Get_Course_Id = function(c_id){
-      localStorage.clear();
       localStorage.setItem("Course_id", c_id);
     }
 
