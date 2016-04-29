@@ -9,18 +9,18 @@
        	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
     	<link type="text/css" rel="stylesheet" href="stylesheets/class.css">
 	</head>
-	<body>
+	<body ng-controller="CourseCtrl" data-ng-init="Get_Lecture_Class()">
 
 	<!-- NAV BAR -->
 
 	<div class="navbar">
 		<nav>
 		 	<div class="nav-wrapper container">
-		 		
+
 		 		<ul>
 		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
 		    	</ul>
-		    	
+
 				<div class="center">
 			 		<a href="/" class="brand-logos"> <img id="logo" src="img/text2.png"></a>
 			    </div>
@@ -76,38 +76,16 @@
 									<thead>
 										<tr>
 											<th class="center-align">NAME</th>
-											<th class="center-align">STUDENT NUMBER</th>			
+											<th class="center-align">STUDENT NUMBER</th>
+											<th class="center-align">LAB SECTION</th>
 										</tr>
 									</thead>
 									<tbody >
 										<!--<tr ng-repeat=""></tr>-->
-										<tr>
-											<td>Calum Hood</td>
-											<td>1234-12345</td>
-										</tr>
-										<tr>
-											<td>Calum Hood</td>
-											<td>1234-12345</td>
-										</tr>
-										<tr>
-											<td>Calum Hood</td>
-											<td>1234-12345</td>
-										</tr>
-										<tr>
-											<td>Calum Hood</td>
-											<td>1234-12345</td>
-										</tr>
-										<tr>
-											<td>Calum Hood</td>
-											<td>1234-12345</td>
-										</tr>
-										<tr>
-											<td>Calum Hood</td>
-											<td>1234-12345</td>
-										</tr>
-										<tr>
-											<td>Calum Hood</td>
-											<td>1234-12345</td>
+										<tr ng-repeat="info in student_info">
+											<td>{{info.given_name}} {{info.middle_name}} {{info.last_name}}</td>
+											<td>{{info.student_number}}</td>
+											<td>{{info.name}} {{info.code}}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -136,6 +114,11 @@
 	    <script type="text/javascript" src="js/materialize.min.js"></script>
 	    <script type="text/javascript" src="js/index.js"></script>
 	    <script type="text/javascript" src="js/home.js"></script>
+			<script src="js/angular.min.js"></script>
+			<script src="js/angular-route.min.js"></script>
+			<script src="app.js"></script>
 	    <script type="text/javascript" src="js/default.js"></script>
+			<script src="partials/course/course.service.js"></script>
+			<script src="partials/course/course.controller.js"></script>
 	</body>
-</html>	
+</html>
