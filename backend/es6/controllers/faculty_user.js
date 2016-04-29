@@ -87,30 +87,19 @@ exports.check_faculty_user_employee_id = (req, res, next) => {
 };
 
 exports.get_logged_in_faculty_user_id = (req, res, next) => {
+
+  const data = {
+      user_id:               req.query.user_id
+  };
+
   db.query(
     [
-      'SELECT faculty_user_id FROM login_logs',
-      'ORDER BY date_login',
-      'DESC LIMIT 1; '
+      'SELECT * FROM faculty_user',
+      'WHERE id = ?'
     ].join(' '),
-    send_response
+    [data.user_id],
+    send
   );
-
-  function send_response (err, result, args, last_query) {
-      if (err) {
-          winston.error('Error in creating a faculty user', last_query);
-          return next(err);
-      }
-
-      db.query(
-        [
-          'SELECT * FROM faculty_user',
-          'where id = ?;'
-        ].join(' '),
-    	   [result[0].faculty_user_id],
-         send
-      );
-  }
 
   function send (err, result, args, last_query) {
       if (err) {
@@ -219,7 +208,7 @@ exports.update_volunteer = (req, res, next) => {
             [
                 data.user_id, data.course_code, data.section_name,
                 data.old_section_code, data.section_code, data.old_student_number,
-                data.student_number, data.last_name, data.given_name, 
+                data.student_number, data.last_name, data.given_name,
                 data.middle_name, data.classification,
                 data.college, data.degree
             ],
@@ -241,10 +230,10 @@ exports.update_volunteer = (req, res, next) => {
 exports.delete_volunteer = (req, res, next) => {
 
     const data = {
-        user_id:                req.body.user_id, 
+        user_id:                req.body.user_id,
         course_code:            req.body.course_code,
         section_name:           req.body.section_name,
-        section_code:           req.body.section_code, 
+        section_code:           req.body.section_code,
         student_number:         req.body.student_number
     }
 
