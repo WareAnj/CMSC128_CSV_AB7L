@@ -126,7 +126,7 @@
 
 
 			function addToTable(string, stringFormatted){
-				var delButton = $('<button>not_interested</button>').attr({class:"btn btn-floating waves-effects waves-light material-icons", value:string, onclick:'deleteRow(this.value)'});
+				var delButton = $('<button>not_interested</button>').attr({class:"btn btn-floating waves-effects waves-light material-icons red", value:string, onclick:'deleteRow(this.value)'});
 				var detTD = $('<td>').append(delButton);
 
 				var spanName = $('<span>').attr({class:"tooltipped", "data-position":"bottom", "data-delay":"50", "data-tooltip":string}).append(stringFormatted);

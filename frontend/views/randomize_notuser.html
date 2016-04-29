@@ -5,7 +5,6 @@
 		<title>Reginyzr</title>
     	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
     	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    	
     	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
     	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
     	<link type="text/css" rel="stylesheet" href="stylesheets/randomize_notuser.css">
@@ -38,7 +37,18 @@
 		</nav>
 		</div>
 
-		<main>		
+		<main>
+			<!-- Modal Structure -->
+			<div id="modal2" class="modal">
+				<div class="modal-content">
+					<h4>How To Use</h4>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">I Understand</a>
+				</div>
+			</div>
+			
 			<div id="rand-not-user" class="container">
 			<div class="row">
 				<!-- COLUMN FOR FORM -->
@@ -84,10 +94,6 @@
 							    </div>
 							</div>
 
-							<div class="section">
-				  				<button id="clear" class="btn waves-effect waves-light">Clear All
-				  				</button>
-				  			</div>
 				  			<div class="section">
 				  				<a href="#modal1" class="modal-trigger">
 				  				<button id="rand" class="btn waves-effect waves-light ">
@@ -97,6 +103,11 @@
 					  			</a>
 					  		</div>
 				  			<!-- <button type="button">Randomize</button><br> -->
+
+				  			<div class="section">
+				  				<button id="clear" class="btn waves-effect waves-light red">Clear All
+				  				</button>
+				  			</div>
 
 						</form>
 					</div>
@@ -184,6 +195,8 @@
 					$('#add').attr('disabled', true);
 				}
 			}
+
+			$('#modal2').openModal();
 			
 		</script>
 	</body>

@@ -41,3 +41,8 @@ td {
 .modal{
     width: 700px;
 }
+
+.border_style{
+  border-size: 1px;
+  border-color: black;
+}
