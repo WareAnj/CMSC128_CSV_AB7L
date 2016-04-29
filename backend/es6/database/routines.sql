@@ -493,3 +493,40 @@ BEGIN
 	END IF;
 END $$
 DELIMITER ;
+
+-- CHEAT_MODE function
+DROP FUNCTION IF EXISTS CHEAT_MODE;
+DELIMITER $$
+CREATE FUNCTION CHEAT_MODE (_student_number VARCHAR(16), _id INT, _course_code VARCHAR(32), _section_name VARCHAR(8)) RETURNS VARCHAR(64)
+-- CREATE FUNCTION CHEAT_MODE () RETURNS MESSAGE VARCHAR(64)
+BEGIN
+	DECLARE _student_id INT;
+	DECLARE _return_message VARCHAR(64);
+	
+	SELECT s.id INTO _student_id
+	FROM student s, section sect, student_section ss, faculty_user f, course c, faculty_user_course fc
+	WHERE s.id = ss.student_id AND ss.section_id = sect.id AND sect.course_id = c.id AND f.id = fc.faculty_user_id
+	AND c.id = fc.course_id AND f.id = _id AND c.code = _course_code AND sect.name = _section_name 
+	AND s.student_number = _student_number;
+
+	UPDATE student SET
+	frequency = frequency + 1
+	WHERE id = _student_id;
+	
+	SET _return_message := 'Frequency Updated';
+		
+	RETURN _return_message;
+
+END $$
+DELIMITER ;
+
+-- CHEAT_MODE procedure
+DROP PROCEDURE IF EXISTS CHEAT_MODE;
+DELIMITER $$
+CREATE PROCEDURE CHEAT_MODE (_student_number VARCHAR(16), _id INT, _course_code VARCHAR(32), _section_name VARCHAR(8))
+BEGIN
+	 SELECT CHEAT_MODE(_student_number, _id, _course_code, _section_name) AS message;
+
+END $$
+DELIMITER ;
+
