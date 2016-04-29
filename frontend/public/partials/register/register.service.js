@@ -9,7 +9,6 @@
 	RegisterService.$inject = ["$http", "$q"];
 
 	function RegisterService($http, $q) {
-		var url = "http://localhost:8000";
 		var service = {};
 		service.AddFacultyUser = AddFacultyUser;
 		return service;
