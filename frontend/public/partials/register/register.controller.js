@@ -38,7 +38,7 @@
   				$('#classificationinput').val("");
 				$scope.faculty_user_data.push(data);
 				Materialize.toast('Faculty User added!', 3000, 'rounded');
-				  fname = false;
+				fname = false;
     			mname = false;
     			lname = false;
     			uname = false;
@@ -59,6 +59,14 @@
   			$("#submit-button").attr('disabled', 'disabled');
           	uname = false;
           	return;
+  		}
+  		if (username.toLowerCase()==="admin"){
+  			if(!($("#nameinput").hasClass('invalid'))){
+				$("#nameinput").addClass('invalid');
+			}
+			$("#submit-button").attr('disabled', 'disabled');
+			uname = false;
+			return;
   		}
   		$http.post(
   			"faculty_user/check_faculty_user_username/",
