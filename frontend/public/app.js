@@ -64,8 +64,6 @@ var app =	angular
 
 		app.controller('AdminCtrl', function($scope, $location, $window, $http, $q){
 
-		var url = "http://localhost:8000";
-
 		 $scope.order = function(predicate) {
 		    $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
 		    $scope.predicate = predicate;
@@ -110,7 +108,6 @@ var app =	angular
 			$http.put("admin/approve_user/" + id)
 			.success(function(data){
 				alert("Successfully Approved User: " + username);
-				console.log(data);
 			})
 			.error(function(data) {
 				alert(data.context);
@@ -126,7 +123,6 @@ var app =	angular
 
 			$http.get("admin/login_logs")
 			.success(function(data){
-				console.log(data[0]);
 				var length = data.length;
 				var i;
 				for(i = 0; i < length; i++ ){
@@ -148,7 +144,6 @@ var app =	angular
 
 			$http.get("admin/logout_logs")
 			.success(function(data){
-				console.log(data[0]);
 				var length = data.length;
 				var i;
 				for(i = 0; i < length; i++ ){
@@ -166,9 +161,8 @@ var app =	angular
 			var deferred = $q.defer();
 			$scope.userList = [];
 
-			$http.get(url + "/admin/login_logs/" + id)
+			$http.get("admin/login_logs/" + id)
 			.success(function(data){
-				console.log(data[0]);
 				var length = data.length;
 				var i;
 				for(i = 0; i < length; i++ ){
@@ -188,7 +182,6 @@ var app =	angular
 
 			$http.get("admin/logout_logs/" + id)
 			.success(function(data){
-				console.log(data);
 				var length = data.length;
 				var i;
 				for(i = 0; i < length; i++ ){
