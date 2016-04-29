@@ -47,11 +47,32 @@ exports.update_gname = (req, res, next) => {
 		[
 			'UPDATE faculty_user SET given_name=?',
 			'WHERE username=?;'
-		].join(' '),[given_name, uname],responder);
+		].join(' '),[given_name, uname],responder
+	);
 	
 	function responder(err, result){
 		if(err){
-			winston.error('Error in updating Faculty User Given Name', last_query);
+			winston.error('Error in updating Faculty User Given Name'+err);
+			res.send(false);
+            return next(err);
+        }
+        res.send(true);
+	}
+}
+
+exports.update_mname = (req, res, next) => {
+	const middle_name = req.body.middle_name;
+	const uname = req.body.username;
+	db.query(
+		[
+			'UPDATE faculty_user SET middle_name=?',
+			'WHERE username=?;'
+		].join(' '),[middle_name, uname],responder
+	);
+	
+	function responder(err, result){
+		if(err){
+			winston.error('Error in updating Faculty User Middle Name'+err);
 			res.send(false);
             return next(err);
         }
@@ -107,7 +128,7 @@ exports.check_faculty_user_employee_id = (req, res, next) => {
 
 exports.get_logged_in_faculty_user_id = (req, res, next) => {
   console.log(req.session.user);
-    res.send(req.session.user);
+  res.send(req.session.user);
 };
 
 exports.post_volunteer = (req, res, next) => {

@@ -19,8 +19,8 @@
     var gnchanged = false;
     var mnchanged = false;
     var lnchanged = false;
-    var pwchanged = false;
     var clchanged = false;
+    var namep = new RegExp("[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+");
     
     $scope.faculty_user_classes = [];
     $scope.faculty_user_info = [];
@@ -66,17 +66,50 @@
 	$scope.Update_Details = function() {
 		if(gnchanged){
 			var ngname = document.querySelector('#fname-input').value;
-			$http.post(
-				'faculty_user/update_given_name/',
-				{given_name: ngname, username: uname}
-			);
-			ogname = ngname;
+			if (ngname===""){
+				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
+			}
+			else if (!(namep.test(ngname))){
+				Materialize.toast('Invalid Given Name format!', 3000, 'rounded');
+			}
+			else {
+				$http.post(
+					'faculty_user/update_given_name/',
+					{given_name: ngname, username: uname}
+				);
+				ogname = ngname;
+				$scope.faculty_user_info[0].given_name = ngname;
+			}
 		}
+		if(mnchanged){
+			var nmname = document.querySelector('#mname-input').value;
+			if (ngname===""){
+				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
+			}
+			else if (!(namep.test(ngname))){
+				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
+			}
+			else {
+				$http.post(
+					'faculty_user/update_middle_name/',
+					{middle_name: nmname, username: uname}
+				);
+				omname = nmname;
+				$scope.faculty_user_info[0].middle_name = nmname;
+			}	
+		}
+		Materialize.toast('Profile updated!', 3000, 'rounded');
 	}
 	
 	$scope.check_gname_changes = function() {
 		var ngname = document.querySelector('#fname-input').value;
-		
+		if (ogname===ngname) gnchanged=false;
+		else gnchanged = true;
+	}
+	$scope.check_mname_changes = function() {
+		var nmname = document.querySelector('#mname-input').value;
+		if (omname===nmname) mnchanged=false;
+		else mnchanged = true;
 	}
 	
 
