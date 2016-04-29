@@ -56,6 +56,7 @@ exports.update_gname = (req, res, next) => {
 			res.send(false);
             return next(err);
         }
+        req.session.user.given_name = given_name;
         res.send(true);
 	}
 }
@@ -76,6 +77,7 @@ exports.update_mname = (req, res, next) => {
 			res.send(false);
             return next(err);
         }
+        req.session.user.middle_name = middle_name;
         res.send(true);
 	}
 }
@@ -92,10 +94,11 @@ exports.update_lname = (req, res, next) => {
 	
 	function responder(err, result){
 		if(err){
-			winston.error('Error in updating Faculty User Middle Name'+err);
+			winston.error('Error in updating Faculty User Last Name'+err);
 			res.send(false);
             return next(err);
         }
+        req.session.user.last_name = last_name;
         res.send(true);
 	}
 }
