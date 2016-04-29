@@ -123,13 +123,15 @@ exports.get_logged_in_faculty_user_id = (req, res, next) => {
 };
 
 exports.post_volunteer = (req, res, next) => {
-
+    
     const data = {
-        user_id:                req.body.user_id,
-        course_code:            req.body.course_code,
-        section_name:           req.body.section_name,
-        section_code:           req.body.section_code,
-        student_number:         req.body.student_number,
+        user_id:                req.body.user_id,                   //*
+        course_code:            req.body.course_code,//CMSC 128     //*
+        section_name:           req.body.section_name,              //*
+        old_section_code:       req.body.old_section_code,//Used to get old section_id
+        section_code:           req.body.section_code,//Used to replace old value of section_id on student_section
+        old_student_number:     req.body.old_student_number,//Needed this because old_SN will be used to get student_id     //*
+        student_number:         req.body.student_number,//This var will be used to replace old value of SN
         given_name:             req.body.given_name,
         middle_name:            req.body.middle_name,
         last_name:              req.body.last_name,
@@ -140,11 +142,12 @@ exports.post_volunteer = (req, res, next) => {
 
     function start () {
         db.query (
-            'CALL POST_VOLUNTEER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            'CALL UPDATE_VOLUNTEER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
             [
                 data.user_id, data.course_code, data.section_name,
-                data.section_code, data.student_number, data.last_name,
-                data.given_name, data.middle_name, data.classification,
+                data.old_section_code, data.section_code, data.old_student_number,
+                data.student_number, data.last_name, data.given_name, 
+                data.middle_name, data.classification,
                 data.college, data.degree
             ],
             send_response
@@ -160,6 +163,43 @@ exports.post_volunteer = (req, res, next) => {
     }
 
     start();
+
+    // const data = {
+    //     user_id:                req.body.user_id,
+    //     course_code:            req.body.course_code,
+    //     section_name:           req.body.section_name,
+    //     section_code:           req.body.section_code,
+    //     student_number:         req.body.student_number,
+    //     given_name:             req.body.given_name,
+    //     middle_name:            req.body.middle_name,
+    //     last_name:              req.body.last_name,
+    //     degree:                 req.body.degree,
+    //     classification:         req.body.classification,
+    //     college:                req.body.college
+    // };
+
+    // function start () {
+    //     db.query (
+    //         'CALL POST_VOLUNTEER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    //         [
+    //             data.user_id, data.course_code, data.section_name,
+    //             data.section_code, data.student_number, data.last_name,
+    //             data.given_name, data.middle_name, data.classification,
+    //             data.college, data.degree
+    //         ],
+    //         send_response
+    //     );
+    // }
+
+    // function send_response (err, result, args, last_query) {
+    //     if (err) {
+    //         winston.error('Error in Creating Volunteer', last_query);
+    //         return next(err);
+    //     }
+    //     res.send(result[0][0]);
+    // }
+
+    // start();
 };
 
 exports.get_volunteers = (req, res, next) => {
