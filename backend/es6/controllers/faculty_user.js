@@ -87,7 +87,6 @@ exports.check_faculty_user_employee_id = (req, res, next) => {
 };
 
 exports.get_logged_in_faculty_user_id = (req, res, next) => {
-  console.log(req.session.user);
     res.send(req.session.user);
 };
 

@@ -15,7 +15,6 @@
 
 		AuthenticationService.Login($scope.facultyUser)
 			.then(function(data){
-        localStorage.setItem("User_id", data.id);
 				$scope.faculty_user_data.push(data);
 			});
 		}
