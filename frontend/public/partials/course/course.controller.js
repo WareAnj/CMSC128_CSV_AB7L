@@ -66,9 +66,22 @@
         .then(function(data) {
           $scope.faculty_user_courses = [];
           for(let i = 0; i < data.length; i++) {
-            $scope.faculty_user_courses.push(data[i]);
+            CourseService.Get_Lecture(data[i].id)
+              .then(function(data2) {
+                  $scope.faculty_user_courses.push({
+                    'code': data[i].code,
+                    'course_id': data[i].course_id,
+                    'description': data[i].description,
+                    'faculty_user_id': data[i].faculty_user_id,
+                    'id': data[i].id,
+                    'title': data[i].title,
+                    'lecture' : data2
+                  });
+              });
           }
         });
+
+
     }
 
     $scope.Add_Course = function() {

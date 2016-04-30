@@ -11,6 +11,7 @@ insert into course (code, title, description) values ('CMSC 170', 'Introduction 
 
 insert into section (course_id, name, code) values (1, 'AB', '1L');
 insert into section (course_id, name, code) values (1, 'AB', '2L');
+insert into section (course_id, name, code) values (1, 'ST', '1L');
 insert into section (course_id, name, code) values (2, 'T', '1L');
 insert into section (course_id, name, code) values (2, 'T', '2L');
 insert into section (course_id, name, code) values (3, 'V', '1L');

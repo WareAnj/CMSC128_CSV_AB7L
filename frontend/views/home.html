@@ -97,6 +97,12 @@
 											</a>
 											<h5>{{course.code}}</h5>
 								    </div>
+										<ul class="collapsible popout" data-collapsible="expandable" >
+											<li ng-repeat="lecture in course.lecture">
+												<div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>{{lecture.name}}</div>
+												<div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
+											</li>
+										</ul>
 								  </div>
 								</div>
 							</div>
