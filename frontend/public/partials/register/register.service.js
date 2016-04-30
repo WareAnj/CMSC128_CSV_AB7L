@@ -5,7 +5,6 @@
 		.module("app")
 		.factory("RegisterService", RegisterService);
 
-
 	RegisterService.$inject = ["$http", "$q"];
 
 	function RegisterService($http, $q) {
