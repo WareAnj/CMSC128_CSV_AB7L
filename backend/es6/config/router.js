@@ -37,7 +37,8 @@ module.exports = (router) => {
     // lecture routes
     router.get ('/course/lecture/get_lecture',                          $('Faculty User'), __.lecture.get_lecture);
     router.get ('/course/lecture/get_class_list',                       $('Faculty User'), __.lecture.get_lecture_class_list);
-    
+    router.get ('/course/lecture/get_student',                          $('Faculty User'), __.lecture.get_lecture_student);
+
     // CRUD of volunteers/students
     router.post('/faculty_user/post_volunteer/',                        $('Faculty User'),  __.faculty_user.post_volunteer);
     router.get ('/faculty_user/volunteers',                             $('Faculty User'),  __.faculty_user.get_volunteers);

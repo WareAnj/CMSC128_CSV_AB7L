@@ -154,7 +154,34 @@ exports.get_lecture_class_list = (req, res, next) => {
 
   function send_response (err, result, args, last_query) {
       if (err) {
-          winston.error('Error in students a course', last_query);
+          winston.error('Error in getting students of a lecture', last_query);
+          return next(err);
+      }
+
+      res.send(result);
+  }
+
+  start();
+
+};
+
+exports.get_lecture_student = (req, res, next) => {
+  const data = {
+      id:                   req.query.id
+  };
+
+  function start () {
+      db.query([
+                  'SELECT * FROM student',
+                  'WHERE id = ? LIMIT 1;'
+               ].join(' '),
+               [data.id],
+                send_response);
+  }
+
+  function send_response (err, result, args, last_query) {
+      if (err) {
+          winston.error('Error in getting specific student', last_query);
           return next(err);
       }
 
