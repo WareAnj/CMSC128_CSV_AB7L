@@ -22,14 +22,13 @@
 
     $scope.Get_Selected_Student = function(student_id) {
       localStorage.setItem("Student_id", student_id)
-
+      $('#stdInfo1').openModal();
       LectureService.Get_Student(localStorage.getItem("Student_id"))
       .then(function(data) {
         $scope.student = [];
         $scope.student.push(data[0]);
       });
 
-      console.log($scope.student);
     }
   }
 })();

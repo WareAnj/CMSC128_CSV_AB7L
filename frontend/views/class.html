@@ -92,8 +92,7 @@
 											<td>{{info.given_name}} {{info.middle_name}} {{info.last_name}}</td>
 											<td>{{info.name}} - {{info.code}}</td>
 											<td>{{info.frequency}}</td>
-											<td><a onclick="$('#stdInfo1').openModal();" data-ng-init ="Get_Selected_Student(info.id)"
-												class="modal-trigger"><i class="material-icons prefix">info_outline</i></a>
+											<td><a ng-click="Get_Selected_Student(info.id)" class="modal-trigger"><i class="material-icons prefix">info_outline</i></a>
 											</td>
 										</tr>
 									</tbody>
@@ -103,6 +102,36 @@
 					</div>
 				</div>
 			</div>
+
+			<!--MODALS-->
+			<div id="stdInfo1" class="modal">
+				<div class="modal-content">
+					<div class="row">
+						<div class="col s5 offset-s3"><h4 id="headerText">Student Information</h4></div>
+						<div class="col s4"><a href="/class"><i class="material-icons right">close</i></a></div>
+
+					</div>
+					<div class="row">
+						<div class="col s4">
+							<div class="card-image">
+								<img src="img/user.png" style="height:175px; width:175px">
+							</div>
+							<!--<img src="img/user.png" style="height:150px; width:150px">-->
+						</div>
+						<div class="col s8">
+							<ul ng-repeat="stud in student">
+								<li><h5><strong>Name</strong>: {{stud.given_name}} {{stud.middle_name}} {{stud.last_name}} </h5></li>
+								<li><h5><strong>Student Number</strong>: {{stud.student_number}}</h5></li>
+								<li><h5><strong>Degree</strong>: {{stud.degree}} </h5></li>
+								<li><h5><strong>College</strong>: {{stud.college}} </h5></li>
+								<li><h5><strong>Classification</strong>: {{stud.classification}} </h5></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--MODALS-->
 		</main>
 		<!--MAIN-->
 		<footer class="page-footer white-text">
@@ -117,37 +146,6 @@
 				</div>
 			</div>
 		</footer>
-
-		<!--MODALS-->
-		<div id="stdInfo1" class="modal" ng-controller="LectureCtrl">
-			<div class="modal-content">
-				<div class="row">
-					<div class="col s5 offset-s3"><h4 id="headerText">Student Information</h4></div>
-					<div class="col s4"><a href="/class"><i class="material-icons right">close</i></a></div>
-
-				</div>
-				<div class="row">
-					<div class="col s4">
-						<div class="card-image">
-							<img src="img/user.png" style="height:175px; width:175px">
-						</div>
-						<!--<img src="img/user.png" style="height:150px; width:150px">-->
-					</div>
-					<div class="col s8" ng-repeat="stud in student">
-						<ul>
-							<li><h5><strong>Name</strong>: Sample Name </h5></li>
-							<li><h5><strong>Student Number</strong>: {{stud.student_number}}</h5></li>
-							<li><h5><strong>Degree</strong>: BS Computer Science</h5></li>
-							<li><h5><strong>College</strong>: College of Arts and Sciences</h5></li>
-							<li><h5><strong>Classification</strong>: Junior Standing</h5></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!--MODALS-->
-
 		<!--SCRIPTS-->
 		<script type="text/javascript" src="js/jquery.js"></script>
 	  <script type="text/javascript" src="js/materialize.min.js"></script>
