@@ -232,8 +232,8 @@
 
   	$scope.check_gname_changes = function() {
   		let ngname = document.querySelector('#fname-input').value;
-  		if {
-        (ogname===ngname) gnchanged=false;
+  		if(ogname===ngname) {
+        gnchanged=false;
       } else {
         gnchanged = true;
       }
@@ -241,8 +241,8 @@
 
   	$scope.check_mname_changes = function() {
   		let nmname = document.querySelector('#mname-input').value;
-  		if {
-        (omname===nmname) mnchanged=false;
+  		if(omname===nmname) {
+        mnchanged=false;
       } else {
         mnchanged = true;
       }
@@ -250,8 +250,8 @@
 
   	$scope.check_lname_changes = function() {
   		let nlname = document.querySelector('#lname-input').value;
-  		if {
-        (olname===nlname) lnchanged=false;
+  		if(olname===nlname) {
+        lnchanged=false;
       } else {
         lnchanged = true;
       }
