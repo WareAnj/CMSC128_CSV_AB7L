@@ -10,6 +10,14 @@ module.exports = {
         }
     },
 
+    PERMISSION_DENIED: {
+        status: 403,
+        message: {
+            code: 'PERMISSION_DENIED',
+            context: 'Permission denied!'
+        }
+    },
+
     INV_USERNAME: {
         status: 404,
         message: {

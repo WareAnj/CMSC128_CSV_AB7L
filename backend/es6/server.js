@@ -79,6 +79,7 @@ function start () {
 
     winston.log('verbose', 'Binding custom middlewares');
     //app.use(require('anytv-node-cors')(config.CORS));
+    app.use(require(__dirname + '/lib/check_referer'));
     app.use(require(__dirname + '/config/router')(express.Router()));
     //app.use(require('anytv-node-error-handler')(winston));
 
