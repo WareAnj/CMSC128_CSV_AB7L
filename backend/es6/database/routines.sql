@@ -368,12 +368,18 @@ DELIMITER $$
 CREATE PROCEDURE INSERT_LECTURE_SECTION (_faculty_user_id INT, _course_code VARCHAR(16), _name VARCHAR(8))
 BEGIN
 	DECLARE _course_id INT;
+    DECLARE _course_title VARCHAR(64);
+    DECLARE _course_description VARCHAR(256);
 
 	-- Check if there is already a lecture section under that course
 	IF (SELECT COUNT(*) FROM section s, course c WHERE c.id = s.course_id AND c.code = _course_code AND s.name = _name) THEN
 		SELECT CONCAT('Lecture section ', _name, ' under ', _course_code, ' already exists') AS message;
 	ELSE
-		INSERT INTO course (code, title, description) VALUES ('CMSC 128', 'Introduction to Software Engineering', '*insert desc here*');
+        SELECT c.title INTO _course_title, c.description INTO _course_description
+        FROM faculty_user_course fc, course c
+        WHERE c.id = fc.course_id AND c.code = _course_code AND fc.faculty_user_id = _faculty_user_id;
+
+        INSERT INTO course (code, title, description) VALUES (_course_code, _course_title, _course_description);
 
 		SELECT LAST_INSERT_ID() INTO _course_id;
 
