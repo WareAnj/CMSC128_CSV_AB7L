@@ -50,6 +50,7 @@ var app =	angular
 
 			$http.get("authenticate/logout")
 			.success(function(data){
+				localStorage.clear();
 				$window.location.href = '/';
 				deferred.resolve(data);
 			})
@@ -117,13 +118,13 @@ var app =	angular
 
        		/*var td = $(username).parent();
        		var tr = td.parent();
-        
+
        		tr.css("background-color","#FF3700");
        		tr.fadeOut(400, function(){
            		tr.remove();
         	}); */
 
-        	var index = -1;		
+        	var index = -1;
 			var comArr = eval( $scope.userList );
 			for( var i = 0; i < comArr.length; i++ ) {
 				if( comArr[i].username === username ) {

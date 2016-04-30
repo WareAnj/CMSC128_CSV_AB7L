@@ -15,7 +15,7 @@
 
 		AuthenticationService.Login($scope.facultyUser)
 			.then(function(data){
-				$scope.faculty_user_data.push(data);				
+				$scope.faculty_user_data.push(data);
 			});
 		}
   }
