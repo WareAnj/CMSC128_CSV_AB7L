@@ -12,7 +12,7 @@
 		service.Get_User = Get_User;
 		service.Get_Course = Get_Course;
     service.Delete_Class = Delete_Class;
-		service.Add_Class = Add_Class;
+		service.Add_Course = Add_Course;
 		service.Edit_Class = Edit_Class;
 		service.Get_Lecture_Class = Get_Lecture_Class;
 		return service;
@@ -87,7 +87,7 @@
       return deferred.promise;
     }
 
-		function Add_Class(newCourse) {
+		function Add_Course(newCourse) {
 			var deferred = $q.defer();
 
 			$http.post("course/post_course", newCourse)
