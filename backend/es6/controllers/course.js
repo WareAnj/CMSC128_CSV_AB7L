@@ -6,7 +6,7 @@ const winston   = require('winston');
 exports.post_course = (req, res, next) => {
 
   const data = {
-      user_id:               req.query.user_id,
+      user_id:               req.session.user.id,
       course_code:           req.body.course_code,
       course_title:          req.body.course_title,
       course_description:    req.body.course_description
@@ -78,7 +78,7 @@ exports.put_course = (req, res, next) => {
 
 exports.get_course = (req, res, next) => {
   const data = {
-      user_id:                   req.query.user_id,
+      user_id:                   req.session.user.id,
   };
 
   function start () {

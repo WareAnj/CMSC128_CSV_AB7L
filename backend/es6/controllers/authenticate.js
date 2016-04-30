@@ -63,6 +63,7 @@ exports.login = (req, res, next) => {
             role:               'Faculty User',
             id:                 result[0][0].id,
             username:           result[0][0].username,
+            employee_id:        result[0][0].employee_id,
             classification:     result[0][0].classification,
             given_name:         result[0][0].given_name,
             middle_name:        result[0][0].middle_name,
@@ -72,7 +73,6 @@ exports.login = (req, res, next) => {
         };
 
         req.session.user = user;
-
         res.send(result[0][0]);
 
         let user_id = result[0][0].id;
