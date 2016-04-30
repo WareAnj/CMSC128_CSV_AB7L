@@ -1,4 +1,4 @@
-(function(){
+(function() {
   'use strict';
 
   angular
@@ -7,18 +7,15 @@
 
   AuthenticationCtrl.$inject = ["$scope", "$location", "$window", "AuthenticationService"];
 
-  function AuthenticationCtrl($scope, $location, $window, AuthenticationService){
+  function AuthenticationCtrl($scope, $location, $window, AuthenticationService) {
 
     $scope.faculty_user_data = [];
 
-    $scope.Login = function(){
-
-		AuthenticationService.Login($scope.facultyUser)
+    $scope.Login = function() {
+		  AuthenticationService.Login($scope.facultyUser)
 			.then(function(data){
-        localStorage.setItem("User_id", data.id);
 				$scope.faculty_user_data.push(data);
 			});
 		}
   }
-
 })();

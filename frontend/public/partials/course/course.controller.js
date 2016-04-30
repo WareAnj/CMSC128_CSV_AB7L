@@ -1,4 +1,4 @@
-(function(){
+(function() {
   'use strict';
 
   angular
@@ -7,26 +7,24 @@
 
   CourseCtrl.$inject = ["$scope", "$location", "$http", "CourseService"];
 
-  function CourseCtrl($scope, $location, $http, CourseService){
-    var user_id;
-    var toedit;
-    var course_id;
-    var oclass;
-    var ogname;
-    var omname;
-    var olname;
-    var uname;
-    var gnchanged = false;
-    var mnchanged = false;
-    var lnchanged = false;
-    var clchanged = false;
-    var namep = new RegExp("[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+");
-    
-    $scope.faculty_user_classes = [];
+  function CourseCtrl($scope, $location, $http, CourseService) {
+    $scope.faculty_user_courses = [];
     $scope.faculty_user_info = [];
-    $scope.student_info = [];
 
-    $scope.Get_User = function(){
+    // Update User Details
+    let user_id;
+    let oclass;
+    let ogname;
+    let omname;
+    let olname;
+    let uname;
+    let gnchanged = false;
+    let mnchanged = false;
+    let lnchanged = false;
+    let clchanged = false;
+    let namep = new RegExp("[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+");
+
+    $scope.Get_User = function() {
       CourseService.Get_User()
         .then(function(data){
           $scope.faculty_user_info = [];
@@ -62,8 +60,86 @@
           };
         });
     }
-	
-	$scope.Update_Details = function() {
+
+   $scope.Get_Course = function() {
+      CourseService.Get_Course(user_id)
+        .then(function(data) {
+          $scope.faculty_user_courses = [];
+          for(let i = 0; i < data.length; i++) {
+            $scope.faculty_user_courses.push(data[i]);
+          }
+        });
+    }
+
+    $scope.Add_Course = function() {
+      CourseService.Add_Course($scope.newCourse)
+      .then(function(data) {
+        $scope.newCourse.course_code = "";
+        $scope.newCourse.course_title = "";
+        $scope.newCourse.course_description = "";
+        $scope.faculty_user_courses.push(data);
+        Materialize.toast('Course added!', 5000, 'rounded');
+        $('#addModal').closeModal();
+      });
+
+      CourseService.Get_Course()
+      .then(function(data) {
+       });
+
+      CourseService.Get_Course()
+      .then(function(data) {
+        $scope.faculty_user_courses = [];
+        for(let i = 0; i < data.length; i++) {
+          $scope.faculty_user_courses.push(data[i]);
+        }
+      });
+    }
+
+    $scope.openModal = function(c_id) {
+      $("#editModal").openModal();
+      localStorage.setItem("Course_id", c_id);
+    }
+
+
+    $scope.Edit_Course = function() {
+      CourseService.Edit_Course(localStorage.getItem("Course_id"), $scope.course)
+        .then(function(data) {
+          $scope.course.course_code = "";
+          $scope.course.course_title = "";
+          $scope.course.course_description = "";
+          $('#editModal').closeModal();
+        });
+        Materialize.toast('Course Details Updated!', 5000, 'rounded');
+
+
+        CourseService.Get_Course()
+          .then(function(data) {
+            $scope.faculty_user_courses = [];
+            for(let i = 0; i < data.length; i++) {
+              $scope.faculty_user_courses.push(data[i]);
+            }
+          });
+    }
+
+    $scope.Delete_Course = function(id) {
+      CourseService.Delete_Course(id)
+        .then(function(data){ });
+
+      CourseService.Get_Course()
+        .then(function(data) {
+          $scope.faculty_user_courses = [];
+          for(let i = 0; i < data.length; i++) {
+            $scope.faculty_user_courses.push(data[i]);
+          }
+        });
+    }
+
+    $scope.Get_Course_Id = function(c_id) {
+      localStorage.setItem("Course_id", c_id);
+    }
+
+    // Update USER Details
+  	$scope.Update_Details = function() {
 		
 		var err = false;
 		
@@ -187,125 +263,5 @@
 		if (olname===nlname) lnchanged=false;
 		else lnchanged = true;
 	}
-
-    $scope.Get_Course = function(){
-      CourseService.Get_Course(user_id)
-        .then(function(data){
-          $scope.faculty_user_classes = [];
-          for(var i = 0; i < data.length; i++){
-            $scope.faculty_user_classes.push(data[i]);
-          }
-        });
-    }
-
-    $scope.Get_Lecture_Section = function(course_code){
-      CourseService.Get_Lecture_Section(course_code)
-      .then(function(data){
-
-      });
-    }
-
-    $scope.Get_Course_Id = function(c_id){
-      localStorage.setItem("Course_id", c_id);
-    }
-
-
-    $scope.Add_Class = function(){
-      CourseService.Add_Class(user_id, $scope.newCourse)
-        .then(function(data){
-          $scope.newCourse.course_code = "";
-          $scope.newCourse.course_title = "";
-          $scope.newCourse.course_description = "";
-          $scope.faculty_user_classes.push({
-            'code':        data.code,
-             id:           data.id,
-            'description': data.description,
-            'title':       data.title
-          });
-          Materialize.toast('Course added!', 3000, 'rounded');
-          $('#addModal').closeModal();
-        });
-
-        CourseService.Get_Classes(user_id)
-          .then(function(data){ });
-
-        CourseService.Get_Classes(user_id)
-          .then(function(data){
-            $scope.faculty_user_classes = [];
-            for(var i = 0; i < data.length; i++){
-              $scope.faculty_user_classes.push({
-                'code':data[i].code,
-                id:data[i].id,
-                'description':data[i].description,
-                'title': data[i].title
-              });
-            }
-          });
-    }
-
-    $scope.openModal = function(id){
-      $("#editModal").openModal();
-      toedit = id;
-    }
-
-    $scope.Edit_Class = function(){
-      CourseService.Edit_Class(user_id, toedit, $scope.course)
-        .then(function(data){
-          $scope.course.course_code = "";
-          $scope.course.course_title = "";
-          $scope.course.course_description = "";
-          Materialize.toast('Course Edited!', 3000, 'rounded');
-          $('#editModal').closeModal();
-        });
-
-        CourseService.Get_Classes(user_id)
-          .then(function(data){
-            $scope.faculty_user_classes = [];
-            for(var i = 0; i < data.length; i++){
-              $scope.faculty_user_classes.push({
-                'code':data[i].code,
-                id:data[i].id,
-                'description':data[i].description,
-                'title': data[i].title
-              });
-            }
-          });
-    }
-
-    $scope.Delete_Class = function(id){
-      CourseService.Delete_Class(user_id, id)
-        .then(function(data){ });
-
-      CourseService.Get_Classes(user_id)
-        .then(function(data){
-          $scope.faculty_user_classes = [];
-          for(var i = 0; i < data.length; i++){
-            $scope.faculty_user_classes.push({
-              'code':data[i].code,
-              id:data[i].id,
-              'description':data[i].description,
-              'title': data[i].title
-            });
-          }
-        });
-    }
-
-    $scope.Get_Lecture_Class = function(){
-      course_id = localStorage.getItem("Course_id");
-      CourseService.Get_Lecture_Class(course_id)
-        .then(function(data){
-          $scope.student_info = [];
-          for(var i = 0; i < data.length; i++){
-            $scope.student_info.push({
-              'given_name':data[i].given_name,
-              'middle_name':data[i].middle_name,
-              'last_name':data[i].last_name,
-              'student_number':data[i].student_number,
-              'name':data[i].name,
-              'code':data[i].code
-            });
-        }
-        });
-    }
   }
 })();

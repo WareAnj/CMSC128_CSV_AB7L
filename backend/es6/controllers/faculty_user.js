@@ -43,15 +43,15 @@ exports.register = (req, res, next) => {
 exports.update_password = (req, res, next) => {
 	const uname = req.body.username;
 	const pword = req.body.password;
-	
-	
+
+
 	//with a new procedure
 	db.query(
 		'CALL UPDATE_FACULTY_PASSWORD(?, ?)',
 		[uname, pword],
 		responder
 	);
-	
+
 	/*
 	//without procedure
 	db.query(
@@ -77,14 +77,14 @@ exports.update_name = (req, res, next) => {
 	const middle_name = req.body.middle_name;
 	const last_name = req.body.last_name;
 	const uname = req.body.username;
-	
+
 	db.query(
 		[
 			'UPDATE faculty_user SET given_name=?, middle_name=?, last_name=?',
 			'WHERE username=?;'
 		].join(' '),[given_name, middle_name, last_name, uname],responder
 	);
-	
+
 	function responder(err, result){
 		if(err){
 			winston.error('Error in updating Faculty Name'+err);
@@ -107,7 +107,7 @@ exports.update_classification = (req, res, next) => {
 			'WHERE username=?;'
 		].join(' '),[classification, uname],responder
 	);
-	
+
 	function responder(err, result){
 		if(err){
 			winston.error('Error in updating Faculty Classification'+err);
