@@ -167,7 +167,12 @@ exports.check_faculty_user_employee_id = (req, res, next) => {
 };
 
 exports.get_logged_in_faculty_user_id = (req, res, next) => {
-    res.send(req.session.user);
+  if(req.session.user==null){
+  	res.send(false);
+  	return;
+  }
+  console.log(req.session.user);
+  res.send(req.session.user);
 };
 
 exports.post_volunteer = (req, res, next) => {

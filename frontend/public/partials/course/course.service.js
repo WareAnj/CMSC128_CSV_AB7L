@@ -24,6 +24,10 @@
 
 			$http.get("faculty_user/get_user")
 			.success(function(data) {
+				if(data===false){
+					window.location.href='/';
+					alert("No session found!");
+				}
 				deferred.resolve(data);
 			})
 			.error(function(data) {
