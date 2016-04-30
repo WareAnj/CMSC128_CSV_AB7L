@@ -33,7 +33,9 @@
 							<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
 						</div>
 						<div ng-repeat="course in faculty_user_courses">
-							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Course_Id(course.id)">{{course.code}}</a></li>
+							<div ng-repeat="lecture in course.lecture">
+								<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
+							</div>
 						</div>
 						<div class = "center" ng-controller="HomeCtrl">
 							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
@@ -95,8 +97,17 @@
 											<a title="Update Course Details" class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(course.id)">
 												<i class="material-icons custom-text text-darken-1">mode_edit</i>
 											</a>
+											<a title="Add Lecture Class" class="btn-floating btn-large waves-effect waves-light white" ng-click="">
+												<i class="material-icons custom-text text-darken-1">add</i>
+											</a>
 											<h5>{{course.code}}</h5>
 								    </div>
+										<ul class="collapsible popout" data-collapsible="expandable" >
+											<li ng-repeat="lecture in course.lecture">
+												<div class="collapsible-header" ng-click="Get_Selected_Course(course.id, lecture.name)"><i class="material-icons custom-text text-darken-1" >star_rate</i>{{lecture.name}}</div>
+												<!-- <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div> -->
+											</li>
+										</ul>
 								  </div>
 								</div>
 							</div>
