@@ -28,9 +28,6 @@ module.exports = (router) => {
     router.post('/faculty_user/update_name/',                           $('Faculty User'),  __.faculty_user.update_name);
     router.post('/faculty_user/update_password/',                       $('Faculty User'),  __.faculty_user.update_password);
 
-    // class routes
-    router.get ('/class/get_lecture_class',                                                __.class.get_lecture_class);
-
     // course routes
     router.post('/course/post_course/',                                 $('Faculty User'),  __.course.post_course);
     router.get ('/course/get_course/',                                  $('Faculty User'),  __.course.get_course);
@@ -39,7 +36,8 @@ module.exports = (router) => {
 
     // lecture routes
     router.get ('/course/lecture/get_lecture',                          $('Faculty User'), __.lecture.get_lecture);
-
+    router.get ('/course/lecture/get_class_list',                       $('Faculty User'), __.lecture.get_lecture_class_list);
+    
     // CRUD of volunteers/students
     router.post('/faculty_user/post_volunteer/',                        $('Faculty User'),  __.faculty_user.post_volunteer);
     router.get ('/faculty_user/volunteers',                             $('Faculty User'),  __.faculty_user.get_volunteers);

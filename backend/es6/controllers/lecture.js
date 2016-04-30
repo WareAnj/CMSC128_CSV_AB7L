@@ -135,3 +135,32 @@ exports.delete_course = (req, res, next) => {
   // start();
 
 };
+
+exports.get_lecture_class_list = (req, res, next) => {
+  const data = {
+      course_id:                   req.query.course_id,
+      name:                        req.query.name
+  };
+
+  function start () {
+      db.query([
+                  'SELECT * from section s, student_section ss, student st',
+                  'WHERE s.course_id = ? and s.id = ss.section_id',
+                  'and ss.student_id = st.id and name = ?;'
+               ].join(' '),
+               [data.course_id, data.name],
+                send_response);
+  }
+
+  function send_response (err, result, args, last_query) {
+      if (err) {
+          winston.error('Error in students a course', last_query);
+          return next(err);
+      }
+
+      res.send(result);
+  }
+
+  start();
+
+};
