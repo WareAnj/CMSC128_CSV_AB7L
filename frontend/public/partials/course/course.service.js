@@ -11,10 +11,9 @@
 		var service = {};
 		service.Get_User = Get_User;
 		service.Get_Course = Get_Course;
-    service.Delete_Class = Delete_Class;
 		service.Add_Course = Add_Course;
-		service.Edit_Class = Edit_Class;
-		service.Get_Lecture_Class = Get_Lecture_Class;
+		service.Edit_Course = Edit_Course;
+    service.Delete_Course = Delete_Course;
 		return service;
 
 		function Get_User() {
@@ -45,48 +44,6 @@
 			return deferred.promise;
 		}
 
-		function Get_Lecture_Class(course_id) {
-			var deferred = $q.defer();
-
-			$http.get("class/get_lecture_class?course_id=" + course_id)
-			.success(function(data) {
-				deferred.resolve(data);
-			})
-			.error(function(data) {
-				deferred.reject("Error: Cannot Get Lecture Class");
-			});
-
-			return deferred.promise;
-		}
-
-		function Get_Lab_Section(course_code){
-			var deferred = $q.defer();
-
-			$http.get("course/get_lab_section?course_code=" + course_code)
-			.success(function(data) {
-				deferred.resolve(data);
-			})
-			.error(function(data) {
-				deferred.reject("Error: Cannot Get Classes");
-			});
-
-			return deferred.promise;
-		}
-
-    function Delete_Class(id) {
-      var deferred = $q.defer();
-
-      $http.delete("course/delete_course?id=" + id)
-      .success(function(data) {
-        deferred.resolve(data);
-      })
-      .error(function(data) {
-        deferred.reject("Error: Cannot Delete Classes");
-      });
-
-      return deferred.promise;
-    }
-
 		function Add_Course(newCourse) {
 			var deferred = $q.defer();
 
@@ -101,7 +58,7 @@
 			return deferred.promise;
 		}
 
-		function Edit_Class(id, course) {
+		function Edit_Course(id, course) {
 			var deferred = $q.defer();
 
 			$http.put("course/put_course?id=" + id, course)
@@ -114,5 +71,19 @@
 
 			return deferred.promise;
 		}
+
+    function Delete_Course(id) {
+      var deferred = $q.defer();
+
+      $http.delete("course/delete_course?id=" + id)
+      .success(function(data) {
+        deferred.resolve(data);
+      })
+      .error(function(data) {
+        deferred.reject("Error: Cannot Delete Classes");
+      });
+
+      return deferred.promise;
+    }
 	}
 })();

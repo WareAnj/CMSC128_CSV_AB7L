@@ -89,20 +89,14 @@
 								<div class="col s12 m4">
 								  <div class="card-panel custom lighten-1">
 								    <div class="center">
-											<a title="Delete Course" class="btn-floating btn-large waves-effect waves-light white" ng-click="Delete_Class(course.id)">
+											<a title="Delete Course" class="btn-floating btn-large waves-effect waves-light white" ng-click="Delete_Course(course.id)">
 												<i class="material-icons custom-text text-darken-1">delete</i>
 											</a>
-											<a title="Edit Course Details" class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(course.id)">
+											<a title="Update Course Details" class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(course.id)">
 												<i class="material-icons custom-text text-darken-1">mode_edit</i>
 											</a>
 											<h5>{{course.code}}</h5>
 								    </div>
-								    <!-- <ul class="collapsible popout" data-collapsible="expandable" data-ng-init="Get_Lecture_Section(class.code)">
-								      <li ng-repeat="">
-								        <div class="collapsible-header"><i class="material-icons custom-text text-darken-1">star_rate</i>AB-1L</div>
-								        <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div>
-								      </li>
-								    </ul> -->
 								  </div>
 								</div>
 							</div>
@@ -144,7 +138,7 @@
 					<div id="editModal" class="modal">
 				    <div class="modal-content">
 				      <h5>Edit Course</h5>
-							<form ng-submit="Edit_Class()" autocomplete="off">
+							<form ng-submit="Edit_Course()" autocomplete="off">
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
