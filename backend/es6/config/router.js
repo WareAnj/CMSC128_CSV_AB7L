@@ -25,9 +25,7 @@ module.exports = (router) => {
     // faculty_user routes
     router.post('/faculty_user/register/',                                                  __.faculty_user.register);
     router.get ('/faculty_user/get_user',                                                __.faculty_user.get_logged_in_faculty_user_id);
-    router.post('/faculty_user/update_given_name/',                     $('Faculty User'),  __.faculty_user.update_gname);
-    router.post('/faculty_user/update_middle_name/',                    $('Faculty User'),  __.faculty_user.update_mname);
-    router.post('/faculty_user/update_last_name/',                      $('Faculty User'),  __.faculty_user.update_lname);
+    router.post('/faculty_user/update_name/',                           $('Faculty User'),  __.faculty_user.update_name);
 
     // class routes
     router.get ('/class/get_lecture_class',                                                __.class.get_lecture_class);

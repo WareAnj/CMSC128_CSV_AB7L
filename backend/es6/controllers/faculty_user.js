@@ -40,68 +40,53 @@ exports.register = (req, res, next) => {
     start();
 };
 
-exports.update_gname = (req, res, next) => {
+exports.update_name = (req, res, next) => {
 	const given_name = req.body.given_name;
+	const middle_name = req.body.middle_name;
+	const last_name = req.body.last_name;
 	const uname = req.body.username;
+	
 	db.query(
 		[
-			'UPDATE faculty_user SET given_name=?',
+			'UPDATE faculty_user SET given_name=?, middle_name=?, last_name=?',
 			'WHERE username=?;'
-		].join(' '),[given_name, uname],responder
+		].join(' '),[given_name, middle_name, last_name, uname],responder
 	);
 	
 	function responder(err, result){
 		if(err){
-			winston.error('Error in updating Faculty User Given Name'+err);
+			winston.error('Error in updating Faculty Name'+err);
 			res.send(false);
             return next(err);
         }
         req.session.user.given_name = given_name;
-        res.send(true);
-	}
-}
-
-exports.update_mname = (req, res, next) => {
-	const middle_name = req.body.middle_name;
-	const uname = req.body.username;
-	db.query(
-		[
-			'UPDATE faculty_user SET middle_name=?',
-			'WHERE username=?;'
-		].join(' '),[middle_name, uname],responder
-	);
-	
-	function responder(err, result){
-		if(err){
-			winston.error('Error in updating Faculty User Middle Name'+err);
-			res.send(false);
-            return next(err);
-        }
         req.session.user.middle_name = middle_name;
-        res.send(true);
-	}
-}
-
-exports.update_lname = (req, res, next) => {
-	const last_name = req.body.last_name;
-	const uname = req.body.username;
-	db.query(
-		[
-			'UPDATE faculty_user SET last_name=?',
-			'WHERE username=?;'
-		].join(' '),[last_name, uname],responder
-	);
-	
-	function responder(err, result){
-		if(err){
-			winston.error('Error in updating Faculty User Last Name'+err);
-			res.send(false);
-            return next(err);
-        }
         req.session.user.last_name = last_name;
         res.send(true);
 	}
 }
+
+exports.update_classification = (req, res, next) => {
+	const classification = req.body.classification;
+	const uname = req.body.username;
+	db.query(
+		[
+			'UPDATE faculty_user SET classification=?',
+			'WHERE username=?;'
+		].join(' '),[classification, uname],responder
+	);
+	
+	function responder(err, result){
+		if(err){
+			winston.error('Error in updating Faculty Classification'+err);
+			res.send(false);
+            return next(err);
+        }
+        req.session.user.classification = classification;
+        res.send(true);
+	}
+}
+
 
 exports.check_faculty_user_username = (req, res, next) => {
   const username = req.body.username;

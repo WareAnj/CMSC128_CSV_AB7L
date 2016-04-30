@@ -64,65 +64,52 @@
     }
 	
 	$scope.Update_Details = function() {
-		if(gnchanged){
+		
+		var err = false;
+		
+		if(gnchanged || mnchanged || lnchanged){
 			var ngname = document.querySelector('#fname-input').value;
+			var nmname = document.querySelector('#mname-input').value;
+			var nlname = document.querySelector('#lname-input').value; 
 			if (ngname===""){
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
-				return;
+				err = true;
 			}
-			else if (!(namep.test(ngname))){
+			if (!(namep.test(ngname))){
 				Materialize.toast('Invalid Given Name format!', 3000, 'rounded');
-				return;
+				err = true;
 			}
-			else {
-				$http.post(
-					'faculty_user/update_given_name/',
-					{given_name: ngname, username: uname}
-				);
-				ogname = ngname;
-				$scope.faculty_user_info[0].given_name = ngname;
-			}
-		}
-		if(mnchanged){
-			var nmname = document.querySelector('#mname-input').value;
 			if (nmname===""){
 				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
-				return;
+				err = true;
 			}
-			else if (!(namep.test(nmname))){
+			if (!(namep.test(ngname))){
 				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
-				return;
+				err = true;
 			}
-			else {
-				$http.post(
-					'faculty_user/update_middle_name/',
-					{middle_name: nmname, username: uname}
-				);
-				omname = nmname;
-				$scope.faculty_user_info[0].middle_name = nmname;
-			}	
-		}
-		if(lnchanged){
-			var nlname = document.querySelector('#lname-input').value;
 			if (nlname===""){
 				Materialize.toast('Last Name can not be blank!', 3000, 'rounded');
-				return;
+				err = true;
 			}
-			else if (!(namep.test(nlname))){
+			if (!(namep.test(nlname))){
 				Materialize.toast('Invalid Last Name format!', 3000, 'rounded');
-				return;
+				err = true;
 			}
-			else {
+			if(!err){
 				$http.post(
-					'faculty_user/update_last_name/',
-					{last_name: nlname, username: uname}
+					'faculty_user/update_name/',
+					{given_name: ngname, middle_name: nmname, last_name: nlname, username: uname}
 				);
+				ogname = ngname;
+				omname = nmname;
 				olname = nlname;
+				$scope.faculty_user_info[0].given_name = ngname;
+				$scope.faculty_user_info[0].middle_name = nmname;
 				$scope.faculty_user_info[0].last_name = nlname;
-			}	
+			}
 		}
 		
-		Materialize.toast('Profile updated!', 3000, 'rounded');
+		if(!err) Materialize.toast('Profile updated!', 3000, 'rounded');
 	}
 	
 	$scope.check_gname_changes = function() {
