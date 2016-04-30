@@ -147,19 +147,21 @@
         });
     }
 
-    $scope.Get_Course_Id = function(c_id) {
+    $scope.Get_Selected_Course = function(c_id, lecture_name) {
       localStorage.setItem("Course_id", c_id);
+      localStorage.setItem("Lecture_name", lecture_name);
+      window.location.href='/class';
     }
 
     // Update USER Details
   	$scope.Update_Details = function() {
-		
+
 		var err = false;
-		
+
 		if(gnchanged || mnchanged || lnchanged){
 			var ngname = document.querySelector('#fname-input').value;
 			var nmname = document.querySelector('#mname-input').value;
-			var nlname = document.querySelector('#lname-input').value; 
+			var nlname = document.querySelector('#lname-input').value;
 			if (ngname===""){
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
 				err = true;
@@ -197,10 +199,10 @@
 				$scope.faculty_user_info[0].last_name = nlname;
 			}
 		}
-		
+
 		else if(clchanged){
 		}
-		
+
 		else if((gnchanged || mnchanged || lnchanged)&&clchanged){
 			var ngname = document.querySelector('#fname-input').value;
 			var nmname = document.querySelector('#mname-input').value;
@@ -208,11 +210,11 @@
 			var nclass = document.querySelector('#classification-input').value;
 			var npassw = document.querySelector('#password-input').value;
 			var cpassw = document.querySelector('#confirm-password').value;
-			
+
 			if(npassw!==""){
 				return;
 			}
-			
+
 			if (ngname===""){
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
 				err = true;
@@ -252,25 +254,25 @@
 				$scope.faculty_user_info[0].classification = nclass;
 			}
 		}
-		
+
 		if((!err) || gnchanged || mnchanged || lnchanged || clchanged || (npassw!=="")) Materialize.toast('Profile updated!', 3000, 'rounded');
 	}
-	
+
 	$scope.check_password = function() {
 	}
-	
+
 	$scope.check_gname_changes = function() {
 		var ngname = document.querySelector('#fname-input').value;
 		if (ogname===ngname) gnchanged=false;
 		else gnchanged = true;
 	}
-	
+
 	$scope.check_mname_changes = function() {
 		var nmname = document.querySelector('#mname-input').value;
 		if (omname===nmname) mnchanged=false;
 		else mnchanged = true;
 	}
-	
+
 	$scope.check_lname_changes = function() {
 		var nlname = document.querySelector('#lname-input').value;
 		if (olname===nlname) lnchanged=false;
