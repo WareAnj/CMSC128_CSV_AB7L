@@ -109,6 +109,54 @@
 			}
 		}
 		
+		else if(clchanged){
+		}
+		
+		else if((gnchanged || mnchanged || lnchanged)&&clchanged){
+			var ngname = document.querySelector('#fname-input').value;
+			var nmname = document.querySelector('#mname-input').value;
+			var nlname = document.querySelector('#lname-input').value;
+			var nclass = document.querySelector('#classification-input').value; 
+			if (ngname===""){
+				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
+				err = true;
+			}
+			if (!(namep.test(ngname))){
+				Materialize.toast('Invalid Given Name format!', 3000, 'rounded');
+				err = true;
+			}
+			if (nmname===""){
+				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
+				err = true;
+			}
+			if (!(namep.test(ngname))){
+				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
+				err = true;
+			}
+			if (nlname===""){
+				Materialize.toast('Last Name can not be blank!', 3000, 'rounded');
+				err = true;
+			}
+			if (!(namep.test(nlname))){
+				Materialize.toast('Invalid Last Name format!', 3000, 'rounded');
+				err = true;
+			}
+			if(!err){
+				$http.post(
+					'faculty_user/update_profile/',
+					{given_name: ngname, middle_name: nmname, last_name: nlname, classification: nclass, username: uname}
+				);
+				ogname = ngname;
+				omname = nmname;
+				olname = nlname;
+				oclass = nclass;
+				$scope.faculty_user_info[0].given_name = ngname;
+				$scope.faculty_user_info[0].middle_name = nmname;
+				$scope.faculty_user_info[0].last_name = nlname;
+				$scope.faculty_user_info[0].classification = nclass;
+			}
+		}
+		
 		if(!err) Materialize.toast('Profile updated!', 3000, 'rounded');
 	}
 	

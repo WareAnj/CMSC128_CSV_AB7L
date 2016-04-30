@@ -24,8 +24,9 @@ module.exports = (router) => {
 
     // faculty_user routes
     router.post('/faculty_user/register/',                                                  __.faculty_user.register);
-    router.get ('/faculty_user/get_user',                                                __.faculty_user.get_logged_in_faculty_user_id);
+    router.get ('/faculty_user/get_user',                                                   __.faculty_user.get_logged_in_faculty_user_id);
     router.post('/faculty_user/update_name/',                           $('Faculty User'),  __.faculty_user.update_name);
+    router.post('/faculty_user/update_password/',                       $('Faculty User'),  __.faculty_user.update_password);
 
     // class routes
     router.get ('/class/get_lecture_class',                                                __.class.get_lecture_class);

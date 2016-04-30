@@ -40,6 +40,38 @@ exports.register = (req, res, next) => {
     start();
 };
 
+exports.update_password = (req, res, next) => {
+	const uname = req.body.username;
+	const pword = req.body.password;
+	
+	
+	//with a new procedure
+	db.query(
+		'CALL UPDATE_FACULTY_PASSWORD(?, ?)',
+		[uname, pword],
+		responder
+	);
+	
+	/*
+	//without procedure
+	db.query(
+		[
+			'UPDATE faculty_user SET password=SHA1(?)',
+			'WHERE username=?;'
+		].join(' '),
+		[pword,uname],
+		responder
+	);
+	*/
+	function responder (err, result){
+		if (err) {
+			winston.error('Error in updating Faculty User Password!', last_query);
+			return next(err);
+		}
+		res.send(true)
+	}
+}
+
 exports.update_name = (req, res, next) => {
 	const given_name = req.body.given_name;
 	const middle_name = req.body.middle_name;
