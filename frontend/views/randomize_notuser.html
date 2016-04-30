@@ -42,7 +42,7 @@
 			<div id="rand-not-user" class="container">
 			<div class="row">
 				<!-- COLUMN FOR FORM -->
-				<h4 class="center">Randomize</h4>
+				<h4 class="center">RANDOMIZE</h4>
 				<div class="col s12 m5 l5">
 					<div class="container center">
 						<form onSubmit="return false;" id="form">
@@ -58,7 +58,7 @@
 											tooltipped"
 							    	 		data-position="right"
 							    	 		data-delay="50"
-							    	 		data-tooltip="Alphanumeric characters only!">
+							    	 		data-tooltip="No numbers or special characters!">
 												<input id="input" id="disabled" type="text" class="validate" pattern="^[A-Za-z][A-Za-z\,\.\'\-\s]*$">
 												<label for="input" data-error="Invalid" data-success="">Name</label>
 											</div>
@@ -146,11 +146,15 @@
 		<!-- DIV FOR RESULTS -->
 		<div class="modal" id="modal1">
 			<div class="modal-content center">
-				<div class="container" id="results-container">
-					<div class="container center" id="content">
-						<h4>to edit</h4>
-						<!--<button> <img id="volunteerPic" src="img/logo-1.png"  class="circle"> </button> -->
-						<h4 id="lettersContainer"></h4>
+				<div id="results-container">
+					<div class="center" id="content">
+						<h3>You are chosen</h3>
+						<br>
+						<h3 id="lettersContainer"></h3>
+						<div id="buttons-bottom" class="row center container">
+							<div class="col s12 m6 l6"><button id="closeModal1" class="btn waves-effect waves-light">Close</button></div>
+							<div class="col s12 m6 l6"><button id="rand_again" class="btn waves-effect waves-light">Randomize</button></div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -7,6 +7,15 @@
   box-shadow: 3px 3px 3px #888888;
 }
 
+h3{
+    font-family: nav-side;
+    font-size: 35px;
+}
+
+h4{
+    font-size: 40px;
+}
+
 h5{
     font-family: header-text-2;
     margin-bottom: -6%;
@@ -67,10 +76,6 @@ table{
     background-color: initial;
 }
 
-.modal{
-    width: 700px;
-}
-
 #table button{
     opacity: 0;
 }
@@ -78,4 +83,13 @@ table{
 #table .fields:hover button{
     opacity: 1;
     cursor: pointer;
+}
+
+#modal1{
+    overflow: visible;
+}
+
+#buttons-bottom button{
+    width: 100%;
+    height: 60px;
 }

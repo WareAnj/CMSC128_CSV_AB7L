@@ -26,10 +26,7 @@
 			});
 			
 			
-			$("#rand").click(function(){
-				
-
-
+			$("#rand, #rand_again").click(function(){
 				if(arr.length == 0){
 					alert("The list is empty!");
 					return false;
@@ -38,60 +35,41 @@
 				$("#lettersContainer").empty();
 
 			    var name = (arr[Math.floor((Math.random() * arr.length))]).toLowerCase();			    
-				var alphabet = "abcdefghijklmnopqrstuvwxyz. ".split("");
+				var alphabet_fake = "abcdefgh mn prs uv   z ".split("");
 				var j;
+				var skip = [];
 
-				for(j = 0; j < name.length + (name.length/4); j ++){
+
+				for(j = 0; j < name.length; j ++){
 					var content = "<span id='lettersContainer" + j + "'></span>";
 					$(content).appendTo($("#lettersContainer"));
+					skip[j] = 0;
 				}	// add span to html, will contain the letters
 
 				var counter = -1;
-				j = 0;
 				var loop = setInterval(function(){
-
-					function loopRandomize(){
-						$('span#lettersContainer' + counter).html(alphabet[j]);
-						if(alphabet[j] == name.charAt(counter)) return;
-						j++;
-						if(j == 28) j = 0;
-					};
-
-
-					setInterval(loopRandomize, 8);	// speed of letters
-
-				    counter++;
-				    if(counter === name.length) {	// if all spans are filled
-				    	for(j = 0; j < name.length + (name.length/4); j++){
-				    		$('span#lettersContainer' + (counter + j)).remove();
-				    	}
-				        clearInterval(loop);		// it will stop the loop
-				    }
-
-				}, 224).delay(300);	// interval of each loop (each letter)
-
-				/*
-					For fillers only
-				*/
-
+					$('span#lettersContainer' + counter).html(name.charAt(counter));
+					skip[counter] = 1;
+					counter++;
+					if(counter == name.length) return;
+				}, 200);//.delay(300);	// interval of each loop (each letter)
+			
 				var i = 0;
-				var counter_fake = -1;
-				var loop_fake = setInterval(function(){
+				var looper = 0;
+				var fake_loop = setInterval(function(){
 
 					function loopRandomize_fake(){
-						$('span#lettersContainer' + counter_fake).html(alphabet[i]);
-						i++;
-						if(i == 27) i = 0;
-
+						for(looper = -1; looper < name.length; looper++){
+							if(skip[looper] == 0){
+								i = 1 + Math.floor(Math.random() * 26);
+								$('span#lettersContainer' + looper).html(alphabet_fake[i]);
+							}
+						}
 					};
 
-					setInterval(loopRandomize_fake, 50);	// speed of letters
+					setInterval(loopRandomize_fake, 100);	// speed of letters
 
-				    counter_fake++;
-				    if(counter_fake === name.length + 2)	// if all spans are filled
-							clearInterval(loop_fake);		// it will stop the loop
-
-				}, 200);	// interval of each loop (each letter)
+				}, 500);//.delay(300);	// interval of each loop (each letter)
 			});			
 			
 
@@ -225,4 +203,8 @@
 			
 		  $("#closeModal").click(function(){
 		  	  $('#help-file').closeModal();
+		  });
+
+		  $("#closeModal1").click(function(){
+		  	  $('#modal1').closeModal();
 		  });
