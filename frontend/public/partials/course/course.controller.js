@@ -116,7 +116,14 @@
 			var ngname = document.querySelector('#fname-input').value;
 			var nmname = document.querySelector('#mname-input').value;
 			var nlname = document.querySelector('#lname-input').value;
-			var nclass = document.querySelector('#classification-input').value; 
+			var nclass = document.querySelector('#classification-input').value;
+			var npassw = document.querySelector('#password-input').value;
+			var cpassw = document.querySelector('#confirm-password').value;
+			
+			if(npassw!==""){
+				return;
+			}
+			
 			if (ngname===""){
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
 				err = true;
@@ -157,7 +164,10 @@
 			}
 		}
 		
-		if(!err) Materialize.toast('Profile updated!', 3000, 'rounded');
+		if((!err) || gnchanged || mnchanged || lnchanged || clchanged || (npassw!=="")) Materialize.toast('Profile updated!', 3000, 'rounded');
+	}
+	
+	$scope.check_password = function() {
 	}
 	
 	$scope.check_gname_changes = function() {
