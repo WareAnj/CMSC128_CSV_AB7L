@@ -18,4 +18,7 @@ $(document).ready(function(){
   $("#addButton").on('click', function(){
     $("#addModal").openModal();
   });
+  
+  //$('select').material_select();
+  
 });
