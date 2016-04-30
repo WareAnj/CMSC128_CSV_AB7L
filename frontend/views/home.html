@@ -30,7 +30,7 @@
 				<div id="slide-out" class="side-nav center" data-ng-init="Get_Course()">
 					<img id="sidenav-logo" src="img/logo-2.png">
 						<div ng-repeat="info in faculty_user_info">
-							<h5 class="teal-text text-lighten-2"> {{info.given_name}} {{info.middle_name}}  {{info.last_name}}</h5>
+							<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
 						</div>
 						<div ng-repeat="course in faculty_user_courses">
 							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Course_Id(course.id)">{{course.code}}</a></li>
@@ -62,7 +62,7 @@
 								<div class="card-panel custom lighten-1">
 									<span>
 										<div ng-repeat="info in faculty_user_info">
-											<h3> {{info.given_name}} {{info.middle_name}}  {{info.last_name}}</h3>
+											<h3>{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h3>
 											<div class="row">
 												<div class="col s6">
 													<h5><i class="material-icons left">info</i>Basic Information</h5>
@@ -173,22 +173,21 @@
 							<div class="col s12">
 								<div class="card-panel custom lighten-1">
 									<h5 style="float:left; width:80%;"><i class="material-icons left">mode_edit</i>Edit Information</h5>
-									<button class="btn waves-effect waves-teal" type="submit"><i class="material-icons right">done</i> Save</button>
-									<form action="" method="UPDATE">
+									<form autocomplete="off">
 									<br>
+									<button class="btn waves-effect waves-teal" ng-click="Update_Details()"><i class="material-icons right">done</i>Save</button>
 									<div ng-repeat="info in faculty_user_info">
 										<div class="row">
 											<div class="input-field">
 												<div class="col s12 m12 l4">
-													<input placeholder="First Name" type="text" name="user-fname" id="fname-input" value="{{info.given_name}}"/>
+													<input placeholder="First Name" type="text" name="user-fname" id="fname-input" value="{{info.given_name}}" pattern="[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+" ng-keyup="check_gname_changes()"/>
 													<label for="fname-input" class="black-text"><i class="black-text material-icons left">info</i>Name</label>
 												</div>
 												<div class="col s12 m12 l4">
-													<input placeholder="Middle Name" type="text" name="user-mname" id="mname-input" value="{{info.middle_name}}"/>
+													<input placeholder="Middle Name" type="text" name="user-mname" id="mname-input" value="{{info.middle_name}}" pattern="[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+" ng-keyup="check_mname_changes()"/>
 												</div>
 												<div class="col s12 m12 l4">
-													<input placeholder="Last Name" type="text" name="user-lname" id="lname-input"
-													value="{{info.last_name}}"/>
+													<input placeholder="Last Name" type="text" name="user-lname" id="lname-input" value="{{info.last_name}}" pattern="[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+" ng-keyup="check_lname_changes()"/>
 												</div>
 											</div>
 										</div>
@@ -207,9 +206,9 @@
 											</div>
 											<div class="col s12 m12 l4">
 												<div class="input-field">
-													<select id="classification-input" class="input-field" ng-model="selectd.repeatSelect">
+													<select id="classification-input" ng-model="selectd.repeatSelect">
 														<option value="{{info.classification}}" selected="selected">{{info.classification}}</option>
-														<option ng-repeat="option in selectd.soptions" value="{{option.id}}">{{option.name}}</option>
+														<option ng-repeat="option in selectd.options" value="{{option.id}}">{{option.name}}</option>
 													</select>
 													<label for="classification-input" class="black-text"><i class="material-icons left">perm_identity</i>Classification</label>
 												</div>

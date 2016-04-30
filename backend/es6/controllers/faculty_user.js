@@ -40,6 +40,86 @@ exports.register = (req, res, next) => {
     start();
 };
 
+exports.update_password = (req, res, next) => {
+	const uname = req.body.username;
+	const pword = req.body.password;
+
+
+	//with a new procedure
+	db.query(
+		'CALL UPDATE_FACULTY_PASSWORD(?, ?)',
+		[uname, pword],
+		responder
+	);
+
+	/*
+	//without procedure
+	db.query(
+		[
+			'UPDATE faculty_user SET password=SHA1(?)',
+			'WHERE username=?;'
+		].join(' '),
+		[pword,uname],
+		responder
+	);
+	*/
+	function responder (err, result){
+		if (err) {
+			winston.error('Error in updating Faculty User Password!', last_query);
+			return next(err);
+		}
+		res.send(true)
+	}
+}
+
+exports.update_name = (req, res, next) => {
+	const given_name = req.body.given_name;
+	const middle_name = req.body.middle_name;
+	const last_name = req.body.last_name;
+	const uname = req.body.username;
+
+	db.query(
+		[
+			'UPDATE faculty_user SET given_name=?, middle_name=?, last_name=?',
+			'WHERE username=?;'
+		].join(' '),[given_name, middle_name, last_name, uname],responder
+	);
+
+	function responder(err, result){
+		if(err){
+			winston.error('Error in updating Faculty Name'+err);
+			res.send(false);
+            return next(err);
+        }
+        req.session.user.given_name = given_name;
+        req.session.user.middle_name = middle_name;
+        req.session.user.last_name = last_name;
+        res.send(true);
+	}
+}
+
+exports.update_classification = (req, res, next) => {
+	const classification = req.body.classification;
+	const uname = req.body.username;
+	db.query(
+		[
+			'UPDATE faculty_user SET classification=?',
+			'WHERE username=?;'
+		].join(' '),[classification, uname],responder
+	);
+
+	function responder(err, result){
+		if(err){
+			winston.error('Error in updating Faculty Classification'+err);
+			res.send(false);
+            return next(err);
+        }
+        req.session.user.classification = classification;
+        res.send(true);
+	}
+}
+
+
 exports.check_faculty_user_username = (req, res, next) => {
   const username = req.body.username;
 
