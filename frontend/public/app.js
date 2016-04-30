@@ -88,9 +88,9 @@
             $scope.userList = [];
 
             $http.get("admin/get_pending_users")
-            .success(function(data){
+            .success(function(data) {
                 let length = data[0].length;
-                for (let i = 0; i < length; i++ ) {
+                for (let i = 0; i < length; i++) {
                     $scope.userList.push(data[0][i]);
                 }
             })
@@ -102,7 +102,7 @@
         $scope.ApproveUser = function(id, username) {
 
             $http.put("admin/approve_user/" + id)
-            .success(function(data){
+            .success(function(data) {
                 alert("Successfully Approved User: " + username);
             })
             .error(function(data) {
@@ -115,12 +115,12 @@
             let tr = td.parent();
 
             tr.css("background-color","#FF3700");
-            tr.fadeOut(400, function(){
+            tr.fadeOut(400, function() {
             tr.remove();
             }); */
 
             let index = -1;
-            let comArr = eval( $scope.userList );
+            let comArr = eval($scope.userList);
             for (let i = 0; i < comArr.length; i++) {
                 if (comArr[i].username === username) {
                     index = i;
@@ -128,7 +128,7 @@
                 }
             }
 
-            if( index === -1 ) {
+            if(index === -1) {
                 alert("Something gone wrong");
                 return;
             }
@@ -143,7 +143,7 @@
             $scope.userList = [];
 
             $http.get("admin/login_logs")
-            .success(function(data){
+            .success(function(data) {
                 let length = data.length;
                 for (let i = 0; i < length; i++) {
                     $scope.userList.push(data[i]);
@@ -159,9 +159,9 @@
             $scope.userList = [];
 
             $http.get("admin/logout_logs")
-            .success(function(data){
+            .success(function(data) {
                 let length = data.length;
-                for (let i = 0; i < length; i++ ){
+                for (let i = 0; i < length; i++) {
                     $scope.userList.push(data[i]);
                 }
             })
@@ -177,7 +177,7 @@
             $http.get("admin/login_logs/" + id)
             .success(function(data) {
                 let length = data.length;
-                for(let i = 0; i < length; i++ ){
+                for (let i = 0; i < length; i++) {
                     $scope.userList.push(data[i]);
                 }
             })
@@ -191,7 +191,7 @@
             $scope.userList = [];
 
             $http.get("admin/logout_logs/" + id)
-            .success(function(data){
+            .success(function(data) {
                 let length = data.length;
                 for (let i = 0; i < length; i++) {
                 $scope.userList.push(data[i]);
