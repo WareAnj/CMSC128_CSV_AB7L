@@ -12,6 +12,7 @@
     $scope.faculty_user_info = [];
 
     // Update User Details
+    var user_id;
     var oclass;
     var ogname;
     var omname;
