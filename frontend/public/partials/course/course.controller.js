@@ -1,4 +1,4 @@
-(function(){
+(function() {
   'use strict';
 
   angular
@@ -7,29 +7,28 @@
 
   CourseCtrl.$inject = ["$scope", "$location", "$http", "CourseService"];
 
-  function CourseCtrl($scope, $location, $http, CourseService){
+  function CourseCtrl($scope, $location, $http, CourseService) {
     $scope.faculty_user_courses = [];
     $scope.faculty_user_info = [];
 
     // Update User Details
-    var user_id;
-    var oclass;
-    var ogname;
-    var omname;
-    var olname;
-    var uname;
-    var gnchanged = false;
-    var mnchanged = false;
-    var lnchanged = false;
-    var clchanged = false;
-    var namep = new RegExp("[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+");
+    let user_id;
+    let oclass;
+    let ogname;
+    let omname;
+    let olname;
+    let uname;
+    let gnchanged = false;
+    let mnchanged = false;
+    let lnchanged = false;
+    let clchanged = false;
+    let namep = new RegExp("[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+");
 
-    $scope.Get_User = function(){
+    $scope.Get_User = function() {
       CourseService.Get_User()
         .then(function(data){
           $scope.faculty_user_info = [];
           $scope.faculty_user_info.push(data);
-
           user_id = data.id;
           oclass = data.classification;
           ogname = data.given_name;
@@ -62,19 +61,19 @@
         });
     }
 
-   $scope.Get_Course = function(){
+   $scope.Get_Course = function() {
       CourseService.Get_Course(user_id)
-        .then(function(data){
+        .then(function(data) {
           $scope.faculty_user_courses = [];
-          for(var i = 0; i < data.length; i++){
+          for(let i = 0; i < data.length; i++) {
             $scope.faculty_user_courses.push(data[i]);
           }
         });
     }
 
-    $scope.Add_Course = function(){
+    $scope.Add_Course = function() {
       CourseService.Add_Course($scope.newCourse)
-      .then(function(data){
+      .then(function(data) {
         $scope.newCourse.course_code = "";
         $scope.newCourse.course_title = "";
         $scope.newCourse.course_description = "";
@@ -84,27 +83,27 @@
       });
 
       CourseService.Get_Course()
-      .then(function(data){
-      });
+      .then(function(data) {
+       });
 
       CourseService.Get_Course()
-      .then(function(data){
+      .then(function(data) {
         $scope.faculty_user_courses = [];
-        for(var i = 0; i < data.length; i++){
+        for(let i = 0; i < data.length; i++) {
           $scope.faculty_user_courses.push(data[i]);
         }
       });
     }
 
-    $scope.openModal = function(c_id){
+    $scope.openModal = function(c_id) {
       $("#editModal").openModal();
       localStorage.setItem("Course_id", c_id);
     }
 
 
-    $scope.Edit_Course = function(){
+    $scope.Edit_Course = function() {
       CourseService.Edit_Course(localStorage.getItem("Course_id"), $scope.course)
-        .then(function(data){
+        .then(function(data) {
           $scope.course.course_code = "";
           $scope.course.course_title = "";
           $scope.course.course_description = "";
@@ -114,67 +113,67 @@
 
 
         CourseService.Get_Course()
-          .then(function(data){
+          .then(function(data) {
             $scope.faculty_user_courses = [];
-            for(var i = 0; i < data.length; i++){
+            for(let i = 0; i < data.length; i++) {
               $scope.faculty_user_courses.push(data[i]);
             }
           });
     }
 
-    $scope.Delete_Course = function(id){
+    $scope.Delete_Course = function(id) {
       CourseService.Delete_Course(id)
         .then(function(data){ });
 
       CourseService.Get_Course()
-        .then(function(data){
+        .then(function(data) {
           $scope.faculty_user_courses = [];
-          for(var i = 0; i < data.length; i++){
+          for(let i = 0; i < data.length; i++) {
             $scope.faculty_user_courses.push(data[i]);
           }
         });
     }
 
-    $scope.Get_Course_Id = function(c_id){
+    $scope.Get_Course_Id = function(c_id) {
       localStorage.setItem("Course_id", c_id);
     }
 
     // Update USER Details
   	$scope.Update_Details = function() {
-  		var err = false;
-  		if(gnchanged || mnchanged || lnchanged){
-  			var ngname = document.querySelector('#fname-input').value;
-  			var nmname = document.querySelector('#mname-input').value;
-  			var nlname = document.querySelector('#lname-input').value;
-  			if (ngname===""){
+  		let err = false;
+  		if(gnchanged || mnchanged || lnchanged) {
+  			let ngname = document.querySelector('#fname-input').value;
+  			let nmname = document.querySelector('#mname-input').value;
+  			let nlname = document.querySelector('#lname-input').value;
+  			if (ngname==="") {
   				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
   				err = true;
   			}
-  			if (!(namep.test(ngname))){
+  			if (!(namep.test(ngname))) {
   				Materialize.toast('Invalid Given Name format!', 3000, 'rounded');
   				err = true;
   			}
-  			if (nmname===""){
+  			if (nmname==="") {
   				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
   				err = true;
   			}
-  			if (!(namep.test(ngname))){
+  			if (!(namep.test(ngname))) {
   				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
   				err = true;
   			}
-  			if (nlname===""){
+  			if (nlname==="") {
   				Materialize.toast('Last Name can not be blank!', 3000, 'rounded');
   				err = true;
   			}
-  			if (!(namep.test(nlname))){
+  			if (!(namep.test(nlname))) {
   				Materialize.toast('Invalid Last Name format!', 3000, 'rounded');
   				err = true;
   			}
-  			if(!err){
+  			if(!err) {
   				$http.post(
-  					'faculty_user/update_name/',
-  					{given_name: ngname, middle_name: nmname, last_name: nlname, username: uname}
-  				);
+  					         'faculty_user/update_name/',
+  					         {given_name: ngname, middle_name: nmname, last_name: nlname, username: uname}
+  				          );
   				ogname = ngname;
   				omname = nmname;
   				olname = nlname;
@@ -182,45 +181,42 @@
   				$scope.faculty_user_info[0].middle_name = nmname;
   				$scope.faculty_user_info[0].last_name = nlname;
   			}
-  		}
+  		}	else if(clchanged) {
 
-  		else if(clchanged){
-  		}
-
-  		else if((gnchanged || mnchanged || lnchanged)&&clchanged){
-  			var ngname = document.querySelector('#fname-input').value;
-  			var nmname = document.querySelector('#mname-input').value;
-  			var nlname = document.querySelector('#lname-input').value;
-  			var nclass = document.querySelector('#classification-input').value;
-  			if (ngname===""){
+      } else if((gnchanged || mnchanged || lnchanged)&&clchanged) {
+  			let ngname = document.querySelector('#fname-input').value;
+  			let nmname = document.querySelector('#mname-input').value;
+  			let nlname = document.querySelector('#lname-input').value;
+  			let nclass = document.querySelector('#classification-input').value;
+  			if (ngname==="") {
   				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
   				err = true;
   			}
-  			if (!(namep.test(ngname))){
+  			if (!(namep.test(ngname))) {
   				Materialize.toast('Invalid Given Name format!', 3000, 'rounded');
   				err = true;
   			}
-  			if (nmname===""){
+  			if (nmname==="") {
   				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
   				err = true;
   			}
-  			if (!(namep.test(ngname))){
+  			if (!(namep.test(ngname))) {
   				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
   				err = true;
   			}
-  			if (nlname===""){
+  			if (nlname==="") {
   				Materialize.toast('Last Name can not be blank!', 3000, 'rounded');
   				err = true;
   			}
-  			if (!(namep.test(nlname))){
+  			if (!(namep.test(nlname))) {
   				Materialize.toast('Invalid Last Name format!', 3000, 'rounded');
   				err = true;
   			}
-  			if(!err){
+  			if(!err) {
   				$http.post(
-  					'faculty_user/update_profile/',
-  					{given_name: ngname, middle_name: nmname, last_name: nlname, classification: nclass, username: uname}
-  				);
+  					         'faculty_user/update_profile/',
+  					         {given_name: ngname, middle_name: nmname, last_name: nlname, classification: nclass, username: uname}
+  				           );
   				ogname = ngname;
   				omname = nmname;
   				olname = nlname;
@@ -231,26 +227,34 @@
   				$scope.faculty_user_info[0].classification = nclass;
   			}
   		}
-
   		if(!err) Materialize.toast('Profile updated!', 3000, 'rounded');
   	}
 
   	$scope.check_gname_changes = function() {
-  		var ngname = document.querySelector('#fname-input').value;
-  		if (ogname===ngname) gnchanged=false;
-  		else gnchanged = true;
+  		let ngname = document.querySelector('#fname-input').value;
+  		if {
+        (ogname===ngname) gnchanged=false;
+      } else {
+        gnchanged = true;
+      }
   	}
 
   	$scope.check_mname_changes = function() {
-  		var nmname = document.querySelector('#mname-input').value;
-  		if (omname===nmname) mnchanged=false;
-  		else mnchanged = true;
+  		let nmname = document.querySelector('#mname-input').value;
+  		if {
+        (omname===nmname) mnchanged=false;
+      } else {
+        mnchanged = true;
+      }
   	}
 
   	$scope.check_lname_changes = function() {
-  		var nlname = document.querySelector('#lname-input').value;
-  		if (olname===nlname) lnchanged=false;
-  		else lnchanged = true;
+  		let nlname = document.querySelector('#lname-input').value;
+  		if {
+        (olname===nlname) lnchanged=false;
+      } else {
+        lnchanged = true;
+      }
   	}
   }
 })();
