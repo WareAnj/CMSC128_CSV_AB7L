@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 
 <html ng-app="app">
-
 	<head>
 		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
 		<title>Reginyzr</title>
     	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
     	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
        	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
        	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
     	<link type="text/css" rel="stylesheet" href="stylesheets/admin_tables.css">
-
     	<script type="text/javascript" src="js/jquery.js"></script>	
-
 	</head>
 
-	<body>
-
-		<!-- NAV BAR -->
-
-		<div class="navbar-fixed">
+	<body ng-controller="AdminCtrl">
+	<!-- NAV BAR -->
+	<div class="navbar-fixed">
 		<nav>
 		 	<div class="nav-wrapper container">
 		 		<ul>
@@ -44,7 +38,6 @@
 		    </div>
 		</nav>
 	</div>
-
 		<div class="container">
 			<table data-ng-init="GetUsers()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table bordered centered stripped">
 				<thead>
@@ -78,6 +71,9 @@
 							<a ng-click="order('date_signed_up')" class="waves-effect waves-light btn">Date of Sign Up
 							<span class="sortorder" ng-show="predicate === 'date_signed_up'" ng-class="{reverse:reverse}"></span>
 							</a>
+						</th>
+						<th>
+							<a class="waves-effect waves-light btn">Approve</a>
 						</th>
 					</tr>
 				</thead>
@@ -115,6 +111,8 @@
 		<script src="js/angular.min.js"></script>
 		<script src="js/angular-route.min.js"></script>
 		<script src="app.js"></script>
+		<script src="partials/admin/admin.service.js"></script>
+		<script src="partials/admin/admin.controller.js"></script>
 				
 
 	</body>
