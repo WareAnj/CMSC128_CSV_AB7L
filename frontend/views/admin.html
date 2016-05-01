@@ -11,8 +11,7 @@
     	<link type="text/css" rel="stylesheet" href="stylesheets/home.css">
 	</head>
 
-	<body>
-
+	<body ng-controller="AdminCtrl">
 	<!-- NAV BAR -->
 	<div class="navbar-fixed">
 		<nav>
@@ -58,12 +57,16 @@
 				</div>
 			</div>
 		</footer>
-	    	    <script type="text/javascript" src="js/jquery.js"></script>
+
+		<script type="text/javascript" src="js/jquery.js"></script>
 	    <script type="text/javascript" src="js/materialize.min.js"></script>
 	    <script type="text/javascript" src="js/default.js"></script>
 		<script src="js/angular.min.js"></script>
 		<script src="js/angular-route.min.js"></script>
 		<script src="app.js"></script>
+		<script src="partials/admin/admin.service.js"></script>
+		<script src="partials/admin/admin.controller.js"></script>
+
 		<script>
 		$('.showsidenav').sideNav({
 			menuWidth: 350, // Default is 240
