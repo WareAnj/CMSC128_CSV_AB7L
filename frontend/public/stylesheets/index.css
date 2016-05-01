@@ -17,8 +17,11 @@ table {
 
 
 #brief-intro-container{
-	background: url("../img/image1.jpg") no-repeat center;
-
+	background: url("../img/cover-f.jpg") no-repeat center;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .center-label{
@@ -34,7 +37,7 @@ table {
 }
 
 #brief-intro{
-	background-color: rgba(250,255,249, 0.5);
+	background-color: rgba(250,255,249, 0.8);
 }
 
 #brief-intro #content{
