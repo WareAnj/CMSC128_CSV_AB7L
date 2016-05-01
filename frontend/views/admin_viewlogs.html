@@ -8,7 +8,7 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
        	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
        	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/admin_approve.css">
+    	<link type="text/css" rel="stylesheet" href="stylesheets/admin_tables.css">
 
 	</head>
 
@@ -22,18 +22,21 @@
 		    	</ul>
 	    		<!-- SIDE NAV  -->
 				<div id="slide-out" class="side-nav center">
-						<div class = "center" ng-controller="AdminCtrl">
-							<a href="/admin" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Home</a>
-						</div>
-						<div class = "center" ng-controller="AdminCtrl">
-							<a href="/admin_approve" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Pending Users</a>
-						</div>
-						<div class = "center" ng-controller="AdminCtrl">
-							<a href="/admin_viewlogs" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Logs</a>
-						</div>
-						<div class = "center" ng-controller="AdminCtrl">
-							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
-						</div>
+					<div class = "center" ng-controller="AdminCtrl">
+						<a href="/admin" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Home</a>
+					</div>
+					<div class = "center" ng-controller="AdminCtrl">
+						<a href="/admin_approve" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Pending Users</a>
+					</div>
+					<div class = "center" ng-controller="AdminCtrl">
+						<a href="/admin_viewusers" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Approved Users</a>
+					</div>
+					<div class = "center" ng-controller="AdminCtrl">
+						<a href="/admin_viewlogs" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Logs</a>
+					</div>
+					<div class = "center" ng-controller="AdminCtrl">
+						<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
+					</div>
 				</div>
 		    </div>
 		</nav>
@@ -55,19 +58,25 @@
 				<thead>
 					<tr>
 						<th>
+							<div id="div1">
 							<a ng-click="order('id')" class="waves-effect waves-light btn">User id
 							<span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span>
 							</a>
+							</div>
 						</th>
 						<th>
+							<div id="div2">
 							<a ng-click="order('username')" class="waves-effect waves-light btn">Username
 							<span class="sortorder" ng-show="predicate === 'username'" ng-class="{reverse:reverse}"></span>
 							</a>
+							</div>
 						</th>
 						<th id="dynamicth">
+							<div id="div3">
 							<a ng-click="order('date_logout')" class="waves-effect waves-light btn">Date Logout
 							<span class="sortorder" ng-show="predicate === 'date_logout'" ng-class="{reverse:reverse}"></span>
 							</a>
+							</div>
 						</th>
 					</tr>
 				</thead>
@@ -91,19 +100,25 @@
 				<thead>
 					<tr>
 						<th>
+							<div id="div1">
 							<a ng-click="order('id')" class="waves-effect waves-light btn">User id
 							<span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span>
 							</a>
+							</div>
 						</th>
 						<th>
+							<div id="div2">
 							<a ng-click="order('username')" class="waves-effect waves-light btn">Username
 							<span class="sortorder" ng-show="predicate === 'username'" ng-class="{reverse:reverse}"></span>
 							</a>
+							</div>
 						</th>
 						<th id="dynamicth">
+							<div id="div3">
 							<a ng-click="order('date_login')" class="waves-effect waves-light btn">Date Login
 							<span class="sortorder" ng-show="predicate === 'date_login'" ng-class="{reverse:reverse}"></span>
 							</a>
+							</div>
 						</th>
 					</tr>
 				</thead>
