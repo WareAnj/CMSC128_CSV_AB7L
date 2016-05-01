@@ -6,10 +6,6 @@ $(document).ready(function(){
   });
 });
 
-$('.showsidenav').sideNav({
-//	menuWidth: 300, // Default is 240
-});
-
 $(document).ready(function(){
   $("#editButton").on('click', function(){
     $("#editModal").openModal();
@@ -18,7 +14,5 @@ $(document).ready(function(){
   $("#addButton").on('click', function(){
     $("#addModal").openModal();
   });
-  
-  //$('select').material_select();
-  
+    
 });

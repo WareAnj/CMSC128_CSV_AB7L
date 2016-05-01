@@ -135,7 +135,9 @@ footer.page-footer{
 
 #signupModal{
 	width: 60%;
-	overflow: visible;
+	max-height: 100%;
+	overflow-y: auto;
+	bottom: 17%;
 }
 
 .modal .input-field i{
