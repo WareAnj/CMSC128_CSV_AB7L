@@ -132,3 +132,17 @@
    .input-field .prefix.active {
      color: black;
    }
+
+h3{
+  font-family: reasons;
+  font-size: 40px;
+}
+
+h5{
+  font-family: header-text;
+  font-size: 30px;
+}
+
+#profile i{
+  font-size: 30px;
+}
