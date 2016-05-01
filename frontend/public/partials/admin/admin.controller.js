@@ -101,5 +101,16 @@
             });
       }
 
+      $scope.GetAllApproved = function(){
+          $scope.userList = [];
+          AdminService.GetAllApproved()
+            .then(function(data){
+              let length = data[0].length;
+              for (let i = 0; i < length; i++) {
+                  $scope.userList.push(data[0][i]);
+              }
+            });
+      }
+
   }
 })();
