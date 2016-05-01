@@ -24,7 +24,9 @@ module.exports = (router) => {
 
     // faculty_user routes
     router.post('/faculty_user/register/',                                                  __.faculty_user.register);
-    router.get ('/faculty_user/get_user_id',                                                __.faculty_user.get_logged_in_faculty_user_id);
+    router.get ('/faculty_user/get_user',                                                   __.faculty_user.get_logged_in_faculty_user_id);
+    router.post('/faculty_user/update_name/',                           $('Faculty User'),  __.faculty_user.update_name);
+    router.post('/faculty_user/update_password/',                       $('Faculty User'),  __.faculty_user.update_password);
 
     // class routes
     router.get ('/class/get_lecture_class',                                                __.class.get_lecture_class);
@@ -56,7 +58,10 @@ module.exports = (router) => {
     router.post('/faculty_user/check_faculty_user_employee_id/',                            __.faculty_user.check_faculty_user_employee_id);
 
     // randomize n students from a course with the specified section
-    router.post('/faculty_user/randomize',                              $('Faculty User'),  __.faculty_user.randomize);
+    router.post('/faculty_user/randomize',	                            $('Faculty User'),  __.faculty_user.randomize);
+
+	//cheat mode update the frequency of a student
+    router.post('/faculty_user/cheat_mode',								$('Faculty User'),  __.faculty_user.cheat_mode);
 
     // authentication routes
     router.post('/authenticate/login',                                                      __.authenticate.login);

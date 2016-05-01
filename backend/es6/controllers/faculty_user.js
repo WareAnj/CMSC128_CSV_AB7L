@@ -40,6 +40,86 @@ exports.register = (req, res, next) => {
     start();
 };
 
+exports.update_password = (req, res, next) => {
+	const uname = req.body.username;
+	const pword = req.body.password;
+
+
+	//with a new procedure
+	db.query(
+		'CALL UPDATE_FACULTY_PASSWORD(?, ?)',
+		[uname, pword],
+		responder
+	);
+
+	/*
+	//without procedure
+	db.query(
+		[
+			'UPDATE faculty_user SET password=SHA1(?)',
+			'WHERE username=?;'
+		].join(' '),
+		[pword,uname],
+		responder
+	);
+	*/
+	function responder (err, result){
+		if (err) {
+			winston.error('Error in updating Faculty User Password!', last_query);
+			return next(err);
+		}
+		res.send(true)
+	}
+}
+
+exports.update_name = (req, res, next) => {
+	const given_name = req.body.given_name;
+	const middle_name = req.body.middle_name;
+	const last_name = req.body.last_name;
+	const uname = req.body.username;
+
+	db.query(
+		[
+			'UPDATE faculty_user SET given_name=?, middle_name=?, last_name=?',
+			'WHERE username=?;'
+		].join(' '),[given_name, middle_name, last_name, uname],responder
+	);
+
+	function responder(err, result){
+		if(err){
+			winston.error('Error in updating Faculty Name'+err);
+			res.send(false);
+            return next(err);
+        }
+        req.session.user.given_name = given_name;
+        req.session.user.middle_name = middle_name;
+        req.session.user.last_name = last_name;
+        res.send(true);
+	}
+}
+
+exports.update_classification = (req, res, next) => {
+	const classification = req.body.classification;
+	const uname = req.body.username;
+	db.query(
+		[
+			'UPDATE faculty_user SET classification=?',
+			'WHERE username=?;'
+		].join(' '),[classification, uname],responder
+	);
+
+	function responder(err, result){
+		if(err){
+			winston.error('Error in updating Faculty Classification'+err);
+			res.send(false);
+            return next(err);
+        }
+        req.session.user.classification = classification;
+        res.send(true);
+	}
+}
+
+
 exports.check_faculty_user_username = (req, res, next) => {
   const username = req.body.username;
 
@@ -87,39 +167,7 @@ exports.check_faculty_user_employee_id = (req, res, next) => {
 };
 
 exports.get_logged_in_faculty_user_id = (req, res, next) => {
-  db.query(
-    [
-      'SELECT faculty_user_id FROM login_logs',
-      'ORDER BY date_login',
-      'DESC LIMIT 1; '
-    ].join(' '),
-    send_response
-  );
-
-  function send_response (err, result, args, last_query) {
-      if (err) {
-          winston.error('Error in creating a faculty user', last_query);
-          return next(err);
-      }
-
-      db.query(
-        [
-          'SELECT * FROM faculty_user',
-          'where id = ?;'
-        ].join(' '),
-    	   [result[0].faculty_user_id],
-         send
-      );
-  }
-
-  function send (err, result, args, last_query) {
-      if (err) {
-          winston.error('Error in creating a faculty user', last_query);
-          return next(err);
-      }
-
-      res.send(result);
-  }
+    res.send(req.session.user);
 };
 
 exports.post_volunteer = (req, res, next) => {
@@ -173,7 +221,7 @@ exports.get_volunteers = (req, res, next) => {
     function start() {
         db.query (
             [
-                'SELECT s.student_number, s.last_name, s.given_name, sect.code, s.frequency',
+                'SELECT s.student_number, s.last_name, s.given_name, sect.code',
                 'FROM faculty_user f, course c, faculty_user_course fc,',
                 'student s, section sect, student_section ss',
                 'WHERE f.id = fc.faculty_user_id and c.id = fc.course_id',
@@ -219,7 +267,7 @@ exports.update_volunteer = (req, res, next) => {
             [
                 data.user_id, data.course_code, data.section_name,
                 data.old_section_code, data.section_code, data.old_student_number,
-                data.student_number, data.last_name, data.given_name, 
+                data.student_number, data.last_name, data.given_name,
                 data.middle_name, data.classification,
                 data.college, data.degree
             ],
@@ -241,10 +289,10 @@ exports.update_volunteer = (req, res, next) => {
 exports.delete_volunteer = (req, res, next) => {
 
     const data = {
-        user_id:                req.body.user_id, 
+        user_id:                req.body.user_id,
         course_code:            req.body.course_code,
         section_name:           req.body.section_name,
-        section_code:           req.body.section_code, 
+        section_code:           req.body.section_code,
         student_number:         req.body.student_number
     }
 
@@ -360,4 +408,34 @@ exports.randomize = (req, res, next) => {
     }
 
     start();
+};
+
+exports.cheat_mode = (req, res, next) => {
+
+	const data = {
+		student_number:			req.body.student_number,
+		user_id:				req.body.user_id,
+		course_code:			req.body.course_code,
+		section_name:			req.body.section_name
+	};
+
+	function start () {
+
+		db.query(
+			'CALL CHEAT_MODE(?, ?, ?, ?)',
+			[data.student_number, data.user_id, data.course_code, data.section_name],
+			send_response
+		);
+	}
+
+	function send_response (err, result, args, last_query) {
+		if (err) {
+			winston.error('Error in updating frequency', last_query);
+			return next(err);
+		}
+
+		res.send(result[0][0]);
+	}
+
+	start();
 };
