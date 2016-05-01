@@ -35,7 +35,7 @@
     } 
 
     $scope.ApproveUser = function(id, username) {
-        AdminService.GetUsers(id)
+        AdminService.ApproveUser(id)
           .then(function(data){
               alert("Successfully Approved User: " + username);
           });       
