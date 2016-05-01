@@ -44,6 +44,10 @@ exports.admin_viewlogs = (req, res, next) => {
 	res.render('admin_viewlogs');
 };
 
+exports.admin_viewusers = (req, res, next) => {
+	res.render('admin_viewusers');
+};
+
 exports.class = (req, res, next) =>{
 	res.render('class');
 };

@@ -18,21 +18,24 @@
 		 	<div class="nav-wrapper container">
 		 		<ul>
 		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
-		    	</ul>	   
-	    		<!-- SIDE NAV  -->
+		    	</ul>
+				<!-- SIDE NAV  -->
 				<div id="slide-out" class="side-nav center">
-						<div class = "center" ng-controller="AdminCtrl">
-							<a href="/admin" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Home</a>
-						</div>
-						<div class = "center" ng-controller="AdminCtrl">
-							<a href="/admin_approve" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Pending Users</a>
-						</div>
-						<div class = "center" ng-controller="AdminCtrl">
-							<a href="/admin_viewlogs" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Logs</a>
-						</div>
-						<div class = "center" ng-controller="AdminCtrl">
-							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
-						</div>
+					<div class = "center" ng-controller="AdminCtrl">
+						<a href="/admin" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Home</a>
+					</div>
+					<div class = "center" ng-controller="AdminCtrl">
+						<a href="/admin_approve" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Pending Users</a>
+					</div>
+					<div class = "center" ng-controller="AdminCtrl">
+						<a href="/admin_viewusers" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Approved Users</a>
+					</div>
+					<div class = "center" ng-controller="AdminCtrl">
+						<a href="/admin_viewlogs" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Logs</a>
+					</div>
+					<div class = "center" ng-controller="AdminCtrl">
+						<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
+					</div>
 				</div>
 		    </div>
 		</nav>

@@ -16,6 +16,7 @@
 		service.GetAllLogout = GetAllLogout;
 		service.GetSpecificLogin = GetSpecificLogin;
 		service.GetSpecificLogout = GetSpecificLogout;
+		service.GetAllApproved = GetAllApproved;
 	
 		return service;
 
@@ -125,6 +126,22 @@
 	          });
 
 	          return deferred.promise;
+		}
+
+
+		function GetAllApproved(){
+			  let deferred = $q.defer();
+
+			  $http.get("admin/get_approved_users")
+			  .success(function(data){
+			  	deferred.resolve(data)
+			  })
+			  .error(function(data){
+			  	deferred.reject("Error: Cannot Get All Approved Users");
+			  	alert(data.context);
+			  })
+
+			  return deferred.promise;
 		}
 
 
