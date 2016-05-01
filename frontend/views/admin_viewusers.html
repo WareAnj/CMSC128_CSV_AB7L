@@ -42,7 +42,7 @@
 		</nav>
 	</div>
 		<div class="container">
-			<table data-ng-init="GetUsers()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table bordered centered stripped">
+			<table data-ng-init="GetAllApproved()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table bordered centered stripped">
 				<thead>
 					<tr>
 						<th>
@@ -76,7 +76,9 @@
 							</a>
 						</th>
 						<th>
-							<a class="waves-effect waves-light btn">Approve</a>
+							<a ng-click="order('date_approved')" class="waves-effect waves-light btn">Date Approved
+							<span class="sortorder" ng-show="predicate === 'date_approved'" ng-class="{reverse:reverse}"></span>
+							</a>
 						</th>
 					</tr>
 				</thead>
@@ -99,10 +101,10 @@
 				       </td>    
 				       <td data-title="date_signed_up" >
 				           {{user.date_signed_up}}
-				       </td>
-				       <td data-title="approve_button">
-				           <button id="{{user.username}}" class="waves-effect waves-light btn material-icons" ng-click="ApproveUser(user.id, user.username)">done</button>
-				       </td>     
+				       </td>   
+				       <td data-title="date_approved" >
+				           {{user.date_approved}}
+				       </td>				        
 				   </tr>					
 				</tbody>
 			</table>
