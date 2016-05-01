@@ -55,7 +55,7 @@
 
 			$http.put("admin/approve_user/" + id)
 	        .success(function(data) {
-	           deferred.resolve(data);
+	           	deferred.resolve(data);
 	        })
 	        .error(function(data) {
 	        	deferred.reject("Error: Cannot Approve User");

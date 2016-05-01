@@ -26,7 +26,6 @@
         $scope.userList = [];
         AdminService.GetUsers()
           .then(function(data){
-              console.log(data);
               let length = data[0].length;
               for (let i = 0; i < length; i++) {
                   $scope.userList.push(data[0][i]);
