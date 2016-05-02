@@ -20,6 +20,7 @@ module.exports = (router) => {
     router.get ('/admin',                                               $('Administrator'), __.render_controller.admin);
     router.get ('/admin_approve',                                       $('Administrator'), __.render_controller.admin_approve);
     router.get ('/admin_viewlogs',                                      $('Administrator'), __.render_controller.admin_viewlogs);
+    router.get ('/admin_viewusers',                                     $('Administrator'), __.render_controller.admin_viewusers);
     router.get ('/class',                                                                   __.render_controller.class);
 
     // faculty_user routes
@@ -76,6 +77,9 @@ module.exports = (router) => {
 
     // route for getting all pending users
     router.get('/admin/get_pending_users',                              $('Administrator'), __.admin.get_pending_users);
+
+    //route for getting all approved users
+    router.get('/admin/get_approved_users',                             $('Administrator'), __.admin.get_approved_users);
 
     // route for approving a user
     router.put ('/admin/approve_user/:faculty_user_id',                 $('Administrator'), __.admin.approve_user);

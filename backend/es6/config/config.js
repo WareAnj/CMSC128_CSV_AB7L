@@ -5,8 +5,8 @@ const path = require('path');
 
 const config = {
     APP_NAME: 'REGINYZR',
-
-    PORT: 8000,
+    IP_ADDRESS: process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1',
+    PORT: process.env.OPENSHIFT_NODEJS_PORT || 8000,
 
     COOKIE_SECRET: 'R3G1nYzR',
 
@@ -16,9 +16,6 @@ const config = {
         allowed_methods: 'GET, POST, PUT, OPTIONS, DELETE'
     },
 
-    /*UPLOAD_DIR: path.normalize(__dirname + '/../uploads/'),
-    ASSETS_DIR: path.normalize(__dirname + '/../assets'),
-    VIEWS_DIR: path.normalize(__dirname + '/../views'),*/
     LOGS_DIR: path.normalize(__dirname + '/../logs'),
 
     use: (env) => {

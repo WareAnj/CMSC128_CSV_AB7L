@@ -14,57 +14,112 @@
 
 	<!-- NAV BAR -->
 
+	<div class="navbar">
 		<nav>
 		 	<div class="nav-wrapper container">
-		 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-		 		<ul id="nav-mobile">
-		    	<!--	<li><div class="logo-img hide-on-small-and-down">
-		    			<a href="#">
-		    			<img id="nav-logo" src="img/logo-2.png">
-		    			</a></div></li>
-		    	-->	<li><a href="/" class="brand-logos"> <img id="logo" src="img/text2.png"></a></li>
+
+		 		<ul>
+		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
 		    	</ul>
 
-		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
-				    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
-				    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
-		    	</ul>
+				<div class="center">
+			 		<a href="/" class="brand-logos"> <img id="logo" src="img/text2.png"></a>
+			    </div>
 
-	    		<!-- SIDE NAV (WHEN VIEWED IN SMALLER SCREENS) -->
-
-		    	<ul id="mobile-demo" class="side-nav">
-		    		<div class="logo-img-side"><a href="#">
-		    			<img id="logo-img-side" src="img/logo-2.png">
-		    		</a>
+	    		<!-- SIDE NAV  -->
+				<div id="slide-out" class="side-nav center" data-ng-init="Get_Course()">
+					<img id="sidenav-logo" src="img/logo-2.png">
+						<div ng-repeat="info in faculty_user_info">
+							<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
 						</div>
-						<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
-					    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
-					    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
-			    	</ul>
-		    	</ul>
+						<div ng-repeat="course in faculty_user_courses">
+							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Course_Id(course.id)">{{course.code}}</a></li>
+						</div>
+						<div class = "center" ng-controller="HomeCtrl">
+							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
+						</div>
+				</div>
 		    </div>
 		</nav>
+	</div>
 
 		<main>
-
-			<div class="container" id="results-container">
-				<div class="container center" id="content">
-					<h4>NOT FINAL UI!!!</h4>
-					<button ng-controller="RandomCtrl" ng-click="Randomize()"> <img id="volunteerPic" src="img/logo-1.png"  class="circle"> </button>
-					<h4 id="lettersContainer"></h4>
+			<div class="row container center" style="padding-top: 3%;">
+				<div id="vol1" class="col s12 m4 l4">
+					<div class="card hoverable">
+						<div class="card-image waves-effect waves-block waves-light">
+							<img class="activator" src="img/image1.jpg" height="200">
+						</div>
+						<div class="card-content">
+							<div class="row">
+								<div class="col s12 m9 l9"><span class="card-title activator grey-text text-darken-4"><h5>Juan Dela Cruz</h5></span></div>
+								<div class="col s12 m3 l3"><a href="#" id="delete-button" onclick="removeDiv('vol1');"><i class="material-icons">delete</i></a></div>
+							</div>
+						</div>
+						<div class="card-reveal">
+							<span class="card-title grey-text text-darken-4"><h5>CMSC 128 AB-7L</h5><i class="material-icons right">close</i></span>
+							<div class="center">
+								<img src="img/user.png" height="80" width="80">
+							</div>
+							<p>Student: Juan Dela Cruz</p>
+							<p>Other information</p>
+						</div>
+					</div>
+				</div>
+				<div id="vol2" class="col s12 m4 l4">
+					<div class="card hoverable">
+						<div class="card-image waves-effect waves-block waves-light">
+							<img class="activator" src="img/image1.jpg" height="200">
+						</div>
+						<div class="card-content">
+							<div class="row">
+								<div class="col s12 m9 l9"><span class="card-title activator grey-text text-darken-4"><h5>Volunteer # 2</h5></span></div>
+								<div class="col s12 m3 l3"><a href="#vol1" id="delete-button" onclick="removeDiv('vol2');"><i class="material-icons">delete</i></a></div>
+							</div>
+						</div>
+						<div class="card-reveal">
+							<span class="card-title grey-text text-darken-4"><h5>CMSC 128 AB-7L</h5><i class="material-icons right">close</i></span>
+							<div class="center">
+								<img src="img/user.png" height="80" width="80">
+							</div>
+							<p>Student: Andres Bonifacio</p>
+							<p>Other information</p>
+						</div>
+					</div>
+				</div>
+				<div id="vol3" class="col s12 m4 l4">
+					<div class="card hoverable">
+						<div class="card-image waves-effect waves-block waves-light">
+							<img class="activator" src="img/image1.jpg" height="200">
+						</div>
+						<div class="card-content">
+							<div class="row">
+								<div class="col s12 m9 l9"><span class="card-title activator grey-text text-darken-4"><h5>Volunteer # 3</h5></span></div>
+								<div class="col s12 m3 l3"><a href="#vol2" id="delete-button" onclick="removeDiv('vol3');"><i class="material-icons">delete</i></a></div>
+							</div>
+						</div>
+						<div class="card-reveal">
+							<span class="card-title grey-text text-darken-4"><h5>CMSC 128 AB-7L</h5><i class="material-icons right">close</i></span>
+							<div class="center">
+								<img src="img/user.png" height="80" width="80">
+							</div>
+							<p>Student: Jose Rizal</p>
+							<p>Other information</p>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div ng-view=""> </div>
+
 		</main>
 
-		<footer class="page-footer">
+		<footer class="page-footer white-text">
 			<div class="container">
-				<div class="row">
-					<div class="col s12 m8 l8">
-					Reginyzr by CMSC 128 AB-7L
+				<div class="row center">
+					<div class="col s12 m12 l7">
+						<p> CMSC 128 AB-7L. 2016. </p>
 					</div>
-					<div class="col s12 m4 l4">
-					Insert Contact, Links, Etc.
+					<div class="col s12 m12 l5">
+						<p> All rights reserved. </p>
 					</div>
 				</div>
 			</div>

@@ -3,13 +3,12 @@
 module.exports = {
     ENV: 'production',
     LOG_LEVEL: 'info',
-    APP_URL: 'https://reginyzr.herokuapp.com',
 
     DB: {
-        host: 'reginyzr',
-        user: 'root',
-        password: 'user',
-        database: 'cmsc128ab7l'
+        host: '127.7.195.130',
+        user: 'admincLIUeSA',
+        password: 'nuWMcYuKqs95',
+        database: 'reginyzr'
     },
 
     REDIS_DB: {
