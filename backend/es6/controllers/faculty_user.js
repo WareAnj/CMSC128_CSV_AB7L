@@ -360,7 +360,7 @@ exports.randomize = (req, res, next) => {
         else {
             db.query (
                 [
-                    'CREATE VIEW temporary_view' + data.user_id + ' AS',
+                    'CREATE VIEW temporary_view' + data.user_id + data.section_code + ' AS',
                     'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name, stud.frequency',
                     'FROM faculty_user u, course c, faculty_user_course uc, student stud, section sect, student_section ss',
                     'where u.id = uc.faculty_user_id and c.id = uc.course_id and sect.course_id = c.id',
@@ -386,7 +386,7 @@ exports.randomize = (req, res, next) => {
                 );
         } else {
             db.query(
-                    'SELECT * FROM temporary_view' + data.user_id + ' WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT ?;',
+                    'SELECT * FROM temporary_view' + data.user_id + data.section_code + ' WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT ?;',
                     [parseInt(data.limit)],
                     send_response
                 );
