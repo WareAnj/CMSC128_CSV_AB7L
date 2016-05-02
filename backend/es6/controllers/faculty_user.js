@@ -51,18 +51,7 @@ exports.update_password = (req, res, next) => {
 		[uname, pword],
 		responder
 	);
-
-	/*
-	//without procedure
-	db.query(
-		[
-			'UPDATE faculty_user SET password=SHA1(?)',
-			'WHERE username=?;'
-		].join(' '),
-		[pword,uname],
-		responder
-	);
-	*/
+	
 	function responder (err, result){
 		if (err) {
 			winston.error('Error in updating Faculty User Password!', last_query);
