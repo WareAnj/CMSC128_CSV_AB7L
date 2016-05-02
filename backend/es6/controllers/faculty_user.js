@@ -332,10 +332,18 @@ exports.randomize = (req, res, next) => {
     };
 
     function start () {
-        db.query (
-            'DROP VIEW IF EXISTS temporary_view' + data.user_id + ';',
-            create_view
-        );
+        
+    	if (typeof data.section_code === 'undefined') {
+	        db.query (
+	            'DROP VIEW IF EXISTS temporary_view' + data.user_id + ';',
+	            create_view
+	        );
+	    } else {
+	    	db.query (
+	            'DROP VIEW IF EXISTS temporary_view' + data.user_id + data.section_code + ';',
+	            create_view
+	        );
+	    }
     }
 
     function create_view (err, result, args, last_query) {
