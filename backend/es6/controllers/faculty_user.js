@@ -61,6 +61,33 @@ exports.update_password = (req, res, next) => {
 	}
 }
 
+exports.update_profile = (req, res, next) => {
+	const given_name = req.body.given_name;
+	const middle_name = req.body.middle_name;
+	const last_name = req.body.last_name;
+	const classification = req.body.classification;
+	const uname = req.body.username;
+	db.query(
+		[
+			'UPDATE faculty_user SET given_name=?, middle_name=?, last_name=?, classification=?',
+			'WHERE username=?;'
+		].join(' '),[given_name, middle_name, last_name, classification, uname],responder
+	);
+
+	function responder(err, result){
+		if(err){
+			winston.error('Error in updating Faculty Profile'+err);
+			res.send(false);
+            return next(err);
+        }
+        req.session.user.given_name = given_name;
+        req.session.user.middle_name = middle_name;
+        req.session.user.last_name = last_name;
+        req.session.user.classification = classification;
+        res.send(true);
+	}
+}
+
 exports.update_name = (req, res, next) => {
 	const given_name = req.body.given_name;
 	const middle_name = req.body.middle_name;

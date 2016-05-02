@@ -173,7 +173,7 @@
 			}
 		}
 		
-		if(gnchanged || mnchanged || lnchanged){
+		if((!clchanged)&&(gnchanged || mnchanged || lnchanged)){
 			var ngname = document.querySelector('#fname-input').value;
 			var nmname = document.querySelector('#mname-input').value;
 			var nlname = document.querySelector('#lname-input').value;
@@ -215,10 +215,7 @@
 			}
 		}
 
-		else if(clchanged){
-		}
-
-		else if((gnchanged || mnchanged || lnchanged)&&clchanged){
+		else if(clchanged&&(gnchanged || mnchanged || lnchanged)){
 			var ngname = document.querySelector('#fname-input').value;
 			var nmname = document.querySelector('#mname-input').value;
 			var nlname = document.querySelector('#lname-input').value;
@@ -263,8 +260,17 @@
 				$scope.faculty_user_info[0].classification = nclass;
 			}
 		}
+		else if(clchanged){
+			var nclass = document.querySelector('#classification-input').value;
+			$http.post(
+				'faculty_user/update_classification/',
+				{username: uname, classification: nclass}
+			);
+			oclass=nclass;
+			$scope.faculty_user_info[0].classification = nclass;
+		}
 
-		if((!err) || gnchanged || mnchanged || lnchanged || clchanged || (npassw!=="")) Materialize.toast('Profile updated!', 3000, 'rounded');
+		if((!err) && (gnchanged || mnchanged || lnchanged || clchanged || (npassw!==""))) Materialize.toast('Profile updated!', 3000, 'rounded');
 	}
 
 	$scope.check_password_changes = function() {
@@ -308,6 +314,12 @@
 				$('#confirm-password').removeClass('invalid');	
 			}
 		}
+	}
+	
+	$scope.check_classification = function(){
+		var nclass = document.querySelector('#classification-input').value;
+		if(oclass===nclass) clchanged = false;
+		else clchanged = true;
 	}
 
 	$scope.check_gname_changes = function() {
