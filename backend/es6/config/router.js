@@ -31,6 +31,9 @@ module.exports = (router) => {
     // class routes
     router.get ('/class/get_lecture_class',                                                __.class.get_lecture_class);
 
+    // check course if existing
+    router.post('/course/check_course_code/',                                                __.course.check_course_code);
+
     // course routes
     router.post('/course/post_course/',                                 $('Faculty User'),  __.course.post_course);
     router.get ('/course/get_course/',                                  $('Faculty User'),  __.course.get_course);
