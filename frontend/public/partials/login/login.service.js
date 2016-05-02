@@ -16,17 +16,24 @@
 
 				let deferred = $q.defer();
 
-				$http.post("authenticate/login", facultyUser)
+				$http.post("admin/authenticate_login", facultyUser)
 				.success(function(data) {
-					$window.location.href = '/home';
+					$window.location.href = '/admin';
 					deferred.resolve(data);
-				})
+				})				
 				.error(function(data) {
-					$http.post("admin/authenticate_login", facultyUser)
+					if(data.context == "Invalid password"){
+						deferred.reject("Error: Cannot Login Faculty User");
+						alert(data.context);
+						return deferred.promise;
+					}
+
+
+					$http.post("authenticate/login", facultyUser)
 					.success(function(data) {
-						$window.location.href = '/admin';
+						$window.location.href = '/home';
 						deferred.resolve(data);
-					})
+					})					
 					.error(function(data) {
 						deferred.reject("Error: Cannot Login Faculty User");
 						alert(data.context);
