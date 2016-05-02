@@ -156,8 +156,23 @@
     // Update USER Details
   	$scope.Update_Details = function() {
 
-		var err = false;
+		var err = false;		
+		var npassw = document.querySelector('#password-input').value;
+		var cpassw = document.querySelector('#confirm-password').value;
 
+		if(npassw!==""){
+			if (npassw!==cpassw){
+				Materialize.toast('Password do not match!', 3000, 'rounded');
+				err = true;
+			}
+			else{
+				$http.post(
+					'faculty_user/update_password/',
+					{username: uname, password: npassw}
+				);
+			}
+		}
+		
 		if(gnchanged || mnchanged || lnchanged){
 			var ngname = document.querySelector('#fname-input').value;
 			var nmname = document.querySelector('#mname-input').value;
@@ -208,12 +223,6 @@
 			var nmname = document.querySelector('#mname-input').value;
 			var nlname = document.querySelector('#lname-input').value;
 			var nclass = document.querySelector('#classification-input').value;
-			var npassw = document.querySelector('#password-input').value;
-			var cpassw = document.querySelector('#confirm-password').value;
-
-			if(npassw!==""){
-				return;
-			}
 
 			if (ngname===""){
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
@@ -258,7 +267,47 @@
 		if((!err) || gnchanged || mnchanged || lnchanged || clchanged || (npassw!=="")) Materialize.toast('Profile updated!', 3000, 'rounded');
 	}
 
-	$scope.check_password = function() {
+	$scope.check_password_changes = function() {
+		var npassw = document.querySelector('#password-input').value;
+		var cpassw = document.querySelector('#confirm-password').value;
+		
+		if (npassw===""){
+			document.querySelector('#confirm-password').value = "";
+			$('#confirm-password').attr('disabled','disabled');
+			
+		}
+		else if(npassw.length>=8){
+			$('#confirm-password').removeAttr('disabled');
+		}
+	}
+	
+	$scope.check_confirm_password = function(){
+		var npassw = document.querySelector('#password-input').value;
+		var cpassw = document.querySelector('#confirm-password').value;
+		if (cpassw===""){
+			if($('#password-input').hasClass('invalid')){
+				$('#password-input').removeClass('invalid');	
+			}
+			if($('#confirm-password').hasClass('invalid')){
+				$('#confirm-password').removeClass('invalid');	
+			}
+		}
+		else if (npassw!==cpassw){
+			if(!($('#password-input').hasClass('invalid'))){
+				$('#password-input').addClass('invalid');
+			}
+			if(!($('#confirm-password').hasClass('invalid'))){
+				$('#confirm-password').addClass('invalid');	
+			}
+		}
+		else{
+			if($('#password-input').hasClass('invalid')){
+				$('#password-input').removeClass('invalid');	
+			}
+			if($('#confirm-password').hasClass('invalid')){
+				$('#confirm-password').removeClass('invalid');	
+			}
+		}
 	}
 
 	$scope.check_gname_changes = function() {
