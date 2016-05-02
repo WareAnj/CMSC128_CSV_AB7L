@@ -295,6 +295,11 @@
 		}
 
 		if((!err) && (gnchanged || mnchanged || lnchanged || clchanged || (npassw!==""))) Materialize.toast('Profile updated!', 3000, 'rounded');
+		if(npassw!==""){
+			document.querySelector('#password-input').value = "";
+			document.querySelector('#confirm-password').value = "";
+			$('#confirm-password').attr('disabled','disabled');	
+		}
 	}
 
 	$scope.check_password_changes = function() {
@@ -357,8 +362,7 @@
 		if (omname===nmname) mnchanged=false;
 		else mnchanged = true;
 	}
-
-<<<<<<< HEAD
+	
   	$scope.check_lname_changes = function() {
   		var nlname = document.querySelector('#lname-input').value;
   		if (olname===nlname) lnchanged=false;
@@ -487,12 +491,5 @@
 
   		);
   	}
-=======
-	$scope.check_lname_changes = function() {
-		var nlname = document.querySelector('#lname-input').value;
-		if (olname===nlname) lnchanged=false;
-		else lnchanged = true;
-	}
->>>>>>> b9cd2d7aebb276c4a401828427c3a93a180da8fa
   }
 })();
