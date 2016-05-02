@@ -17,6 +17,7 @@ insert into section (course_id, name, code) values (3, 'V', '1L');
 insert into section (course_id, name, code) values (3, 'V', '2L');
 insert into section (course_id, name, code) values (4, 'U', '1L');
 insert into section (course_id, name, code) values (4, 'U', '2L');
+insert into section (course_id, name, code) values (1, 'ST', '1L');
 
 insert into student (student_number, given_name, middle_name, last_name, degree, classification, college) values ('2013-00289', 'CAIRA', 'LOUISE', 'BENWICK', 'BSHE', 'Junior', 'CHE');
     insert into student_section (student_id, section_id) values (1, 1);
