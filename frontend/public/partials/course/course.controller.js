@@ -11,21 +11,6 @@
     $scope.faculty_user_courses = [];
     $scope.faculty_user_info = [];
 
-    // Update User Details
-<<<<<<< HEAD
-    var user_id;
-    var oclass;
-    var ogname;
-    var omname;
-    var olname;
-    var uname;
-    var gnchanged = false;
-    var mnchanged = false;
-    var lnchanged = false;
-    var clchanged = false;
-    var namep = new RegExp("[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+");
-    var textRegex = new RegExp("^[A-Za-z0-9]+$");
-
     let c_code_add;
     let c_title_add;
     let c_description_add;
@@ -33,8 +18,6 @@
     let c_code_edit;
     let c_title_edit;
     let c_description_edit;
-    $scope.Get_User = function(){
-=======
     let user_id;
     let oclass;
     let ogname;
@@ -48,7 +31,6 @@
     let namep = new RegExp("[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+");
 
     $scope.Get_User = function() {
->>>>>>> b9cd2d7aebb276c4a401828427c3a93a180da8fa
       CourseService.Get_User()
         .then(function(data){
           $scope.faculty_user_info = [];
