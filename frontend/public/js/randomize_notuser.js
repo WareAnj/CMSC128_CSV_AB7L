@@ -27,8 +27,6 @@
 			
 			
 			$("#rand").click(function(){
-				
-
 
 				if(arr.length == 0){
 					alert("The list is empty");
@@ -97,12 +95,15 @@
 
 			$("#clear").click(function(){
 				arr = [];
+				document.getElementById('file').value = "";
+				document.getElementById('text-file-area').value = "";
+				document.getElementById('input').value = "";
 				var deleter = document.getElementsByClassName('fields');
 				while(deleter[0]) {
 					deleter[0].parentNode.removeChild(deleter[0]);
 				}
 
-				Materialize.toast("Cleared all names", 1000);
+				Materialize.toast("Cleared all fields", 1000);
 			});
 			
 			function inArray(word,array){
@@ -153,12 +154,19 @@
 				
 			*/
 			//filereading
+		  	$("#file").click(function(){
+				document.getElementById('file').value = '';
+			});
+
 			document.getElementById('file').onchange = function(){
-				console.log("inside file");
 				// Check for the various File API support.
 				if (window.File && window.FileReader && window.FileList && window.Blob) {
 					var file = this.files[0];
 					var reader = new FileReader();
+
+					if ($("#file").val() == "") {
+				        return;
+				    }
 
 					//checking file type
 					var ext = $('#file').val().split('.').pop().toLowerCase();
@@ -168,15 +176,17 @@
 					}
 
 					reader.onload = function(progressEvent){
-						var lines = this.result.split('\n');
 						var checkerArr = [];
 
+						var lines = this.result.split('\n');
+						var numlines = lines.length-1;
+
 						//first loop for file validation
-						for(var line = 0; line < lines.length; line++){
+						for(var line = 0; line < numlines; line++){
 
-							var string = lines[line].trim();							
+							var string = lines[line].trim();
 
-							if(lines.length > 10){
+							if(numlines > 10){
 								alert("Input file have more than 10 lines");
 								return;
 							}
@@ -186,7 +196,7 @@
 								return;
 							}
 
-							if(arr.length + lines.length > 10){
+							if(arr.length + numlines > 10){
 								alert("Input file's number of names will exceed the limit");
 								return;
 							}
@@ -205,7 +215,7 @@
 						}
 
 						//second loop for getting the values
-						for(var line = 0; line < lines.length; line++){							
+						for(var line = 0; line < numlines; line++){							
 
 							var string = lines[line].trim();
 							var stringFormatted = string;
