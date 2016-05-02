@@ -333,7 +333,7 @@ exports.randomize = (req, res, next) => {
 
     function start () {
         db.query (
-            'DROP VIEW IF EXISTS temporary_view;',
+            'DROP VIEW IF EXISTS temporary_view' + data.user_id + ';',
             create_view
         );
     }
@@ -346,7 +346,7 @@ exports.randomize = (req, res, next) => {
         if (typeof data.section_code === 'undefined') {
             db.query (
                 [
-                    'CREATE VIEW temporary_view AS',
+                    'CREATE VIEW temporary_view' + data.user_id + ' AS',
                     'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name, stud.frequency',
                     'FROM faculty_user u, course c, faculty_user_course uc, student stud, section sect, student_section ss',
                     'where u.id = uc.faculty_user_id and c.id = uc.course_id and sect.course_id = c.id',
@@ -360,7 +360,7 @@ exports.randomize = (req, res, next) => {
         else {
             db.query (
                 [
-                    'CREATE VIEW temporary_view AS',
+                    'CREATE VIEW temporary_view' + data.user_id + ' AS',
                     'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name, stud.frequency',
                     'FROM faculty_user u, course c, faculty_user_course uc, student stud, section sect, student_section ss',
                     'where u.id = uc.faculty_user_id and c.id = uc.course_id and sect.course_id = c.id',
@@ -380,13 +380,13 @@ exports.randomize = (req, res, next) => {
         }
         if(typeof data.limit === 'undefined') {
             db.query(
-                    'SELECT * FROM temporary_view WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT 1;',
+                    'SELECT * FROM temporary_view' + data.user_id + ' WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT 1;',
                     [parseInt(data.limit)],
                     send_response
                 );
         } else {
             db.query(
-                    'SELECT * FROM temporary_view WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT ?;',
+                    'SELECT * FROM temporary_view' + data.user_id + ' WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT ?;',
                     [parseInt(data.limit)],
                     send_response
                 );
