@@ -63,13 +63,13 @@
 							</div>
 							<div class="col s12 m8 l8">
 								<div class="card-panel custom lighten-1 teal-text">
-									<form action="" method="POST">
+									<form ng-controller="RandomCtrl" ng-submit="Randomize()">
 										<div class="row">
 											<div class="col s8" style="padding-left: 15%;">
 												<h5>AB</h5>
 											</div>
 											<div class="col s1">
-												<input type="number" name="quantity" max="140" min="0" placeholder="0"></input>
+												<input type="number" name="quantity" max="140" min="0" placeholder="0" ng-model="counts.whole"></input>
 											</div>
 										</div>
 										<div class="row">
@@ -77,7 +77,7 @@
 												<h6>AB-1L</h6>
 											</div>
 											<div class="col s1">
-												<input type="number" name="quantity" max="20" min="0" placeholder="0"></input>
+												<input type="number" name="quantity" max="20" min="0" placeholder="0" ng-model="counts.onel"></input>
 											</div>
 										</div>
 										<div class="row">
@@ -85,7 +85,7 @@
 												<h6>AB-2L</h6>
 											</div>
 											<div class="col s1">
-												<input type="number" name="quantity" max="20" min="0" placeholder="0"></input>
+												<input type="number" name="quantity" max="20" min="0" placeholder="0" ng-model="counts.twol"></input>
 											</div>
 										</div>
 										<div class="row">
@@ -93,7 +93,7 @@
 												<h6>AB-3L</h6>
 											</div>
 											<div class="col s1">
-												<input type="number" name="quantity" max="20" min="0" placeholder="0"></input>
+												<input type="number" name="quantity" max="20" min="0" placeholder="0" ng-model="counts.threel"></input>
 											</div>
 										</div>
 										<div class="row">
@@ -101,7 +101,7 @@
 												<h6>AB-4L</h6>
 											</div>
 											<div class="col s1">
-												<input type="number" name="quantity" max="20" min="0" placeholder="0"></input>
+												<input type="number" name="quantity" max="20" min="0" placeholder="0" ng-model="counts.fourl"></input>
 											</div>
 										</div>
 										<div class="row">
@@ -109,7 +109,7 @@
 												<h6>AB-5L</h6>
 											</div>
 											<div class="col s1">
-												<input type="number" name="quantity" max="20" min="0" placeholder="0"></input>
+												<input type="number" name="quantity" max="20" min="0" placeholder="0" ng-model="counts.fivel"></input>
 											</div>
 										</div>
 										<div class="row">
@@ -117,7 +117,7 @@
 												<h6>AB-6L</h6>
 											</div>
 											<div class="col s1">
-												<input type="number" name="quantity" max="20" min="0" placeholder="0"></input>
+												<input type="number" name="quantity" max="20" min="0" placeholder="0" ng-model="counts.sixl"></input>
 											</div>
 										</div>
 										<div class="row">
@@ -125,7 +125,7 @@
 												<h6>AB-7L</h6>
 											</div>
 											<div class="col s1">
-												<input type="number" name="quantity" max="20" min="0" placeholder="0"></input>
+												<input type="number" name="quantity" max="20" min="0" placeholder="0" ng-model="counts.sevenl"></input>
 											</div>
 										</div>
 										<div class="center"><button class="btn waves-effect waves-teal" type="submit"><i class="material-icons right">shuffle</i> Randomize!</button></div>
@@ -160,5 +160,7 @@
 		<script src="js/highcharts.js"></script>
 
 		<script src="app.js"></script>
+		<script src="partials/randomize/randomize.controller.js"></script>
+		<script src="partials/randomize/randomize.service.js"></script>
 	</body>
 </html>
