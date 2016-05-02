@@ -1,17 +1,7 @@
-<!DOCTYPE html>
+<div>
+    <link type="text/css" rel="stylesheet" href="stylesheets/home.css">
 
-<html ng-app="app">
-	<head>
-		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
-		<title>Reginyzr</title>
-    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-       	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
-       	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/home.css">
-	</head>
-
-	<body ng-controller="CourseCtrl" data-ng-init="Get_User()">
+	<div data-ng-init="Get_User()">
 
 	<!-- NAV BAR -->
 	<div class="navbar">
@@ -37,7 +27,7 @@
 								<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
 							</div>
 						</div>
-						<div class = "center" ng-controller="HomeCtrl">
+						<div class = "center">
 							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
 						</div>
 				</div>
@@ -241,21 +231,11 @@
 				</div>
 			</div>
 		</footer>
-	   	<script type="text/javascript" src="js/jquery.js"></script>
-	    <script type="text/javascript" src="js/materialize.min.js"></script>
 	    <script type="text/javascript" src="js/default.js"></script>
 		<script>
 		$(document).ready(function(){
 			$('select').material_select();
 		});
 		</script>
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-route.min.js"></script>
-
-		<script src="app.js"></script>
-
-		<script src="partials/course/course.service.js"></script>
-		<script src="partials/course/course.controller.js"></script>
-
-	</body>
-</html>
+	</div>
+</div>

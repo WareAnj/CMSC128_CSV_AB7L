@@ -27,14 +27,12 @@ function start () {
     app = express();
 
     // crude implementation of joining paths for discovery
-    app.use(express.static(path.join(__dirname, '../../frontend')));
-    app.use(express.static(path.join(__dirname, '../../frontend/assets')));
-    app.use(express.static(path.join(__dirname, '../../frontend/public')));
+    app.use(express.static(__dirname + '/../../frontend'));
 
     // view engines
-    app.set('views', path.join(__dirname, '../../frontend/views'));
-    app.engine('html', require('ejs').renderFile);
-    app.set('view engine', 'html');
+    // app.set('views', path.join(__dirname, '../../frontend/views'));
+    // app.engine('html', require('ejs').renderFile);
+    // app.set('view engine', 'html');
 
     // set config
     config.use(process.env.NODE_ENV);

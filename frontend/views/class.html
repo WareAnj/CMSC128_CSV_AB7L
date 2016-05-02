@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html ng-app="app">
-	<head>
-		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
-		<title>Reginyzr</title>
-    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-       	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
-       	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/class.css">
-	</head>
-	<body>
+<div>
+    <link type="text/css" rel="stylesheet" href="stylesheets/class.css">
 
 	<!-- NAV BAR -->
-
-	<div class="navbar" ng-controller="CourseCtrl" data-ng-init="Get_Course()">
+	<div class="navbar" data-ng-init="Get_Course()">
 		<nav>
 		 	<div class="nav-wrapper container">
 		 		<ul>
@@ -22,7 +11,6 @@
 
 		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
 				    <li><a href="/home">Home</a></li>
-
 		    	</ul>
 
 				<div class="center">
@@ -40,7 +28,7 @@
 							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
 						</div>
 					</div>
-					<div class = "center" ng-controller="HomeCtrl">
+					<div class = "center">
 						<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
 					</div>
 				</div>
@@ -48,9 +36,8 @@
 		</nav>
 	</div>
 		<!--NAV BAR-->
-
 		<!--MAIN-->
-		<main ng-controller="LectureCtrl" data-ng-init="Get_Class_List()">
+		<main data-ng-init="Get_Class_List()">
 			<div id="mainContainer"class="container">
 				<div class="row">
 					<div class="col s12 m4 l4">
@@ -108,7 +95,6 @@
 					<div class="row">
 						<div class="col s5 offset-s3"><h4 id="headerText">Student Information</h4></div>
 						<div class="col s4"><a href="/class"><i class="material-icons right">close</i></a></div>
-
 					</div>
 					<div class="row">
 						<div class="col s4">
@@ -145,21 +131,7 @@
 				</div>
 			</div>
 		</footer>
-		<!--SCRIPTS-->
-		<script type="text/javascript" src="js/jquery.js"></script>
-	  <script type="text/javascript" src="js/materialize.min.js"></script>
-	  <script type="text/javascript" src="js/index.js"></script>
-	  <script type="text/javascript" src="js/home.js"></script>
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-route.min.js"></script>
-
-		<script src="app.js"></script>
-
+	<!--SCRIPTS-->
+    <script type="text/javascript" src="js/home.js"></script>
     <script type="text/javascript" src="js/default.js"></script>
-
-		<script src="partials/course/course.service.js"></script>
-		<script src="partials/course/course.controller.js"></script>
-		<script src="partials/lecture/lecture.service.js"></script>
-		<script src="partials/lecture/lecture.controller.js"></script>
-	</body>
-</html>
+</div>
