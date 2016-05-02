@@ -20,6 +20,7 @@ module.exports = (router) => {
     router.get ('/admin',                                               $('Administrator'), __.render_controller.admin);
     router.get ('/admin_approve',                                       $('Administrator'), __.render_controller.admin_approve);
     router.get ('/admin_viewlogs',                                      $('Administrator'), __.render_controller.admin_viewlogs);
+    router.get ('/admin_viewusers',                                     $('Administrator'), __.render_controller.admin_viewusers);
     router.get ('/class',                                                                   __.render_controller.class);
 
     // faculty_user routes
@@ -27,9 +28,8 @@ module.exports = (router) => {
     router.get ('/faculty_user/get_user',                                                   __.faculty_user.get_logged_in_faculty_user_id);
     router.post('/faculty_user/update_name/',                           $('Faculty User'),  __.faculty_user.update_name);
     router.post('/faculty_user/update_password/',                       $('Faculty User'),  __.faculty_user.update_password);
-
-    // class routes
-    router.get ('/class/get_lecture_class',                                                __.class.get_lecture_class);
+    router.post('/faculty_user/update_profile/',                        $('Faculty User'),  __.faculty_user.update_profile);
+    router.post('/faculty_user/update_classification/',                 $('Faculty User'),  __.faculty_user.update_classification);
 
     // check course if existing
     router.post('/course/check_course_code/',                                                __.course.check_course_code);
@@ -39,6 +39,11 @@ module.exports = (router) => {
     router.get ('/course/get_course/',                                  $('Faculty User'),  __.course.get_course);
     router.put ('/course/put_course/',                                  $('Faculty User'),  __.course.put_course);
     router.del ('/course/delete_course/',                               $('Faculty User'),  __.course.delete_course);
+
+    // lecture routes
+    router.get ('/course/lecture/get_lecture',                          $('Faculty User'), __.lecture.get_lecture);
+    router.get ('/course/lecture/get_class_list',                       $('Faculty User'), __.lecture.get_lecture_class_list);
+    router.get ('/course/lecture/get_student',                          $('Faculty User'), __.lecture.get_lecture_student);
 
     // CRUD of volunteers/students
     router.post('/faculty_user/post_volunteer/',                        $('Faculty User'),  __.faculty_user.post_volunteer);
@@ -77,6 +82,9 @@ module.exports = (router) => {
 
     // route for getting all pending users
     router.get('/admin/get_pending_users',                              $('Administrator'), __.admin.get_pending_users);
+
+    //route for getting all approved users
+    router.get('/admin/get_approved_users',                             $('Administrator'), __.admin.get_approved_users);
 
     // route for approving a user
     router.put ('/admin/approve_user/:faculty_user_id',                 $('Administrator'), __.admin.approve_user);

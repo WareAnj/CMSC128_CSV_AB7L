@@ -26,83 +26,64 @@
 			});
 			
 			
-			$("#rand").click(function(){
-				
-
-
+			$("#rand, #rand_again").click(function(){
 				if(arr.length == 0){
-					alert("The list is empty");
+					alert("The list is empty!");
 					return false;
 				}
 
 				$("#lettersContainer").empty();
 
 			    var name = (arr[Math.floor((Math.random() * arr.length))]).toLowerCase();			    
-				var alphabet = "abcdefghijklmnopqrstuvwxyz. ".split("");
+				var alphabet_fake = "abcdefgh mn prs uv   z ".split("");
 				var j;
+				var skip = [];
 
-				for(j = 0; j < name.length + (name.length/4); j ++){
+
+				for(j = 0; j < name.length; j ++){
 					var content = "<span id='lettersContainer" + j + "'></span>";
 					$(content).appendTo($("#lettersContainer"));
+					skip[j] = 0;
 				}	// add span to html, will contain the letters
 
 				var counter = -1;
-				j = 0;
 				var loop = setInterval(function(){
-
-					function loopRandomize(){
-						$('span#lettersContainer' + counter).html(alphabet[j]);
-						if(alphabet[j] == name.charAt(counter)) return;
-						j++;
-						if(j == 28) j = 0;
-					};
-
-
-					setInterval(loopRandomize, 8);	// speed of letters
-
-				    counter++;
-				    if(counter === name.length) {	// if all spans are filled
-				    	for(j = 0; j < name.length + (name.length/4); j++){
-				    		$('span#lettersContainer' + (counter + j)).remove();
-				    	}
-				        clearInterval(loop);		// it will stop the loop
-				    }
-
-				}, 224).delay(300);	// interval of each loop (each letter)
-
-				/*
-					For fillers only
-				*/
-
+					$('span#lettersContainer' + counter).html(name.charAt(counter));
+					skip[counter] = 1;
+					counter++;
+					if(counter == name.length) return;
+				}, 200);//.delay(300);	// interval of each loop (each letter)
+			
 				var i = 0;
-				var counter_fake = -1;
-				var loop_fake = setInterval(function(){
+				var looper = 0;
+				var fake_loop = setInterval(function(){
 
 					function loopRandomize_fake(){
-						$('span#lettersContainer' + counter_fake).html(alphabet[i]);
-						i++;
-						if(i == 27) i = 0;
-
+						for(looper = -1; looper < name.length; looper++){
+							if(skip[looper] == 0){
+								i = 1 + Math.floor(Math.random() * 26);
+								$('span#lettersContainer' + looper).html(alphabet_fake[i]);
+							}
+						}
 					};
 
-					setInterval(loopRandomize_fake, 50);	// speed of letters
+					setInterval(loopRandomize_fake, 100);	// speed of letters
 
-				    counter_fake++;
-				    if(counter_fake === name.length + 2)	// if all spans are filled
-							clearInterval(loop_fake);		// it will stop the loop
-
-				}, 200);	// interval of each loop (each letter)
+				}, 500);//.delay(300);	// interval of each loop (each letter)
 			});			
 			
 
 			$("#clear").click(function(){
 				arr = [];
+				document.getElementById('file').value = "";
+				document.getElementById('text-file-area').value = "";
+				document.getElementById('input').value = "";
 				var deleter = document.getElementsByClassName('fields');
 				while(deleter[0]) {
 					deleter[0].parentNode.removeChild(deleter[0]);
 				}
 
-				Materialize.toast("Cleared all names", 1000);
+				Materialize.toast("Cleared all fields", 1000);
 			});
 			
 			function inArray(word,array){
@@ -117,7 +98,7 @@
 			function deleteRow(value){
 				var index = arr.indexOf(value);
 				arr.splice(index,1);
-				var spacesToUnderscore = value.replace(/ /g,"_");
+				var spacesToUnderscore = value.replace(/ /g,"_").replace(/\./g,"");
 				$("#"+ spacesToUnderscore).remove();
 				$("#"+ spacesToUnderscore).empty();
 
@@ -125,14 +106,15 @@
 			};
 
 
+
 			function addToTable(string, stringFormatted){
-				var delButton = $('<button>not_interested</button>').attr({class:"btn btn-floating waves-effects waves-light material-icons", value:string, onclick:'deleteRow(this.value)'});
-				var detTD = $('<td>').append(delButton);
+				var delButton = $('<button>delete</button>').attr({class:" trash btn btn-floating waves-effects waves-light material-icons red lighten-1", value:string, onclick:'deleteRow(this.value)'});
+				var detTD = $('<td class="shrink">').append(delButton);
 
 				var spanName = $('<span>').attr({class:"tooltipped", "data-position":"bottom", "data-delay":"50", "data-tooltip":string}).append(stringFormatted);
-				var nameTD = $('<td>').append(spanName);
+				var nameTD = $('<td class="expand">').append(spanName);
 
-				var spacesToUnderscore = string.replace(/ /g,"_");
+				var spacesToUnderscore = string.replace(/ /g,"_").replace(/\./g,"");
 				var new_field = $('<tr>').attr({class:'fields', id:spacesToUnderscore}).append(nameTD).append(detTD);		  
 				
 				$("#table").append(new_field);
@@ -153,51 +135,60 @@
 				
 			*/
 			//filereading
+		  	$("#file").click(function(){
+				document.getElementById('file').value = '';
+			});
+
 			document.getElementById('file').onchange = function(){
-				console.log("inside file");
 				// Check for the various File API support.
 				if (window.File && window.FileReader && window.FileList && window.Blob) {
 					var file = this.files[0];
 					var reader = new FileReader();
 
+					if ($("#file").val() == "") {
+				        return;
+				    }
+
 					//checking file type
 					var ext = $('#file').val().split('.').pop().toLowerCase();
 					if($.inArray(ext, ['txt']) == -1) {
-					    alert('Only .txt files are allowed');
+					    alert('Only .txt files are allowed!');
 					    return;
 					}
 
 					reader.onload = function(progressEvent){
-						var lines = this.result.split('\n');
 						var checkerArr = [];
 
+						var lines = this.result.split('\n');
+						var numlines = lines.length-1;
+
 						//first loop for file validation
-						for(var line = 0; line < lines.length; line++){
+						for(var line = 0; line < numlines; line++){
 
-							var string = lines[line].trim();							
+							var string = lines[line].trim();
 
-							if(lines.length > 10){
+							if(numlines > 10){
 								alert("Input file have more than 10 lines");
 								return;
 							}
 
 							if(!string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){
-								alert("Input file contains invalid characters");
+								alert("Input file contains invalid characters!");
 								return;
 							}
 
-							if(arr.length + lines.length > 10){
+							if(arr.length + numlines > 10){
 								alert("Input file's number of names will exceed the limit");
 								return;
 							}
 
 							if(inArray(string, checkerArr)){
-								alert("Input file contains duplicates");
+								alert("Input file has duplicates!");
 								return;
 							}
 
 							if(inArray(string, arr)){
-								alert("Input file contains duplicates with the names in the current list");
+								alert("Input file has duplicates with the names in the list!");
 								return;
 							}
 
@@ -205,7 +196,7 @@
 						}
 
 						//second loop for getting the values
-						for(var line = 0; line < lines.length; line++){							
+						for(var line = 0; line < numlines; line++){							
 
 							var string = lines[line].trim();
 							var stringFormatted = string;
@@ -222,4 +213,10 @@
 				}
 			};			
 			
-		  
+		  $("#closeModal").click(function(){
+		  	  $('#help-file').closeModal();
+		  });
+
+		  $("#closeModal1").click(function(){
+		  	  $('#modal1').closeModal();
+		  });

@@ -33,7 +33,9 @@
 							<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
 						</div>
 						<div ng-repeat="course in faculty_user_courses">
-							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Course_Id(course.id)">{{course.code}}</a></li>
+							<div ng-repeat="lecture in course.lecture">
+								<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
+							</div>
 						</div>
 						<div class = "center" ng-controller="HomeCtrl">
 							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
@@ -43,7 +45,6 @@
 		</nav>
 	</div>
 
-	<!--<img src="img/stripes2.jpg" />-->
 		<main>
 			<div class="container col s12 m12" style="padding-top: 3%;">
 			<!--TABS-->
@@ -59,18 +60,13 @@
 					<div id="profile">
 						<div class="row">
 							<div class="col s12">
-								<div class="card-panel custom lighten-1">
+								<div class="card-panel custom lighten-1 center">
 									<span>
 										<div ng-repeat="info in faculty_user_info">
-											<h3>{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h3>
-											<div class="row">
-												<div class="col s6">
-													<h5><i class="material-icons left">info</i>Basic Information</h5>
-													<p>Classification: {{info.classification}}</p>
-													<p>Employee ID: {{info.employee_id}}</p>
-													<p>Username: {{info.username}}</p>
-												</div>
-											</div>
+											<h3><i class="material-icons">account_circle</i> {{info.given_name}} {{info.middle_name}} {{info.last_name}}</h3>
+												<h5>Classification: {{info.classification}}</h5>
+												<h5>Employee ID: {{info.employee_id}}</h5>
+												<h5>Username: {{info.username}}</h5>
 										</div>
 									</span>
 								</div>
@@ -95,8 +91,17 @@
 											<a title="Update Course Details" class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(course.id)">
 												<i class="material-icons custom-text text-darken-1">mode_edit</i>
 											</a>
+											<a title="Add Lecture Class" class="btn-floating btn-large waves-effect waves-light white" ng-click="">
+												<i class="material-icons custom-text text-darken-1">add</i>
+											</a>
 											<h5>{{course.code}}</h5>
 								    </div>
+										<ul class="collapsible popout" data-collapsible="expandable" >
+											<li ng-repeat="lecture in course.lecture">
+												<div class="collapsible-header" ng-click="Get_Selected_Course(course.id, lecture.name)"><i class="material-icons custom-text text-darken-1" >star_rate</i>{{lecture.name}}</div>
+												<!-- <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div> -->
+											</li>
+										</ul>
 								  </div>
 								</div>
 							</div>
@@ -176,14 +181,14 @@
 								<div class="card-panel custom lighten-1">
 									<h5 style="float:left; width:80%;"><i class="material-icons left">mode_edit</i>Edit Information</h5>
 									<form autocomplete="off">
-									<br>
-									<button class="btn waves-effect waves-teal" ng-click="Update_Details()"><i class="material-icons right">done</i>Save</button>
+									<br><br>
+									<button class="row btn waves-effect waves-teal" ng-click="Update_Details()"><i class="material-icons right">done</i>Save</button>
 									<div ng-repeat="info in faculty_user_info">
 										<div class="row">
 											<div class="input-field">
 												<div class="col s12 m12 l4">
 													<input placeholder="First Name" type="text" name="user-fname" id="fname-input" value="{{info.given_name}}" pattern="[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+" ng-keyup="check_gname_changes()"/>
-													<label for="fname-input" class="black-text"><i class="black-text material-icons left">info</i>Name</label>
+													<label for="fname-input" class="active black-text"><i class="black-text material-icons left">info</i>Name</label>
 												</div>
 												<div class="col s12 m12 l4">
 													<input placeholder="Middle Name" type="text" name="user-mname" id="mname-input" value="{{info.middle_name}}" pattern="[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+" ng-keyup="check_mname_changes()"/>
@@ -196,19 +201,19 @@
 										<div class="row">
 											<div class="col s12 m6 l4">
 												<div class="input-field">
-													<input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" name="user-password" id="password-input"/>
-													<label for="password-input" class="black-text"><i class="material-icons left">vpn_key</i>Password</label>
+													<input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" name="user-password" id="password-input" ng-keyup="check_password_changes()"/>
+													<label id="pwd-input-label" for="password-input" class="black-text" data-error="Passwords do not match!"><i class="material-icons left">vpn_key</i>Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 												</div>
 											</div>
 											<div class="col s12 m6 l4">
 												<div class="input-field">
-													<input type="password" name="confirm-password" id="confirm-password" id="confirm-password" disabled/>
-													<label for="password-input" class="black-text">Confirm Password</label>
+													<input type="password" name="confirm-password" id="confirm-password" id="confirm-password" ng-keyup="check_confirm_password()" disabled/>
+													<label id="cpwd-label" for="password-input" class="black-text" data-error="Passwords do not match!">Confirm Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 												</div>
 											</div>
 											<div class="col s12 m12 l4">
 												<div class="input-field">
-													<select id="classification-input" ng-model="selectd.repeatSelect">
+													<select id="classification-input" ng-model="selectd.repeatSelect" ng-change="check_classification()">
 														<option value="{{info.classification}}" selected="selected">{{info.classification}}</option>
 														<option ng-repeat="option in selectd.options" value="{{option.id}}">{{option.name}}</option>
 													</select>

@@ -67,6 +67,8 @@
 
 #logo{
 	height: 80px;
+	position: relative;
+	z-index: 999;
 }
 
 nav {
@@ -134,8 +136,15 @@ footer.page-footer{
 }
 
 #signupModal{
-	width: 60%;
-	overflow: visible;
+	width: 70%;
+	overflow-y: visible;
+}
+
+@media only screen and (max-width: 600px) {
+  #signupModal {
+	overflow-y: auto;
+	bottom: 17%;
+  }
 }
 
 .modal .input-field i{
@@ -154,4 +163,10 @@ footer.page-footer{
 #sidenav-logo{
 	padding-top: 10px;
 	height: 20%;
+}
+
+@media only screen and (max-width: 350px) {
+  #logo {
+    width: 200px !important; /* for smaller screens */
+  }
 }
