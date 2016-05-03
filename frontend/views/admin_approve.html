@@ -4,7 +4,7 @@
 	<head>
 		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
 		<title>Reginyzr</title>
-    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
+    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.css"  media="screen,projection"/>
     	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
        	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
        	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
@@ -41,81 +41,76 @@
 		    </div>
 		</nav>
 	</div>
-		<div class="container">
-			<table data-ng-init="GetUsers()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table bordered centered stripped">
-				<thead>
-					<tr>
-						<th>
-							<a ng-click="order('given_name')" class="waves-effect waves-light btn">First Name
-							<span class="sortorder" ng-show="predicate === 'given_name'" ng-class="{reverse:reverse}"></span>
-							</a>							
-						</th>
-						<th>
-							<a ng-click="order('last_name')" class="waves-effect waves-light btn">Last Name
-							<span class="sortorder" ng-show="predicate === 'last_name'" ng-class="{reverse:reverse}"></span>
-							</a>	
-						</th>
-						<th>
-							<a ng-click="order('username')" class="waves-effect waves-light btn">Username
-							<span class="sortorder" ng-show="predicate === 'username'" ng-class="{reverse:reverse}"></span>
-							</a>
-						</th>
-						<th>
-							<a ng-click="order('employee_id')" class="waves-effect waves-light btn">Employee ID
-							<span class="sortorder" ng-show="predicate === 'employee_id'" ng-class="{reverse:reverse}"></span>
-							</a>
-						</th>
-						<th>
-							<a ng-click="order('classification')" class="waves-effect waves-light btn">Classification
-							<span class="sortorder" ng-show="predicate === 'classification'" ng-class="{reverse:reverse}"></span>
-							</a>
-						</th>
-						<th>
-							<a ng-click="order('date_signed_up')" class="waves-effect waves-light btn">Date of Sign Up
-							<span class="sortorder" ng-show="predicate === 'date_signed_up'" ng-class="{reverse:reverse}"></span>
-							</a>
-						</th>
-						<th>
-							<a class="waves-effect waves-light btn">Approve</a>
-						</th>
-					</tr>
-				</thead>
-				<tbody>					
-					 <tr ng-repeat="user in userList | orderBy:predicate:reverse">
-				       <td data-title="given_name" >
-				           {{user.given_name}}
+	<div class="row">
+	<div class="col s12">
+		<table data-ng-init="GetUsers()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table bordered centered">
+			<thead>
+				<tr>
+					<th>
+						<a ng-click="order('given_name')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by First Name">First Name
+						</a>
+					</th>
+					<th>
+						<a ng-click="order('last_name')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by Last Name">Last Name
+						</a>	
+					</th>
+					<th>
+						<a ng-click="order('username')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by Username">Username
+						</a>
+					</th>
+					<th>
+						<a ng-click="order('employee_id')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by Employee ID">Employee ID
+						</a>
+					</th>
+					<th>
+						<a ng-click="order('classification')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by Classification">Classification
+						</a>
+					</th>
+					<th>
+						<a ng-click="order('date_signed_up')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by Sign Up Date">Sign Up Date
+						</a>
+					</th>
+					<th>
+					</th>
+				</tr>
+			</thead>
+			<tbody>					
+				<tr ng-repeat="user in userList | orderBy:predicate:reverse">
+			    <td data-title="given_name">
+				    {{user.given_name}}
+				</td>
+			    <td data-title="last_name">
+					{{user.last_name}}
 				       </td>
-				       <td data-title="last_name" >
-				           {{user.last_name}}
-				       </td>
-				       <td data-title="username" >
-				           {{user.username}}
-				       </td>    
-				       <td data-title="employee_id" >
-				           {{user.employee_id}}
-				       </td>    
-				       <td data-title="classification">
-				           {{user.classification}}
-				       </td>    
-				       <td data-title="date_signed_up" >
-				           {{user.date_signed_up}}
-				       </td>
-				       <td data-title="approve_button">
-				           <button id="{{user.username}}" class="waves-effect waves-light btn material-icons" ng-click="ApproveUser(user.id, user.username)">done</button>
-				       </td>     
-				   </tr>					
-				</tbody>
-			</table>
-		</div>
+				<td data-title="username">
+		        	{{user.username}}
+				</td>    
+				<td data-title="employee_id">
+				    {{user.employee_id}}
+				</td>    
+				<td data-title="classification">
+				    {{user.classification}}
+				</td>    
+				<td data-title="date_signed_up" >
+				    {{user.date_signed_up}}
+				</td>
+				<td data-title="approve_button">
+				    <button id="{{user.username}}" class="btn-floating waves-effect waves-light red material-icons" ng-click="ApproveUser(user.id, user.username)">done</button>
+				</td>     
+				</tr>					
+			</tbody>
+		</table>
+	</div>
+	</div>
 
-		<script type="text/javascript" src="js/jquery.js"></script>
-	    <script type="text/javascript" src="js/materialize.min.js"></script>
-	    <script type="text/javascript" src="js/default.js"></script>
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-route.min.js"></script>
-		<script src="app.js"></script>
-		<script src="partials/admin/admin.service.js"></script>
-		<script src="partials/admin/admin.controller.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript" src="js/default.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-route.min.js"></script>
+	<script src="app.js"></script>
+	<script src="partials/admin/admin.service.js"></script>
+	<script src="partials/admin/admin.controller.js"></script>
 				
 
 	</body>
