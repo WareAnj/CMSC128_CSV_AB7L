@@ -152,7 +152,6 @@ exports.check_course_code = (req, res, next) => {
   );
 
 	function responder(err, result){
-    console.log(req.body.course_code);
     if (err) winston.error('Error! ', err);
     const rows = result.length;
     if (rows === 1) {
