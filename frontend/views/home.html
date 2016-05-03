@@ -34,7 +34,7 @@
 						</div>
 						<div ng-repeat="course in faculty_user_courses">
 							<div ng-repeat="lecture in course.lecture">
-								<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
+								<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
 							</div>
 						</div>
 						<div class = "center" ng-controller="HomeCtrl">
@@ -98,7 +98,7 @@
 								    </div>
 										<ul class="collapsible popout" data-collapsible="expandable" >
 											<li ng-repeat="lecture in course.lecture">
-												<div class="collapsible-header" ng-click="Get_Selected_Course(course.id, lecture.name)"><i class="material-icons custom-text text-darken-1" >star_rate</i>{{lecture.name}}</div>
+												<div class="collapsible-header" ng-click="Get_Selected_Course(course.id, course.code, course.title, course.description, lecture.name)"><i class="material-icons custom-text text-darken-1" >star_rate</i>{{lecture.name}}</div>
 												<!-- <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div> -->
 											</li>
 										</ul>

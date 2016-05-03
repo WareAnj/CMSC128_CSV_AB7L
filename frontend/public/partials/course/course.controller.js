@@ -110,12 +110,12 @@
 
     $scope.openModal = function(c_id) {
       $("#editModal").openModal();
-      localStorage.setItem("Course_id", c_id);
+      localStorage.setItem("course_id", c_id);
     }
 
 
     $scope.Edit_Course = function() {
-      CourseService.Edit_Course(localStorage.getItem("Course_id"), $scope.course)
+      CourseService.Edit_Course(localStorage.getItem("course_id"), $scope.course)
         .then(function(data) {
           $scope.course.course_code = "";
           $scope.course.course_title = "";
@@ -147,9 +147,12 @@
         });
     }
 
-    $scope.Get_Selected_Course = function(c_id, lecture_name) {
-      localStorage.setItem("Course_id", c_id);
-      localStorage.setItem("Lecture_name", lecture_name);
+    $scope.Get_Selected_Course = function(c_id, c_code, c_title, c_desc, section_name) {
+      localStorage.setItem("course_id", c_id);
+      localStorage.setItem("course_code", c_code);
+      localStorage.setItem("course_title", c_title);
+      localStorage.setItem("course_description", c_desc);
+      localStorage.setItem("section_name", section_name);
       window.location.href='/class';
     }
 
