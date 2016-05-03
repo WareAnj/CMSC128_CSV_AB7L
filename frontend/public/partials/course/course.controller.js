@@ -29,6 +29,7 @@
     let lnchanged = false;
     let clchanged = false;
     let namep = new RegExp("[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+");
+    let textRegex = new RegExp("[A-Za-z0-9\s]+");
 
     $scope.Get_User = function() {
       CourseService.Get_User()
@@ -87,8 +88,6 @@
               });
           }
         });
-
-
     }
 
     $scope.Add_Course = function() {
@@ -106,13 +105,24 @@
       .then(function(data) {
        });
 
-      CourseService.Get_Course()
-      .then(function(data) {
-        $scope.faculty_user_courses = [];
-        for(let i = 0; i < data.length; i++) {
-          $scope.faculty_user_courses.push(data[i]);
-        }
-      });
+       CourseService.Get_Course(user_id)
+         .then(function(data) {
+           $scope.faculty_user_courses = [];
+           for(let i = 0; i < data.length; i++) {
+             CourseService.Get_Lecture(data[i].id)
+               .then(function(data2) {
+                   $scope.faculty_user_courses.push({
+                     'code': data[i].code,
+                     'course_id': data[i].course_id,
+                     'description': data[i].description,
+                     'faculty_user_id': data[i].faculty_user_id,
+                     'id': data[i].id,
+                     'title': data[i].title,
+                     'lecture' : data2
+                   });
+               });
+           }
+         });
     }
 
     $scope.openModal = function(c_id) {
@@ -132,11 +142,22 @@
         Materialize.toast('Course Details Updated!', 5000, 'rounded');
 
 
-        CourseService.Get_Course()
+        CourseService.Get_Course(user_id)
           .then(function(data) {
             $scope.faculty_user_courses = [];
             for(let i = 0; i < data.length; i++) {
-              $scope.faculty_user_courses.push(data[i]);
+              CourseService.Get_Lecture(data[i].id)
+                .then(function(data2) {
+                    $scope.faculty_user_courses.push({
+                      'code': data[i].code,
+                      'course_id': data[i].course_id,
+                      'description': data[i].description,
+                      'faculty_user_id': data[i].faculty_user_id,
+                      'id': data[i].id,
+                      'title': data[i].title,
+                      'lecture' : data2
+                    });
+                });
             }
           });
     }
@@ -145,13 +166,24 @@
       CourseService.Delete_Course(id)
         .then(function(data){ });
 
-      CourseService.Get_Course()
-        .then(function(data) {
-          $scope.faculty_user_courses = [];
-          for(let i = 0; i < data.length; i++) {
-            $scope.faculty_user_courses.push(data[i]);
-          }
-        });
+        CourseService.Get_Course(user_id)
+          .then(function(data) {
+            $scope.faculty_user_courses = [];
+            for(let i = 0; i < data.length; i++) {
+              CourseService.Get_Lecture(data[i].id)
+                .then(function(data2) {
+                    $scope.faculty_user_courses.push({
+                      'code': data[i].code,
+                      'course_id': data[i].course_id,
+                      'description': data[i].description,
+                      'faculty_user_id': data[i].faculty_user_id,
+                      'id': data[i].id,
+                      'title': data[i].title,
+                      'lecture' : data2
+                    });
+                });
+            }
+          });
     }
 
     $scope.Get_Selected_Course = function(c_id, c_code, c_title, c_desc, section_name) {
