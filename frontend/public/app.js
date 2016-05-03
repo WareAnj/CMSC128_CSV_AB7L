@@ -32,7 +32,7 @@
       }
   });
 
-  
+
   app.controller('HomeCtrl', function($scope, $location, $window, $http, $q) {
 
       $scope.Logout = function() {
@@ -41,6 +41,7 @@
           $http.get("authenticate/logout")
           .success(function(data) {
               $window.location.href = '/';
+              localStorage.clear();
               deferred.resolve(data);
           })
           .error(function(data) {
