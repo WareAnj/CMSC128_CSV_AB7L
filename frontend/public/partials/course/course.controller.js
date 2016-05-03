@@ -35,6 +35,7 @@
         .then(function(data){
           $scope.faculty_user_info = [];
           $scope.faculty_user_info.push(data);
+          localStorage.setItem("user_id", data.id);
           user_id = data.id;
           oclass = data.classification;
           ogname = data.given_name;
@@ -165,7 +166,7 @@
     // Update USER Details
   	$scope.Update_Details = function() {
 
-		var err = false;		
+		var err = false;
 		var npassw = document.querySelector('#password-input').value;
 		var cpassw = document.querySelector('#confirm-password').value;
 
@@ -181,7 +182,7 @@
 				);
 			}
 		}
-		
+
 		if((!clchanged)&&(gnchanged || mnchanged || lnchanged)){
 			var ngname = document.querySelector('#fname-input').value;
 			var nmname = document.querySelector('#mname-input').value;
@@ -283,33 +284,33 @@
 		if(npassw!==""){
 			document.querySelector('#password-input').value = "";
 			document.querySelector('#confirm-password').value = "";
-			$('#confirm-password').attr('disabled','disabled');	
+			$('#confirm-password').attr('disabled','disabled');
 		}
 	}
 
 	$scope.check_password_changes = function() {
 		var npassw = document.querySelector('#password-input').value;
 		var cpassw = document.querySelector('#confirm-password').value;
-		
+
 		if (npassw===""){
 			document.querySelector('#confirm-password').value = "";
 			$('#confirm-password').attr('disabled','disabled');
-			
+
 		}
 		else if(npassw.length>=8){
 			$('#confirm-password').removeAttr('disabled');
 		}
 	}
-	
+
 	$scope.check_confirm_password = function(){
 		var npassw = document.querySelector('#password-input').value;
 		var cpassw = document.querySelector('#confirm-password').value;
 		if (cpassw===""){
 			if($('#password-input').hasClass('invalid')){
-				$('#password-input').removeClass('invalid');	
+				$('#password-input').removeClass('invalid');
 			}
 			if($('#confirm-password').hasClass('invalid')){
-				$('#confirm-password').removeClass('invalid');	
+				$('#confirm-password').removeClass('invalid');
 			}
 		}
 		else if (npassw!==cpassw){
@@ -317,19 +318,19 @@
 				$('#password-input').addClass('invalid');
 			}
 			if(!($('#confirm-password').hasClass('invalid'))){
-				$('#confirm-password').addClass('invalid');	
+				$('#confirm-password').addClass('invalid');
 			}
 		}
 		else{
 			if($('#password-input').hasClass('invalid')){
-				$('#password-input').removeClass('invalid');	
+				$('#password-input').removeClass('invalid');
 			}
 			if($('#confirm-password').hasClass('invalid')){
-				$('#confirm-password').removeClass('invalid');	
+				$('#confirm-password').removeClass('invalid');
 			}
 		}
 	}
-	
+
 	$scope.check_classification = function(){
 		var nclass = document.querySelector('#classification-input').value;
 		if(oclass===nclass) clchanged = false;
@@ -347,7 +348,7 @@
 		if (omname===nmname) mnchanged=false;
 		else mnchanged = true;
 	}
-	
+
   	$scope.check_lname_changes = function() {
   		var nlname = document.querySelector('#lname-input').value;
   		if (olname===nlname) lnchanged=false;
