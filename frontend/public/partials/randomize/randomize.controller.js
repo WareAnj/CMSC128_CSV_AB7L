@@ -9,124 +9,84 @@
 
   function RandomCtrl($scope, $location, RandomService) {
     $scope.students = [];
+    $scope.labdata = [];
+    $scope.labSections = [];
     var randdata = {};
 
-    $scope.Randomize = function() {	   
-      
-      if($scope.counts == null){
-        alert("Please Pick Values");
-        return;
+    $scope.user_id = localStorage.getItem("user_id");
+    $scope.course_code = localStorage.getItem("course_code");
+    $scope.section_name = localStorage.getItem("section_name");
+
+    $scope.course_id = localStorage.getItem("course_id");
+
+
+     $scope.GetLabs = function() {
+
+        RandomService.GetLabs($scope.section_name, $scope.course_id)
+          .then(function(data) {
+            console.log(data);
+            for(var i = 0 ; i < data.length; i++){
+              $scope.labdata.push(data[i]);
+              $scope.labSections.push(data[i].code);
+            }
+         }); 
+
       }
 
-      //1L
-      randdata = {
-		"user_id":"1", 
-		"course_code":"CMSC 128", 
-		"section_name":"AB",
-		"section_code":"1L",
-		"limit":$scope.counts.onel
-	  };
-
-	  
-      RandomService.Randomize(randdata)
-      .then(function(data) {
-      	for(var i = 0; i < data.length; i++)
-         	$scope.students.push(data[i]);
-
-      });
+    $scope.Randomize = function() {	
 
       
-      //2L
-      randdata = {
-			"user_id":"1", 
-			"course_code":"CMSC 128", 
-			"section_name":"AB",
-			"section_code":"2L",
-			"limit":$scope.counts.twol
-		};
 
-      RandomService.Randomize(randdata)
-      .then(function(data) { 
-      	for(var i = 0; i < data.length; i++)
-         	$scope.students.push(data[i]);
-      });
+      //randomize per lab section
+      if($scope.counts.whole == 0){
+         
+         for(var i = 0; i < $scope.labSections.length; i++){
 
-      //3L
-      randdata = {
-			"user_id":"1", 
-			"course_code":"CMSC 128", 
-			"section_name":"AB",
-			"section_code":"3L",
-			"limit":$scope.counts.threel
-		};
 
-      RandomService.Randomize(randdata)
-      .then(function(data) {         
-      	for(var i = 0; i < data.length; i++)
-         	$scope.students.push(data[i]);
-      });
+          var varlab = $scope.labSections[i];
 
-      //4L
-      randdata = {
-			"user_id":"1", 
-			"course_code":"CMSC 128", 
-			"section_name":"AB",
-			"section_code":"4L",
-			"limit":$scope.counts.fourl
-		};
+          console.log($scope.counts[varlab]);
 
-      RandomService.Randomize(randdata)
-      .then(function(data) {      	
-      	for(var i = 0; i < data.length; i++)
-         	$scope.students.push(data[i]);
-      });
+            randdata = {
+              "user_id":$scope.user_id, 
+              "course_code":$scope.course_code, 
+              "section_name":$scope.section_name,
+              "section_code":varlab,
+              "limit": $scope.counts[varlab]
+            };
 
-      //5L
-      randdata = {
-			"user_id":"1", 
-			"course_code":"CMSC 128", 
-			"section_name":"AB",
-			"section_code":"5L",
-			"limit":$scope.counts.fivel
-		};
 
-      RandomService.Randomize(randdata)
-      .then(function(data) {
-      	for(var i = 0; i < data.length; i++)
-         	$scope.students.push(data[i]);
-      });
+            console.log(randdata);
+            
+              RandomService.Randomize(randdata)
+              .then(function(data) {
+                for(var i = 0; i < data.length; i++)
+                  $scope.students.push(data[i]);
 
-      //6L
-      randdata = {
-			"user_id":"1", 
-			"course_code":"CMSC 128", 
-			"section_name":"AB",
-			"section_code":"6L",
-			"limit":$scope.counts.sixl
-		};
+              });
 
-      RandomService.Randomize(randdata)
-      .then(function(data) {
-      	for(var i = 0; i < data.length; i++)
-         	$scope.students.push(data[i]);
-      });
-
-      //7L
-      randdata = {
-			"user_id":"1", 
-			"course_code":"CMSC 128", 
-			"section_name":"AB",
-			"section_code":"7L",
-			"limit":$scope.counts.sevenl
-		};
-
-      RandomService.Randomize(randdata)
-      .then(function(data) {
-      	for(var i = 0; i < data.length; i++)
-         	$scope.students.push(data[i]);
-      });      
+         }          
       
-      console.log($scope.students);
+      }
+
+
+      //Whole section
+      if($scope.counts.whole != 0){
+         
+          randdata = {
+          "user_id":"1", 
+          "course_code":"CMSC 128", 
+          "section_name":"AB",
+          "limit":$scope.counts.whole
+        };
+
+          RandomService.Randomize(randdata)
+          .then(function(data) {
+            for(var i = 0; i < data.length; i++)
+              $scope.students.push(data[i]);
+          });
+
+      }
 
     }
   }
