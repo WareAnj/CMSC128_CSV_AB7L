@@ -115,27 +115,28 @@
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-						          <input placeholder="Course Code" type="text" id="code-input" ng-model="newCourse.course_code" required="required">
+											<input placeholder="Course Code" type="text" id="code-input" ng-keyup="check_course_code_add()" ng-model="newCourse.course_code" required="required">
+											<label for="course-code-input" class="active" data-error="Course Code Already Exits!">Course Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										</div>
+						      </div>
+						    </div>
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+						          <input placeholder="Course Title" type="text" id="title-input" ng-keyup="check_course_code_add()" ng-model="newCourse.new_course_title" required="required">
 						        </div>
 						      </div>
 						    </div>
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-						          <input placeholder="Course Title" type="text" id="title-input" ng-model="newCourse.course_title" required="required">
-						        </div>
-						      </div>
-						    </div>
-								<div class="row">
-						      <div class="input-field">
-						        <div class="col s12 m12 l12">
-											<textarea id="desc-input" class="materialize-textarea custom-text text-darken-1" ng-model="newCourse.course_description"></textarea>
+											<textarea id="desc-input" class="materialize-textarea custom-text text-darken-1" ng-keyup="check_course_code_add()" ng-model="newCourse.new_course_description"></textarea>
 											<label for="desc-input">Course Description</label>
 										</div>
 						      </div>
 						    </div>
 								<div class="modal-footer">
-									<button id="submit-button" class="btn waves-effect waves-light" type="submit">Add Course</button>
+									<button id="submit-button-add" class="btn waves-effect waves-light" type="submit" disabled>Add Course</button>
 								</div>
 							</form>
 				    </div>
@@ -147,27 +148,28 @@
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-						          <input placeholder="New Course Code" type="text" id="new-code-input" ng-model="course.course_code" required="required">
+						          <input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" ng-model="course.course_code" required="required">
+											<label for="course-code-input" class="active" data-error="Course Code Already Exits!">Course Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										</div>
+						      </div>
+						    </div>
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+						          <input placeholder="New Course Title" type="text" ng-keyup="check_course_code_edit()" id="new-title-input" ng-model="course.course_title" required="required">
 						        </div>
 						      </div>
 						    </div>
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-						          <input placeholder="New Course Title" type="text" id="new-title-input" ng-model="course.course_title" required="required">
-						        </div>
-						      </div>
-						    </div>
-								<div class="row">
-						      <div class="input-field">
-						        <div class="col s12 m12 l12">
-											<textarea id="new-desc-input" class="materialize-textarea" ng-model="course.course_description"></textarea>
+											<textarea id="new-desc-input" ng-keyup="check_course_code_edit()" class="materialize-textarea" ng-model="course.course_description"></textarea>
 											<label for="new-desc-input">Course Description</label>
 										</div>
 						      </div>
 						    </div>
 								<div class="modal-footer">
-									<button id="submit-button" class="btn waves-effect waves-light" type="submit">Edit Course</button>
+									<button id="submit-button-edit" class="btn waves-effect waves-light" type="submit" disabled>Edit Course</button>
 								</div>
 							</form>
 				    </div>
@@ -199,19 +201,19 @@
 										<div class="row">
 											<div class="col s12 m6 l4">
 												<div class="input-field">
-													<input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" name="user-password" id="password-input"/>
-													<label for="password-input" class="black-text"><i class="material-icons left">vpn_key</i>Password</label>
+													<input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" name="user-password" id="password-input" ng-keyup="check_password_changes()"/>
+													<label id="pwd-input-label" for="password-input" class="black-text" data-error="Passwords do not match!"><i class="material-icons left">vpn_key</i>Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 												</div>
 											</div>
 											<div class="col s12 m6 l4">
 												<div class="input-field">
-													<input type="password" name="confirm-password" id="confirm-password" id="confirm-password" disabled/>
-													<label for="password-input" class="black-text">Confirm Password</label>
+													<input type="password" name="confirm-password" id="confirm-password" id="confirm-password" ng-keyup="check_confirm_password()" disabled/>
+													<label id="cpwd-label" for="password-input" class="black-text" data-error="Passwords do not match!">Confirm Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 												</div>
 											</div>
 											<div class="col s12 m12 l4">
 												<div class="input-field">
-													<select id="classification-input" ng-model="selectd.repeatSelect">
+													<select id="classification-input" ng-model="selectd.repeatSelect" ng-change="check_classification()">
 														<option value="{{info.classification}}" selected="selected">{{info.classification}}</option>
 														<option ng-repeat="option in selectd.options" value="{{option.id}}">{{option.name}}</option>
 													</select>

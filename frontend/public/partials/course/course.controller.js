@@ -11,7 +11,13 @@
     $scope.faculty_user_courses = [];
     $scope.faculty_user_info = [];
 
-    // Update User Details
+    let c_code_add;
+    let c_title_add;
+    let c_description_add;
+
+    let c_code_edit;
+    let c_title_edit;
+    let c_description_edit;
     let user_id;
     let oclass;
     let ogname;
@@ -159,9 +165,24 @@
     // Update USER Details
   	$scope.Update_Details = function() {
 
-		var err = false;
+		var err = false;		
+		var npassw = document.querySelector('#password-input').value;
+		var cpassw = document.querySelector('#confirm-password').value;
 
-		if(gnchanged || mnchanged || lnchanged){
+		if(npassw!==""){
+			if (npassw!==cpassw){
+				Materialize.toast('Password do not match!', 3000, 'rounded');
+				err = true;
+			}
+			else{
+				$http.post(
+					'faculty_user/update_password/',
+					{username: uname, password: npassw}
+				);
+			}
+		}
+		
+		if((!clchanged)&&(gnchanged || mnchanged || lnchanged)){
 			var ngname = document.querySelector('#fname-input').value;
 			var nmname = document.querySelector('#mname-input').value;
 			var nlname = document.querySelector('#lname-input').value;
@@ -203,20 +224,11 @@
 			}
 		}
 
-		else if(clchanged){
-		}
-
-		else if((gnchanged || mnchanged || lnchanged)&&clchanged){
+		else if(clchanged&&(gnchanged || mnchanged || lnchanged)){
 			var ngname = document.querySelector('#fname-input').value;
 			var nmname = document.querySelector('#mname-input').value;
 			var nlname = document.querySelector('#lname-input').value;
 			var nclass = document.querySelector('#classification-input').value;
-			var npassw = document.querySelector('#password-input').value;
-			var cpassw = document.querySelector('#confirm-password').value;
-
-			if(npassw!==""){
-				return;
-			}
 
 			if (ngname===""){
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
@@ -257,11 +269,71 @@
 				$scope.faculty_user_info[0].classification = nclass;
 			}
 		}
+		else if(clchanged){
+			var nclass = document.querySelector('#classification-input').value;
+			$http.post(
+				'faculty_user/update_classification/',
+				{username: uname, classification: nclass}
+			);
+			oclass=nclass;
+			$scope.faculty_user_info[0].classification = nclass;
+		}
 
-		if((!err) || gnchanged || mnchanged || lnchanged || clchanged || (npassw!=="")) Materialize.toast('Profile updated!', 3000, 'rounded');
+		if((!err) && (gnchanged || mnchanged || lnchanged || clchanged || (npassw!==""))) Materialize.toast('Profile updated!', 3000, 'rounded');
+		if(npassw!==""){
+			document.querySelector('#password-input').value = "";
+			document.querySelector('#confirm-password').value = "";
+			$('#confirm-password').attr('disabled','disabled');	
+		}
 	}
 
-	$scope.check_password = function() {
+	$scope.check_password_changes = function() {
+		var npassw = document.querySelector('#password-input').value;
+		var cpassw = document.querySelector('#confirm-password').value;
+		
+		if (npassw===""){
+			document.querySelector('#confirm-password').value = "";
+			$('#confirm-password').attr('disabled','disabled');
+			
+		}
+		else if(npassw.length>=8){
+			$('#confirm-password').removeAttr('disabled');
+		}
+	}
+	
+	$scope.check_confirm_password = function(){
+		var npassw = document.querySelector('#password-input').value;
+		var cpassw = document.querySelector('#confirm-password').value;
+		if (cpassw===""){
+			if($('#password-input').hasClass('invalid')){
+				$('#password-input').removeClass('invalid');	
+			}
+			if($('#confirm-password').hasClass('invalid')){
+				$('#confirm-password').removeClass('invalid');	
+			}
+		}
+		else if (npassw!==cpassw){
+			if(!($('#password-input').hasClass('invalid'))){
+				$('#password-input').addClass('invalid');
+			}
+			if(!($('#confirm-password').hasClass('invalid'))){
+				$('#confirm-password').addClass('invalid');	
+			}
+		}
+		else{
+			if($('#password-input').hasClass('invalid')){
+				$('#password-input').removeClass('invalid');	
+			}
+			if($('#confirm-password').hasClass('invalid')){
+				$('#confirm-password').removeClass('invalid');	
+			}
+		}
+	}
+	
+	$scope.check_classification = function(){
+		var nclass = document.querySelector('#classification-input').value;
+		if(oclass===nclass) clchanged = false;
+		else clchanged = true;
 	}
 
 	$scope.check_gname_changes = function() {
@@ -275,11 +347,134 @@
 		if (omname===nmname) mnchanged=false;
 		else mnchanged = true;
 	}
+	
+  	$scope.check_lname_changes = function() {
+  		var nlname = document.querySelector('#lname-input').value;
+  		if (olname===nlname) lnchanged=false;
+  		else lnchanged = true;
+  	}
 
-	$scope.check_lname_changes = function() {
-		var nlname = document.querySelector('#lname-input').value;
-		if (olname===nlname) lnchanged=false;
-		else lnchanged = true;
-	}
+    // checker in add course
+    $scope.check_course_code_add = function(){
+
+  		let course_code = document.querySelector('#code-input').value;
+      let course_title = document.querySelector('#title-input').value;
+      let course_description = document.querySelector('#desc-input').value;
+      if (course_code===""){
+  			if($("#code-input").hasClass('invalid')){
+  				$("#code-input").removeClass('invalid');
+  			}
+  			$("#submit-button-add").attr('disabled', 'disabled');
+        c_code_add = false;
+  		}
+
+      if (course_title===""){
+        $("#submit-button-add").attr('disabled', 'disabled');
+        c_title_add = false;
+      } else {
+        if (!(textRegex.test(course_title))){
+          Materialize.toast('Invalid Course Title format!', 3000, 'rounded');
+          c_title_add = false;
+        } else{
+            c_title_add = true;
+        }
+      }
+
+      if (course_description===""){
+        $("#submit-button-add").attr('disabled', 'disabled');
+        c_description_add = false;
+
+      } else {
+        if (!(textRegex.test(course_description))){
+          Materialize.toast('Invalid Character found!', 3000, 'rounded');
+          c_description_add = false;
+        } else{
+            c_description_add = true;
+        }
+      }
+
+  		$http.post(
+  			"course/check_course_code/", $scope.newCourse
+  			).then(function(response){
+  				if (response.data){
+  					if(!($("#code-input").hasClass('invalid'))){
+  						$("#code-input").addClass('invalid');
+  					}
+  					c_code_add = false;
+          }
+          else{
+  					if($("#code-input").hasClass('invalid')){
+  						$("#code-input").removeClass('invalid');
+  					}
+        		c_code_add = true;
+      		  }
+
+          if(c_code_add && c_title_add && c_description_add) $("#submit-button-add").removeAttr('disabled');
+          else $("#submit-button-add").attr('disabled', 'disabled');
+        }
+
+  		);
+  	}
+
+    $scope.check_course_code_edit = function(){
+
+      let course_code = document.querySelector('#new-code-input').value;
+      let course_title = document.querySelector('#new-title-input').value;
+      let course_description = document.querySelector('#new-desc-input').value;
+      if (course_code===""){
+  			if($("#new-code-input").hasClass('invalid')){
+  				$("#new-code-input").removeClass('invalid');
+  			}
+  			$("#submit-button-edit").attr('disabled', 'disabled');
+        c_code_edit = false;
+  		}
+
+      if (course_title===""){
+        $("#submit-button-edit").attr('disabled', 'disabled');
+        c_title_edit = false;
+      } else {
+        if (!(textRegex.test(course_title))){
+          Materialize.toast('Invalid Course Title format!', 3000, 'rounded');
+          c_title_edit = false;
+        } else{
+            c_title_edit = true;
+        }
+      }
+
+      if (course_description===""){
+        $("#submit-button-edit").attr('disabled', 'disabled');
+        c_description_edit = false;
+
+      } else {
+        if (!(textRegex.test(course_description))){
+          Materialize.toast('Invalid Character found!', 3000, 'rounded');
+          c_description_edit = false;
+        } else{
+            c_description_edit = true;
+        }
+      }
+
+  		$http.post(
+  			"course/check_course_code/", $scope.course
+  			).then(function(response){
+  				if (response.data){
+  					if(!($("#new-code-input").hasClass('invalid'))){
+  						$("#new-code-input").addClass('invalid');
+  					}
+  					c_code_edit = false;
+          }
+          else{
+  					if($("#new-code-input").hasClass('invalid')){
+  						$("#new-code-input").removeClass('invalid');
+  					}
+        		c_code_edit = true;
+      		  }
+
+          if(c_code_edit && c_title_edit && c_description_edit) $("#submit-button-edit").removeAttr('disabled');
+          else $("#submit-button-edit").attr('disabled', 'disabled');
+        }
+
+  		);
+  	}
   }
 })();

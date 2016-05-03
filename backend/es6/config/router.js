@@ -28,6 +28,11 @@ module.exports = (router) => {
     router.get ('/faculty_user/get_user',                                                   __.faculty_user.get_logged_in_faculty_user_id);
     router.post('/faculty_user/update_name/',                           $('Faculty User'),  __.faculty_user.update_name);
     router.post('/faculty_user/update_password/',                       $('Faculty User'),  __.faculty_user.update_password);
+    router.post('/faculty_user/update_profile/',                        $('Faculty User'),  __.faculty_user.update_profile);
+    router.post('/faculty_user/update_classification/',                 $('Faculty User'),  __.faculty_user.update_classification);
+
+    // check course if existing
+    router.post('/course/check_course_code/',                                                __.course.check_course_code);
 
     // course routes
     router.post('/course/post_course/',                                 $('Faculty User'),  __.course.post_course);
