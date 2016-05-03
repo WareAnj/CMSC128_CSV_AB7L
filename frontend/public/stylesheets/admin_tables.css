@@ -5,31 +5,7 @@
   	content: '\25bc';
 }
 
-table tbody, table thead{
-    display: block;
-}
-
 table tbody{
    overflow: auto;
-   height: 350px;   
-}
-
-td{
-	width: 500px;
-}
-
-th{
-    width: 500px;
-}
-
-#div1{
-	padding-left: 5px;
-}
-
-#div2{
-	padding-right: 35px;
-}
-
-#div3{
-	padding-right: 48px;
+   height: 100px;
 }
