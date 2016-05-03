@@ -36,8 +36,9 @@
     $scope.ApproveUser = function(id, username) {
         AdminService.ApproveUser(id)
           .then(function(data){
-              alert("Successfully Approved User: " + username);
-          });       
+              //alert("Successfully Approved User: " + username);
+              Materialize.toast('Successfully approved '+username+'!', 5000);
+          });
 
         let index = -1;
         let comArr = eval($scope.userList);
@@ -49,7 +50,7 @@
         }
 
         if(index === -1) {
-            alert("Something gone wrong");
+            Materialize.toast('Something has gone wrong.', 5000);
             return;
         }
 

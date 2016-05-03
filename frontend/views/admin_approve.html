@@ -20,13 +20,16 @@
 		 		<ul>
 		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
 		    	</ul>
+		    	<ul class="right">
+		    		<a href"/admin_approve">Pending Users<span class="new badge">3</span></a> <!-- to be worked on -->
+		    	</ul>
 	    		<!-- SIDE NAV  -->
 				<div id="slide-out" class="side-nav center">
 					<div class = "center" ng-controller="AdminCtrl">
 						<a href="/admin" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Home</a>
 					</div>
 					<div class = "center" ng-controller="AdminCtrl">
-						<a href="/admin_approve" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Pending Users</a>
+						<a href="/admin_approve" class="waves-effect waves-teal btn-flat blue-text text-lighten-2 collection-item">View Pending Users</a>
 					</div>
 					<div class = "center" ng-controller="AdminCtrl">
 						<a href="/admin_viewusers" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Approved Users</a>
@@ -43,7 +46,7 @@
 	</div>
 	<div class="row">
 	<div class="col s12">
-		<table data-ng-init="GetUsers()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintable" class="highlight responsive-table bordered centered">
+		<table data-ng-init="GetUsers()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" class="highlight responsive-table bordered centered">
 			<thead>
 				<tr>
 					<th>
@@ -81,7 +84,7 @@
 				</td>
 			    <td data-title="last_name">
 					{{user.last_name}}
-				       </td>
+				</td>
 				<td data-title="username">
 		        	{{user.username}}
 				</td>    
@@ -111,7 +114,6 @@
 	<script src="app.js"></script>
 	<script src="partials/admin/admin.service.js"></script>
 	<script src="partials/admin/admin.controller.js"></script>
-				
 
 	</body>
 </html>
