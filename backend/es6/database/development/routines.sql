@@ -384,7 +384,11 @@ BEGIN
 	IF (SELECT COUNT(*) FROM section s, course c WHERE c.id = s.course_id AND c.code = _course_code AND s.name = _name) THEN
 		SELECT CONCAT('Lecture section ', _name, ' under ', _course_code, ' already exists') AS message;
 	ELSE
-        SELECT c.title INTO _course_title, c.description INTO _course_description
+        SELECT c.title INTO _course_title
+        FROM faculty_user_course fc, course c
+        WHERE c.id = fc.course_id AND c.code = _course_code AND fc.faculty_user_id = _faculty_user_id;
+
+		SELECT c.description INTO _course_description
         FROM faculty_user_course fc, course c
         WHERE c.id = fc.course_id AND c.code = _course_code AND fc.faculty_user_id = _faculty_user_id;
 
