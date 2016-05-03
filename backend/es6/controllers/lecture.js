@@ -191,3 +191,31 @@ exports.get_lecture_student = (req, res, next) => {
   start();
 
 };
+
+exports.get_lab_sections = (req, res, next) => {
+  const data = {
+      course_id:           req.query.course_id,
+      name:                req.query.name
+  };
+
+  function start () {
+      db.query([
+                  'SELECT s.code FROM course s, section s',
+                  'WHERE s.course_id = ? and c.id = s.course_id and name = ?;'
+               ].join(' '),
+               [data.id],
+                send_response);
+  }
+
+  function send_response (err, result, args, last_query) {
+      if (err) {
+          winston.error('Error in getting lab sections', last_query);
+          return next(err);
+      }
+
+      res.send(result);
+  }
+
+  start();
+
+};
