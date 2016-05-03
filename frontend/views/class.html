@@ -50,20 +50,22 @@
 		<!--NAV BAR-->
 
 		<!--MAIN-->
-		<main ng-controller="LectureCtrl" data-ng-init="Get_Class_List()">
+		<main ng-controller="SectionCtrl" data-ng-init="Get_Class_List()">
 			<div id="mainContainer"class="container">
 				<div class="row">
 					<div class="col s12 m4 l4">
 						<div id="course-info" class="card-panel custom lighten-1">
+							<div ng-repeat="s_info in section_info">
 							<div class="row">
-								<h4>CMSC 128 AB</h4>
+								<h4>{{s_info.course_code}} {{s_info.section_name}}</h4>
 							</div>
 							<div class="row">
-								<strong>Title</strong>: Introduction to Software Engineering
+								<strong>Title</strong>: {{s_info.course_title}}
 							</div>
 							<div class="row">
-								<strong>Description</strong>: Principles and methods for the design, implementation, validation, evaluation and maintenance of software systems.
+								<strong>Description</strong>: {{s_info.course_description}}
 							</div>
+						</div>
 						</div>
 						<div id="buttons-class" class="row">
 							<div class="col s12 m12 l12">
@@ -159,7 +161,7 @@
 
 		<script src="partials/course/course.service.js"></script>
 		<script src="partials/course/course.controller.js"></script>
-		<script src="partials/lecture/lecture.service.js"></script>
-		<script src="partials/lecture/lecture.controller.js"></script>
+		<script src="partials/section/section.service.js"></script>
+		<script src="partials/section/section.controller.js"></script>
 	</body>
 </html>

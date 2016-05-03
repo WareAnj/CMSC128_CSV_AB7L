@@ -78,7 +78,7 @@ exports.put_course = (req, res, next) => {
 
 exports.get_course = (req, res, next) => {
   const data = {
-      user_id:                   req.session.user.id,
+      user_id:                   req.session.user.id
   };
 
   function start () {
@@ -134,4 +134,30 @@ exports.delete_course = (req, res, next) => {
 
   start();
 
+};
+
+exports.check_course_code = (req, res, next) => {
+  const data = {
+      user_id:                  req.session.user.id,
+      course_code:              req.body.course_code
+  }
+
+  db.query(
+    [
+      'SELECT code FROM faculty_user_course fc, course c',
+      'WHERE fc.faculty_user_id = ? AND fc.course_id = c.id AND code = ?;'
+    ].join(' '),
+	   [data.user_id, data.course_code],
+     responder
+  );
+
+	function responder(err, result){
+    if (err) winston.error('Error! ', err);
+    const rows = result.length;
+    if (rows === 1) {
+			res.status(200).send(true);
+		} else {
+			res.status(200).send(false);
+		}
+	}
 };

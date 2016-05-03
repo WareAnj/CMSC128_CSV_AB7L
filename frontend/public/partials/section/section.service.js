@@ -3,11 +3,11 @@
 (function() {
 	angular
 		.module("app")
-		.factory("LectureService", LectureService);
+		.factory("SectionService", SectionService);
 
-	LectureService.$inject = ["$http", "$q"];
+	SectionService.$inject = ["$http", "$q"];
 
-	function LectureService($http, $q) {
+	function SectionService($http, $q) {
 		let service = {};
 		service.Get_Class_List = Get_Class_List;
 		service.Get_Student = Get_Student;
