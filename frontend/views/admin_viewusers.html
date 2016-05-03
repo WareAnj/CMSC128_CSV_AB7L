@@ -46,35 +46,35 @@
 	</div>
 	<div class="row">
 		<div class="col s12">
-			<table data-ng-init="GetAllApproved()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" class="highlight responsive-table bordered centered">
+			<table id="admintable" data-ng-init="GetAllApproved()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" class="highlight responsive-table bordered centered">
 				<thead>
 					<tr>
 						<th>
-							<a ng-click="order('given_name')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click me to sort!">First Name
+							<a ng-click="order('given_name')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by first name.">First Name
 							</a>							
 						</th>
 						<th>
-							<a ng-click="order('last_name')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click me to sort!">Last Name
+							<a ng-click="order('last_name')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by last name.">Last Name
 							</a>	
 						</th>
 						<th>
-							<a ng-click="order('username')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click me to sort!">Username
+							<a ng-click="order('username')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by username.">Username
 							</a>
 						</th>
 						<th>
-							<a ng-click="order('employee_id')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click me to sort!">Employee ID
+							<a ng-click="order('employee_id')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by employee ID.">Employee ID
 							</a>
 						</th>
 						<th>
-							<a ng-click="order('classification')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click me to sort!">Classification
+							<a ng-click="order('classification')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by classification.">Classification
 							</a>
 						</th>
 						<th>
-							<a ng-click="order('date_signed_up')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click me to sort!">Sign Up Date
+							<a ng-click="order('date_signed_up')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by sign up date.">Sign Up Date
 							</a>
 						</th>
 						<th>
-							<a ng-click="order('date_approved')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Click me to sort!">Approval Date
+							<a ng-click="order('date_approved')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by approval date.">Approval Date
 							</a>
 						</th>
 					</tr>
