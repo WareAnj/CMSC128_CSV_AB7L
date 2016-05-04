@@ -1,38 +1,23 @@
-<!DOCTYPE html>
-<html ng-app="app">
-	<head>
-		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
-		<title>Reginyzr</title>
-		<link type="text/css" rel="stylesheet" href="stylesheets/index.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-       	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
-       	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
-    
-	</head>
-
-	<body>
-
+<div>
 	<!-- NAV BAR -->
-		<nav>
-		 	<div class="nav-wrapper container">
-		 		<ul id="slide-out" class="side-nav">
-				    <li><a href="#!">View Classes</a></li>
-				     <li><a href="#!">Edit Classes</a></li>
-				     <li>
-				     	<div class="center">
-				     		<button class="waves-effect waves-light btn" id="logout-btn" ng-click="logout()">logout</button>
-				   		</div>
-				     </li>
-			  	  	</ul>
-			   	 <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu marginize"></i></a>
+	<nav>
+	 	<div class="nav-wrapper container">
+	 		<ul id="slide-out" class="side-nav">
+			    <li><a href="#!">View Classes</a></li>
+			     <li><a href="#!">Edit Classes</a></li>
+			     <li>
+			     	<div class="center">
+			     		<button class="waves-effect waves-light btn" id="logout-btn" ng-click="logout()">logout</button>
+			   		</div>
+			     </li>
+		  	  	</ul>
+		   	 <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu marginize"></i></a>
 
-		 		<ul id="nav-mobile">
-		    		<li><a href="/" class="brand-logos"><img id="logo" src="img/text2.png"></a></li>
-		    	</ul>
-		    </div>
-		</nav>
+	 		<ul id="nav-mobile">
+	    		<li><a href="/" class="brand-logos"><img id="logo" src="../assets/img/text2.png"></a></li>
+	    	</ul>
+	    </div>
+	</nav>
 
 		<main>
 
@@ -50,7 +35,7 @@
 		</div>
 		<div class="row">
 			<div class="col s12" style="padding: 0;">
-				<ul class="tabs " style="overflow-x: hidden;"> 
+				<ul class="tabs " style="overflow-x: hidden;">
 					<li class="tab col s3"><a href="#first-table">Class 1</a></li>
 					<li class="tab col s3"><a class="active" href="#second-table">Class 2</a></li>
 					<li class="tab col s3"><a href="#">Class 3</a></li>
@@ -59,7 +44,7 @@
 			</div>
 		</div>
 
-		<div class="row hoverable" id="first-table" style="overflow: auto; height: 60vh; "> 
+		<div class="row hoverable" id="first-table" style="overflow: auto; height: 60vh; ">
 			<table class="highlight centered responsive-table white striped">
 		        <thead>
 		          <tr>
@@ -79,7 +64,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
@@ -91,7 +76,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
@@ -103,7 +88,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
@@ -115,7 +100,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
@@ -127,7 +112,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
@@ -139,7 +124,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
@@ -151,7 +136,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
@@ -163,7 +148,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
@@ -175,7 +160,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
@@ -187,7 +172,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
@@ -199,7 +184,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
@@ -211,7 +196,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
@@ -241,7 +226,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		            	<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 		            	<a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 		           </td>
@@ -252,7 +237,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		            	<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 		            	<a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 		           </td>
@@ -263,7 +248,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		            	<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 		            	<a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 		           </td>
@@ -274,7 +259,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		            	<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 		            	<a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 		           </td>
@@ -285,7 +270,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		            	<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 		            	<a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 		           </td>
@@ -296,7 +281,7 @@
 		            <td>BSCS</td>
 		            <td>Junior</td>
 		            <td>CAS</td>
-		            <td> 
+		            <td>
 		            	<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 		            	<a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 		           </td>
@@ -305,17 +290,17 @@
 		      </table>
 		</div>
 	</div>
-		
 
-	
-		
 
-		
+
+
+
+
 	<!-- MODALS: LOGIN AND SIGN UP -->
 	<div id="add-modal" class="modal">
 	    <div class="modal-content center">
   <h4>Add a Student</h4>
-  <form ng-submit="AddFacultyUser()" ng-controller="RegisterCtrl" autocomplete="off">
+  <form ng-submit="AddFacultyUser()" autocomplete="off">
     <div class="row">
       <div class="input-field">
         <div class="col s12 m12 l4">
@@ -326,7 +311,7 @@
           <input placeholder="Middle Name" type="text" id="mname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+">
         </div>
         <div class="col s12 m12 l4">
-          <input placeholder="Last Name" type="text" id="lname-input"required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+">         
+          <input placeholder="Last Name" type="text" id="lname-input"required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+">
         </div>
       </div>
     </div>
@@ -359,7 +344,7 @@
       			 <option value="Sophomore">Sophomore</option>
       			 <option value="Junior">Junior</option>
       			 <option value="Senior">Senior</option>
-    		  </select>    		  
+    		  </select>
         </div>
       </div>
     </div>
@@ -382,7 +367,7 @@
 	<div id="modal2" class="modal">
 	    <div class="modal-content">
 	    	<h4>EDIT A STUDENT</h4>
-	    	
+
 	    	<label> Name </label>
 	    	<div class="row">
 	    		<div class="input-field col s4">
@@ -437,21 +422,6 @@
 			</div>
 		</footer>
 
-	    <script type="text/javascript" src="js/jquery.js"></script>
-	    <script type="text/javascript" src="js/materialize.min.js"></script>
-	    <script type="text/javascript" src="js/index.js"></script>
-
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-route.min.js"></script>
-
-		<script src="app.js"></script>
-
-		<script src="partials/login/login.service.js"></script>
-		<script src="partials/login/login.controller.js"></script>
-
-		<script src="partials/register/register.service.js"></script>
-		<script src="partials/register/register.controller.js"></script>
-		
 		<script>
 		$(document).ready(function(){
 	    	  $('ul.tabs').tabs();
@@ -461,5 +431,4 @@
     	$('select').material_select();
  		});
 		</script>
-	</body>
-</html>
+</div>

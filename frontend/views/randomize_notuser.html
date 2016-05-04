@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
-		<title>Reginyzr</title>
-    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    	
-    	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/randomize_notuser.css">
-	</head>
-
-	<body>
-
+<div>
+    <link type="text/css" rel="stylesheet" href="../assets/stylesheets/randomize_notuser.css">
 		<!-- NAV BAR -->
 		<div class="navbar-fixed">
 		<nav>
@@ -38,7 +25,7 @@
 		</nav>
 		</div>
 
-		<main>		
+		<main>
 			<div id="rand-not-user" class="container">
 			<div class="row">
 				<!-- COLUMN FOR FORM -->
@@ -53,7 +40,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<form class="col s12">	
+									<form class="col s12">
 											<div class="input-field
 											tooltipped"
 							    	 		data-position="right"
@@ -70,7 +57,7 @@
 								</div>
 								</div>
 					  		</div>
-					  		
+
 
 					  		<div class="section">
 					  			<h5 id="add-space">Or input a file <a href="#help-file" class="modal-trigger"><sup class="small red-text">[?]</sup></a></h5>
@@ -159,42 +146,25 @@
 				</div>
 			</div>
 		</div>
-		
-		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/materialize.min.js"></script>
-		<script type="text/javascript" src="js/index.js"></script>
-
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-route.min.js"></script>
-
-		<script src="app.js"></script>
-
-		<script src="partials/login/login.service.js"></script>
-		<script src="partials/login/login.controller.js"></script>
-
-		<script src="partials/register/register.service.js"></script>
-		<script src="partials/register/register.controller.js"></script>
 
 		<script src="js/randomize_notuser.js"></script>
 
-
-		<script>		   
+		<script>
 		  	//other functions are in randomize_notuser.js
 
-			$('input[id=input]').keyup(function(){		
+			$('input[id=input]').keyup(function(){
 				tooltipAlert();
-			});			
-			
+			});
+
 			//for enabling and disabling add button
 			function tooltipAlert(){
 				var delButton = $('<span class="tooltiptext">Tooltip text</span>');
 				var string = document.getElementById('input').value.trim();
-				if(string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){					
+				if(string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){
 					$('#add').attr('disabled', false);
 				}else{
 					$('#add').attr('disabled', true);
 				}
-			}			
+			}
 		</script>
-	</body>
-</html>
+</div>

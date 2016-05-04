@@ -1,46 +1,34 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
-		<title>Reginyzr</title>
-    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-       	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
-       	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/results.css">
-	</head>
-
-	<body>
+<div>
+    <link type="text/css" rel="stylesheet" href="../assets/stylesheets/results.css">
 
 	<!-- NAV BAR -->
+	<nav>
+	 	<div class="nav-wrapper container">
+	 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+	 		<ul id="nav-mobile">
+	    	<!--	<li><div class="logo-img hide-on-small-and-down">
+	    			<a href="#">
+	    			<img id="nav-logo" src="img/logo-2.png">
+	    			</a></div></li>
+	    	-->	<li><a href="/" class="brand-logos"> <img id="logo" src="img/text2.png"></a></li>
+	    	</ul>
 
-		<nav>
-		 	<div class="nav-wrapper container">
-		 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-		 		<ul id="nav-mobile">
-		    	<!--	<li><div class="logo-img hide-on-small-and-down">
-		    			<a href="#">
-		    			<img id="nav-logo" src="img/logo-2.png">
-		    			</a></div></li>
-		    	-->	<li><a href="/" class="brand-logos"> <img id="logo" src="img/text2.png"></a></li>
-		    	</ul>
+	    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
+			    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
+			    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
+	    	</ul>
 
-		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
-				    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
-				    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
-		    	</ul>
+    		<!-- SIDE NAV (WHEN VIEWED IN SMALLER SCREENS) -->
 
-	    		<!-- SIDE NAV (WHEN VIEWED IN SMALLER SCREENS) -->
-
-		    	<ul id="mobile-demo" class="side-nav">
-		    		<div class="logo-img-side"><a href="#">
-		    			<img id="logo-img-side" src="img/logo-2.png">
-		    		</a></div>
-				    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
-				    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
-		    	</ul>
-		    </div>
-		</nav>
+	    	<ul id="mobile-demo" class="side-nav">
+	    		<div class="logo-img-side"><a href="#">
+	    			<img id="logo-img-side" src="img/logo-2.png">
+	    		</a></div>
+			    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
+			    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
+	    	</ul>
+	    </div>
+	</nav>
 
 		<main>
 
@@ -70,21 +58,8 @@
 			</div>
 		</footer>
 
-	    <script type="text/javascript" src="js/jquery.js"></script>
-	    <script type="text/javascript" src="js/materialize.min.js"></script>
 	    <script type="text/javascript" src="js/randomizer-2.js"></script>
 
-			<script src="js/angular.min.js"></script>
-			<script src="js/angular-route.min.js"></script>
-
-			<script src="app.js"></script>
-
-			<script src="partials/login/login.service.js"></script>
-			<script src="partials/login/login.controller.js"></script>
-
-			<script src="partials/register/register.service.js"></script>
-			<script src="partials/register/register.controller.js"></script>
-			<script src="partials/register/register.check_faculty_user_username.js"></script>
-			<script src="partials/register/register.check_faculty_user_employee_id.js"></script>
-	</body>
-</html>
+		<script src="partials/register/register.check_faculty_user_username.js"></script>
+		<script src="partials/register/register.check_faculty_user_employee_id.js"></script>
+</div>

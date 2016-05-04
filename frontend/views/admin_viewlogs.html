@@ -1,18 +1,6 @@
-<!DOCTYPE html>
+<div>
+    <link type="text/css" rel="stylesheet" href="../assets/stylesheets/admin_tables.css">
 
-<html ng-app="app">
-	<head>
-		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
-		<title>Reginyzr</title>
-    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-       	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
-       	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/admin_tables.css">
-
-	</head>
-
-	<body ng-controller="AdminCtrl">
 	<!-- NAV BAR -->
 	<div class="navbar-fixed">
 		<nav>
@@ -22,19 +10,19 @@
 		    	</ul>
 	    		<!-- SIDE NAV  -->
 				<div id="slide-out" class="side-nav center">
-					<div class = "center" ng-controller="AdminCtrl">
+					<div class = "center">
 						<a href="/admin" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Home</a>
 					</div>
-					<div class = "center" ng-controller="AdminCtrl">
+					<div class = "center">
 						<a href="/admin_approve" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Pending Users</a>
 					</div>
-					<div class = "center" ng-controller="AdminCtrl">
+					<div class = "center">
 						<a href="/admin_viewusers" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Approved Users</a>
 					</div>
-					<div class = "center" ng-controller="AdminCtrl">
+					<div class = "center">
 						<a href="/admin_viewlogs" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Logs</a>
 					</div>
-					<div class = "center" ng-controller="AdminCtrl">
+					<div class = "center">
 						<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
 					</div>
 				</div>
@@ -52,9 +40,9 @@
 			  </ul>
 			</div>
 		</div>
-			
+
 			<div id="logouttable">
-			<table ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintableout" class="highlight responsive-table tablesorter bordered centered stripped">
+			<table ng-table="usersTable" show-filter="true" id="admintableout" class="highlight responsive-table tablesorter bordered centered stripped">
 				<thead>
 					<tr>
 						<th>
@@ -80,23 +68,23 @@
 						</th>
 					</tr>
 				</thead>
-				<tbody>					
+				<tbody>
 					 <tr ng-repeat="user in userList | orderBy:predicate:reverse">
 				       <td data-title="id" >
 				           {{user.id}}
 				       </td>
 				       <td data-title="username" >
 				           {{user.username}}
-				       </td>    
+				       </td>
 				       <td data-title="date_login" id="dynamictd">
 				           {{user.date_logout}}
 				       </td>
-				   </tr>					
+				   </tr>
 				</tbody>
 			</table>
 			</div>
 			<div id="logintable">
-				<table ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" id="admintablein" class="highlight responsive-table tablesorter bordered centered stripped">
+				<table ng-table="usersTable" show-filter="true" id="admintablein" class="highlight responsive-table tablesorter bordered centered stripped">
 				<thead>
 					<tr>
 						<th>
@@ -122,31 +110,22 @@
 						</th>
 					</tr>
 				</thead>
-				<tbody>					
+				<tbody>
 					 <tr ng-repeat="user in userList | orderBy:predicate:reverse">
 				       <td data-title="id" >
 				           {{user.id}}
 				       </td>
 				       <td data-title="username" >
 				           {{user.username}}
-				       </td>    
+				       </td>
 				       <td data-title="date_login" id="dynamictd">
 				           {{user.date_login}}
 				       </td>
-				   </tr>					
+				   </tr>
 				</tbody>
 			</table>
 			</div>
-		</div>	
-
-		<script type="text/javascript" src="js/jquery.js"></script>
-	    <script type="text/javascript" src="js/materialize.min.js"></script>
-	    <script type="text/javascript" src="js/default.js"></script>
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-route.min.js"></script>
-		<script src="app.js"></script>
-		<script src="partials/admin/admin.service.js"></script>
-		<script src="partials/admin/admin.controller.js"></script>
+		</div>
 
 		<script>
 
@@ -166,9 +145,9 @@
 
 				angular.element(document.getElementById('admintablein')).scope().GetAllLogin();
 
-			});			
+			});
 
-			$("#logout-all").click(function(){		
+			$("#logout-all").click(function(){
 
 				$("#admintable").attr("data-ng-init", "GetAllLogout()");
 				$('#logintable').hide();
@@ -185,14 +164,14 @@
 				$('#logintable').show();
 			    $('#logouttable').hide();
 
-				var id = prompt("Please enter ID of Faculty User");			
+				var id = prompt("Please enter ID of Faculty User");
 
 				angular.element(document.getElementById('admintablein')).scope().GetSpecificLogin(id);
 
 			});
 
-			$("#logout-specific").click(function(){						
-				
+			$("#logout-specific").click(function(){
+
 				$("#admintable").attr("data-ng-init", "GetSpecificLogout()");
 				$('#logintable').hide();
 			    $('#logouttable').show();
@@ -202,8 +181,6 @@
 				angular.element(document.getElementById('admintableout')).scope().GetSpecificLogout(id);
 
 			});
-			
-		</script>
-	</body>
 
-</html>
+		</script>
+</div>

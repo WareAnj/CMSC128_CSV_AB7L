@@ -10,18 +10,18 @@ module.exports = (router) => {
     router.del = router.delete;
 
     // render_controller
-    router.get ('/',                                                                        __.render_controller.index);
-    router.get ('/randomize',                                                               __.render_controller.randomize);
-    router.get ('/edit',                                                                    __.render_controller.edit);
-    router.get ('/logs',                                                                    __.render_controller.logs);
-    router.get ('/settings_randomize',                                                      __.render_controller.settings_randomize);
-    router.get ('/randomize_notuser',                                                       __.render_controller.randomize_notuser);
-    router.get ('/home',                                                                    __.render_controller.home);
-    router.get ('/admin',                                               $('Administrator'), __.render_controller.admin);
-    router.get ('/admin_approve',                                       $('Administrator'), __.render_controller.admin_approve);
-    router.get ('/admin_viewlogs',                                      $('Administrator'), __.render_controller.admin_viewlogs);
-    router.get ('/admin_viewusers',                                     $('Administrator'), __.render_controller.admin_viewusers);
-    router.get ('/class',                                                                   __.render_controller.class);
+    // router.get ('/',                                                                        __.render_controller.index);
+    // router.get ('/randomize',                                                               __.render_controller.randomize);
+    // router.get ('/edit',                                                                    __.render_controller.edit);
+    // router.get ('/logs',                                                                    __.render_controller.logs);
+    // router.get ('/settings_randomize',                                                      __.render_controller.settings_randomize);
+    // router.get ('/randomize_notuser',                                                       __.render_controller.randomize_notuser);
+    // router.get ('/home',                                                                    __.render_controller.home);
+    // router.get ('/admin',                                               $('Administrator'), __.render_controller.admin);
+    // router.get ('/admin_approve',                                       $('Administrator'), __.render_controller.admin_approve);
+    // router.get ('/admin_viewlogs',                                      $('Administrator'), __.render_controller.admin_viewlogs);
+    // router.get ('/admin_viewusers',                                     $('Administrator'), __.render_controller.admin_viewusers);
+    // router.get ('/class',                                                                   __.render_controller.class);
 
     // faculty_user routes
     router.post('/faculty_user/register/',                                                  __.faculty_user.register);
@@ -104,7 +104,7 @@ module.exports = (router) => {
     router.get ('/edit',				                                             __.render_controller.edit);
 
     // Unmatched route
-    router.all('*',                                                              __.render_controller.error_404);
+    // router.all('*',                                                              __.render_controller.error_404);
 
     return router;
 };
