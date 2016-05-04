@@ -21,38 +21,39 @@
             });
         }
 
-    $scope.GetUsers = function() {
-        $scope.userList = [];
-        AdminService.GetUsers()
-          .then(function(data){
-              let length = data[0].length;
-              for (let i = 0; i < length; i++) {
-                  $scope.userList.push(data[0][i]);
-              }
-          });
-    }
-
-    $scope.ApproveUser = function(id, username) {
-        AdminService.ApproveUser(id)
-          .then(function(data){
-              //alert("Successfully Approved User: " + username);
-              Materialize.toast('Successfully approved '+username+'!', 5000);
-          });
-
-        let index = -1;
-        let comArr = eval($scope.userList);
-        for (let i = 0; i < comArr.length; i++) {
-            if (comArr[i].username === username) {
-                index = i;
-                break;
-            }
-
-            $scope.userList.splice(index, 1);
+        $scope.GetUsers = function() {
+            $scope.userList = [];
+            AdminService.GetUsers()
+              .then(function(data){
+                  let length = data[0].length;
+                  for (let i = 0; i < length; i++) {
+                      $scope.userList.push(data[0][i]);
+                  }
+              });
         }
 
-        if(index === -1) {
-            Materialize.toast('Something has gone wrong.', 5000);
-            return;
+        $scope.ApproveUser = function(id, username) {
+            AdminService.ApproveUser(id)
+              .then(function(data){
+                  //alert("Successfully Approved User: " + username);
+                  Materialize.toast('Successfully approved '+username+'!', 5000);
+              });
+
+            let index = -1;
+            let comArr = eval($scope.userList);
+            for (let i = 0; i < comArr.length; i++) {
+                if (comArr[i].username === username) {
+                    index = i;
+                    break;
+                }
+
+                $scope.userList.splice(index, 1);
+            }
+
+            if(index === -1) {
+                Materialize.toast('Something has gone wrong.', 5000);
+                return;
+            }
         }
 
         $scope.GetAllLogout = () =>  {
@@ -101,6 +102,6 @@
                         $scope.userList.push(data[0][i]);
                     }
                 });
-            }
+        }
     }
 })();
