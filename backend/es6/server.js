@@ -26,14 +26,6 @@ function start () {
     // create express app
     app = express();
 
-    // crude implementation of joining paths for discovery
-    app.use(express.static(__dirname + '/../../frontend'));
-
-    // view engines
-    // app.set('views', path.join(__dirname, '../../frontend/views'));
-    // app.engine('html', require('ejs').renderFile);
-    // app.set('view engine', 'html');
-
     // set config
     config.use(process.env.NODE_ENV);
     app.set('env', config.ENV);
@@ -68,7 +60,7 @@ function start () {
 
     winston.log('verbose', 'Binding 3rd-party middlewares');
     app.use(morgan('combined', {stream: util.configure_logger(config.LOGS_DIR)}));
-    //app.use(express.static(config.ASSETS_DIR));
+    app.use(express.static(__dirname + '/../../frontend'));
     app.use(require('method-override')());
     app.use(body_parser.urlencoded({extended: false}));
     app.use(body_parser.json());
