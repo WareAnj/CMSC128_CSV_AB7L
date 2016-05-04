@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
-		<title>Reginyzr</title>
-    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    	
-    	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/randomize_notuser.css">
-	</head>
-
-	<body>
-
+<div>
 		<!-- NAV BAR -->
 		<div class="navbar-fixed">
 		<nav>
@@ -38,27 +24,30 @@
 		</nav>
 		</div>
 
-		<main>		
+		<main>
 			<div id="rand-not-user" class="container">
 			<div class="row">
 				<!-- COLUMN FOR FORM -->
+				<h4 class="center">RANDOMIZE</h4>
 				<div class="col s12 m5 l5">
 					<div class="container center">
 						<form onSubmit="return false;" id="form">
 							<div class="section">
 								<div class="row">
 									<div class="input-field col s12">
-										<h6>Enter names manually</h6>
+										<h5>Enter names manually</h5>
 									</div>
 								</div>
 								<div class="row">
-									<form class="col s12">										
-										<div class="row">
-											<div class="input-field col s12">
-												<input id="input" id="disabled" type="text" pattern="^[A-Za-z][A-Za-z\,\.\'\-\s]*$">
-												<label for="input">Name</label>
+									<form class="col s12">
+											<div class="input-field
+											tooltipped"
+							    	 		data-position="right"
+							    	 		data-delay="50"
+							    	 		data-tooltip="No numbers or special characters!">
+												<input id="input" id="disabled" type="text" class="validate" pattern="^[A-Za-z][A-Za-z\,\.\'\-\s]*$">
+												<label for="input" data-error="Invalid" data-success="">Name</label>
 											</div>
-										</div>										
 									</form>
 								<div class="row">
 									<div class="input-field col s12">
@@ -67,15 +56,14 @@
 								</div>
 								</div>
 					  		</div>
-					  		
+
 
 					  		<div class="section">
-					  			<h6>Or input a file:</h6>
-
+					  			<h5 id="add-space">Or input a file <a href="#help-file" class="modal-trigger"><sup class="small red-text">[?]</sup></a></h5>
 					  			<!-- FILE READING -->
 							    <div class="file-field input-field">
-							      <div class="btn">
-							        <span>File</span>
+							      <div class="btn grey darken-2">
+							        <span><i class="material-icons">file_upload</i></span>
 							        <input type="file" name="file" id="file">
 							      </div>
 							      <div class="file-path-wrapper">
@@ -85,42 +73,47 @@
 							</div>
 
 							<div class="section">
-				  				<button id="clear" class="btn waves-effect waves-light">Clear All
+				  				<button id="clear" class="btn waves-effect waves-light grey darken-2">Clear All Names
 				  				</button>
 				  			</div>
 				  			<div class="section">
 				  				<a href="#modal1" class="modal-trigger">
-				  				<button id="rand" class="btn waves-effect waves-light ">
+				  				<button id="rand" class="btn waves-effect waves-light">
 				  					Randomize
 					  				<i class="material-icons right">assignment</i>
 					  			</button>
 					  			</a>
 					  		</div>
-				  			<!-- <button type="button">Randomize</button><br> -->
-
 						</form>
 					</div>
 				</div>
 
 				<!-- COLUMN FOR TABLE -->
-				<div class="col s12 m7 l7">
-					<div class="container">
+				<div id="table-names" class="col s12 m7 l7">
 						<p></p>
-						<table class="centered bordered responsive-table">
+						<table class="centered bordered highlight">
 							<thead>
 								<tr>
-									<th>Names</th>
-									<th>Delete</th>
+									<th><h5>Student List</h5></th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody id="table">
 							</tbody>
 						</table>
-					</div>
 				</div>
 
 			</div>
 			</div>
+
+			<div id="help-file" class="modal">
+				<div class="modal-content container">
+					<p>Make sure your .txt file only contains one name per line!</p>
+					<p>image sample image here</p>
+					<p class="center"><button id="closeModal" class="btn waves-effect waves-light">Got it</button></p>
+				</div>
+			</div>
+
 		</main>
 
 		<footer class="page-footer white-text">
@@ -139,51 +132,39 @@
 		<!-- DIV FOR RESULTS -->
 		<div class="modal" id="modal1">
 			<div class="modal-content center">
-				<div class="container" id="results-container">
-					<div class="container center" id="content">
-						<h4>NOT FINAL UI!!!</h4>
-						<!--<button> <img id="volunteerPic" src="img/logo-1.png"  class="circle"> </button> -->
-						<h4 id="lettersContainer"></h4>
+				<div id="results-container">
+					<div class="center" id="content">
+						<h3>You are chosen</h3>
+						<br>
+						<h3 id="lettersContainer"></h3>
+						<div id="buttons-bottom" class="row center container">
+							<div class="col s12 m6 l6"><button id="closeModal1" class="btn waves-effect waves-light">Close</button></div>
+							<div class="col s12 m6 l6"><button id="rand_again" class="btn waves-effect waves-light">Randomize</button></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/materialize.min.js"></script>
-		<script type="text/javascript" src="js/index.js"></script>
-
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-route.min.js"></script>
-
-		<script src="app.js"></script>
-
-		<script src="partials/login/login.service.js"></script>
-		<script src="partials/login/login.controller.js"></script>
-
-		<script src="partials/register/register.service.js"></script>
-		<script src="partials/register/register.controller.js"></script>
 
 		<script src="js/randomize_notuser.js"></script>
 
-
-		<script>		   
+		<script>
 		  	//other functions are in randomize_notuser.js
 
-			$('input[id=input]').keyup(function(){		
+			$('input[id=input]').keyup(function(){
 				tooltipAlert();
-			});			
-			
+			});
+
 			//for enabling and disabling add button
 			function tooltipAlert(){
 				var delButton = $('<span class="tooltiptext">Tooltip text</span>');
 				var string = document.getElementById('input').value.trim();
-				if(string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){					
+				if(string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){
 					$('#add').attr('disabled', false);
 				}else{
 					$('#add').attr('disabled', true);
 				}
-			}			
+			}
 		</script>
-	</body>
-</html>
+</div>
+<link type="text/css" rel="stylesheet" href="../assets/stylesheets/randomize_notuser.css">

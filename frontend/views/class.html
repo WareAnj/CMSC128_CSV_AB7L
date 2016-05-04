@@ -1,68 +1,56 @@
-<!DOCTYPE html>
-<html ng-app="app">
-	<head>
-		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
-		<title>Reginyzr</title>
-    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-       	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
-       	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/class.css">
-	</head>
-	<body ng-controller="CourseCtrl" data-ng-init="Get_Lecture_Class()">
-
+<div>
 	<!-- NAV BAR -->
-
-	<div class="navbar">
+	<div class="navbar" data-ng-init="Get_Course()">
 		<nav>
 		 	<div class="nav-wrapper container">
-
 		 		<ul>
 		    		<li><a href="/" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
 		    	</ul>
 
 		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
 				    <li><a href="/home">Home</a></li>
-
 		    	</ul>
 
 				<div class="center">
-			 		<a href="" class="brand-logos"> <img id="logo" src="img/text2.png"></a>
+			 		<a href="/home" class="brand-logos"> <img id="logo" src="img/text2.png"></a>
 			    </div>
 
 	    		<!-- SIDE NAV  -->
 				<div id="slide-out" class="side-nav center">
 					<img id="sidenav-logo" src="img/logo-2.png">
-					<h5 class="teal-text text-lighten-2">Reginald Recario</h5>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 128</a></li>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 132</a></li>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 125</a></li>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 170</a></li>
-						<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">CMSC 141</a></li>
-						<div class = "center" ng-controller="HomeCtrl">
-							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
+					<div ng-repeat="info in faculty_user_info">
+						<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
+					</div>
+					<div ng-repeat="course in faculty_user_courses">
+						<div ng-repeat="lecture in course.lecture">
+							<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
 						</div>
+					</div>
+					<div class = "center">
+						<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
+					</div>
 				</div>
 		    </div>
 		</nav>
 	</div>
 		<!--NAV BAR-->
-
 		<!--MAIN-->
-		<main>
+		<main ng-controller="SectionCtrl" data-ng-init="Get_Class_List()">
 			<div id="mainContainer"class="container">
 				<div class="row">
 					<div class="col s12 m4 l4">
 						<div id="course-info" class="card-panel custom lighten-1">
+							<div ng-repeat="s_info in section_info">
 							<div class="row">
-								<h4>CMSC 128 AB</h4>
+								<h4>{{s_info.course_code}} {{s_info.section_name}}</h4>
 							</div>
 							<div class="row">
-								<strong>Title</strong>: Introduction to Software Engineering
+								<strong>Title</strong>: {{s_info.course_title}}
 							</div>
 							<div class="row">
-								<strong>Description</strong>: Principles and methods for the design, implementation, validation, evaluation and maintenance of software systems.
+								<strong>Description</strong>: {{s_info.course_description}}
 							</div>
+						</div>
 						</div>
 						<div id="buttons-class" class="row">
 							<div class="col s12 m12 l12">
@@ -81,16 +69,16 @@
 									<thead>
 										<tr>
 											<th class="center-align">NAME</th>
-											<th class="center-align">STUDENT NUMBER</th>
 											<th class="center-align">LAB SECTION</th>
+											<th class="center-align">NUMBER OF <br> TIMES CALLED</th>
 										</tr>
 									</thead>
 									<tbody >
 										<tr ng-repeat="info in student_info">
 											<td>{{info.given_name}} {{info.middle_name}} {{info.last_name}}</td>
-											<td>{{info.student_number}}</td>
-											<td>{{info.name}} {{info.code}}</td>
-											<td><a href="#stdInfo1" class="modal-trigger"><i class="material-icons prefix">info_outline</i></a>
+											<td>{{info.name}} - {{info.code}}</td>
+											<td>{{info.frequency}}</td>
+											<td><a ng-click="Get_Selected_Student(info.id)" class="modal-trigger"><i class="material-icons prefix">info_outline</i></a>
 											</td>
 										</tr>
 									</tbody>
@@ -100,6 +88,35 @@
 					</div>
 				</div>
 			</div>
+
+			<!--MODALS-->
+			<div id="stdInfo1" class="modal">
+				<div class="modal-content">
+					<div class="row">
+						<div class="col s5 offset-s3"><h4 id="headerText">Student Information</h4></div>
+						<div class="col s4"><a href="/class"><i class="material-icons right">close</i></a></div>
+					</div>
+					<div class="row">
+						<div class="col s4">
+							<div class="card-image">
+								<img src="img/user.png" style="height:175px; width:175px">
+							</div>
+							<!--<img src="img/user.png" style="height:150px; width:150px">-->
+						</div>
+						<div class="col s8">
+							<ul ng-repeat="stud in student">
+								<li><h5><strong>Name</strong>: {{stud.given_name}} {{stud.middle_name}} {{stud.last_name}} </h5></li>
+								<li><h5><strong>Student Number</strong>: {{stud.student_number}}</h5></li>
+								<li><h5><strong>Degree</strong>: {{stud.degree}} </h5></li>
+								<li><h5><strong>College</strong>: {{stud.college}} </h5></li>
+								<li><h5><strong>Classification</strong>: {{stud.classification}} </h5></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--MODALS-->
 		</main>
 		<!--MAIN-->
 		<footer class="page-footer white-text">
@@ -114,49 +131,8 @@
 				</div>
 			</div>
 		</footer>
-
-		<!--MODALS-->
-		<div id="stdInfo1" class="modal">
-			<div class="modal-content">
-				<div class="row">
-					<div class="col s5 offset-s3"><h4 id="headerText">Student Information</h4></div>
-					<div class="col s4"><a href="/class"><i class="material-icons right">close</i></a></div>
-
-				</div>
-				<div class="row">
-					<div class="col s4">
-						<div class="card-image">
-							<img src="img/user.png" style="height:175px; width:175px">
-						</div>
-						<!--<img src="img/user.png" style="height:150px; width:150px">-->
-					</div>
-					<div class="col s8">
-						<ul>
-							<li><h5><strong>Name</strong>: Calum Hood</h5></li>
-							<li><h5><strong>Student No.</strong>: 1234-12345</h5></li>
-							<li><h5><strong>Degree</strong>: BS Computer Science</h5></li>
-							<li><h5><strong>College</strong>: College of Arts and Sciences</h5></li>
-							<li><h5><strong>Classification</strong>: Junior Standing</h5></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!--MODALS-->
-
-		<!--SCRIPTS-->
-		<script type="text/javascript" src="js/jquery.js"></script>
-	    <script type="text/javascript" src="js/materialize.min.js"></script>
-	    <script type="text/javascript" src="js/index.js"></script>
-	    <script type="text/javascript" src="js/home.js"></script>
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-route.min.js"></script>
-
-		<script src="app.js"></script>
-
-	    <script type="text/javascript" src="js/default.js"></script>
-			<script src="partials/course/course.service.js"></script>
-			<script src="partials/course/course.controller.js"></script>
-	</body>
-</html>
+	<!--SCRIPTS-->
+    <script type="text/javascript" src="../assets/js/home.js"></script>
+    <script type="text/javascript" src="../assets/js/default.js"></script>
+</div>
+<link type="text/css" rel="stylesheet" href="../assets/stylesheets/class.css">

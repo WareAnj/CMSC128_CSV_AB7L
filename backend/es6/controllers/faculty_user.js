@@ -51,24 +51,40 @@ exports.update_password = (req, res, next) => {
 		[uname, pword],
 		responder
 	);
-
-	/*
-	//without procedure
-	db.query(
-		[
-			'UPDATE faculty_user SET password=SHA1(?)',
-			'WHERE username=?;'
-		].join(' '),
-		[pword,uname],
-		responder
-	);
-	*/
+	
 	function responder (err, result){
 		if (err) {
 			winston.error('Error in updating Faculty User Password!', last_query);
 			return next(err);
 		}
 		res.send(true)
+	}
+}
+
+exports.update_profile = (req, res, next) => {
+	const given_name = req.body.given_name;
+	const middle_name = req.body.middle_name;
+	const last_name = req.body.last_name;
+	const classification = req.body.classification;
+	const uname = req.body.username;
+	db.query(
+		[
+			'UPDATE faculty_user SET given_name=?, middle_name=?, last_name=?, classification=?',
+			'WHERE username=?;'
+		].join(' '),[given_name, middle_name, last_name, classification, uname],responder
+	);
+
+	function responder(err, result){
+		if(err){
+			winston.error('Error in updating Faculty Profile'+err);
+			res.send(false);
+            return next(err);
+        }
+        req.session.user.given_name = given_name;
+        req.session.user.middle_name = middle_name;
+        req.session.user.last_name = last_name;
+        req.session.user.classification = classification;
+        res.send(true);
 	}
 }
 
@@ -167,7 +183,11 @@ exports.check_faculty_user_employee_id = (req, res, next) => {
 };
 
 exports.get_logged_in_faculty_user_id = (req, res, next) => {
-    res.send(req.session.user);
+  if(req.session.user==null){
+  	res.send(false);
+  	return;
+  }
+  res.send(req.session.user);
 };
 
 exports.post_volunteer = (req, res, next) => {
@@ -328,10 +348,18 @@ exports.randomize = (req, res, next) => {
     };
 
     function start () {
-        db.query (
-            'DROP VIEW IF EXISTS temporary_view;',
-            create_view
-        );
+        
+    	if (typeof data.section_code === 'undefined') {
+	        db.query (
+	            'DROP VIEW IF EXISTS temporary_view' + data.user_id + ';',
+	            create_view
+	        );
+	    } else {
+	    	db.query (
+	            'DROP VIEW IF EXISTS temporary_view' + data.user_id + data.section_code + ';',
+	            create_view
+	        );
+	    }
     }
 
     function create_view (err, result, args, last_query) {
@@ -342,7 +370,7 @@ exports.randomize = (req, res, next) => {
         if (typeof data.section_code === 'undefined') {
             db.query (
                 [
-                    'CREATE VIEW temporary_view AS',
+                    'CREATE VIEW temporary_view' + data.user_id + ' AS',
                     'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name, stud.frequency',
                     'FROM faculty_user u, course c, faculty_user_course uc, student stud, section sect, student_section ss',
                     'where u.id = uc.faculty_user_id and c.id = uc.course_id and sect.course_id = c.id',
@@ -356,7 +384,7 @@ exports.randomize = (req, res, next) => {
         else {
             db.query (
                 [
-                    'CREATE VIEW temporary_view AS',
+                    'CREATE VIEW temporary_view' + data.user_id + data.section_code + ' AS',
                     'SELECT stud.id, stud.student_number, stud.last_name, stud.given_name, stud.middle_name, stud.frequency',
                     'FROM faculty_user u, course c, faculty_user_course uc, student stud, section sect, student_section ss',
                     'where u.id = uc.faculty_user_id and c.id = uc.course_id and sect.course_id = c.id',
@@ -376,13 +404,13 @@ exports.randomize = (req, res, next) => {
         }
         if(typeof data.limit === 'undefined') {
             db.query(
-                    'SELECT * FROM temporary_view WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT 1;',
+                    'SELECT * FROM temporary_view' + data.user_id + ' WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT 1;',
                     [parseInt(data.limit)],
                     send_response
                 );
         } else {
             db.query(
-                    'SELECT * FROM temporary_view WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT ?;',
+                    'SELECT * FROM temporary_view' + data.user_id + data.section_code + ' WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT ?;',
                     [parseInt(data.limit)],
                     send_response
                 );

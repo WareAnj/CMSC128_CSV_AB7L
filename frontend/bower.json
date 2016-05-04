@@ -1,0 +1,23 @@
+{
+  "name": "frontend",
+  "homepage": "https://github.com/WareAnj/CMSC128_CSV_AB7L",
+  "authors": [
+    "septa97 <jancharles.adona@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.5.5",
+    "angular": "^1.5.5",
+    "Materialize": "materialize#^0.97.6",
+    "jquery": "^2.2.3"
+  }
+}
