@@ -1,26 +1,25 @@
-(function() {
-  'use strict';
+'use strict';
 
-  angular
-    .module('app')
-    .controller('AdminCtrl', AdminCtrl);
+(() => {
+    angular.module('app')
+            .controller('AdminCtrl', AdminCtrl);
 
-  AdminCtrl.$inject = ["$scope", "$http", "$q", "AdminService"];
+    AdminCtrl.$inject = ['$scope', '$http', '$q', 'AdminService'];
 
-  function AdminCtrl($scope, $http, $q, AdminService) {
+    function AdminCtrl($scope, $http, $q, AdminService) {
 
-    $scope.userList = [];
-    
-    $scope.order = function(predicate) {
+        $scope.userList = [];
+
+        $scope.order = (predicate) => {
           $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
           $scope.predicate = predicate;
-    }
+        }
 
-    $scope.Logout = function() {
+        $scope.Logout = () => {
         AdminService.Logout()
-          .then(function(data){
-          });
-    }
+            .then((data) => {
+            });
+        }
 
     $scope.GetUsers = function() {
         $scope.userList = [];
@@ -31,7 +30,7 @@
                   $scope.userList.push(data[0][i]);
               }
           });
-    } 
+    }
 
     $scope.ApproveUser = function(id, username) {
         AdminService.ApproveUser(id)
@@ -47,6 +46,8 @@
                 index = i;
                 break;
             }
+
+            $scope.userList.splice(index, 1);
         }
 
         if(index === -1) {
@@ -54,64 +55,52 @@
             return;
         }
 
-        $scope.userList.splice(index, 1);
+        $scope.GetAllLogout = () =>  {
+            $scope.userList = [];
+            AdminService
+                .GetAllLogout()
+                .then((data) => {
+                    let length = data.length;
+                    for (let i = 0; i < length; i++) {
+                        $scope.userList.push(data[i]);
+                    }
+                });
+        }
 
-      }
+        $scope.GetSpecificLogin = (id) => {
+            $scope.userList = [];
+            AdminService
+                .GetSpecificLogin(id)
+                .then((data) => {
+                    let length = data.length;
+                    for (let i = 0; i < length; i++) {
+                        $scope.userList.push(data[i]);
+                    }
+                });
+        }
 
-     $scope.GetAllLogin = function() {
-        $scope.userList = [];
-        AdminService.GetAllLogin()
-          .then(function(data){
-            let length = data.length;
-            for (let i = 0; i < length; i++) {
-                $scope.userList.push(data[i]);
+        $scope.GetSpecificLogout = (id) => {
+            $scope.userList = [];
+            AdminService
+                .GetSpecificLogout(id)
+                .then((data) => {
+                    let length = data.length;
+                    for (let i = 0; i < length; i++) {
+                        $scope.userList.push(data[i]);
+                    }
+                });
+        }
+
+        $scope.GetAllApproved = () => {
+            $scope.userList = [];
+            AdminService
+                .GetAllApproved()
+                .then((data) => {
+                    let length = data[0].length;
+                    for (let i = 0; i < length; i++) {
+                        $scope.userList.push(data[0][i]);
+                    }
+                });
             }
-          });         
-     }
-
-     $scope.GetAllLogout = function() { 
-        $scope.userList = [];  
-        AdminService.GetAllLogout()
-          .then(function(data){
-            let length = data.length;
-            for (let i = 0; i < length; i++) {
-                $scope.userList.push(data[i]);
-            }
-          });         
-     }
-
-     $scope.GetSpecificLogin = function(id) {
-         $scope.userList = [];
-         AdminService.GetSpecificLogin(id)
-           .then(function(data){
-             let length = data.length;
-             for (let i = 0; i < length; i++) {
-                 $scope.userList.push(data[i]);
-              }
-           });
-      }
-
-      $scope.GetSpecificLogout = function(id) {
-          $scope.userList = [];
-          AdminService.GetSpecificLogout(id)
-            .then(function(data){
-              let length = data.length;
-              for (let i = 0; i < length; i++) {
-                  $scope.userList.push(data[i]);
-              }
-            });
-      }
-
-      $scope.GetAllApproved = function(){
-          $scope.userList = [];
-          AdminService.GetAllApproved()
-            .then(function(data){
-              let length = data[0].length;
-              for (let i = 0; i < length; i++) {
-                  $scope.userList.push(data[0][i]);
-              }
-            });
-      }
-
-  }
+    }
 })();
