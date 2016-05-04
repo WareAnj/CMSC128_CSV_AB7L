@@ -66,6 +66,7 @@ The CSVs is an online application that allows teachers to select random ‘volun
 3. Run this commands:
   ```sh
   npm install
+  bower install
   sudo npm install -g nodemon
   sudo npm install -g gulp
   ```
