@@ -14,13 +14,8 @@
 					<div class = "center">
 						<a href="/admin" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Home</a>
 					</div>
-<<<<<<< HEAD
-					<div class = "center" ng-controller="AdminCtrl">
-						<a href="/admin_approve" class="waves-effect waves-teal btn-flat blue-text text-lighten-2 collection-item">View Pending Users</a>
-=======
 					<div class = "center">
 						<a href="/admin_approve" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Pending Users</a>
->>>>>>> refs/remotes/origin/master
 					</div>
 					<div class = "center">
 						<a href="/admin_viewusers" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Approved Users</a>
@@ -34,11 +29,10 @@
 				</div>
 		    </div>
 		</nav>
-	</div>
-<<<<<<< HEAD
-	<div class="row">
-	<div class="col s12">
-		<table id="admintable" data-ng-init="GetUsers()" ng-table="usersTable" ng-controller="AdminCtrl" show-filter="true" class="highlight responsive-table bordered centered">
+	</div>	
+
+	<div class="container">
+		<table data-ng-init="GetUsers()" ng-table="usersTable" show-filter="true" id="admintable" class="highlight responsive-table bordered centered stripped">
 			<thead>
 				<tr>
 					<th>
@@ -63,41 +57,6 @@
 					</th>
 					<th>
 						<a ng-click="order('date_signed_up')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by sign up date.">Sign Up Date
-=======
-
-	<div class="container">
-		<table data-ng-init="GetUsers()" ng-table="usersTable" show-filter="true" id="admintable" class="highlight responsive-table bordered centered stripped">
-			<thead>
-				<tr>
-					<th>
-						<a ng-click="order('given_name')" class="waves-effect waves-light btn">First Name
-						<span class="sortorder" ng-show="predicate === 'given_name'" ng-class="{reverse:reverse}"></span>
-						</a>
-					</th>
-					<th>
-						<a ng-click="order('last_name')" class="waves-effect waves-light btn">Last Name
-						<span class="sortorder" ng-show="predicate === 'last_name'" ng-class="{reverse:reverse}"></span>
-						</a>
-					</th>
-					<th>
-						<a ng-click="order('username')" class="waves-effect waves-light btn">Username
-						<span class="sortorder" ng-show="predicate === 'username'" ng-class="{reverse:reverse}"></span>
-						</a>
-					</th>
-					<th>
-						<a ng-click="order('employee_id')" class="waves-effect waves-light btn">Employee ID
-						<span class="sortorder" ng-show="predicate === 'employee_id'" ng-class="{reverse:reverse}"></span>
-						</a>
-					</th>
-					<th>
-						<a ng-click="order('classification')" class="waves-effect waves-light btn">Classification
-						<span class="sortorder" ng-show="predicate === 'classification'" ng-class="{reverse:reverse}"></span>
-						</a>
-					</th>
-					<th>
-						<a ng-click="order('date_signed_up')" class="waves-effect waves-light btn">Date of Sign Up
-						<span class="sortorder" ng-show="predicate === 'date_signed_up'" ng-class="{reverse:reverse}"></span>
->>>>>>> refs/remotes/origin/master
 						</a>
 					</th>
 					<th>
@@ -105,48 +64,6 @@
 					</th>
 				</tr>
 			</thead>
-<<<<<<< HEAD
-			<tbody>					
-				<tr ng-repeat="user in userList | orderBy:predicate:reverse">
-			    <td data-title="given_name">
-				    {{user.given_name}}
-				</td>
-			    <td data-title="last_name">
-					{{user.last_name}}
-				</td>
-				<td data-title="username">
-		        	{{user.username}}
-				</td>    
-				<td data-title="employee_id">
-				    {{user.employee_id}}
-				</td>    
-				<td data-title="classification">
-				    {{user.classification}}
-				</td>    
-				<td data-title="date_signed_up" >
-				    {{user.date_signed_up}}
-				</td>
-				<td data-title="approve_button">
-				    <button id="{{user.username}}" class="btn-floating waves-effect waves-light red material-icons" ng-click="ApproveUser(user.id, user.username)">done</button>
-				</td>     
-				</tr>					
-			</tbody>
-		</table>
-	</div>
-	</div>
-
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/materialize.min.js"></script>
-	<script type="text/javascript" src="js/default.js"></script>
-	<script src="js/angular.min.js"></script>
-	<script src="js/angular-route.min.js"></script>
-	<script src="app.js"></script>
-	<script src="partials/admin/admin.service.js"></script>
-	<script src="partials/admin/admin.controller.js"></script>
-
-	</body>
-</html>
-=======
 			<tbody>
 				 <tr ng-repeat="user in userList | orderBy:predicate:reverse">
 			       <td data-title="given_name" >
@@ -176,4 +93,3 @@
 	</div>
 </div>
 <link type="text/css" rel="stylesheet" href="../assets/stylesheets/admin_tables.css">
->>>>>>> refs/remotes/origin/master

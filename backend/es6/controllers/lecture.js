@@ -200,17 +200,10 @@ exports.get_lab_sections = (req, res, next) => {
 
   function start () {
       db.query([
-<<<<<<< HEAD
                   'SELECT s.code FROM course c, section s',
                   'WHERE s.course_id = ? and c.id = s.course_id and name = ?;'
                ].join(' '),
                [data.course_id, data.name],
-=======
-                  'SELECT s.code FROM course s, section s',
-                  'WHERE s.course_id = ? and c.id = s.course_id and name = ?;'
-               ].join(' '),
-               [data.id],
->>>>>>> refs/remotes/origin/master
                 send_response);
   }
 
