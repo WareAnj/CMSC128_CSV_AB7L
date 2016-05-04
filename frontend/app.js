@@ -15,6 +15,10 @@
                 'controller'  :   'HomeCtrl',
                 'templateUrl' :   'views/home.view.html'
             })
+            .when('/admin', {
+                'controller'  :   'AdminCtrl',
+                'templateUrl' :   'views/admin.html'
+            })
             .otherwise({
                 'redirectTo'  :   '/'
             });

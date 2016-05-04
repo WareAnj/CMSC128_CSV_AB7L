@@ -11,11 +11,20 @@
 
         $scope.Login = () => {
             AuthenticationService
-                .Login($scope.facultyUser)
+                .LoginAsAdmin($scope.facultyUser)
                 .then((data) => {
                     $scope.faculty_user_data.push(data);
-                    console.log(data.data);
-                    $location.url('home');
+                    $location.url('/admin');
+                }, (error) => {
+                    if (error.context === 'Invalid username' || error.context === 'Invalid password') {
+                        AuthenticationService
+                            .LoginAsFacultyUser($scope.facultyUser)
+                            .then((data) => {
+                                $location.url('/home');
+                            }, (error) => {
+                                Materialize.toast(error.context);
+                            });
+                    }
                 });
 		}
     }
