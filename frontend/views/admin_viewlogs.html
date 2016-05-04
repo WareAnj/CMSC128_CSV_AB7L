@@ -6,6 +6,9 @@
 		 		<ul>
 		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
 		    	</ul>
+		    	<ul class="right">
+		    		<a href"/admin_approve">Pending Users<span class="new badge">3</span></a> <!-- to be worked on -->
+		    	</ul>
 	    		<!-- SIDE NAV  -->
 				<div id="slide-out" class="side-nav center">
 					<div class = "center">
@@ -38,29 +41,25 @@
 			  </ul>
 			</div>
 		</div>
-
 			<div id="logouttable">
 			<table ng-table="usersTable" show-filter="true" id="admintableout" class="highlight responsive-table tablesorter bordered centered stripped">
 				<thead>
 					<tr>
 						<th>
 							<div id="div1">
-							<a ng-click="order('id')" class="waves-effect waves-light btn">User id
-							<span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span>
+							<a ng-click="order('id')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by user ID.">User id
 							</a>
 							</div>
 						</th>
 						<th>
 							<div id="div2">
-							<a ng-click="order('username')" class="waves-effect waves-light btn">Username
-							<span class="sortorder" ng-show="predicate === 'username'" ng-class="{reverse:reverse}"></span>
+							<a ng-click="order('username')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by username.">Username
 							</a>
 							</div>
 						</th>
 						<th id="dynamicth">
 							<div id="div3">
-							<a ng-click="order('date_logout')" class="waves-effect waves-light btn">Date Logout
-							<span class="sortorder" ng-show="predicate === 'date_logout'" ng-class="{reverse:reverse}"></span>
+							<a ng-click="order('date_logout')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by logout date.">Logout Date
 							</a>
 							</div>
 						</th>
@@ -80,29 +79,26 @@
 				   </tr>
 				</tbody>
 			</table>
-			</div>
+		</div>
 			<div id="logintable">
 				<table ng-table="usersTable" show-filter="true" id="admintablein" class="highlight responsive-table tablesorter bordered centered stripped">
 				<thead>
 					<tr>
 						<th>
 							<div id="div1">
-							<a ng-click="order('id')" class="waves-effect waves-light btn">User id
-							<span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span>
+							<a ng-click="order('id')" class="waves-effect waves-light btn  tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by user ID.">User id
 							</a>
 							</div>
 						</th>
 						<th>
 							<div id="div2">
-							<a ng-click="order('username')" class="waves-effect waves-light btn">Username
-							<span class="sortorder" ng-show="predicate === 'username'" ng-class="{reverse:reverse}"></span>
+							<a ng-click="order('username')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by username.">Username
 							</a>
 							</div>
 						</th>
 						<th id="dynamicth">
 							<div id="div3">
-							<a ng-click="order('date_login')" class="waves-effect waves-light btn">Date Login
-							<span class="sortorder" ng-show="predicate === 'date_login'" ng-class="{reverse:reverse}"></span>
+							<a ng-click="order('date_login')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by login date.">Login Date
 							</a>
 							</div>
 						</th>
