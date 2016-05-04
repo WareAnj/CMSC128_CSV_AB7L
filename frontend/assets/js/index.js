@@ -5,14 +5,7 @@ $('.modal-trigger').leanModal({
       opacity: .5,
       in_duration: 300,
       out_duration: 200
-    }
-  );
-
-function submitClick(){
-    //setTimeout(function(){
-      $('#signupModal').closeModal();
-    //}, 3000);
-};
+});
 
 $(window).scroll(function(){
     var aTop = $('#reason-1').height() + 500;

@@ -1,35 +1,131 @@
 <!-- NAV BAR -->
 <div class="navbar-fixed">
-<nav>
-    <div class="nav-wrapper container">
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul id="nav-mobile">
-        <!--	<li><div class="logo-img hide-on-small-and-down">
-                <a href="#">
-                <img id="nav-logo" src="img/logo-2.png">
-                </a></div></li>
+    <nav>
+        <div class="nav-wrapper container">
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile">
+            <!--	<li><div class="logo-img hide-on-small-and-down">
+                    <a href="#">
+                    <img id="nav-logo" src="img/logo-2.png">
+                    </a></div></li>
 
-        -->	<li><a href="#" class="brand-logos"><img id="logo" src="assets/img/text2.png"></a></li>
-        </ul>
+            -->	<li><a href="#" class="brand-logos"><img id="logo" src="../assets/img/text2.png"></a></li>
+            </ul>
 
-        <ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
-            <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
-            <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
-        </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
+                <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
+                <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
+            </ul>
 
-        <!-- SIDE NAV (WHEN VIEWED IN SMALLER SCREENS) -->
+            <!-- SIDE NAV (WHEN VIEWED IN SMALLER SCREENS) -->
 
-        <ul id="mobile-demo" class="side-nav">
-            <div class="logo-img-side"><a href="#">
-                <img id="logo-img-side" src="assets/img/logo-2.png">
-            </a></div>
-            <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
-            <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
-        </ul>
-    </div>
-</nav>
+            <ul id="mobile-demo" class="side-nav">
+                <div class="logo-img-side"><a href="#">
+                    <img id="logo-img-side" src="../assets/img/logo-2.png">
+                </a></div>
+                <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
+                <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
+            </ul>
+        </div>
+    </nav>
 </div>
 
+
+
+
+
+<main>
+    <!-- INTRO -->
+    <div id="brief-intro-container">
+        <div id="brief-intro">
+            <div class="container" id="content">
+                <div class="row">
+                    <div class="col s12 m12 l10"><img src="../assets/img/logo-2.png" id="intro-logo" class="animated flipInY"></div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l10">
+                        <div class="center animated fadeIn">
+                        <p id="logo-text">The best web application for a fun and interactive class discussion.</p>
+                            <a href="#signupModal" class="modal-trigger waves-effect waves-light btn-large">Sign Up</a>
+                            <a href="/randomize_notuser" class="waves-effect waves-light btn-large">Try Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MORE INFO: HOW DOES IT WORK -->
+    <div id="more-info">
+        <div class="container" id="content">
+            <h4>HOW DOES IT WORK?</h4><br/><br/><br/>
+            <div class="row">
+                <div class="col s12 m4 l4">
+                    <div class="center">
+                        <i class="material-icons">add</i>
+                        <p class="caption">Add a Class</p>
+                        <p class="center light">You can either provide the information manually or upload a file.</p>
+                    </div>
+                </div>
+                <div class="col s12 m4 l4">
+                    <div class="center">
+                        <i class="material-icons">settings</i>
+                        <p class="caption">Adjust the Settings</p>
+                        <p class="center light">How many volunteers? Which lab sections? Choose the right settings for your class' needs.</p>
+                    </div>
+                </div>
+                <div class="col s12 m4 l4">
+                    <div class="center">
+                        <i class="material-icons">supervisor_account</i>
+                        <p class="caption">Randomize!</p>
+                        <p class="center light">And you're done! All you have to do is wait as we generate your volunteers for you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MORE INFO: WHY SIGN UP -->
+    <div id="more-info-2">
+        <div class="container" id="content">
+            <h4>WHY SIGN UP?</h4> <br/> <br/>
+            <!-- <h5 class="center">//Will fix layout, background, and images//</h5> -->
+            <div class="row">
+                <div class="reason col s12" id="reason-1">
+                    <div class="col s6">
+                        <img src="../assets/img/window1.png">
+                    </div>
+                    <div class="col s6" id="p1">
+                        <h3>Save and access all your classes!</h3>
+                        <p> Simplify your life by organizing your class! You can add, modify and remove classes and students with just a few clicks! </p>
+                    </div>
+                </div>
+                <div class="reason col s12" id="reason-2">
+                    <div class="col s6" id="p2">
+                        <h3>More functionalities!</h3>
+                        <p> Spice up your teaching with this feature! Introducing the Cheat Mode! You can now increase or decrease the chances of a certain student appearing in the randomizer! </p>
+                    </div>
+                    <div class="col s6">
+                        <img src="../assets/img/window2.png">
+                    </div>
+                </div>
+                <div class="reason col s12" id="reason-3">
+                    <div class="col s6">
+                        <img src="../assets/img/windows.png">
+                    </div>
+                    <div class="col s6" id="p3">
+                        <h3>Track their luck!</h3>
+                        <p> You can track you student's luck by viewing the history logs! You can see the number of times your students have appeared in the randomizer, as well as the number of times you used it. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- MODALS -->
 <div id="loginModal" class="modal">
     <div class="modal-content center">
     	<h4>Log In</h4>
@@ -45,7 +141,7 @@
     			<input placeholder="password" type="password" id="password-input" ng-model="facultyUser.password" required="required">
     		</div>
 
-    		<button class="btn waves-effect waves-light" type="submit">Log In</button>
+    		<button class="btn waves-effect modal-action modal-close waves-light" type="submit">Log In</button>
     	</form>
     </div>
 </div>
@@ -121,109 +217,20 @@
             </div>
           </div>
         </div>
-          <button id="submit-button" class="btn waves-effect waves-light" type="submit" disabled>Create an Account</button>
+          <button id="submit-button" class="btn waves-effect modal-action modal-close waves-light" type="submit" disabled>Create an Account</button>
       </form>
     </div>
 
     <script>
-      $(document).ready(function() {
-        $('select').material_select();
-      });
+        $(document).ready(function() {
+            $('select').material_select();
+
+            $('.modal-trigger').leanModal({
+                  dismissible: true,
+                  opacity: .5,
+                  in_duration: 300,
+                  out_duration: 200
+            });
+        });
     </script>
-
 </div>
-
-
-<main>
-
-<!-- INTRO -->
-
-    <div id="brief-intro-container">
-        <div id="brief-intro">
-            <div class="container" id="content">
-                <div class="row">
-                    <div class="col s12 m12 l10"><img src="assets/img/logo-2.png" id="intro-logo" class="animated flipInY"></div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m12 l10">
-                        <div class="center animated fadeIn">
-                        <p id="logo-text">The best web application for a fun and interactive class discussion.</p>
-                            <a href="#signupModal" class="modal-trigger waves-effect waves-light btn-large">Sign Up</a>
-                            <a href="/randomize_notuser" class="waves-effect waves-light btn-large">Try Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-<!-- MORE INFO: HOW DOES IT WORK -->
-
-    <div id="more-info">
-        <div class="container" id="content">
-            <h4>HOW DOES IT WORK?</h4><br/><br/><br/>
-            <div class="row">
-                <div class="col s12 m4 l4">
-                    <div class="center">
-                        <i class="material-icons">add</i>
-                        <p class="caption">Add a Class</p>
-                        <p class="center light">You can either provide the information manually or upload a file.</p>
-                    </div>
-                </div>
-                <div class="col s12 m4 l4">
-                    <div class="center">
-                        <i class="material-icons">settings</i>
-                        <p class="caption">Adjust the Settings</p>
-                        <p class="center light">How many volunteers? Which lab sections? Choose the right settings for your class' needs.</p>
-                    </div>
-                </div>
-                <div class="col s12 m4 l4">
-                    <div class="center">
-                        <i class="material-icons">supervisor_account</i>
-                        <p class="caption">Randomize!</p>
-                        <p class="center light">And you're done! All you have to do is wait as we generate your volunteers for you.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-<!-- MORE INFO: WHY SIGN UP -->
-
-    <div id="more-info-2">
-        <div class="container" id="content">
-            <h4>WHY SIGN UP?</h4> <br/> <br/>
-            <!-- <h5 class="center">//Will fix layout, background, and images//</h5> -->
-            <div class="row">
-                <div class="reason col s12" id="reason-1">
-                    <div class="col s6">
-                        <img src="assets/img/window1.png">
-                    </div>
-                    <div class="col s6" id="p1">
-                        <h3>Save and access all your classes!</h3>
-                        <p> Simplify your life by organizing your class! You can add, modify and remove classes and students with just a few clicks! </p>
-                    </div>
-                </div>
-                <div class="reason col s12" id="reason-2">
-                    <div class="col s6" id="p2">
-                        <h3>More functionalities!</h3>
-                        <p> Spice up your teaching with this feature! Introducing the Cheat Mode! You can now increase or decrease the chances of a certain student appearing in the randomizer! </p>
-                    </div>
-                    <div class="col s6">
-                        <img src="assets/img/window2.png">
-                    </div>
-                </div>
-                <div class="reason col s12" id="reason-3">
-                    <div class="col s6">
-                        <img src="assets/img/windows.png">
-                    </div>
-                    <div class="col s6" id="p3">
-                        <h3>Track their luck!</h3>
-                        <p> You can track you student's luck by viewing the history logs! You can see the number of times your students have appeared in the randomizer, as well as the number of times you used it. </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
