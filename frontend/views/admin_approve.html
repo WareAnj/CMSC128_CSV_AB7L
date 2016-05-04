@@ -6,6 +6,9 @@
 		 		<ul>
 		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
 		    	</ul>
+		    	<ul class="right">
+		    		<a href"/admin_approve">Pending Users<span class="new badge">3</span></a> <!-- to be worked on -->
+		    	</ul>
 	    		<!-- SIDE NAV  -->
 				<div id="slide-out" class="side-nav center">
 					<div class = "center">
@@ -26,40 +29,34 @@
 				</div>
 		    </div>
 		</nav>
-	</div>
+	</div>	
 
 	<div class="container">
 		<table data-ng-init="GetUsers()" ng-table="usersTable" show-filter="true" id="admintable" class="highlight responsive-table bordered centered stripped">
 			<thead>
 				<tr>
 					<th>
-						<a ng-click="order('given_name')" class="waves-effect waves-light btn">First Name
-						<span class="sortorder" ng-show="predicate === 'given_name'" ng-class="{reverse:reverse}"></span>
+						<a ng-click="order('given_name')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by first name.">First Name
 						</a>
 					</th>
 					<th>
-						<a ng-click="order('last_name')" class="waves-effect waves-light btn">Last Name
-						<span class="sortorder" ng-show="predicate === 'last_name'" ng-class="{reverse:reverse}"></span>
+						<a ng-click="order('last_name')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by last name.">Last Name
+						</a>	
+					</th>
+					<th>
+						<a ng-click="order('username')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by username.">Username
 						</a>
 					</th>
 					<th>
-						<a ng-click="order('username')" class="waves-effect waves-light btn">Username
-						<span class="sortorder" ng-show="predicate === 'username'" ng-class="{reverse:reverse}"></span>
+						<a ng-click="order('employee_id')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by employee ID.">Employee ID
 						</a>
 					</th>
 					<th>
-						<a ng-click="order('employee_id')" class="waves-effect waves-light btn">Employee ID
-						<span class="sortorder" ng-show="predicate === 'employee_id'" ng-class="{reverse:reverse}"></span>
+						<a ng-click="order('classification')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by classification.">Classification
 						</a>
 					</th>
 					<th>
-						<a ng-click="order('classification')" class="waves-effect waves-light btn">Classification
-						<span class="sortorder" ng-show="predicate === 'classification'" ng-class="{reverse:reverse}"></span>
-						</a>
-					</th>
-					<th>
-						<a ng-click="order('date_signed_up')" class="waves-effect waves-light btn">Date of Sign Up
-						<span class="sortorder" ng-show="predicate === 'date_signed_up'" ng-class="{reverse:reverse}"></span>
+						<a ng-click="order('date_signed_up')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by sign up date.">Sign Up Date
 						</a>
 					</th>
 					<th>
