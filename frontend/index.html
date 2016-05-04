@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html ng-app="app">
 	<head>
-		<link rel="shortcut icon" type="image/ico" href="img/logo-2.png" />
 		<title>Reginyzr</title>
-    	<link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-       	<link type="text/css" rel="stylesheet" href="stylesheets/animate.css">
-       	<link type="text/css" rel="stylesheet" href="stylesheets/default.css">
-    	<link type="text/css" rel="stylesheet" href="stylesheets/index.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="shortcut icon" type="image/ico" href="assets/img/logo-2.png" />
+    	<link type="text/css" rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.css"  media="screen,projection"/>
+       	<link type="text/css" rel="stylesheet" href="assets/stylesheets/animate.css">
+       	<link type="text/css" rel="stylesheet" href="assets/stylesheets/default.css">
+    	<link type="text/css" rel="stylesheet" href="assets/stylesheets/index.css">
 	</head>
 
 	<body>
@@ -23,7 +23,7 @@
 		    			<img id="nav-logo" src="img/logo-2.png">
 		    			</a></div></li>
 
-		    	-->	<li><a href="#" class="brand-logos"><img id="logo" src="img/text2.png"></a></li>
+		    	-->	<li><a href="#" class="brand-logos"><img id="logo" src="assets/img/text2.png"></a></li>
 		    	</ul>
 
 		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
@@ -35,7 +35,7 @@
 
 		    	<ul id="mobile-demo" class="side-nav">
 		    		<div class="logo-img-side"><a href="#">
-		    			<img id="logo-img-side" src="img/logo-2.png">
+		    			<img id="logo-img-side" src="assets/img/logo-2.png">
 		    		</a></div>
 				    <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
 				    <li><a href="#signupModal" class="modal-trigger">Create an Account</a></li>
@@ -52,7 +52,7 @@
 				<div id="brief-intro">
 					<div class="container" id="content">
 						<div class="row">
-							<div class="col s12 m12 l10"><img src="img/logo-2.png" id="intro-logo" class="animated flipInY"></div>
+							<div class="col s12 m12 l10"><img src="assets/img/logo-2.png" id="intro-logo" class="animated flipInY"></div>
 						</div>
 						<div class="row">
 							<div class="col s12 m12 l10">
@@ -109,7 +109,7 @@
 					<div class="row">
 						<div class="reason col s12" id="reason-1">
 							<div class="col s6">
-								<img src="img/window1.png">
+								<img src="assets/img/window1.png">
 							</div>
 							<div class="col s6" id="p1">
 								<h3>Save and access all your classes!</h3>
@@ -122,12 +122,12 @@
 								<p> Spice up your teaching with this feature! Introducing the Cheat Mode! You can now increase or decrease the chances of a certain student appearing in the randomizer! </p>
 							</div>
 							<div class="col s6">
-								<img src="img/window2.png">
+								<img src="assets/img/window2.png">
 							</div>
 						</div>
 						<div class="reason col s12" id="reason-3">
 							<div class="col s6">
-								<img src="img/windows.png">
+								<img src="assets/img/windows.png">
 							</div>
 							<div class="col s6" id="p3">
 								<h3>Track their luck!</h3>
@@ -156,31 +156,31 @@
 				</div>
 			</div>
 		</footer>
-	    <script type="text/javascript" src="js/jquery.js"></script>
-	    <script type="text/javascript" src="js/materialize.min.js"></script>
-	    <script type="text/javascript" src="js/index.js"></script>
+	    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+	    <script type="text/javascript" src="bower_components/Materialize/dist/js/materialize.js"></script>
+	    <script type="text/javascript" src="assets/js/index.js"></script>
 
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-route.min.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
 
 		<script src="app.js"></script>
 
         <!-- Controllers -->
-        <script src="partials/register/register.controller.js"></script>
-		<script src="partials/login/login.controller.js"></script>
-        <script src="partials/admin/admin.controller.js"></script>
-        <script src="partials/course/course.controller.js"></script>
-        <script src="partials/lecture/lecture.controller.js"></script>
-		<script src="partials/random.controller.js"></script>
-        <script src="partials/randomize/randomize.controller.js"></script>
+        <script src="controllers/register.controller.js"></script>
+		<script src="controllers/login.controller.js"></script>
+        <script src="controllers/admin.controller.js"></script>
+        <script src="controllers/course.controller.js"></script>
+        <script src="controllers/lecture.controller.js"></script>
+		<script src="controllers/random.controller.js"></script>
+        <script src="controllers/randomize.controller.js"></script>
 
         <!-- Services -->
-		<script src="partials/register/register.service.js"></script>
-        <script src="partials/login/login.service.js"></script>
-        <script src="partials/admin/admin.service.js"></script>
-        <script src="partials/course/course.service.js"></script>
-    	<script src="partials/lecture/lecture.service.js"></script>
-        <script src="partials/random.service.js"></script>
-		<script src="partials/randomize/randomize.service.js"></script>
+		<script src="services/register.service.js"></script>
+        <script src="services/login.service.js"></script>
+        <script src="services/admin.service.js"></script>
+        <script src="services/course.service.js"></script>
+    	<script src="services/lecture.service.js"></script>
+        <script src="services/random.service.js"></script>
+		<script src="services/randomize.service.js"></script>
     </body>
 </html>
