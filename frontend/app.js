@@ -1,39 +1,28 @@
-(function() {
-  let app =   angular.module('app', ['ngRoute'])
-                      .config(config);
+'use strict';
 
-  config.$inject = ['$routeProvider'];
+(() => {
+    angular.module('app', ['ngRoute'])
+            .config(config);
 
-  function config($routeProvider) {
-      $routeProvider
-          .when('/', {
-              'templateUrl' :   'uirouter.html'
-          })
-          .when('/home', {
-              'controller'  :   'HomeCtrl',
-              'templateUrl' :   'views/home.html'
-          })
-          .otherwise({
-              redirectTo    :   '/'
-          });
-  }
+    config.$inject = ['$routeProvider', '$locationProvider'];
 
+    function config($routeProvider, $locationProvider) {
+        $routeProvider
+            .when('/', {
+                'templateUrl' :   'views/landing_page.html'
+            })
+            .when('/home', {
+                'controller'  :   'HomeCtrl',
+                'templateUrl' :   'views/home.view.html'
+            })
+            .otherwise({
+                'redirectTo'  :   '/'
+            });
 
-  app.controller('HomeCtrl', function($scope, $location, $window, $http, $q) {
-
-      $scope.Logout = function() {
-          let deferred = $q.defer();
-
-          $http.get('authenticate/logout')
-          .success(function(data) {
-              $window.location.href = '/';
-              deferred.resolve(data);
-          })
-          .error(function(data) {
-              deferred.reject('Error: Cannot Logout Faculty User');
-              alert(data.context);
-          });
-      }
-  });
-
+        // $locationProvider.html5Mode({
+        //     enabled:true,
+        //     requireBase:false,
+        //     rewriteLinks:false
+        // });
+    }
 })();

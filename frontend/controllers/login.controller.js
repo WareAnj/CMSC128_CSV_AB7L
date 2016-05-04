@@ -1,21 +1,22 @@
-(function() {
-  'use strict';
+'use strict';
 
-  angular
-    .module('app')
-    .controller('AuthenticationCtrl', AuthenticationCtrl);
+(() => {
+    angular.module('app')
+            .controller('AuthenticationCtrl', AuthenticationCtrl);
 
-  AuthenticationCtrl.$inject = ["$scope", "$location", "$window", "AuthenticationService"];
+    AuthenticationCtrl.$inject = ['$scope', '$location', '$window', 'AuthenticationService'];
 
-  function AuthenticationCtrl($scope, $location, $window, AuthenticationService) {
+    function AuthenticationCtrl($scope, $location, $window, AuthenticationService) {
+        $scope.faculty_user_data = [];
 
-    $scope.faculty_user_data = [];
-
-    $scope.Login = function() {
-		  AuthenticationService.Login($scope.facultyUser)
-			.then(function(data){
-				$scope.faculty_user_data.push(data);
-			});
+        $scope.Login = () => {
+            AuthenticationService
+                .Login($scope.facultyUser)
+                .then((data) => {
+                    $scope.faculty_user_data.push(data);
+                    console.log(data.data);
+                    $location.url('home');
+                });
 		}
-  }
+    }
 })();

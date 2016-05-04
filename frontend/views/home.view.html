@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="HomeCtrl">
 	<div data-ng-init="Get_User()">
 
 	<!-- NAV BAR -->
@@ -11,12 +11,12 @@
 		    	</ul>
 
 				<div class="center">
-			 		<a href="/" class="brand-logos"> <img id="logo" src="img/text2.png"></a>
+			 		<a href="/" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
 			    </div>
 
 	    		<!-- SIDE NAV  -->
 				<div id="slide-out" class="side-nav center" data-ng-init="Get_Course()">
-					<img id="sidenav-logo" src="img/logo-2.png">
+					<img id="sidenav-logo" src="../assets/img/logo-2.png">
 						<div ng-repeat="info in faculty_user_info">
 							<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
 						</div>
@@ -231,7 +231,7 @@
 				</div>
 			</div>
 		</footer>
-	    <script type="text/javascript" src="js/default.js"></script>
+	    <script type="text/javascript" src="../assets/js/default.js"></script>
 		<script>
 		$(document).ready(function(){
 			$('select').material_select();
