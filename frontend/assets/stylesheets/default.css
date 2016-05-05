@@ -137,7 +137,7 @@ footer.page-footer{
 
 #signupModal{
 	width: 70%;
-	overflow-y: visible;
+	overflow-y: scroll;
 }
 
 @media only screen and (max-width: 600px) {

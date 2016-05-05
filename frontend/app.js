@@ -15,6 +15,10 @@
                 'controller'  :   'CourseCtrl',
                 'templateUrl' :   'views/home.view.html'
             })
+            .when('/class', {
+                'controller'  :   'SectionCtrl',
+                'templateUrl' :   'views/class.html'
+            })
             .when('/admin', {
                 'controller'  :   'AdminCtrl',
                 'templateUrl' :   'views/admin.html'
