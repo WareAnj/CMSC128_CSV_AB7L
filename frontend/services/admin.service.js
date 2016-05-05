@@ -23,15 +23,14 @@
 		function Logout() {
 			let deferred = $q.defer();
 
-	        $http.get("admin/authenticate_logout")
-	        .success(function(data) {
-	            $window.location.href = '/';
-	            deferred.resolve(data);
-	        })
-	        .error(function(data) {
-	            deferred.reject("Error: Cannot Login Faculty User");
-	            alert(data.context);
-	        });
+	        	$http.get("admin/authenticate_logout")
+	        			.then((data) => {
+	            			deferred.resolve(data);
+	            			$window.location.href = '/';
+						}, (error) => {
+							deferred.reject(error.data);
+							Materialize.toast(error.data, 1000);   
+						});
 
 			return deferred.promise;
 		};
@@ -40,13 +39,12 @@
 			let deferred = $q.defer();
 
 			$http.get("admin/get_pending_users")
-			.success(function(data) {
-	            deferred.resolve(data);
-	        })
-	        .error(function(data) {
-	            deferred.reject("Error: Cannot Get Pending Users");
-	            alert(data.context);
-	        });
+						.then((data) => {
+	            			deferred.resolve(data);
+						}, (error) => {
+							deferred.reject(error.data);
+							Materialize.toast(error.data, 1000);   
+						});
 
 			return deferred.promise;
 		};		
@@ -55,13 +53,12 @@
 			let deferred = $q.defer();
 
 			$http.put("admin/approve_user/" + id)
-	        .success(function(data) {
-	           	deferred.resolve(data);
-	        })
-	        .error(function(data) {
-	        	deferred.reject("Error: Cannot Approve User");
-	            alert(data.context);
-	        });
+						.then((data) => {
+	            			deferred.resolve(data);
+						}, (error) => {
+							deferred.reject(error.data);
+							Materialize.toast(error.data, 1000);   
+						});
 
 	        return deferred.promise;
 		}
@@ -71,13 +68,12 @@
 			let deferred = $q.defer();
 
 	         $http.get("admin/login_logs")
-	         .success(function(data) {
-	            deferred.resolve(data);
-	         })
-	         .error(function(data) {
-	         	  deferred.reject("Error: Cannot Get All Logins");
-	              alert(data.context);
-	         });
+	         			.then((data) => {
+	            			deferred.resolve(data);
+						}, (error) => {
+							deferred.reject(error.data);
+							Materialize.toast(error.data, 1000);   
+						});
 
 	         return deferred.promise;
 		}
@@ -87,13 +83,12 @@
 			let deferred = $q.defer();
 
 	         $http.get("admin/logout_logs")
-	         .success(function(data) {
-	            deferred.resolve(data);
-	         })
-	         .error(function(data) {
-	         	  deferred.reject("Error: Cannot Get All Logouts");
-	              alert(data.context);
-	         });
+	        			 .then((data) => {
+	            			deferred.resolve(data);
+						}, (error) => {
+							deferred.reject(error.data);
+							Materialize.toast(error.data, 1000);   
+						});
 
 	         return deferred.promise;
 		}
@@ -102,13 +97,12 @@
 	          let deferred = $q.defer();
 
 	          $http.get("admin/login_logs/" + id)
-	          .success(function(data) {
-	             deferred.resolve(data);
-	          })
-	          .error(function(data) {
-	              deferred.reject("Error: Cannot Get Logins Of Specified User");
-	              alert(data.context);
-	          });
+          				.then((data) => {
+	            			deferred.resolve(data);
+						}, (error) => {
+							deferred.reject(error.data);
+							Materialize.toast(error.data, 1000);   
+						});
 
 	          return deferred.promise;
 		}
@@ -117,13 +111,12 @@
 	          let deferred = $q.defer();
 
 	          $http.get("admin/logout_logs/" + id)
-	          .success(function(data) {
-	             deferred.resolve(data);
-	          })
-	          .error(function(data) {
-	              deferred.reject("Error: Cannot Get Logouts Of Specified User");
-	              alert(data.context);
-	          });
+			          	.then((data) => {
+	            			deferred.resolve(data);
+						}, (error) => {
+							deferred.reject(error.data);
+							Materialize.toast(error.data, 1000);   
+						});
 
 	          return deferred.promise;
 		}
@@ -133,18 +126,14 @@
 			  let deferred = $q.defer();
 
 			  $http.get("admin/get_approved_users")
-			  .success(function(data){
-			  	deferred.resolve(data)
-			  })
-			  .error(function(data){
-			  	deferred.reject("Error: Cannot Get All Approved Users");
-			  	alert(data.context);
-			  })
+						.then((data) => {
+	            			deferred.resolve(data);
+						}, (error) => {
+							deferred.reject(error.data);
+							Materialize.toast(error.data, 1000);   
+						});
 
 			  return deferred.promise;
-		}
-
-
-		 
+		}		 
 	}
 })();
