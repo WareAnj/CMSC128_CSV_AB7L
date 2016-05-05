@@ -12,8 +12,12 @@
                 'templateUrl' :   'views/landing_page.html'
             })
             .when('/home', {
-                'controller'  :   'HomeCtrl',
+                'controller'  :   'CourseCtrl',
                 'templateUrl' :   'views/home.view.html'
+            })
+            .when('/admin', {
+                'controller'  :   'AdminCtrl',
+                'templateUrl' :   'views/admin.html'
             })
             .otherwise({
                 'redirectTo'  :   '/'

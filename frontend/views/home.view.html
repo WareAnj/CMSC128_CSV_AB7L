@@ -1,4 +1,4 @@
-<div ng-controller="HomeCtrl">
+<div>
 	<div data-ng-init="Get_User()">
 
 	<!-- NAV BAR -->
@@ -25,7 +25,7 @@
 								<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
 							</div>
 						</div>
-						<div class = "center">
+						<div class="center" ng-controller="HomeCtrl">
 							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
 						</div>
 				</div>
@@ -218,19 +218,6 @@
 				</div>
 			</div>
 		</main>
-		<!--FOOTER-->
-		<footer class="page-footer white-text">
-			<div class="container">
-				<div class="row center">
-					<div class="col s12 m12 l7">
-						<p> CMSC 128 AB-7L. 2016. </p>
-					</div>
-					<div class="col s12 m12 l5">
-						<p> All rights reserved. </p>
-					</div>
-				</div>
-			</div>
-		</footer>
 	    <script type="text/javascript" src="../assets/js/default.js"></script>
 		<script>
 		$(document).ready(function(){

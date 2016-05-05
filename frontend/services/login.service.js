@@ -4,40 +4,40 @@
 	angular.module('app')
 			.factory('AuthenticationService', AuthenticationService);
 
-	AuthenticationService.$inject = ['$http', '$q', '$location', '$window'];
+	AuthenticationService.$inject = ['$http', '$q', '$location'];
 
-	function AuthenticationService($http, $q, $location, $window) {
+	function AuthenticationService($http, $q, $location) {
 		let service = {};
-		service.Login = Login;
+		service.LoginAsAdmin = LoginAsAdmin;
+		service.LoginAsFacultyUser = LoginAsFacultyUser;
 		return service;
 
-		function Login(facultyUser) {
+		// Login as admin
+		function LoginAsAdmin(admin) {
+			let deferred = $q.defer();
 
-				let deferred = $q.defer();
+				$http.post('/admin/authenticate_login', admin)
+						.then((data) => {
+							deferred.resolve(data);
+						}, (error) => {
+							deferred.reject(error.data);
+						});
 
-				// $http.post('/admin/authenticate_login', facultyUser)
-				// .success(function(data) {
-				// 	$window.location.href = '/admin';
-				// 	deferred.resolve(data);
-				// })
-				// .error(function(data) {
-				// 	if(data.context == 'Invalid password'){
-				// 		deferred.reject('Error: Cannot Login Faculty User');
-				// 		alert(data.context);
-				// 		return deferred.promise;
-				// 	}
+			return deferred.promise;
+		}
 
+		// Login as a faculty user
+		function LoginAsFacultyUser(facultyUser) {
+			let deferred = $q.defer();
 
-					$http.post('/authenticate/login', facultyUser)
-							.then((data) => {
-								deferred.resolve(data);
-							}, (error) => {
-								deferred.reject('Error: Cannot Login Faculty User');
-								Materialize.toast(error.context);
-							});
-				//});
+				$http.post('/authenticate/login', facultyUser)
+						.then((data) => {
+							deferred.resolve(data);
+						}, (error) => {
+							deferred.reject(error.data);
+						});
 
-				return deferred.promise;
+			return deferred.promise;
 		}
 	}
 })();
