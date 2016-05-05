@@ -35,25 +35,28 @@
         $scope.ApproveUser = (id, username) => {
             AdminService.ApproveUser(id)
               .then(function(data){
-                  //alert("Successfully Approved User: " + username);
-                  Materialize.toast('Successfully approved '+username+'!', 5000);
+
+                  if(data.message = "Faculty user successfully approved!"){
+                    let index = -1;
+                    let comArr = eval($scope.userList);
+                    for (let i = 0; i < comArr.length; i++) {
+                        if (comArr[i].username === username) {
+                            index = i;
+                            break;
+                        }
+                    }
+
+                    if(index === -1) {               
+                        return;
+                    }
+                    
+                    Materialize.toast('Successfully approved '+username+'!', 5000);
+                    $scope.userList.splice(index, 1);
+                  }
+                  else
+                    Materialize.toast('Something has gone wrong.', 5000);                  
               });
-
-            let index = -1;
-            let comArr = eval($scope.userList);
-            for (let i = 0; i < comArr.length; i++) {
-                if (comArr[i].username === username) {
-                    index = i;
-                    break;
-                }
-
-                $scope.userList.splice(index, 1);
-            }
-
-            if(index === -1) {
-                Materialize.toast('Something has gone wrong.', 5000);
-                return;
-            }
+            
         }
 
 
