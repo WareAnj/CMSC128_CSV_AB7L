@@ -2,14 +2,14 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper container">
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a ng-href="#/" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile">
             <!--	<li><div class="logo-img hide-on-small-and-down">
                     <a href="#">
                     <img id="nav-logo" src="img/logo-2.png">
                     </a></div></li>
 
-            -->	<li><a href="#" class="brand-logos"><img id="logo" src="../assets/img/text2.png"></a></li>
+            -->	<li><a ng-href="#/" class="brand-logos"><img id="logo" src="../assets/img/text2.png"></a></li>
             </ul>
 
             <ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
@@ -20,7 +20,7 @@
             <!-- SIDE NAV (WHEN VIEWED IN SMALLER SCREENS) -->
 
             <ul id="mobile-demo" class="side-nav">
-                <div class="logo-img-side"><a href="#">
+                <div class="logo-img-side"><a ng-href="#/">
                     <img id="logo-img-side" src="../assets/img/logo-2.png">
                 </a></div>
                 <li><a href="#loginModal" class="modal-trigger">Log In</a></li>
@@ -47,7 +47,7 @@
                         <div class="center animated fadeIn">
                         <p id="logo-text">The best web application for a fun and interactive class discussion.</p>
                             <a href="#signupModal" class="modal-trigger waves-effect waves-light btn-large">Sign Up</a>
-                            <a href="/randomize_notuser" class="waves-effect waves-light btn-large">Try Now</a>
+                            <a ng-href="/#/guest-trynow" class="waves-effect waves-light btn-large">Try Now</a>
                         </div>
                     </div>
                 </div>
@@ -217,12 +217,14 @@
             </div>
           </div>
         </div>
-          <button id="submit-button" class="btn waves-effect modal-action modal-close waves-light" type="submit" disabled>Create an Account</button>
+          <button id="submit-button" type="submit" class="btn waves-effect waves-light" disabled>Create an Account</button>
       </form>
     </div>
 
     <script>
         $(document).ready(function() {
+            $('.button-collapse').sideNav();
+
             $('select').material_select();
 
             $('.modal-trigger').leanModal({

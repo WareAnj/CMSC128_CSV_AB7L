@@ -3,22 +3,22 @@
 		<div class="navbar-fixed">
 		<nav>
 		 	<div class="nav-wrapper container">
-		 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+		 		<a ng-href="/#/" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 		 		<ul id="nav-mobile">
-		 			<li><a href="/" class="brand-logos"><img id="logo" src="img/text2.png"></a></li>
+		 			<li><a ng-href="/#/" class="brand-logos"><img id="logo" src="../assets/img/text2.png"></a></li>
 		    	</ul>
 
 		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
-				    <li><a href="/">Home</a></li>
+				    <li><a ng-href="/#/">Home</a></li>
 		    	</ul>
 
 	    		<!-- SIDE NAV (WHEN VIEWED IN SMALLER SCREENS) -->
 
 		    	<ul id="mobile-demo" class="side-nav">
-		    		<div class="logo-img-side"><a href="#">
-		    			<img id="logo-img-side" src="img/logo-2.png">
+		    		<div class="logo-img-side"><a ng-href="/#/">
+		    			<img id="logo-img-side" src="../assets/img/logo-2.png">
 		    		</a></div>
-		    		<li><a href="#" class="modal-trigger">Home</a></li>
+		    		<li><a ng-href="/#/" class="modal-trigger">Home</a></li>
 		    	</ul>
 		    </div>
 		</nav>
@@ -45,8 +45,8 @@
 							    	 		data-position="right"
 							    	 		data-delay="50"
 							    	 		data-tooltip="No numbers or special characters!">
-												<input id="input" id="disabled" type="text" class="validate" pattern="^[A-Za-z][A-Za-z\,\.\'\-\s]*$">
-												<label for="input" data-error="Invalid" data-success="">Name</label>
+												<input id="input" id="disabled" type="text" pattern="^[A-Za-z][A-Za-z\,\.\'\-\s]*$">
+												<label for="input" >Name</label>
 											</div>
 									</form>
 								<div class="row">
@@ -59,7 +59,7 @@
 
 
 					  		<div class="section">
-					  			<h5 id="add-space">Or input a file <a href="#help-file" class="modal-trigger"><sup class="small red-text">[?]</sup></a></h5>
+					  			<h5 id="add-space">Or input a file <a id="help" class="modal-trigger"><sup class="small red-text">[?]</sup></a></h5>
 					  			<!-- FILE READING -->
 							    <div class="file-field input-field">
 							      <div class="btn grey darken-2">
@@ -77,7 +77,7 @@
 				  				</button>
 				  			</div>
 				  			<div class="section">
-				  				<a href="#modal1" class="modal-trigger">
+				  				<a class="modal-trigger">
 				  				<button id="rand" class="btn waves-effect waves-light">
 				  					Randomize
 					  				<i class="material-icons right">assignment</i>
@@ -116,19 +116,6 @@
 
 		</main>
 
-		<footer class="page-footer white-text">
-			<div class="container">
-				<div class="row center">
-					<div class="col s12 m12 l7">
-						<p> CMSC 128 AB-7L. 2016. </p>
-					</div>
-					<div class="col s12 m12 l5">
-						<p> All rights reserved. </p>
-					</div>
-				</div>
-			</div>
-		</footer>
-
 		<!-- DIV FOR RESULTS -->
 		<div class="modal" id="modal1">
 			<div class="modal-content center">
@@ -146,10 +133,31 @@
 			</div>
 		</div>
 
-		<script src="js/randomize_notuser.js"></script>
+		<script src="../assets/js/randomize_notuser.js"></script>
 
 		<script>
 		  	//other functions are in randomize_notuser.js
+			$("#help").on('click', function(){
+			    $("#help-file").openModal();
+			});
+
+
+
+			$("#rand").on('click', function(){
+		    	if(Randomize() != 1)
+		    		$("#modal1").openModal();
+		    	else	
+					Materialize.toast("The list is empty!", 1000);
+		  	});
+
+
+		  	$("#rand_again").on('click', function(){
+				if(Randomize() != 1)
+		    		$("#modal1").openModal();
+		    	else	
+					Materialize.toast("The list is empty!", 1000);
+		  	});		  	
+
 
 			$('input[id=input]').keyup(function(){
 				tooltipAlert();
@@ -161,8 +169,12 @@
 				var string = document.getElementById('input').value.trim();
 				if(string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){
 					$('#add').attr('disabled', false);
+					$('#add').removeClass('btn waves-effect waves-light grey darken-2');
+					$('#add').addClass('btn waves-effect waves-light btn');
 				}else{
 					$('#add').attr('disabled', true);
+					$('#add').removeClass('btn waves-effect waves-light btn');
+					$('#add').addClass('btn waves-effect waves-light grey darken-2');
 				}
 			}
 		</script>

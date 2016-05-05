@@ -1,6 +1,6 @@
 <div>
 	<!-- NAV BAR -->
-	<div class="navbar" data-ng-init="Get_Course()">
+	<div class="navbar" ng-controller="CourseCtrl" data-ng-init="Get_Course()">
 		<nav>
 		 	<div class="nav-wrapper container">
 		 		<ul>
@@ -8,16 +8,16 @@
 		    	</ul>
 
 		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
-				    <li><a href="/home">Home</a></li>
+				    <li><a ng-href="#/home">Home</a></li>
 		    	</ul>
 
 				<div class="center">
-			 		<a href="/home" class="brand-logos"> <img id="logo" src="img/text2.png"></a>
+			 		<a ng-href="#/home" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
 			    </div>
 
 	    		<!-- SIDE NAV  -->
 				<div id="slide-out" class="side-nav center">
-					<img id="sidenav-logo" src="img/logo-2.png">
+					<img id="sidenav-logo" src="../assets/img/logo-2.png">
 					<div ng-repeat="info in faculty_user_info">
 						<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
 					</div>
@@ -54,10 +54,10 @@
 						</div>
 						<div id="buttons-class" class="row">
 							<div class="col s12 m12 l12">
-								<a href="/edit" class="waves-effect waves-light btn">Edit</a>
+								<a ng-href="#/edit" class="waves-effect waves-light btn">Edit</a>
 							</div>
 							<div class="col s12 m12 l12">
-								<a href="/settings_randomize" class="waves-effect waves-light btn">Randomize</a>
+								<a ng-href="#/settings_randomize" class="waves-effect waves-light btn">Randomize</a>
 							</div>
 						</div>
 					</div>
@@ -78,7 +78,7 @@
 											<td>{{info.given_name}} {{info.middle_name}} {{info.last_name}}</td>
 											<td>{{info.name}} - {{info.code}}</td>
 											<td>{{info.frequency}}</td>
-											<td><a ng-click="Get_Selected_Student(info.id)" class="modal-trigger"><i class="material-icons prefix">info_outline</i></a>
+											<td><a ng-click="Get_Selected_Student(info.id)" class="modal-trigger"><i class="material-icons prefix" style="cursor:pointer;">info_outline</i></a>
 											</td>
 										</tr>
 									</tbody>
@@ -99,7 +99,7 @@
 					<div class="row">
 						<div class="col s4">
 							<div class="card-image">
-								<img src="img/user.png" style="height:175px; width:175px">
+								<img src="../assets/img/user.png" style="height:175px; width:175px">
 							</div>
 							<!--<img src="img/user.png" style="height:150px; width:150px">-->
 						</div>
@@ -116,21 +116,7 @@
 				</div>
 			</div>
 
-			<!--MODALS-->
 		</main>
-		<!--MAIN-->
-		<footer class="page-footer white-text">
-			<div class="container">
-				<div class="row center">
-					<div class="col s12 m12 l7">
-						<p> CMSC 128 AB-7L. 2016. </p>
-					</div>
-					<div class="col s12 m12 l5">
-						<p> All rights reserved. </p>
-					</div>
-				</div>
-			</div>
-		</footer>
 	<!--SCRIPTS-->
     <script type="text/javascript" src="../assets/js/home.js"></script>
     <script type="text/javascript" src="../assets/js/default.js"></script>
