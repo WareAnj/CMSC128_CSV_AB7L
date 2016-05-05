@@ -21,7 +21,7 @@
             });
         }
 
-        $scope.GetUsers = function() {
+        $scope.GetUsers = () => {
             $scope.userList = [];
             AdminService.GetUsers()
               .then(function(data){
@@ -32,7 +32,7 @@
               });
         }
 
-        $scope.ApproveUser = function(id, username) {
+        $scope.ApproveUser = (id, username) => {
             AdminService.ApproveUser(id)
               .then(function(data){
                   //alert("Successfully Approved User: " + username);
@@ -56,6 +56,22 @@
             }
         }
 
+
+        $scope.GetAllLogin = () =>  {
+            $scope.userList = [];
+            AdminService
+                .GetAllLogin()
+                .then((data) => {
+                    let length = data.length;
+                    for (let i = 0; i < length; i++) {
+                        $scope.userList.push(data[i]);
+                    }
+                });
+
+            $('#logintable').show();
+            $('#logouttable').hide();
+        }
+
         $scope.GetAllLogout = () =>  {
             $scope.userList = [];
             AdminService
@@ -66,9 +82,14 @@
                         $scope.userList.push(data[i]);
                     }
                 });
+
+            $('#logintable').hide();
+            $('#logouttable').show();
         }
 
-        $scope.GetSpecificLogin = (id) => {
+        $scope.GetSpecificLogin = () => {
+            var id = prompt("Please enter ID of Faculty User");
+
             $scope.userList = [];
             AdminService
                 .GetSpecificLogin(id)
@@ -78,9 +99,14 @@
                         $scope.userList.push(data[i]);
                     }
                 });
+
+            $('#logintable').show();
+            $('#logouttable').hide();
         }
 
-        $scope.GetSpecificLogout = (id) => {
+        $scope.GetSpecificLogout = () => {
+            var id = prompt("Please enter ID of Faculty User");
+
             $scope.userList = [];
             AdminService
                 .GetSpecificLogout(id)
@@ -90,6 +116,9 @@
                         $scope.userList.push(data[i]);
                     }
                 });
+
+            $('#logintable').hide();
+            $('#logouttable').show();
         }
 
         $scope.GetAllApproved = () => {
