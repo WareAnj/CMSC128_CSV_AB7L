@@ -1,6 +1,6 @@
 <div>
 	<!-- NAV BAR -->
-	<div class="navbar" data-ng-init="Get_Course()">
+	<div class="navbar" ng-controller="CourseCtrl" data-ng-init="Get_Course()">
 		<nav>
 		 	<div class="nav-wrapper container">
 		 		<ul>
@@ -54,10 +54,10 @@
 						</div>
 						<div id="buttons-class" class="row">
 							<div class="col s12 m12 l12">
-								<a href="/edit" class="waves-effect waves-light btn">Edit</a>
+								<a ng-href="#/edit" class="waves-effect waves-light btn">Edit</a>
 							</div>
 							<div class="col s12 m12 l12">
-								<a href="/settings_randomize" class="waves-effect waves-light btn">Randomize</a>
+								<a ng-href="#/settings_randomize" class="waves-effect waves-light btn">Randomize</a>
 							</div>
 						</div>
 					</div>
@@ -78,7 +78,7 @@
 											<td>{{info.given_name}} {{info.middle_name}} {{info.last_name}}</td>
 											<td>{{info.name}} - {{info.code}}</td>
 											<td>{{info.frequency}}</td>
-											<td><a ng-click="Get_Selected_Student(info.id)" class="modal-trigger"><i class="material-icons prefix">info_outline</i></a>
+											<td><a ng-click="Get_Selected_Student(info.id)" class="modal-trigger"><i class="material-icons prefix" style="cursor:pointer;">info_outline</i></a>
 											</td>
 										</tr>
 									</tbody>

@@ -19,6 +19,12 @@
                 'controller'  :   'SectionCtrl',
                 'templateUrl' :   'views/class.html'
             })
+            .when('/edit', {
+                'templateUrl' :   'views/edit.html'
+            })
+            .when('/settings_randomize', {
+                'templateUrl' :   'views/settings_randomize.html'
+            })
             .when('/admin', {
                 'controller'  :   'AdminCtrl',
                 'templateUrl' :   'views/admin.html'
