@@ -192,7 +192,7 @@
       localStorage.setItem("course_title", c_title);
       localStorage.setItem("course_description", c_desc);
       localStorage.setItem("section_name", section_name);
-      window.location.href='/class';
+      window.location.href='#/class';
     }
 
     // Update USER Details

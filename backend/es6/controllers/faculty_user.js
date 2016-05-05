@@ -404,13 +404,19 @@ exports.randomize = (req, res, next) => {
         }
         if(typeof data.limit === 'undefined') {
             db.query(
-                    'SELECT * FROM temporary_view' + data.user_id + ' WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT 1;',
+                    'SELECT * FROM temporary_view' + data.user_id + ' WHERE frequency = (SELECT MIN(frequency) from temporary_view' + data.user_id + ') ORDER BY rand() LIMIT 1;',
+                    [parseInt(data.limit)],
+                    send_response
+                );
+        } else if (typeof data.section_code === 'undefined') {
+        	db.query(
+                    'SELECT * FROM temporary_view' + data.user_id + ' WHERE frequency = (SELECT MIN(frequency) from temporary_view' + data.user_id + ') ORDER BY rand() LIMIT ?;',
                     [parseInt(data.limit)],
                     send_response
                 );
         } else {
             db.query(
-                    'SELECT * FROM temporary_view' + data.user_id + data.section_code + ' WHERE frequency = (SELECT MIN(frequency) from temporary_view) ORDER BY rand() LIMIT ?;',
+                    'SELECT * FROM temporary_view' + data.user_id + data.section_code + ' WHERE frequency = (SELECT MIN(frequency) from temporary_view' + data.user_id + data.section_code + ') ORDER BY rand() LIMIT ?;',
                     [parseInt(data.limit)],
                     send_response
                 );
