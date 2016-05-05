@@ -201,7 +201,7 @@
 											</div>
 											<div class="col s12 m12 l4">
 												<div class="input-field">
-													<select id="classification-input" ng-model="selectd.repeatSelect" ng-change="check_classification()">
+													<select id="classification-input" onclick="$('select').material_select()" ng-model="selectd.repeatSelect" ng-change="check_classification()">
 														<option value="{{info.classification}}" selected="selected">{{info.classification}}</option>
 														<option ng-repeat="option in selectd.options" value="{{option.id}}">{{option.name}}</option>
 													</select>
@@ -220,9 +220,9 @@
 		</main>
 	    <script type="text/javascript" src="../assets/js/default.js"></script>
 		<script>
-		$(document).ready(function(){
-			$('select').material_select();
-		});
+		//$(document).ready(function(){
+		//	$('select').material_select();
+		//});
 		</script>
 	</div>
 </div>
