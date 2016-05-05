@@ -26,10 +26,9 @@
 			});
 			
 			
-			$("#rand, #rand_again").click(function(){
+			function Randomize(){
 				if(arr.length == 0){
-					alert("The list is empty!");
-					return false;
+					return 1;
 				}
 
 				$("#lettersContainer").empty();
@@ -70,7 +69,7 @@
 					setInterval(loopRandomize_fake, 100);	// speed of letters
 
 				}, 500);//.delay(300);	// interval of each loop (each letter)
-			});			
+			};			
 			
 
 			$("#clear").click(function(){
