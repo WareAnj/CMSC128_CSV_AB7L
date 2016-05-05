@@ -31,6 +31,9 @@
                 'controller'  :   'AdminCtrl',
                 'templateUrl' :   'views/admin_viewusers.html'
             })
+            .when('/guest-trynow', {
+                'templateUrl' :   'views/randomize_notuser.html'
+            })
             .otherwise({
                 'redirectTo'  :   '/'
             });
