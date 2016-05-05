@@ -26,10 +26,9 @@
 			});
 			
 			
-			$("#rand, #rand_again").click(function(){
+			function Randomize(){
 				if(arr.length == 0){
-					alert("The list is empty!");
-					return false;
+					return 1;
 				}
 
 				$("#lettersContainer").empty();
@@ -70,7 +69,7 @@
 					setInterval(loopRandomize_fake, 100);	// speed of letters
 
 				}, 500);//.delay(300);	// interval of each loop (each letter)
-			});			
+			};			
 			
 
 			$("#clear").click(function(){
@@ -160,7 +159,7 @@
 						var checkerArr = [];
 
 						var lines = this.result.split('\n');
-						var numlines = lines.length-1;
+						var numlines = lines.length;
 
 						//first loop for file validation
 						for(var line = 0; line < numlines; line++){
@@ -205,6 +204,7 @@
 							addToTable(string, stringFormatted);
 
 						}
+
 					};
 				reader.readAsText(file);
 				}
