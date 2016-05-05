@@ -25,18 +25,18 @@
             $scope.userList = [];
             AdminService.GetUsers()
               .then(function(data){
-                  let length = data[0].length;
+                  let length = data.data[0].length;
                   for (let i = 0; i < length; i++) {
-                      $scope.userList.push(data[0][i]);
+                      $scope.userList.push(data.data[0][i]);
                   }
               });
         }
 
         $scope.ApproveUser = (id, username) => {
-            AdminService.ApproveUser(id)
-              .then(function(data){
-
-                  if(data.message = "Faculty user successfully approved!"){
+            AdminService
+                .ApproveUser(id)
+                .then((retdata) => {
+                   if(retdata.message = "Faculty user successfully approved!"){
                     let index = -1;
                     let comArr = eval($scope.userList);
                     for (let i = 0; i < comArr.length; i++) {
@@ -46,16 +46,17 @@
                         }
                     }
 
-                    if(index === -1) {               
+                    if(index === -1) {  
+                        Materialize.toast('Something has gone wrong.', 1000);            
                         return;
                     }
                     
-                    Materialize.toast('Successfully approved '+username+'!', 5000);
+                    Materialize.toast('Successfully approved '+username+'!', 1000);
                     $scope.userList.splice(index, 1);
                   }
                   else
-                    Materialize.toast('Something has gone wrong.', 5000);                  
-              });
+                    Materialize.toast('Something has gone wrong.', 1000);
+                });
             
         }
 
@@ -64,10 +65,10 @@
             $scope.userList = [];
             AdminService
                 .GetAllLogin()
-                .then((data) => {
-                    let length = data.length;
+                .then((retdata) => {
+                    let length = retdata.data.length;
                     for (let i = 0; i < length; i++) {
-                        $scope.userList.push(data[i]);
+                        $scope.userList.push(retdata.data[i]);
                     }
                 });
 
@@ -79,10 +80,10 @@
             $scope.userList = [];
             AdminService
                 .GetAllLogout()
-                .then((data) => {
-                    let length = data.length;
+                .then((retdata) => {
+                    let length = retdata.data.length;
                     for (let i = 0; i < length; i++) {
-                        $scope.userList.push(data[i]);
+                        $scope.userList.push(retdata.data[i]);
                     }
                 });
 
@@ -96,10 +97,10 @@
             $scope.userList = [];
             AdminService
                 .GetSpecificLogin(id)
-                .then((data) => {
-                    let length = data.length;
+                .then((retdata) => {
+                    let length = retdata.data.length;
                     for (let i = 0; i < length; i++) {
-                        $scope.userList.push(data[i]);
+                        $scope.userList.push(retdata.data[i]);
                     }
                 });
 
@@ -113,10 +114,10 @@
             $scope.userList = [];
             AdminService
                 .GetSpecificLogout(id)
-                .then((data) => {
-                    let length = data.length;
+                .then((retdata) => {
+                    let length = retdata.data.length;
                     for (let i = 0; i < length; i++) {
-                        $scope.userList.push(data[i]);
+                        $scope.userList.push(retdata.data[i]);
                     }
                 });
 
@@ -128,10 +129,10 @@
             $scope.userList = [];
             AdminService
                 .GetAllApproved()
-                .then((data) => {
-                    let length = data[0].length;
+                .then((retdata) => {
+                    let length = retdata.data[0].length;
                     for (let i = 0; i < length; i++) {
-                        $scope.userList.push(data[0][i]);
+                        $scope.userList.push(retdata.data[0][i]);
                     }
                 });
         }
