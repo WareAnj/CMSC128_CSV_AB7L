@@ -3,9 +3,9 @@
 		<div class="navbar-fixed">
 		<nav>
 		 	<div class="nav-wrapper container">
-		 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+		 		<a ng-href="/#/" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 		 		<ul id="nav-mobile">
-		 			<li><a href="/" class="brand-logos"><img id="logo" src="../assets/img/text2.png"></a></li>
+		 			<li><a ng-href="/#/" class="brand-logos"><img id="logo" src="../assets/img/text2.png"></a></li>
 		    	</ul>
 
 		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
@@ -15,10 +15,10 @@
 	    		<!-- SIDE NAV (WHEN VIEWED IN SMALLER SCREENS) -->
 
 		    	<ul id="mobile-demo" class="side-nav">
-		    		<div class="logo-img-side"><a href="#">
+		    		<div class="logo-img-side"><a ng-href="/#/">
 		    			<img id="logo-img-side" src="../assets/img/logo-2.png">
 		    		</a></div>
-		    		<li><a href="#" class="modal-trigger">Home</a></li>
+		    		<li><a ng-href="/#/" class="modal-trigger">Home</a></li>
 		    	</ul>
 		    </div>
 		</nav>
@@ -116,19 +116,6 @@
 
 		</main>
 
-		<footer class="page-footer white-text">
-			<div class="container">
-				<div class="row center">
-					<div class="col s12 m12 l7">
-						<p> CMSC 128 AB-7L. 2016. </p>
-					</div>
-					<div class="col s12 m12 l5">
-						<p> All rights reserved. </p>
-					</div>
-				</div>
-			</div>
-		</footer>
-
 		<!-- DIV FOR RESULTS -->
 		<div class="modal" id="modal1">
 			<div class="modal-content center">
@@ -151,12 +138,26 @@
 		<script>
 		  	//other functions are in randomize_notuser.js
 			$("#help").on('click', function(){
-		    $("#help-file").openModal();
-		  });
+			    $("#help-file").openModal();
+			});
+
+
 
 			$("#rand").on('click', function(){
-		    $("#modal1").openModal();
-		  });
+		    	if(Randomize() != 1)
+		    		$("#modal1").openModal();
+		    	else	
+					Materialize.toast("The list is empty!", 1000);
+		  	});
+
+
+		  	$("#rand_again").on('click', function(){
+				if(Randomize() != 1)
+		    		$("#modal1").openModal();
+		    	else	
+					Materialize.toast("The list is empty!", 1000);
+		  	});		  	
+
 
 			$('input[id=input]').keyup(function(){
 				tooltipAlert();
