@@ -160,7 +160,7 @@
 						var checkerArr = [];
 
 						var lines = this.result.split('\n');
-						var numlines = lines.length-1;
+						var numlines = lines.length;
 
 						//first loop for file validation
 						for(var line = 0; line < numlines; line++){
@@ -205,6 +205,7 @@
 							addToTable(string, stringFormatted);
 
 						}
+
 					};
 				reader.readAsText(file);
 				}

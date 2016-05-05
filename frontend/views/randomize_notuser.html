@@ -5,7 +5,7 @@
 		 	<div class="nav-wrapper container">
 		 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 		 		<ul id="nav-mobile">
-		 			<li><a href="/" class="brand-logos"><img id="logo" src="img/text2.png"></a></li>
+		 			<li><a href="/" class="brand-logos"><img id="logo" src="../assets/img/text2.png"></a></li>
 		    	</ul>
 
 		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
@@ -16,7 +16,7 @@
 
 		    	<ul id="mobile-demo" class="side-nav">
 		    		<div class="logo-img-side"><a href="#">
-		    			<img id="logo-img-side" src="img/logo-2.png">
+		    			<img id="logo-img-side" src="../assets/img/logo-2.png">
 		    		</a></div>
 		    		<li><a href="#" class="modal-trigger">Home</a></li>
 		    	</ul>
@@ -168,8 +168,12 @@
 				var string = document.getElementById('input').value.trim();
 				if(string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){
 					$('#add').attr('disabled', false);
+					$('#add').removeClass('btn waves-effect waves-light grey darken-2');
+					$('#add').addClass('btn waves-effect waves-light btn');
 				}else{
 					$('#add').attr('disabled', true);
+					$('#add').removeClass('btn waves-effect waves-light btn');
+					$('#add').addClass('btn waves-effect waves-light grey darken-2');
 				}
 			}
 		</script>
