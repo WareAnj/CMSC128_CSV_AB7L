@@ -45,7 +45,7 @@
                 'templateUrl' :   'views/randomize_notuser.html'
             })
             .otherwise({
-                'redirectTo'  :   '/'
+                'templateUrl'  :   'views/error_404.html'
             });
 
         // $locationProvider.html5Mode({
