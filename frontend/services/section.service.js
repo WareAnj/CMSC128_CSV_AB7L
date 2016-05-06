@@ -9,9 +9,39 @@
 
 	function SectionService($http, $q) {
 		let service = {};
+		service.Get_Lab_Sections = Get_Lab_Sections;
 		service.Get_Class_List = Get_Class_List;
 		service.Get_Student = Get_Student;
+		service.Get_Student_Per_Lab_Section = Get_Student_Per_Lab_Section;
 		return service;
+
+		function Get_Lab_Sections(course_id, name){
+			var deferred = $q.defer();
+
+			$http.get("/course/lecture/get_lab_sections?name=" + name + "&course_id=" + course_id)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Get Lab Sections");
+			});
+
+			return deferred.promise;
+		}
+
+		function Get_Student_Per_Lab_Section(course_code, name, section_code){
+			var deferred = $q.defer();
+
+			$http.get("/course/lecture/get_student_per_lab_section?course_code=" + course_code + "&name=" + name + "&section_code=" + section_code)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Students per Lab Sections");
+			});
+
+			return deferred.promise;
+		}
 
 		function Get_Class_List(course_id, name) {
 			let deferred = $q.defer();

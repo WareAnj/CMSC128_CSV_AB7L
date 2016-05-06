@@ -48,6 +48,9 @@ module.exports = (router) => {
     // lab routes
     router.get ('/course/lecture/get_lab_sections',                     $('Faculty User'), __.lecture.get_lab_sections);
 
+    // student routes
+    router.get ('/course/lecture/get_student_per_lab_section',          $('Faculty User'), __.lecture.get_student_per_lab_section);
+
     // CRUD of volunteers/students
     router.post('/faculty_user/post_volunteer/',                        $('Faculty User'),  __.faculty_user.post_volunteer);
     router.get ('/faculty_user/volunteers',                             $('Faculty User'),  __.faculty_user.get_volunteers);
@@ -101,7 +104,7 @@ module.exports = (router) => {
     router.get ('/admin/logout_logs/:faculty_user_id',                  $('Administrator'), __.admin.get_logout_logs_by_user);
 
     // route for CRUD students (integration)
-    router.get ('/edit',				                                             __.render_controller.edit);
+    // router.get ('/edit',				                                             __.render_controller.edit);
 
     // Unmatched route
     // router.all('*',                                                              __.render_controller.error_404);

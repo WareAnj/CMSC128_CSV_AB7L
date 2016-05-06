@@ -1,5 +1,5 @@
 <div>
-	<div data-ng-init="Get_User()">
+	<div ng-controller="CourseCtrl" data-ng-init="Get_User()">
 
 	<!-- NAV BAR -->
 	<div class="navbar">
@@ -27,8 +27,9 @@
 						</div>
 						<div class="center" ng-controller="HomeCtrl">
 							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
+
 						</div>
-				</div>
+					</div>
 		    </div>
 		</nav>
 	</div>
@@ -41,7 +42,7 @@
 						<ul class="tabs">
 							<li class="tab"><a href="#profile" class="black-text waves-effect waves-custom">Profile</a></li>
 							<li class="tab"><a href="#classes" class="black-text waves-effect waves-custom" ng-click="Get_Course()">Classes</a></li>
-							<li class="tab"><a href="#settings" class="black-text waves-effect waves-custom">Settings</a></li>
+							<li class="tab"><a href="#settings" class="black-text waves-effect waves-custom" onclick="$('select').material_select()">Settings</a></li>
 						</ul>
 					</div>
 					<!--PROFILE-->
@@ -78,7 +79,7 @@
 											<a title="Delete Course" class="btn-floating btn-large waves-effect waves-light white" ng-click="Delete_Course(course.id)">
 												<i class="material-icons custom-text text-darken-1">delete</i>
 											</a>
-											<a title="Update Course Details" class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(course.id)">
+											<a title="Update Course Details" class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(course)">
 												<i class="material-icons custom-text text-darken-1">mode_edit</i>
 											</a>
 											<a title="Add Lecture Class" class="btn-floating btn-large waves-effect waves-light white" ng-click="">
@@ -138,18 +139,15 @@
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-						          <input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" ng-model="course.course_code" required="required">
-											<label for="course-code-input" class="active" data-error="Course Code Already Exits!">Course Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						          <input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" ng-model="course.course_code" required="required" value={{selected_course_info.code}}>
 										</div>
 						      </div>
-						    </div>
-								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
 						          <input placeholder="New Course Title" type="text" ng-keyup="check_course_code_edit()" id="new-title-input" ng-model="course.course_title" required="required">
 						        </div>
 						      </div>
-						    </div>
+								</div>
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
@@ -159,7 +157,7 @@
 						      </div>
 						    </div>
 								<div class="modal-footer">
-									<button id="submit-button-edit" class="btn waves-effect waves-light" type="submit" disabled>Edit Course</button>
+									<button id="submit-button-edit" class="btn waves-effect waves-light" type="submit">Edit Course</button>
 								</div>
 							</form>
 				    </div>
@@ -203,9 +201,26 @@
 											</div>
 											<div class="col s12 m12 l4">
 												<div class="input-field">
-													<select id="classification-input" onclick="$('select').material_select()" ng-model="selectd.repeatSelect" ng-change="check_classification()">
+													<select id="classification-input" ng-model="selectd.repeatSelect" ng-change="check_classification()">
 														<option value="{{info.classification}}" selected="selected">{{info.classification}}</option>
-														<option ng-repeat="option in selectd.options" value="{{option.id}}">{{option.name}}</option>
+														<option value="Instructor I">Instructor I</option>
+														 <option value="Instructor II">Instructor II</option>
+														 <option value="Instructor III">Instructor III</option>
+														 <option value="Instructor IV">Instructor IV</option>
+														 <option value="Instructor V">Instructor V</option>
+														 <option value="Instructor VI">Instructor VI</option>
+														 <option value="Assistant Professor I">Assistant Professor I</option>
+														 <option value="Assistant Professor II">Assistant Professor II</option>
+														 <option value="Assistant Professor III">Assistant Professor III</option>
+														 <option value="Assistant Professor IV">Assistant Professor IV</option>
+														 <option value="Assistant Professor V">Assistant Professor V</option>
+														 <option value="Assistant Professor VI">Assistant Professor VI</option>
+														 <option value="Professor I">Professor I</option>
+														 <option value="Professor II">Professor II</option>
+														 <option value="Professor III">Professor III</option>
+														 <option value="Professor IV">Professor IV</option>
+														 <option value="Professor V">Professor V</option>
+														 <option value="Professor VI">Professor VI</option>
 													</select>
 													<label for="classification-input" class="black-text"><i class="material-icons left">perm_identity</i>Classification</label>
 												</div>
@@ -220,9 +235,10 @@
 				</div>
 			</div>
 		</main>
-		<script type="text/javascript" src="../bower_components/Materialize/bin/materialize.js"></script>
-	  	<script type="text/javascript" src="../assets/js/default.js"></script>
-	  	<script type="text/javascript" src="../assets/js/home.js"></script>
 	</div>
 </div>
+
+<script type="text/javascript" src="../bower_components/Materialize/bin/materialize.js"></script>
+<script type="text/javascript" src="../assets/js/home.js"></script>
+<script type="text/javascript" src="../assets/js/default.js"></script>
 <link type="text/css" rel="stylesheet" href="../assets/stylesheets/home.css">

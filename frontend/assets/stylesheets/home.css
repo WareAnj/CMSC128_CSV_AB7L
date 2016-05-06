@@ -39,8 +39,6 @@
   background-color: rgba(150, 163, 159, 0.7);
 }
 
-
-
 /* label color */
    .input-field label {
      color: black;
@@ -67,7 +65,7 @@
      box-shadow: 0 1px 0 0 black;
    color: black;
    }
-   
+
     /* label focus color */
    .input-field input[type=password]:focus + label {
      color: black;
@@ -90,7 +88,7 @@
      box-shadow: 0 1px 0 0 black;
    color: black;
    }
-   
+
    /* label focus color */
    .input-field input[type=email]:focus + label {
      color: black;
@@ -113,7 +111,7 @@
      box-shadow: 0 1px 0 0 black;
    color: black;
    }
-   
+
    /* icon prefix focus color */
    .input-field .prefix.active {
      color: black;
