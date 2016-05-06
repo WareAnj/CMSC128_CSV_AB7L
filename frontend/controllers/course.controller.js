@@ -25,6 +25,12 @@
     let omname;
     let olname;
     let uname;
+    let ocode;
+    let otitl;
+    let odesc;
+    let titlchged = false;
+    let codechged = false;
+    let descchged = false;
     let gnchanged = false;
     let mnchanged = false;
     let lnchanged = false;
@@ -140,7 +146,6 @@
       localStorage.setItem("course_id", course.id);
     }
 
-
     $scope.Edit_Course = function() {
       CourseService.Edit_Course(localStorage.getItem("course_id"), $scope.course)
         .then(function(data) {
@@ -173,6 +178,24 @@
           });
     }
 
+	$scope.check_course_code_changes = function(){
+		let ncode = document.querySelector("#new-code-input").value;
+		if(ocode===ncode) codechged = true;
+		else codechged = false;
+	}
+	
+	$scope.check_course_title_changes = function(){
+		let ntitl = document.querySelector("#new-title-input").value;
+		if(otitl===ntitl) titlchged = true;
+		else titlchged = false;
+	}
+	
+	$scope.check_course_description_changes = function(){
+		let ndesc = document.querySelector("#new-title-input").value;
+		if(odesc===ndesc) descchged = true;
+		else descchged = false;
+	}
+	
     $scope.Delete_Course = function(id) {
       CourseService.Delete_Course(id)
         .then(function(data){ });
