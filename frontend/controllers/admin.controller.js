@@ -136,5 +136,15 @@
                     }
                 });
         }
+
+        $scope.formatDate = (date) => {
+            var d = new Date(date);
+            var yyyy = d.getFullYear().toString();
+            var mm = (d.getMonth() + 1).toString();
+            var dd = d.getDate().toString();
+            var dateFormat = mm+"/"+dd+"/"+yyyy;
+            return dateFormat;
+        }
+
     }
 })();

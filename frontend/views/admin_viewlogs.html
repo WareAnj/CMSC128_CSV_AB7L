@@ -76,7 +76,7 @@
 				           {{user.username}}
 				       </td>
 				       <td data-title="date_login" id="dynamictd">
-				           <p>{{user.date_logout | date : 'MM/dd/yyyy'}}</p>
+				           {{user.date_logout}}
 				       </td>
 				   </tr>
 				</tbody>
@@ -115,7 +115,7 @@
 				           {{user.username}}
 				       </td>
 				       <td data-title="date_login" id="dynamictd">
-				           {{user.date_login}}
+				           {{ formatDate(user.date_login) }}
 				       </td>
 				   </tr>
 				</tbody>
