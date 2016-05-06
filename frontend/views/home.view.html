@@ -136,18 +136,15 @@
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-						          <input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" ng-model="course.course_code" required="required">
-											<label for="course-code-input" class="active" data-error="Course Code Already Exits!">Course Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						          <input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" ng-model="course.course_code" required="required" value="">
 										</div>
 						      </div>
-						    </div>
-								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
 						          <input placeholder="New Course Title" type="text" ng-keyup="check_course_code_edit()" id="new-title-input" ng-model="course.course_title" required="required">
 						        </div>
 						      </div>
-						    </div>
+								</div>
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
@@ -157,7 +154,7 @@
 						      </div>
 						    </div>
 								<div class="modal-footer">
-									<button id="submit-button-edit" class="btn waves-effect waves-light" type="submit" disabled>Edit Course</button>
+									<button id="submit-button-edit" class="btn waves-effect waves-light" type="submit">Edit Course</button>
 								</div>
 							</form>
 				    </div>
