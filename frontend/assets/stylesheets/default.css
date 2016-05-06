@@ -85,7 +85,7 @@ nav {
 }
 
 body {
-  display: flex;
+  display: flex !important;
   min-height: 100vh;
   flex-direction: column;
 }
@@ -93,7 +93,7 @@ body {
 main {
  	flex: 1 0 auto;
 	background-color: #E6EBE0;
-	margin-bottom: -4%;
+	min-height: calc(100vh - 64px - 76.5px);
 }
 
 #logo-text{
@@ -165,8 +165,16 @@ footer.page-footer{
 	height: 20%;
 }
 
+footer.page-footer {
+	margin-top: 0px !important;
+}
+
 @media only screen and (max-width: 350px) {
   #logo {
     width: 200px !important; /* for smaller screens */
   }
+}
+
+.no-margin {
+	margin: 0 !important;
 }
