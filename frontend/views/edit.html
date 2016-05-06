@@ -57,13 +57,13 @@
 			<div class="col s12" style="padding: 0;">
 				<ul class="tabs " style="overflow-x: hidden;">
 					<li class="tab col s3" ng-repeat="lab in lab_sections_info">
-						<a href="#first-table">{{lab.course_code}} {{lab.section_name}} - {{lab.section_code}}</a>
+						<a ng-click="Get_Student_Per_Lab_Section(lab.section_code)" href="#first-table">{{lab.course_code}} {{lab.section_name}} - {{lab.section_code}}</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 
-		<div class="row hoverable" id="first-table" style="overflow: auto; height: 60vh; ">
+		<div class="row hoverable"  id="first-table" style="overflow: auto; height: 60vh; ">
 			<table class="highlight centered responsive-table white striped">
 		        <thead>
 		          <tr>
@@ -76,233 +76,17 @@
 		          </tr>
 		        </thead>
 
-		        <tbody>
+		        <tbody ng-repeat="lab_student in student_per_lab">
 		         	<tr>
-		            <td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
+		            <td>{{lab_student.student_number}}</td>
+		            <td>{{lab_student.given_name}} {{lab_student.last_name}}</td>
+		            <td>{{lab_student.degree}}</td>
+		            <td>{{lab_student.classification}}</td>
+		            <td>{{lab_student.college}}</td>
 		            <td>
 		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
 			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
-		           </td>
-		          </tr>
-		          <tr>
-		            <td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-
-		           </td>
-		          </tr>
-		          <tr>
-		            <td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-
-		           </td>
-		          </tr>
-		          <tr>
-		            <td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-
-		           </td>
-		          </tr>
-		           <tr>
-		            <td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-
-		           </td>
-		          </tr>
-		          <tr>
-		            <td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-
-		           </td>
-		          </tr>
-		          <tr>
-		            <td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-
-		           </td>
-		          </tr>
-		          <tr>
-		            <td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-
-		           </td>
-		          </tr>
-		          <tr>
-		            <td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-
-		           </td>
-		          </tr>
-		          <tr>
-		            <td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-
-		           </td>
-		          </tr>
-		          <tr>
-		            <td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-
-		           </td>
-		          </tr>
-		          <tr>
-		            <td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-
-		           </td>
-		          </tr>
-		        </tbody>
-		      </table>
-		</div>
-
-		<div class="row hoverable" id="second-table" style="overflow: auto; height: 60vh;">
-			<table class="highlight centered responsive-table white striped">
-		        <thead>
-		          <tr>
-		              <th data-field="stdnumber">Student Number</th>
-		              <th data-field="name">Name</th>
-		              <th data-field="degree">Degree</th>
-		              <th data-field="classification">Classification</th>
-		              <th data-field="college">College</th>
-		              <th data-field="action">Action</th>
-		          </tr>
-		        </thead>
-
-		        <tbody>
-		          <tr>
-		            <td>2013-12345</td>
-		            <td>YAZITY</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		            	<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-		            	<a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-		           </td>
-		          </tr>
-		          <tr>
-		            <td>2013-12345</td>
-		            <td>YAZITY</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		            	<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-		            	<a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-		           </td>
-		          </tr>
-		          <tr>
-		           	<td>2013-12345</td>
-		            <td>Joe YAZITY</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		            	<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-		            	<a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-		           </td>
-		          </tr>
-		           <tr>
-		           	<td>2013-12345</td>
-		            <td>Joe YAZITY</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		            	<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-		            	<a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-		           </td>
-		          </tr>
-		           <tr>
-		           	<td>2013-12345</td>
-		            <td>Joe Chill</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		            	<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-		            	<a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
-		           </td>
-		          </tr>
-		           <tr>
-		           	<td>2013-12345</td>
-		            <td>Batang list</td>
-		            <td>BSCS</td>
-		            <td>Junior</td>
-		            <td>CAS</td>
-		            <td>
-		            	<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-		            	<a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 		           </td>
 		          </tr>
 		        </tbody>

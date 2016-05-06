@@ -219,3 +219,33 @@ exports.get_lab_sections = (req, res, next) => {
   start();
 
 };
+
+exports.get_student_per_lab_section = (req, res, next) => {
+  const data = {
+      course_code:           req.query.course_code,
+      name:                  req.query.name,
+      section_code:          req.query.section_code
+  };
+
+  function start () {
+      db.query([
+                  'SELECT * FROM student st, student_section ss',
+                  'WHERE ss.section_id = (SELECT id FROM section WHERE course_id = ',
+                  '(SELECT id FROM course WHERE code = ?) and',
+                  'name = ? and code = ?) and st.id = ss.student_id;'
+               ].join(' '),
+               [data.course_code, data.name, data.section_code],
+                send_response);
+  }
+
+  function send_response (err, result, args, last_query) {
+      if (err) {
+          winston.error('Error in getting students per lab section', last_query);
+          return next(err);
+      }
+      res.send(result);
+  }
+
+  start();
+
+};

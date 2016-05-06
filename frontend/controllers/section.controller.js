@@ -12,6 +12,7 @@
     $scope.lab_sections_info = [];
     $scope.student_info = [];
     $scope.student = [];
+    $scope.student_per_lab = [];
 
     $scope.Get_Lab_Sections = function() {
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
@@ -25,6 +26,20 @@
              });
            }
            console.log($scope.lab_sections_info);
+        });
+     }
+
+     $scope.Get_Student_Per_Lab_Section = function(section_code) {
+        console.log(section_code);
+        
+        localStorage.setItem("section_code", section_code)
+       SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
+         .then(function(data) {
+          $scope.student_per_lab = [];
+           for(var i = 0 ; i < data.length; i++){
+             $scope.student_per_lab.push(data[i]);
+           }
+           console.log($scope.student_per_lab);
         });
      }
 
