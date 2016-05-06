@@ -73,6 +73,11 @@
 			
 
 			$("#clear").click(function(){
+				var checker = confirm("Confirm Clear All Fields");
+
+				if(!checker)
+					return;
+
 				arr = [];
 				document.getElementById('file').value = "";
 				document.getElementById('text-file-area').value = "";
