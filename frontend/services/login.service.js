@@ -16,7 +16,7 @@
 		function LoginAsAdmin(admin) {
 			let deferred = $q.defer();
 
-				$http.post('/admin/authenticate_login', admin)
+				$http.post('http://reginyzr-uplb.rhcloud.com/' + '/admin/authenticate_login', admin)
 						.then((data) => {
 							deferred.resolve(data);
 						}, (error) => {
