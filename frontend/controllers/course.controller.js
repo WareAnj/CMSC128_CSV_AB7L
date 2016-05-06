@@ -152,6 +152,9 @@
     $scope.Edit_Course = function() {
       if(!(codechged||titlchged||descchged))
       	return;
+      $scope.course.course_code = document.querySelector('#new-code-input').value;
+      $scope.course.course_title = document.querySelector('#new-title-input').value;
+      $scope.course.course_description = document.querySelector('#new-desc-input').value;
       CourseService.Edit_Course(localStorage.getItem("course_id"), $scope.course)
         .then(function(data) {
           $scope.course.course_code = "";
