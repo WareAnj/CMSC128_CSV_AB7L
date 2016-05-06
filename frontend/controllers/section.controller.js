@@ -5,12 +5,28 @@
     .module('app')
     .controller('SectionCtrl', SectionCtrl);
 
-  SectionCtrl.$inject = ["$scope", "$location", "$http", "SectionService"];
+  SectionCtrl.$inject = ["$scope", "$location", "$http", "SectionService", "$route"];
 
-  function SectionCtrl($scope, $location, $http, SectionService) {
+  function SectionCtrl($scope, $location, $http, SectionService, $route) {
     $scope.section_info = [];
+    $scope.lab_sections_info = [];
     $scope.student_info = [];
     $scope.student = [];
+
+    $scope.Get_Lab_Sections = function() {
+       SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
+         .then(function(data) {
+          $scope.lab_sections_info = [];
+           for(var i = 0 ; i < data.length; i++){
+             $scope.lab_sections_info.push({
+               'course_code' : localStorage.getItem('course_code'),
+               'section_name' :  localStorage.getItem("section_name"),
+               'section_code':  data[i].code
+             });
+           }
+           console.log($scope.lab_sections_info);
+        });
+     }
 
     $scope.Get_Class_List = function() {
       SectionService.Get_Class_List(localStorage.getItem("course_id"), localStorage.getItem("section_name"))

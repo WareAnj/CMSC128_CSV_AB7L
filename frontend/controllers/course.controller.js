@@ -5,9 +5,9 @@
     .module('app')
     .controller('CourseCtrl', CourseCtrl);
 
-  CourseCtrl.$inject = ["$scope", "$location", "$http", "CourseService"];
+  CourseCtrl.$inject = ["$scope", "$location", "$http", "CourseService", "$route"];
 
-  function CourseCtrl($scope, $location, $http, CourseService) {
+  function CourseCtrl($scope, $location, $http, CourseService, $route) {
     $scope.faculty_user_courses = [];
     $scope.faculty_user_info = [];
 
@@ -193,6 +193,8 @@
       localStorage.setItem("course_description", c_desc);
       localStorage.setItem("section_name", section_name);
       window.location.href='#/class';
+      $('.showsidenav').sideNav('hide');
+      $route.reload();
     }
 
     // Update USER Details
