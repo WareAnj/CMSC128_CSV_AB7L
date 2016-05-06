@@ -1,4 +1,4 @@
-use reginyzr;
+use cmsc128ab7l;
 
 INSERT INTO admin(id, username, password) VALUES (1, 'admin', SHA1('admin'));
 
