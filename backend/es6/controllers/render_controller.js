@@ -29,7 +29,7 @@ exports.randomizer_notuser = (req, res, next) =>{
 };
 
 exports.home = (req, res, next) =>{
-	res.render('home');
+	res.render('home', {cssfile: req.session.user.design_setting});
 };
 
 exports.admin = (req, res, next) => {
