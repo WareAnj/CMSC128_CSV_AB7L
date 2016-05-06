@@ -178,12 +178,21 @@
     }
 
 	$scope.check_course_code_changes = function(){
+		let ncode = document.querySelector("#new-code-input").value;
+		if(ocode===ncode) codechged = true;
+		else codechged = false;
 	}
 	
 	$scope.check_course_title_changes = function(){
+		let ntitl = document.querySelector("#new-title-input").value;
+		if(otitl===ntitl) titlchged = true;
+		else titlchged = false;
 	}
 	
 	$scope.check_course_description_changes = function(){
+		let ndesc = document.querySelector("#new-title-input").value;
+		if(odesc===ndesc) descchged = true;
+		else descchged = false;
 	}
 	
     $scope.Delete_Course = function(id) {
