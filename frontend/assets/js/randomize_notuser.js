@@ -12,12 +12,12 @@
 				}
 
 				if(arr.length == 10){
-					Materialize.toast("List is already full", 1000);
+					Materialize.toast("List is already full", 3000);
 					return;
 				}
 
 				if(inArray(string, arr)){
-					Materialize.toast(string + " is already in the list", 1000);
+					Materialize.toast(string + " is already in the list", 3000);
 					return;
 				}
 
@@ -73,6 +73,11 @@
 			
 
 			$("#clear").click(function(){
+				var checker = confirm("Confirm Clear All Fields");
+
+				if(!checker)
+					return;
+
 				arr = [];
 				document.getElementById('file').value = "";
 				document.getElementById('text-file-area').value = "";
@@ -151,7 +156,7 @@
 					//checking file type
 					var ext = $('#file').val().split('.').pop().toLowerCase();
 					if($.inArray(ext, ['txt']) == -1) {
-					    alert('Only .txt files are allowed!');
+					    Materialize.toast("Only .txt files are allowed", 3000);
 					    return;
 					}
 
@@ -167,27 +172,27 @@
 							var string = lines[line].trim();
 
 							if(numlines > 10){
-								alert("Input file have more than 10 lines");
+								Materialize.toast("Input file have more than 10 lines", 3000);
 								return;
 							}
 
 							if(!string.match(/^[A-Za-z][A-Za-z\,\.\'\-\s]*$/)){
-								alert("Input file contains invalid characters!");
+								Materialize.toast("Input file contains invalid characters", 3000);
 								return;
 							}
 
 							if(arr.length + numlines > 10){
-								alert("Input file's number of names will exceed the limit");
+								Materialize.toast("Input file's number of names will exceed the limit", 3000);
 								return;
 							}
 
 							if(inArray(string, checkerArr)){
-								alert("Input file has duplicates!");
+								Materialize.toast("Input file has duplicates", 3000);
 								return;
 							}
 
 							if(inArray(string, arr)){
-								alert("Input file has duplicates with the names in the list!");
+								Materialize.toast("Input file has duplicates with the names in the list", 3000);
 								return;
 							}
 
@@ -209,7 +214,7 @@
 				reader.readAsText(file);
 				}
 				else {
-					alert('The File APIs are not fully supported by your browser.');
+					Materialize.toast("The File APIs are not fully supported by your browser", 3000);
 				}
 			};			
 			

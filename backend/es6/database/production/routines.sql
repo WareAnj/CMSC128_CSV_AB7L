@@ -51,11 +51,10 @@ DELIMITER $$
 CREATE PROCEDURE LOGIN (_username VARCHAR(32), _password VARCHAR(32))
 BEGIN
 	SELECT id, username, IF(SHA1(_password) = password, TRUE, FALSE) AS is_password_valid, employee_id,
-	classification, given_name, middle_name, last_name, is_approved, date_approved
+	classification, given_name, middle_name, design_setting, last_name, is_approved, date_approved
 	FROM faculty_user WHERE username = _username;
 END $$
 DELIMITER ;
-
 
 -- ADMIN_LOGIN procedure
 DROP PROCEDURE IF EXISTS ADMIN_LOGIN;
@@ -375,11 +374,13 @@ BEGIN
 	IF (SELECT COUNT(*) FROM section s, course c WHERE c.id = s.course_id AND c.code = _course_code AND s.name = _name) THEN
 		SELECT CONCAT('Lecture section ', _name, ' under ', _course_code, ' already exists') AS message;
 	ELSE
-        SELECT c.title INTO _course_title, c.description INTO _course_description
-        FROM faculty_user_course fc, course c
-        WHERE c.id = fc.course_id AND c.code = _course_code AND fc.faculty_user_id = _faculty_user_id;
+		SELECT c.title INTO _course_title
+		FROM faculty_user_course fc, course c
+		WHERE c.id = fc.course_id AND c.code = _course_code AND fc.faculty_user_id = _faculty_user_id;
 
-        INSERT INTO course (code, title, description) VALUES (_course_code, _course_title, _course_description);
+		SELECT c.description INTO _course_description
+		FROM faculty_user_course fc, course c
+		WHERE c.id = fc.course_id AND c.code = _course_code AND fc.faculty_user_id = _faculty_user_id;
 
 		SELECT LAST_INSERT_ID() INTO _course_id;
 

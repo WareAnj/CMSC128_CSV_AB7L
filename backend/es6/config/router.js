@@ -104,7 +104,7 @@ module.exports = (router) => {
     router.get ('/admin/logout_logs/:faculty_user_id',                  $('Administrator'), __.admin.get_logout_logs_by_user);
 
     // route for CRUD students (integration)
-    router.get ('/edit',				                                             __.render_controller.edit);
+    // router.get ('/edit',				                                             __.render_controller.edit);
 
     // Unmatched route
     // router.all('*',                                                              __.render_controller.error_404);
