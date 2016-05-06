@@ -76,6 +76,12 @@ table{
     background-color: initial;
 }
 
+#selectfile-image{
+    height: 75%;
+    width: 80%;
+}
+
+
 #table button{
     opacity: 0;
 }
