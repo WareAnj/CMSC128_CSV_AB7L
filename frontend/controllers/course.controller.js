@@ -25,6 +25,12 @@
     let omname;
     let olname;
     let uname;
+    let ocode;
+    let otitl;
+    let odesc;
+    let titlchged = false;
+    let codechged = false;
+    let descchged = false;
     let gnchanged = false;
     let mnchanged = false;
     let lnchanged = false;
@@ -139,7 +145,6 @@
       localStorage.setItem("course_id", course.id);
     }
 
-
     $scope.Edit_Course = function() {
       CourseService.Edit_Course(localStorage.getItem("course_id"), $scope.course)
         .then(function(data) {
@@ -172,6 +177,15 @@
           });
     }
 
+	$scope.check_course_code_changes = function(){
+	}
+	
+	$scope.check_course_title_changes = function(){
+	}
+	
+	$scope.check_course_description_changes = function(){
+	}
+	
     $scope.Delete_Course = function(id) {
       CourseService.Delete_Course(id)
         .then(function(data){ });
