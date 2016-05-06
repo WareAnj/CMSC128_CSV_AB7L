@@ -35,6 +35,7 @@
   				$scope.newFacultyUser.classification = '0';
   				$("#confirmpassword").attr('disabled', 'disabled');
   				$("#submit-button").attr('disabled', 'disabled');
+          $("#submit-button").addClass("disabled");
   				$('#signupModal').closeModal();
   				$('#classificationinput').val("");
 				  $scope.faculty_user_data.push(data);
@@ -58,6 +59,7 @@
   				$("#nameinput").removeClass('invalid');
   			}
   			$("#submit-button").attr('disabled', 'disabled');
+        $("#submit-button").addClass("disabled");
         uname = false;
         return;
   		}
@@ -66,6 +68,7 @@
 				  $("#nameinput").addClass('invalid');
 			  }
 			  $("#submit-button").attr('disabled', 'disabled');
+        $("#submit-button").addClass("disabled");
 			  uname = false;
 			  return;
   		}
@@ -78,6 +81,7 @@
             					$("#nameinput").addClass('invalid');
             				}
     					      $("#submit-button").attr('disabled', 'disabled');
+                    $("#submit-button").addClass("disabled");
             			  uname = false;
           		    } else {
           			    if($("#nameinput").hasClass('invalid')) {
@@ -86,6 +90,7 @@
             		    uname = true;
             		    if(fname && mname && lname && uname && pword && cword && empid && clasfn) {
             			     $("#submit-button").removeAttr('disabled');
+                       $("#submit-button").removeClass("disabled");
                     }
           		    }
   			        }
@@ -99,6 +104,7 @@
   				$("#employeeinput").removeClass('invalid');
   			}
   			$("#submit-button").attr('disabled', 'disabled');
+        $("#submit-button").addClass("disabled");
         empid = false;
   			return;
   		}
@@ -109,6 +115,7 @@
   				        if (response.data) {
 					          if(!($("#employeeinput").hasClass('invalid'))) {
 						          $("#employeeinput").addClass('invalid');
+                      $("#submit-button").addClass("disabled");
 					          }
   					        empid = false;
           		    } else {
@@ -118,6 +125,7 @@
             		    empid = true;
             		    if(fname && mname && lname && uname && pword && cword && empid && clasfn){
             			    $("#submit-button").removeAttr('disabled');
+                      $("#submit-button").removeClass("disabled");
                     }
           		   }
   			       }
@@ -128,12 +136,14 @@
   		let firstName = document.querySelector("#fname-input").value;
   		if (firstName==="") {
   			$("#submit-button").attr('disabled', 'disabled');
+        $("#submit-button").addClass("disabled");
   			fname = false;
   			return;
   		} else {
   			fname = true;
   			if(fname && mname && lname && uname && pword && cword && empid && clasfn){
             		$("#submit-button").removeAttr('disabled');
+                $("#submit-button").removeClass("disabled");
         }
   		}
   	}
@@ -142,12 +152,14 @@
   		let middleName = document.querySelector("#mname-input").value;
   		if (middleName==="") {
   			$("#submit-button").attr('disabled', 'disabled');
+        $("#submit-button").addClass("disabled");
   			mname = false;
   			return;
   		} else {
   			mname = true;
   			if(fname && mname && lname && uname && pword && cword && empid && clasfn) {
             	$("#submit-button").removeAttr('disabled');
+              $("#submit-button").removeClass("disabled");
         }
   		}
   	}
@@ -156,12 +168,14 @@
   		let lastName = document.querySelector("#lname-input").value;
   		if (lastName==="") {
   			$("#submit-button").attr('disabled', 'disabled');
+        $("#submit-button").addClass("disabled");
   			lname = false;
   			return;
   		} else {
   			lname = true;
   			if(fname && mname && lname && uname && pword && cword && empid && clasfn) {
             		$("#submit-button").removeAttr('disabled');
+                $("#submit-button").removeClass("disabled");
         }
   		}
   	}
@@ -177,6 +191,7 @@
   				$("#passwordinput").removeClass('invalid');
   			}
   			$("#submit-button").attr('disabled', 'disabled');
+        $("#submit-button").addClass("disabled");
   			$("#confirmpassword").attr('disabled', 'disabled');
   			pword = false;
   			return;
@@ -192,6 +207,7 @@
   			$("#confirmpassword").removeAttr('disabled');
   			if(fname && mname && lname && uname && pword && cword && empid && clasfn) {
             		$("#submit-button").removeAttr('disabled');
+                $("#submit-button").removeClass("disabled");
         }
   		}
   	}
@@ -209,6 +225,7 @@
   			cword = true;
   			if(fname && mname && lname && uname && pword && cword && empid && clasfn) {
             		$("#submit-button").removeAttr('disabled');
+                $("#submit-button").removeClass("disabled");
         }
   		}	else {
   			if(!($("#confirmpassword").hasClass('invalid'))) {
@@ -218,6 +235,7 @@
   				$("#passwordinput").addClass('invalid');
   			}
   			$("#submit-button").attr('disabled', 'disabled');
+        $("#submit-button").addClass("disabled");
   			cword = false;
   			return;
   		}
@@ -227,12 +245,14 @@
   		let classific = document.querySelector("#classificationinput").value;
   		if (classific==="") {
   			$("#submit-button").attr('disabled', 'disabled');
+        $("#submit-button").addClass("disabled");
   			clasfn = false;
   			return;
   		}	else {
   			clasfn = true;
   			if(fname && mname && lname && uname && pword && cword && empid && clasfn) {
             		$("#submit-button").removeAttr('disabled');
+                $("#submit-button").removeClass("disabled");
         }
   		}
   	}

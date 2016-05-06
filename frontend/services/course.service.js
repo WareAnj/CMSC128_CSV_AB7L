@@ -67,7 +67,7 @@
 
 		function Edit_Course(id, course) {
 			let deferred = $q.defer();
-
+			
 			$http.put("course/put_course?id=" + id, course)
 			.success(function(data) {
 				deferred.resolve(data);
