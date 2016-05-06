@@ -109,25 +109,16 @@ exports.delete_course = (req, res, next) => {
   };
 
   function start () {
-      db.query([
-                  'DELETE from faculty_user_course',
-                  'WHERE course_id = ?;'
-               ].join(' '),
+      db.query('CALL DELETE_STUDENT (?)',
                [data.id],
                 send_response);
   }
 
   function send_response (err, result, args, last_query) {
       if (err) {
-          winston.error('Error in retriving a course', last_query);
+          winston.error('Error in deleting a course', last_query);
           return next(err);
       }
-
-      db.query([
-                  'DELETE from course',
-                  'WHERE id = ?;'
-               ].join(' '),
-               [data.id]);
 
       res.send(result);
   }

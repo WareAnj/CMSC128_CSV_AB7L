@@ -4,24 +4,24 @@
 		<nav>
 		 	<div class="nav-wrapper container">
 		 		<ul>
-		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
+		    		<li><a data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
 		    	</ul>
 		    	<ul class="right">
-		    		<a href"/admin_approve">Pending Users<span class="new badge">3</span></a> <!-- to be worked on -->
+		    		<a ng-click="redirect('/admin/view-pending')">Pending Users<span class="new badge">3</span></a> <!-- to be worked on -->
 		    	</ul>
-	    		<!-- SIDE NAV  -->
+				<!-- SIDE NAV  -->
 				<div id="slide-out" class="side-nav center">
 					<div class = "center">
-						<a href="/admin" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Home</a>
+						<a class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="redirect('/admin')">Home</a>
 					</div>
 					<div class = "center">
-						<a href="/admin_approve" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Pending Users</a>
+						<a class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="redirect('/admin/view-pending')" >View Pending Users</a>
 					</div>
 					<div class = "center">
-						<a href="/admin_viewusers" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Approved Users</a>
+						<a class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="redirect('/admin/view-logs')">View Logs</a>
 					</div>
 					<div class = "center">
-						<a href="/admin_viewlogs" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">View Logs</a>
+						<a class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="redirect('/admin/view-approved')">View Approved Users</a>
 					</div>
 					<div class = "center">
 						<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
@@ -30,6 +30,7 @@
 		    </div>
 		</nav>
 	</div>
+
 	<div class="container">
 		<table data-ng-init="GetAllApproved()" ng-table="usersTable" show-filter="true" id="admintable" class="highlight responsive-table bordered centered stripped">
 			<thead>
@@ -91,5 +92,13 @@
 			</tbody>
 		</table>
 	</div>
+	<script type="text/javascript">
+		$('.showsidenav').sideNav({
+			menuWidth: 350, // Default is 240
+		});
+		$(document).ready(function(){
+			$('ul.tabs').tabs();
+		});
+	</script>
 </div>
 <link type="text/css" rel="stylesheet" href="../assets/stylesheets/admin_tables.css">

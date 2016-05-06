@@ -10,6 +10,7 @@
   function CourseCtrl($scope, $location, $http, CourseService, $route) {
     $scope.faculty_user_courses = [];
     $scope.faculty_user_info = [];
+    $scope.selected_course_info = [];
 
     let c_code_add;
     let c_title_add;
@@ -36,7 +37,12 @@
         .then(function(data){
           $scope.faculty_user_info = [];
           $scope.faculty_user_info.push(data);
-          localStorage.setItem("user_id", data.id);
+          localStorage.setItem("user_id", "");
+          localStorage.setItem("course_id", "");
+          localStorage.setItem("course_code", "");
+          localStorage.setItem("course_title", "");
+          localStorage.setItem("course_description", "");
+          localStorage.setItem("section_name", "");
           user_id = data.id;
           oclass = data.classification;
           ogname = data.given_name;
@@ -125,9 +131,12 @@
          });
     }
 
-    $scope.openModal = function(c_id) {
+    $scope.openModal = function(course) {
       $("#editModal").openModal();
-      localStorage.setItem("course_id", c_id);
+      document.querySelector('#new-code-input').value = course.code;
+      document.querySelector('#new-title-input').value = course.title;
+      document.querySelector('#new-desc-input').value = course.description;
+      localStorage.setItem("course_id", course.id);
     }
 
 
@@ -138,6 +147,7 @@
           $scope.course.course_title = "";
           $scope.course.course_description = "";
           $('#editModal').closeModal();
+          $scope.selected_course_info = [];
         });
         Materialize.toast('Course Details Updated!', 5000, 'rounded');
 
