@@ -93,7 +93,6 @@ body {
 main {
  	flex: 1 0 auto;
 	background-color: #E6EBE0;
-	margin-bottom: -4%;
 	min-height: calc(100vh - 64px - 76.5px);
 }
 
@@ -174,4 +173,8 @@ footer.page-footer {
   #logo {
     width: 200px !important; /* for smaller screens */
   }
+}
+
+.no-margin {
+	margin: 0 !important;
 }
