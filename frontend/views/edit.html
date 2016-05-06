@@ -2,38 +2,58 @@
 	<!-- NAV BAR -->
 	<nav>
 	 	<div class="nav-wrapper container">
-	 		<ul id="slide-out" class="side-nav">
-			    <li><a href="#!">View Classes</a></li>
-			     <li><a href="#!">Edit Classes</a></li>
-			     <li>
-			     	<div class="center">
-			     		<button class="waves-effect waves-light btn" id="logout-btn" ng-click="logout()">logout</button>
-			   		</div>
-			     </li>
-		  	  	</ul>
-		   	 <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu marginize"></i></a>
+			<!-- SIDE NAV -->
+			<ul>
+				<li><a data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
+			</ul>
 
+			<!-- <div id="slide-out" class="side-nav center" ng-controller="CourseCtrl" data-ng-init="Get_Course()">
+				<img id="sidenav-logo" src="../assets/img/logo-2.png">
+				<div ng-repeat="info in faculty_user_info">
+					<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
+				</div>
+				<div ng-repeat="course in faculty_user_courses">
+					<div ng-repeat="lecture in course.lecture">
+						<a href="#/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
+					</div>
+				</div>
+				<div class = "center">
+					<a ng-click="Logout()" ng-controller="HomeCtrl" onclick="$('showsidenav').sideNav('hide');" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
+				</div>
+			</div> -->
+
+			<!-- <ul id="slide-out" class="side-nav">
+				<li><a href="#!">View Classes</a></li>
+				<li><a href="#!">Edit Classes</a></li>
+				<li>
+					<div class="center">
+						<button class="waves-effect waves-light btn" id="logout-btn" ng-click="logout()">logout</button>
+					</div>
+				</li>
+			</ul> -->
+
+			<!-- REGINYZR LOGO -->
 	 		<ul id="nav-mobile">
-	    		<li><a href="/" class="brand-logos"><img id="logo" src="../assets/img/text2.png"></a></li>
-	    	</ul>
-	    </div>
+	    	<li><a href="#/home" class="brand-logos"><img id="logo" src="../assets/img/text2.png"></a></li>
+	    </ul>
+	  </div>
 	</nav>
 
-		<main>
-
-
 	<!-- MAIN BODY -->
-	<div id="nav-container" class="container">
-		<div class="row">
+	<main>
+	<div id="nav-container" class="container" ng-controller="SectionCtrl">
+		<!-- <div class="row">
 			<div class="input-field col s1">
-				<a href="#add-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">add</i> </a>
+				<a href="#add-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">add</i></a>
 			</div>
 			<div class="input-field col s11">
 				<input id="search-bar" type="text" class="search">
 				<label for="search-bar" class="center-align valign"> Search </label>
-			</div>
-		</div>
-		<div class="row">
+		  </div>
+	  </div> -->
+
+		<!-- LAB SECTIONS -->
+		<div class="row"  data-ng-init="Get_Lab_Sections()">
 			<div class="col s12" style="padding: 0;">
 				<ul class="tabs " style="overflow-x: hidden;">
 					<li class="tab col s3"><a href="#first-table">Class 1</a></li>
@@ -408,27 +428,15 @@
 
 
 		</main>
-
-		<footer class="page-footer">
-			<div class="container">
-				<div class="row center">
-					<div class="col s12 m12 l7">
-					footer content
-					</div>
-					<div class="col s12 m12 l5">
-					more footer content
-					</div>
-				</div>
-			</div>
-		</footer>
-
-		<script>
-		$(document).ready(function(){
-	    	  $('ul.tabs').tabs();
- 	     	  $('.modal-trigger').leanModal();
-	 	});
-	 	$(document).ready(function() {
-    	$('select').material_select();
- 		});
-		</script>
 </div>
+
+<script>
+$(document).ready(function(){
+	$('ul.tabs').tabs();
+	$('.modal-trigger').leanModal();
+	$('select').material_select();
+	$('.showsidenav').sideNav();
+});
+
+
+</script>
