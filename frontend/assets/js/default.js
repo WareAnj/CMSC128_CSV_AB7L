@@ -17,5 +17,5 @@ $(document).ready(function(){
 });
 
 $(document).on('click', '#logout-button', function() {
-	$("#profile").remove();
+	$("#profile-setting").remove();
 });
