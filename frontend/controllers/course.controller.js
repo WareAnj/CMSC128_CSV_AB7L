@@ -36,7 +36,12 @@
         .then(function(data){
           $scope.faculty_user_info = [];
           $scope.faculty_user_info.push(data);
-          localStorage.setItem("user_id", data.id);
+          localStorage.setItem("user_id", "");
+          localStorage.setItem("course_id", "");
+          localStorage.setItem("course_code", "");
+          localStorage.setItem("course_title", "");
+          localStorage.setItem("course_description", "");
+          localStorage.setItem("section_name", "");
           user_id = data.id;
           oclass = data.classification;
           ogname = data.given_name;
