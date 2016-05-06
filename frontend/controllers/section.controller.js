@@ -13,10 +13,6 @@
     $scope.student_info = [];
     $scope.student = [];
 
-    $scope.Reload_Page = function(){
-      $route.reload();
-    }
-
     $scope.Get_Lab_Sections = function() {
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
          .then(function(data) {
