@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS reginyzr;
 CREATE DATABASE reginyzr;
-USE reginyzr
+USE reginyzr;
 
 
 -- Table 'admin'
