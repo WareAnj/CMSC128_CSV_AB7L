@@ -83,7 +83,7 @@
 				           {{user.classification}}
 				       </td>
 				       <td data-title="date_signed_up" >
-				           {{user.date_signed_up}}
+				           {{formatDate(user.date_signed_up)}}
 				       </td>
 				       <td data-title="approve_button">
 				           <button id="{{user.username}}" class="waves-effect waves-light btn material-icons" ng-click="ApproveUser(user.id, user.username)">done</button>
