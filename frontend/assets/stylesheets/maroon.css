@@ -5,13 +5,15 @@ nav {
 
 main {
  	flex: 1 0 auto;
-	background-color: #c7ad88;
+	background-color: #E3CBC7;
 	margin-bottom: -2%;
+}
+
+#home-content .tabs, #home-content .custom.lighten-1{
+	background-color: #BB8E86 !important;
 }
 
 footer.page-footer{
 	padding: 2px;
-	background-color: #64706c;
+	background-color: #270600;
 }
-
-/* MODALS */
