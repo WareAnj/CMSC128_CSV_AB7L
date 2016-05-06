@@ -56,10 +56,9 @@
 		<div class="row"  data-ng-init="Get_Lab_Sections()">
 			<div class="col s12" style="padding: 0;">
 				<ul class="tabs " style="overflow-x: hidden;">
-					<li class="tab col s3"><a href="#first-table">Class 1</a></li>
-					<li class="tab col s3"><a class="active" href="#second-table">Class 2</a></li>
-					<li class="tab col s3"><a href="#">Class 3</a></li>
-					<li class="tab col s3"><a href="#">Class 4</a></li>
+					<li class="tab col s3" ng-repeat="lab in lab_sections_info">
+						<a href="#first-table">{{lab.course_code}} {{lab.section_name}} - {{lab.section_code}}</a>
+					</li>
 				</ul>
 			</div>
 		</div>
