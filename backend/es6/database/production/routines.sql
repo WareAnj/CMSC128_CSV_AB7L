@@ -51,11 +51,10 @@ DELIMITER $$
 CREATE PROCEDURE LOGIN (_username VARCHAR(32), _password VARCHAR(32))
 BEGIN
 	SELECT id, username, IF(SHA1(_password) = password, TRUE, FALSE) AS is_password_valid, employee_id,
-	classification, given_name, middle_name, last_name, is_approved, date_approved
+	classification, given_name, middle_name, design_setting, last_name, is_approved, date_approved
 	FROM faculty_user WHERE username = _username;
 END $$
 DELIMITER ;
-
 
 -- ADMIN_LOGIN procedure
 DROP PROCEDURE IF EXISTS ADMIN_LOGIN;
