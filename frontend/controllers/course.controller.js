@@ -5,11 +5,12 @@
     .module('app')
     .controller('CourseCtrl', CourseCtrl);
 
-  CourseCtrl.$inject = ["$scope", "$location", "$http", "CourseService"];
+  CourseCtrl.$inject = ["$scope", "$location", "$http", "CourseService", "$route"];
 
-  function CourseCtrl($scope, $location, $http, CourseService) {
+  function CourseCtrl($scope, $location, $http, CourseService, $route) {
     $scope.faculty_user_courses = [];
     $scope.faculty_user_info = [];
+    $scope.selected_course_info = [];
 
     let c_code_add;
     let c_title_add;
@@ -24,6 +25,12 @@
     let omname;
     let olname;
     let uname;
+    let ocode;
+    let otitl;
+    let odesc;
+    let titlchged = false;
+    let codechged = false;
+    let descchged = false;
     let gnchanged = false;
     let mnchanged = false;
     let lnchanged = false;
@@ -36,7 +43,13 @@
         .then(function(data){
           $scope.faculty_user_info = [];
           $scope.faculty_user_info.push(data);
-          localStorage.setItem("user_id", data.id);
+          localStorage.setItem("user_id", "");
+          localStorage.setItem("course_id", "");
+          localStorage.setItem("course_code", "");
+          localStorage.setItem("course_title", "");
+          localStorage.setItem("course_description", "");
+          localStorage.setItem("section_name", "");
+          localStorage.setItem("section_code", "");
           user_id = data.id;
           oclass = data.classification;
           ogname = data.given_name;
@@ -125,11 +138,13 @@
          });
     }
 
-    $scope.openModal = function(c_id) {
+    $scope.openModal = function(course) {
       $("#editModal").openModal();
-      localStorage.setItem("course_id", c_id);
+      document.querySelector('#new-code-input').value = course.code;
+      document.querySelector('#new-title-input').value = course.title;
+      document.querySelector('#new-desc-input').value = course.description;
+      localStorage.setItem("course_id", course.id);
     }
-
 
     $scope.Edit_Course = function() {
       CourseService.Edit_Course(localStorage.getItem("course_id"), $scope.course)
@@ -138,6 +153,7 @@
           $scope.course.course_title = "";
           $scope.course.course_description = "";
           $('#editModal').closeModal();
+          $scope.selected_course_info = [];
         });
         Materialize.toast('Course Details Updated!', 5000, 'rounded');
 
@@ -162,6 +178,24 @@
           });
     }
 
+	$scope.check_course_code_changes = function(){
+		let ncode = document.querySelector("#new-code-input").value;
+		if(ocode===ncode) codechged = true;
+		else codechged = false;
+	}
+	
+	$scope.check_course_title_changes = function(){
+		let ntitl = document.querySelector("#new-title-input").value;
+		if(otitl===ntitl) titlchged = true;
+		else titlchged = false;
+	}
+	
+	$scope.check_course_description_changes = function(){
+		let ndesc = document.querySelector("#new-title-input").value;
+		if(odesc===ndesc) descchged = true;
+		else descchged = false;
+	}
+	
     $scope.Delete_Course = function(id) {
       CourseService.Delete_Course(id)
         .then(function(data){ });
@@ -193,6 +227,8 @@
       localStorage.setItem("course_description", c_desc);
       localStorage.setItem("section_name", section_name);
       window.location.href='#/class';
+      $('.showsidenav').sideNav('hide');
+      $route.reload();
     }
 
     // Update USER Details
