@@ -81,8 +81,8 @@ table{
 }
 
 #selectfile-image{
-    height: 75%;
-    width: 80%;
+    height: 70%;
+    width: 90%;
 }
 
 
@@ -95,8 +95,8 @@ table{
     cursor: pointer;
 }
 
-#modal1{
-    overflow: visible;
+#modal1, #help-file{
+    overflow: auto;
 }
 
 #buttons-bottom button{

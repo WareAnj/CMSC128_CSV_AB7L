@@ -34,17 +34,17 @@
 						<form onSubmit="return false;" id="form">
 							<div class="section">
 								<div class="row">
-									<div class="input-field col s12">
+									<div class="input-field col s12
+											tooltipped"
+							    	 		data-position="right"
+							    	 		data-delay="50"
+							    	 		data-tooltip="No numbers or special characters!">
 										<h5>Enter names manually</h5>
 									</div>
 								</div>
 								<div class="row">
 									<form class="col s12">
-											<div class="input-field
-											tooltipped"
-							    	 		data-position="right"
-							    	 		data-delay="50"
-							    	 		data-tooltip="No numbers or special characters!">
+											<div class="input-field">
 												<input id="input" id="disabled" type="text" pattern="^[A-Za-z][A-Za-z\,\.\'\-\s]*$">
 												<label for="input" >Name</label>
 											</div>
@@ -152,8 +152,9 @@
 
 
 		  	$("#rand_again").on('click', function(){
-				if(Randomize() != 1)
+				if(Randomize() != 1){
 		    		$("#modal1").openModal();
+		    	}
 		    	else	
 					Materialize.toast("The list is empty!", 1000);
 		  	});		  	

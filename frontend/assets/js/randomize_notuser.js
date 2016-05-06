@@ -45,13 +45,18 @@
 					skip[j] = 0;
 				}	// add span to html, will contain the letters
 
-				var counter = -1;
+				var counter = 0;
+				var place;
 				var loop = setInterval(function(){
-					$('span#lettersContainer' + counter).html(name.charAt(counter));
-					skip[counter] = 1;
-					counter++;
-					if(counter == name.length) return;
-				}, 200);//.delay(300);	// interval of each loop (each letter)
+					do{
+						place = Math.floor(Math.random() * name.length);
+					}while(skip[place]);
+					
+					$('span#lettersContainer' + place).html(name.charAt(place));
+					skip[place] = 1;
+					counter += 1;
+					if(counter == name.length) clearInterval(loop);
+				}, 150);	// interval of each loop (each letter)
 			
 				var i = 0;
 				var looper = 0;
@@ -68,7 +73,7 @@
 
 					setInterval(loopRandomize_fake, 100);	// speed of letters
 
-				}, 500);//.delay(300);	// interval of each loop (each letter)
+				}, 500);	// interval of each loop (each letter)
 			};			
 			
 
@@ -225,3 +230,7 @@
 		  $("#closeModal1").click(function(){
 		  	  $('#modal1').closeModal();
 		  });
+
+		  $(document).ready(function(){
+    			$('.tooltipped').tooltip({delay: 50});
+  		  });
