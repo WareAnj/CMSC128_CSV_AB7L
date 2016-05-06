@@ -143,10 +143,18 @@
       document.querySelector('#new-code-input').value = course.code;
       document.querySelector('#new-title-input').value = course.title;
       document.querySelector('#new-desc-input').value = course.description;
+      ocode = course.code;
+      otitl = course.title;
+      odesc = course.description;
       localStorage.setItem("course_id", course.id);
     }
 
     $scope.Edit_Course = function() {
+      if(!(codechged||titlchged||descchged))
+      	return;
+      $scope.course.course_code = document.querySelector('#new-code-input').value;
+      $scope.course.course_title = document.querySelector('#new-title-input').value;
+      $scope.course.course_description = document.querySelector('#new-desc-input').value;
       CourseService.Edit_Course(localStorage.getItem("course_id"), $scope.course)
         .then(function(data) {
           $scope.course.course_code = "";
@@ -179,21 +187,21 @@
     }
 
 	$scope.check_course_code_changes = function(){
-		let ncode = document.querySelector("#new-code-input").value;
-		if(ocode===ncode) codechged = true;
-		else codechged = false;
+		var ncode = document.querySelector("#new-code-input").value;
+		if(ocode===ncode) codechged = false;
+		else codechged = true;
 	}
 	
 	$scope.check_course_title_changes = function(){
-		let ntitl = document.querySelector("#new-title-input").value;
-		if(otitl===ntitl) titlchged = true;
-		else titlchged = false;
+		var ntitl = document.querySelector("#new-title-input").value;
+		if(otitl===ntitl) titlchged = false;
+		else titlchged = true;
 	}
 	
 	$scope.check_course_description_changes = function(){
-		let ndesc = document.querySelector("#new-title-input").value;
-		if(odesc===ndesc) descchged = true;
-		else descchged = false;
+		var ndesc = document.querySelector("#new-desc-input").value;
+		if(odesc===ndesc) descchged = false;
+		else descchged = true;
 	}
 	
     $scope.Delete_Course = function(id) {

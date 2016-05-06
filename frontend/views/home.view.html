@@ -139,19 +139,19 @@
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-						          <input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" ng-model="course.course_code" required="required" value={{selected_course_info.code}}>
+						          <input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" ng-model="course.course_code" required="required" ng-change="check_course_code_changes()">
 										</div>
 						      </div>
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-						          <input placeholder="New Course Title" type="text" ng-keyup="check_course_code_edit()" id="new-title-input" ng-model="course.course_title" required="required">
+						          <input placeholder="New Course Title" type="text" ng-keyup="check_course_code_edit()" id="new-title-input" ng-model="course.course_title" required="required" ng-change="check_course_title_changes()">
 						        </div>
 						      </div>
 								</div>
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-											<textarea id="new-desc-input" ng-keyup="check_course_code_edit()" class="materialize-textarea" ng-model="course.course_description"></textarea>
+											<textarea id="new-desc-input" ng-keyup="check_course_code_edit()" class="materialize-textarea" ng-model="course.course_description" ng-change="check_course_description_changes()"></textarea>
 											<label for="new-desc-input">Course Description</label>
 										</div>
 						      </div>
