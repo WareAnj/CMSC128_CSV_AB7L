@@ -548,3 +548,22 @@ BEGIN
 
 END $$
 DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS DELETE_STUDENT;
+DELIMITER $$
+CREATE PROCEDURE DELETE_STUDENT (_course_id int)
+BEGIN
+	 CREATE TEMPORARY TABLE _student_table (_id int);
+
+   INSERT INTO _student_table SELECT st.id from student st, course c, section s, student_section ss WHERE c.id = _course_id AND c.id = s.course_id AND s.id = ss.section_id and ss.student_id = st.id;
+
+	 DELETE FROM student_section WHERE section_id IN (SELECT s.id from course c, section s WHERE c.id = _course_id and c.id = s.course_id);
+	 DELETE FROM student WHERE id IN (SELECT * FROM _student_table);
+	 DELETE FROM section WHERE course_id = _course_id;
+   DELETE FROM faculty_user_course WHERE course_id = _course_id;
+	 DELETE FROM course WHERE id = _course_id;
+	 DROP TABLE _student_table;
+
+END $$
+DELIMITER ;
