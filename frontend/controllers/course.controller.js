@@ -43,6 +43,7 @@
           localStorage.setItem("course_title", "");
           localStorage.setItem("course_description", "");
           localStorage.setItem("section_name", "");
+          localStorage.setItem("section_code", "");
           user_id = data.id;
           oclass = data.classification;
           ogname = data.given_name;
