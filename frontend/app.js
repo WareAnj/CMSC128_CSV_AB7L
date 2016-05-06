@@ -2,10 +2,18 @@
 
 (() => {
     angular.module('app', ['ngRoute'])
-            .config(config);
+            .config(config)
+            .run(util);
 
+    util.$inject = ['$rootScope', '$location'];
     config.$inject = ['$routeProvider', '$locationProvider'];
 
+    function util($rootScope, $location) {
+        $rootScope.redirect = (url) => {
+            $location.path(url);
+            $('.button-collapse').sideNav('hide');
+        }
+    }
     function config($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
