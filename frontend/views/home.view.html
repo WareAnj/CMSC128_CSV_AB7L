@@ -7,11 +7,11 @@
 		 	<div class="nav-wrapper container">
 
 		 		<ul>
-		    		<li><a href="#" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
+		    		<li><a data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
 		    	</ul>
 
 				<div class="center">
-			 		<a href="/" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
+			 		<a ng-click="redirect('/home')" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
 			    </div>
 
 	    		<!-- SIDE NAV  -->
@@ -22,7 +22,7 @@
 						</div>
 						<div ng-repeat="course in faculty_user_courses">
 							<div ng-repeat="lecture in course.lecture">
-								<a href="/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
+								<a ng-click="redirect('/class')" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
 							</div>
 						</div>
 						<div class="center" ng-controller="HomeCtrl">

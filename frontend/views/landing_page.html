@@ -47,7 +47,7 @@
                         <div class="center animated fadeIn">
                         <p id="logo-text">The best web application for a fun and interactive class discussion.</p>
                             <a href="#signupModal" class="modal-trigger waves-effect waves-light btn-large">Sign Up</a>
-                            <a ng-href="/#/guest-trynow" class="waves-effect waves-light btn-large">Try Now</a>
+                            <a class="waves-effect waves-light btn-large" ng-click="redirect('/guest-trynow')">Try Now</a>
                         </div>
                     </div>
                 </div>
@@ -132,12 +132,12 @@
     	<form ng-submit="Login()" ng-controller="AuthenticationCtrl" method="get">
 
     		<div class="input-field">
-    			<i class="material-icons prefix">account_circle</i>
+    			<i class="material-icons prefix" style="line-height:46px;" >account_circle</i>
     			<input placeholder="username" type="text" id="name-input" ng-model="facultyUser.username" required="required">
     		</div>
 
     		<div class="input-field">
-    			<i class="material-icons prefix">vpn_key</i>
+    			<i class="material-icons prefix" style="line-height:46px;">vpn_key</i>
     			<input placeholder="password" type="password" id="password-input" ng-model="facultyUser.password" required="required">
     		</div>
 

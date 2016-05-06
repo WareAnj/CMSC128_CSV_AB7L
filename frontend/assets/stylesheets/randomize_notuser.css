@@ -1,5 +1,9 @@
+body {
+    background-color: #E6EBE0;
+}
+
 #rand-not-user{
-  margin-top: 4%;
+  margin-top: 3%;
   margin-bottom: 4%;
   background-color: white;
   padding-bottom: 2%;
@@ -75,6 +79,12 @@ table{
 .logo-img a:hover, .logo-img-side a:hover{
     background-color: initial;
 }
+
+#selectfile-image{
+    height: 75%;
+    width: 80%;
+}
+
 
 #table button{
     opacity: 0;

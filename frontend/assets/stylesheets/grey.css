@@ -67,12 +67,10 @@
 
 #logo{
 	height: 80px;
-	position: relative;
-	z-index: 999;
 }
 
 nav {
-	background-color: #52B4AF;
+	background-color: #64706c;
 	margin: 0px;
 }
 
@@ -92,8 +90,8 @@ body {
 
 main {
  	flex: 1 0 auto;
-	background-color: #E6EBE0;
-	margin-bottom: -4%;
+	background-color: #b5b5b7;
+	margin-bottom: -2%;
 }
 
 #logo-text{
@@ -125,7 +123,7 @@ h3{
 
 footer.page-footer{
 	padding: 2px;
-	background-color: #505050;
+	background-color: #677077;
 }
 
 /* MODALS */
@@ -136,15 +134,8 @@ footer.page-footer{
 }
 
 #signupModal{
-	width: 70%;
-	overflow-y: scroll;
-}
-
-@media only screen and (max-width: 600px) {
-  #signupModal {
-	overflow-y: auto;
-	bottom: 17%;
-  }
+	width: 60%;
+	overflow: visible;
 }
 
 .modal .input-field i{
@@ -163,10 +154,4 @@ footer.page-footer{
 #sidenav-logo{
 	padding-top: 10px;
 	height: 20%;
-}
-
-@media only screen and (max-width: 350px) {
-  #logo {
-    width: 200px !important; /* for smaller screens */
-  }
 }
