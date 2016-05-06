@@ -12,7 +12,7 @@ module.exports = {
     },
 
     REDIS_DB: {
-        host: 'localhost',
-        port: 6379
+        host: '127.7.195.132',
+        port: 16379
     }
 };
