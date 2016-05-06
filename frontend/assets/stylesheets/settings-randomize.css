@@ -75,3 +75,11 @@ h5{
 #course-info{
   padding: 10%;
 }
+
+#brief-intro-container{
+	background: url("../img/cover-f.jpg") no-repeat center;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
