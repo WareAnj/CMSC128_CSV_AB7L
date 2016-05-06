@@ -1,22 +1,14 @@
 <div>
 	<!-- NAV BAR -->
-	<div class="navbar" ng-controller="CourseCtrl" data-ng-init="Get_Course()">
+	<div class="navbar">
 		<nav>
 		 	<div class="nav-wrapper container">
-		 		<ul>
-		    		<li><a href="/" data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
-		    	</ul>
+				<!-- SIDE NAV  -->
+				<ul>
+		    	<li><a data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
+		    </ul>
 
-		    	<ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
-				    <li><a ng-href="#/home">Home</a></li>
-		    	</ul>
-
-				<div class="center">
-			 		<a ng-href="#/home" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
-			    </div>
-
-	    		<!-- SIDE NAV  -->
-				<div id="slide-out" class="side-nav center">
+				<div id="slide-out" class="side-nav center" ng-controller="CourseCtrl" data-ng-init="Get_Course()">
 					<img id="sidenav-logo" src="../assets/img/logo-2.png">
 					<div ng-repeat="info in faculty_user_info">
 						<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
@@ -27,98 +19,113 @@
 						</div>
 					</div>
 					<div class = "center">
-						<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
+						<a ng-click="Logout()" ng-controller="HomeCtrl" onclick="$('showsidenav').sideNav('hide');" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
 					</div>
 				</div>
-		    </div>
+
+				<!--  HOME -->
+		    <ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
+				  <li><a ng-href="#/home">Home</a></li>
+		    </ul>
+
+				<!-- REGINYZR LOGO -->
+				<div class="center">
+			 		<a ng-href="#/home" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
+			  </div>
+
+		  </div>
 		</nav>
 	</div>
-		<!--NAV BAR-->
-		<!--MAIN-->
-		<main ng-controller="SectionCtrl" data-ng-init="Get_Class_List()">
-			<div id="mainContainer"class="container">
+	<!-- END OF NAV BAR -->
+
+	<!--MAIN-->
+	<main ng-controller="SectionCtrl" data-ng-init="Get_Class_List()">
+		<div id="mainContainer"class="container">
+			<div class="row">
+				<div class="col s12 m4 l4">
+					<div id="course-info" class="card-panel custom lighten-1">
+						<div ng-repeat="s_info in section_info">
+						<div class="row">
+							<h4>{{s_info.course_code}} {{s_info.section_name}}</h4>
+						</div>
+						<div class="row">
+							<strong>Title</strong>: {{s_info.course_title}}
+						</div>
+						<div class="row">
+							<strong>Description</strong>: {{s_info.course_description}}
+						</div>
+					</div>
+					</div>
+					<div id="buttons-class" class="row">
+						<div class="col s12 m12 l12">
+							<a ng-href="#/edit" class="waves-effect waves-light btn">Edit</a>
+						</div>
+						<div class="col s12 m12 l12">
+							<a ng-href="#/settings_randomize" class="waves-effect waves-light btn">Randomize</a>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m8 l8">
+					<div id="classList">
+						<div class="card-panel custom">
+							<h3 id="headerText" class="center-align">Class List</h3>
+							<table class="table highlight">
+								<thead>
+									<tr>
+										<th class="center-align">NAME</th>
+										<th class="center-align">LAB SECTION</th>
+										<th class="center-align">NUMBER OF <br> TIMES CALLED</th>
+									</tr>
+								</thead>
+								<tbody >
+									<tr ng-repeat="info in student_info">
+										<td>{{info.given_name}} {{info.middle_name}} {{info.last_name}}</td>
+										<td>{{info.name}} - {{info.code}}</td>
+										<td>{{info.frequency}}</td>
+										<td><a ng-click="Get_Selected_Student(info.id)" class="modal-trigger"><i class="material-icons prefix" style="cursor:pointer;">info_outline</i></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--MODALS-->
+		<div id="stdInfo1" class="modal">
+			<div class="modal-content">
 				<div class="row">
-					<div class="col s12 m4 l4">
-						<div id="course-info" class="card-panel custom lighten-1">
-							<div ng-repeat="s_info in section_info">
-							<div class="row">
-								<h4>{{s_info.course_code}} {{s_info.section_name}}</h4>
-							</div>
-							<div class="row">
-								<strong>Title</strong>: {{s_info.course_title}}
-							</div>
-							<div class="row">
-								<strong>Description</strong>: {{s_info.course_description}}
-							</div>
+					<div class="col s5 offset-s3"><h4 id="headerText">Student Information</h4></div>
+					<div class="col s4"><a href="/class"><i class="material-icons right">close</i></a></div>
+				</div>
+				<div class="row">
+					<div class="col s4">
+						<div class="card-image">
+							<img src="../assets/img/user.png" style="height:175px; width:175px">
 						</div>
-						</div>
-						<div id="buttons-class" class="row">
-							<div class="col s12 m12 l12">
-								<a ng-href="#/edit" class="waves-effect waves-light btn">Edit</a>
-							</div>
-							<div class="col s12 m12 l12">
-								<a ng-href="#/settings_randomize" class="waves-effect waves-light btn">Randomize</a>
-							</div>
-						</div>
+						<!--<img src="img/user.png" style="height:150px; width:150px">-->
 					</div>
-					<div class="col s12 m8 l8">
-						<div id="classList">
-							<div class="card-panel custom">
-								<h3 id="headerText" class="center-align">Class List</h3>
-								<table class="table highlight">
-									<thead>
-										<tr>
-											<th class="center-align">NAME</th>
-											<th class="center-align">LAB SECTION</th>
-											<th class="center-align">NUMBER OF <br> TIMES CALLED</th>
-										</tr>
-									</thead>
-									<tbody >
-										<tr ng-repeat="info in student_info">
-											<td>{{info.given_name}} {{info.middle_name}} {{info.last_name}}</td>
-											<td>{{info.name}} - {{info.code}}</td>
-											<td>{{info.frequency}}</td>
-											<td><a ng-click="Get_Selected_Student(info.id)" class="modal-trigger"><i class="material-icons prefix" style="cursor:pointer;">info_outline</i></a>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
+					<div class="col s8">
+						<ul ng-repeat="stud in student">
+							<li><h5><strong>Name</strong>: {{stud.given_name}} {{stud.middle_name}} {{stud.last_name}} </h5></li>
+							<li><h5><strong>Student Number</strong>: {{stud.student_number}}</h5></li>
+							<li><h5><strong>Degree</strong>: {{stud.degree}} </h5></li>
+							<li><h5><strong>College</strong>: {{stud.college}} </h5></li>
+							<li><h5><strong>Classification</strong>: {{stud.classification}} </h5></li>
+						</ul>
 					</div>
 				</div>
 			</div>
+		</div>
+	</main>
+	<!-- END OF MAIN -->
 
-			<!--MODALS-->
-			<div id="stdInfo1" class="modal">
-				<div class="modal-content">
-					<div class="row">
-						<div class="col s5 offset-s3"><h4 id="headerText">Student Information</h4></div>
-						<div class="col s4"><a href="/class"><i class="material-icons right">close</i></a></div>
-					</div>
-					<div class="row">
-						<div class="col s4">
-							<div class="card-image">
-								<img src="../assets/img/user.png" style="height:175px; width:175px">
-							</div>
-							<!--<img src="img/user.png" style="height:150px; width:150px">-->
-						</div>
-						<div class="col s8">
-							<ul ng-repeat="stud in student">
-								<li><h5><strong>Name</strong>: {{stud.given_name}} {{stud.middle_name}} {{stud.last_name}} </h5></li>
-								<li><h5><strong>Student Number</strong>: {{stud.student_number}}</h5></li>
-								<li><h5><strong>Degree</strong>: {{stud.degree}} </h5></li>
-								<li><h5><strong>College</strong>: {{stud.college}} </h5></li>
-								<li><h5><strong>Classification</strong>: {{stud.classification}} </h5></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</main>
-	<!--SCRIPTS-->
-    <script type="text/javascript" src="../assets/js/home.js"></script>
-    <script type="text/javascript" src="../assets/js/default.js"></script>
+	<!-- SCRIPTS -->
+  <script type="text/javascript" src="../assets/js/home.js"></script>
+  <script type="text/javascript" src="../assets/js/default.js"></script>
 </div>
+
+<!-- STYLESHEETS -->
 <link type="text/css" rel="stylesheet" href="../assets/stylesheets/class.css">
