@@ -68,6 +68,7 @@ exports.login = (req, res, next) => {
             given_name:         result[0][0].given_name,
             middle_name:        result[0][0].middle_name,
             last_name:          result[0][0].last_name,
+            design_setting:     result[0][0].design_setting,
             is_approved:        result[0][0].is_approved,
             date_approved:      result[0][0].date_approved
         };

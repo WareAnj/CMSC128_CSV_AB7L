@@ -5,30 +5,31 @@
 	<div class="navbar">
 		<nav>
 		 	<div class="nav-wrapper container">
-				<!-- SIDE NAV  -->
-				<ul>
-					<li><a data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
-				</ul>
 
-				<div id="slide-out" class="side-nav center" data-ng-init="Get_Course()">
-					<img id="sidenav-logo" src="../assets/img/logo-2.png">
-					<div ng-repeat="info in faculty_user_info">
-						<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
-					</div>
-					<div ng-repeat="course in faculty_user_courses">
-						<div ng-repeat="lecture in course.lecture">
-							<a ng-href="#/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
-						</div>
-					</div>
-					<div class="center" ng-controller="HomeCtrl">
-						<a ng-click="Logout()" id="logout-button" onclick="$('showsidenav').sideNav('hide');" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
-					</div>
-				</div>
+		 		<ul>
+		    		<li><a data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
+		    	</ul>
 
 				<div class="center">
-			 		<a href="#/home" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
-			  </div>
+			 		<a ng-click="redirect('/home')" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
+			    </div>
 
+	    		<!-- SIDE NAV  -->
+				<div id="slide-out" class="side-nav center" data-ng-init="Get_Course()">
+					<img id="sidenav-logo" src="../assets/img/logo-2.png">
+						<div ng-repeat="info in faculty_user_info">
+							<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
+						</div>
+						<div ng-repeat="course in faculty_user_courses">
+							<div ng-repeat="lecture in course.lecture">
+								<a ng-click="redirect('/class')" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
+							</div>
+						</div>
+						<div class="center" ng-controller="HomeCtrl">
+							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
+
+						</div>
+					</div>
 		    </div>
 		</nav>
 	</div>
