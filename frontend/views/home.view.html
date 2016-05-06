@@ -41,7 +41,7 @@
 						<ul class="tabs">
 							<li class="tab"><a href="#profile" class="black-text waves-effect waves-custom">Profile</a></li>
 							<li class="tab"><a href="#classes" class="black-text waves-effect waves-custom" ng-click="Get_Course()">Classes</a></li>
-							<li class="tab"><a href="#settings" class="black-text waves-effect waves-custom">Settings</a></li>
+							<li class="tab"><a href="#settings" class="black-text waves-effect waves-custom" onclick="$('select').material_select()">Settings</a></li>
 						</ul>
 					</div>
 					<!--PROFILE-->
@@ -201,9 +201,26 @@
 											</div>
 											<div class="col s12 m12 l4">
 												<div class="input-field">
-													<select id="classification-input" onclick="$('select').material_select()" ng-model="selectd.repeatSelect" ng-change="check_classification()">
+													<select id="classification-input" ng-model="selectd.repeatSelect" ng-change="check_classification()">
 														<option value="{{info.classification}}" selected="selected">{{info.classification}}</option>
-														<option ng-repeat="option in selectd.options" value="{{option.id}}">{{option.name}}</option>
+														<option value="Instructor I">Instructor I</option>
+														 <option value="Instructor II">Instructor II</option>
+														 <option value="Instructor III">Instructor III</option>
+														 <option value="Instructor IV">Instructor IV</option>
+														 <option value="Instructor V">Instructor V</option>
+														 <option value="Instructor VI">Instructor VI</option>
+														 <option value="Assistant Professor I">Assistant Professor I</option>
+														 <option value="Assistant Professor II">Assistant Professor II</option>
+														 <option value="Assistant Professor III">Assistant Professor III</option>
+														 <option value="Assistant Professor IV">Assistant Professor IV</option>
+														 <option value="Assistant Professor V">Assistant Professor V</option>
+														 <option value="Assistant Professor VI">Assistant Professor VI</option>
+														 <option value="Professor I">Professor I</option>
+														 <option value="Professor II">Professor II</option>
+														 <option value="Professor III">Professor III</option>
+														 <option value="Professor IV">Professor IV</option>
+														 <option value="Professor V">Professor V</option>
+														 <option value="Professor VI">Professor VI</option>
 													</select>
 													<label for="classification-input" class="black-text"><i class="material-icons left">perm_identity</i>Classification</label>
 												</div>
