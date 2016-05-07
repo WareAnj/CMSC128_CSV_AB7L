@@ -15,9 +15,8 @@
             $('.button-collapse').sideNav('hide');
         }
 
-        // Event listener when the route is changed
         $rootScope.$on('$routeChangeStart', (event, next, current) => {
-            let user = check_session(next.$$route.originalPath).promise;
+            let user = check_session(next.$$route.originalPath);
 
             if (!no_need_auth($location.url()) && typeof user === 'undefined') {
                 $location.path('/');
@@ -34,12 +33,10 @@
             return no_auth_routes.indexOf(route) === -1 ? false : true;
         }
 
-        // check if the current route needs administrator privileges
         function need_admin_auth(route) {
             return routes_for_admin.indexOf(route) === -1 ? false : true;
         }
 
-        // check if the current route needs faculty user privileges
         function need_faculty_user_auth(route) {
             return routes_for_faculty_user.indexOf(route) === -1 ? false : true;
         }       
@@ -51,14 +48,11 @@
             AuthenticationService
                 .GetUser()
                 .then((data) => {
-                    if (data.data === false && next_route === '/') {
+                    if (data.data === false) {
                         localStorage.clear();
                         $location.path('/');                      
                     }
-                    else if (data.data === false && no_need_auth(next_route)) {
-                        $location.path(next_route);
-                    }
-                    else if (data.data !== false) {
+                    else {
                         localStorage.user = data.data;
                         if (data.data.role === 'Faculty User') {
                             if (need_admin_auth(next_route) || next_route === '/') {
@@ -78,6 +72,7 @@
             return deferred.promise;
         }
 
+        check_session();
     }
 
 
