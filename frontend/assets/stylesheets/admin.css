@@ -11,9 +11,35 @@ body {
 	box-shadow: 3px 3px 3px #888888;
 	max-height: calc(100vh - 74px - 76.5px);
 	min-height: calc(100vh - 74px - 76.5px);
+	overflow: auto;
+	overflow-x: hidden; 
 }
 
 #details-container-text {
-	width: 30%;
+	margin: 12px;
+	font-family: header-text-2;
+	font-size: 13px;
 }
 
+h5 {
+	font-family: nav-side;
+}
+
+ul {
+	font-size: 12px;
+}
+
+.collapsible-body {
+	padding: 10px !important;
+}
+
+.collapsible-body > p {
+	padding:2%;
+}
+
+#container {
+    height: 400px; 
+    min-width: 310px; 
+    max-width: 800px;
+    margin: 0 auto;
+}
