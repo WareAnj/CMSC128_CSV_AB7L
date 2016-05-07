@@ -17,7 +17,7 @@
 
         // Event listener when the route is changed
         $rootScope.$on('$routeChangeStart', (event, next, current) => {
-            let user = check_session(next.$$route.originalPath);
+            let user = check_session(next.$$route.originalPath).promise;
 
             if (!no_need_auth($location.url()) && typeof user === 'undefined') {
                 $location.path('/');
@@ -51,11 +51,14 @@
             AuthenticationService
                 .GetUser()
                 .then((data) => {
-                    if (data.data === false) {
+                    if (data.data === false && next_route === '/') {
                         localStorage.clear();
                         $location.path('/');                      
                     }
-                    else {
+                    else if (data.data === false && no_need_auth(next_route)) {
+                        $location.path(next_route);
+                    }
+                    else if (data.data !== false) {
                         localStorage.user = data.data;
                         if (data.data.role === 'Faculty User') {
                             if (need_admin_auth(next_route) || next_route === '/') {
