@@ -22,7 +22,7 @@
 						</div>
 						<div ng-repeat="course in faculty_user_courses">
 							<div ng-repeat="lecture in course.lecture">
-								<a class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
+								<a ng-click="redirect('/class')" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
 							</div>
 						</div>
 						<div class="center" ng-controller="HomeCtrl">
@@ -37,7 +37,7 @@
 		<main>
 			<div class="container col s12 m12" style="padding-top: 3%;">
 			<!--TABS-->
-				<div class="row" id="home-content">
+				<div class="row no-margin" id="home-content">
 					<div>
 						<ul class="tabs">
 							<li class="tab"><a href="#profile" class="black-text waves-effect waves-custom">Profile</a></li>
@@ -139,19 +139,19 @@
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-						          <input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" ng-model="course.course_code" required="required" ng-change="check_course_code_changes()">
+						          <input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" ng-model="course.course_code" required="required" value={{selected_course_info.code}}>
 										</div>
 						      </div>
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-						          <input placeholder="New Course Title" type="text" ng-keyup="check_course_code_edit()" id="new-title-input" ng-model="course.course_title" required="required" ng-change="check_course_title_changes()">
+						          <input placeholder="New Course Title" type="text" ng-keyup="check_course_code_edit()" id="new-title-input" ng-model="course.course_title" required="required">
 						        </div>
 						      </div>
 								</div>
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-											<textarea id="new-desc-input" ng-keyup="check_course_code_edit()" class="materialize-textarea" ng-model="course.course_description" ng-change="check_course_description_changes()"></textarea>
+											<textarea id="new-desc-input" ng-keyup="check_course_code_edit()" class="materialize-textarea" ng-model="course.course_description"></textarea>
 											<label for="new-desc-input">Course Description</label>
 										</div>
 						      </div>
@@ -187,24 +187,22 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="col s12 m6 l6">
+											<div class="col s12 m6 l4">
 												<div class="input-field">
 													<input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" name="user-password" id="password-input" ng-keyup="check_password_changes()"/>
 													<label id="pwd-input-label" for="password-input" class="black-text" data-error="Passwords do not match!"><i class="material-icons left">vpn_key</i>Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 												</div>
 											</div>
-											<div class="col s12 m6 l6">
+											<div class="col s12 m6 l4">
 												<div class="input-field">
 													<input type="password" name="confirm-password" id="confirm-password" id="confirm-password" ng-keyup="check_confirm_password()" disabled/>
-													<label id="cpwd-label" for="password-input" class="black-text" data-error="Passwords do not match!"><i class="material-icons left">done_all</i>Confirm Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+													<label id="cpwd-label" for="password-input" class="black-text" data-error="Passwords do not match!">Confirm Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 												</div>
 											</div>
-										</div>
-										<div class="row">
-											<div class="col s12 m6 l6">
+											<div class="col s12 m12 l4">
 												<div class="input-field">
-													<select id="classification-input">
-														<option value="{{info.classification}}" ng-selected="true">{{info.classification}}</option>
+													<select id="classification-input" ng-model="selectd.repeatSelect" ng-change="check_classification()">
+														<option value="{{info.classification}}" selected="selected">{{info.classification}}</option>
 														<option value="Instructor I">Instructor I</option>
 														 <option value="Instructor II">Instructor II</option>
 														 <option value="Instructor III">Instructor III</option>
@@ -226,20 +224,20 @@
 													</select>
 													<label for="classification-input" class="black-text"><i class="material-icons left">perm_identity</i>Classification</label>
 												</div>
-											</div>
-											<div class="col s12 m6 l6 container">
-												<div class="input-field">
-													<select id="cprofile-input" onchange="displayProfile()">
-														<option value="{{info.design_setting}}" ng-selected="true">{{info.design_setting_name}}</option>
-														<option value="default.css">Default</option>
-														<option value="maroon.css">Maroon</option>
-														<option value="grey.css">Grey</option>
-														<option value="purple.css">Purple</option>
-													</select>
-													<label for="cprofile-input" class="black-text"><i class="material-icons left">dashboard</i>Colour Profile</label>
-												</div>
-											</div>
 										</div>
+										<div class="col s12 m6 l6 container">
+												<div class="input-field">
+													<select id="profile-input" onchange="displayProfile()" ng-model="selectcolor.repeatSelect" ng-change="check_display()">
+														<option id="current_color" value="" disabled selected>{{info.design_setting}}</option>
+														<option value="default">Default</option>
+														<option value="maroon">Maroon</option>
+														<option value="grey">Grey</option>
+														<option value="purple">Purple</option>
+													</select>
+													<label for="classification-input" class="black-text">Color Profile</label>
+												</div>
+										</div>
+									 </div>
 									</form>
 								</div>
 							</div>
@@ -248,7 +246,7 @@
 				</div>
 			</div>
 		</main>
-
+		
 	</div>
 </div>
 

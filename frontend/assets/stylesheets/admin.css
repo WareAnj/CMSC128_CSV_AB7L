@@ -1,6 +1,7 @@
 body {
 	background-color: #E6EBE0;
 }
+
 #details-container {
 	margin-top: 1%;
 	margin-bottom: 2%;
@@ -11,3 +12,8 @@ body {
 	max-height: calc(100vh - 74px - 76.5px);
 	min-height: calc(100vh - 74px - 76.5px);
 }
+
+#details-container-text {
+	width: 30%;
+}
+
