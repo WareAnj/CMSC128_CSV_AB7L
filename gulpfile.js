@@ -10,9 +10,4 @@ gulp.task('default', () => {
 	gulp.src(['backend/**/*.js'])
 		.pipe(eslint())
 		.pipe(eslint.format());
-
-	// Port to ES5 (backend)
-	gulp.src('backend/**/*.js')
-		.pipe(babel())
-		.pipe(gulp.dest('backend/dist'));
 });
