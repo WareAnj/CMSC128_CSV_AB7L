@@ -1,8 +1,0 @@
-admin
-    As an admin, I can confirm the registration of a user
-    As an admin, I can perform CRUD of a user
-    As an admin, I can view all the logs of all users
-
-public_user
-    As a public_user, I can add a temporary section with temporary students
-    As a public_user, I can randomize from the temporary section I created

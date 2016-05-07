@@ -22,7 +22,7 @@
     "winston": "^2.1.0"
   },
   "scripts": {
-    "start": "node backend/es6/server.js",
+    "start": "nodemon backend/es6/server.js",
     "test": "mocha backend/es6/test/api --recursive"
   },
   "repository": {
