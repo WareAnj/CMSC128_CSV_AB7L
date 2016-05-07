@@ -114,7 +114,7 @@
               });
           }
         });
-        
+
       CourseService.Get_User()
         .then(function(data){
           $scope.faculty_user_info = [];
@@ -247,7 +247,7 @@
           });
     }
 
-    $scope.Get_Selected_Course = function(c_id, c_code, c_title, c_desc, section_name) {
+    $scope.Get_Selected_Lecture = function(c_id, c_code, c_title, c_desc, section_name) {
       localStorage.setItem("course_id", c_id);
       localStorage.setItem("course_code", c_code);
       localStorage.setItem("course_title", c_title);
