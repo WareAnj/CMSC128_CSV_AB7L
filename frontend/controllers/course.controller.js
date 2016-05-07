@@ -32,6 +32,7 @@
     let titlchged = false;
     let codechged = false;
     let descchged = false;
+    let clrschged = false;
     let gnchanged = false;
     let mnchanged = false;
     let lnchanged = false;
@@ -52,6 +53,7 @@
           localStorage.setItem("course_description", "");
           localStorage.setItem("section_name", "");
           localStorage.setItem("section_code", "");
+          localStorage.setItem("design_setting", "");
           user_id = data.id;
           oclass = data.classification;
           ogname = data.given_name;
@@ -155,10 +157,18 @@
       document.querySelector('#new-code-input').value = course.code;
       document.querySelector('#new-title-input').value = course.title;
       document.querySelector('#new-desc-input').value = course.description;
+      ocode = course.code;
+      otitl = course.title;
+      odesc = course.description;
       localStorage.setItem("course_id", course.id);
     }
 
     $scope.Edit_Course = function() {
+      if(!(codechged||titlchged||descchged))
+      	return;
+      $scope.course.course_code = document.querySelector('#new-code-input').value;
+      $scope.course.course_title = document.querySelector('#new-title-input').value;
+      $scope.course.course_description = document.querySelector('#new-desc-input').value;
       CourseService.Edit_Course(localStorage.getItem("course_id"), $scope.course)
         .then(function(data) {
           $scope.course.course_code = "";
@@ -191,23 +201,23 @@
     }
 
 	$scope.check_course_code_changes = function(){
-		let ncode = document.querySelector("#new-code-input").value;
-		if(ocode===ncode) codechged = true;
-		else codechged = false;
+		var ncode = document.querySelector("#new-code-input").value;
+		if(ocode===ncode) codechged = false;
+		else codechged = true;
 	}
-	
+
 	$scope.check_course_title_changes = function(){
-		let ntitl = document.querySelector("#new-title-input").value;
-		if(otitl===ntitl) titlchged = true;
-		else titlchged = false;
+		var ntitl = document.querySelector("#new-title-input").value;
+		if(otitl===ntitl) titlchged = false;
+		else titlchged = true;
 	}
-	
+
 	$scope.check_course_description_changes = function(){
-		let ndesc = document.querySelector("#new-title-input").value;
-		if(odesc===ndesc) descchged = true;
-		else descchged = false;
+		var ndesc = document.querySelector("#new-desc-input").value;
+		if(odesc===ndesc) descchged = false;
+		else descchged = true;
 	}
-	
+
     $scope.Delete_Course = function(id) {
       CourseService.Delete_Course(id)
         .then(function(data){ });
@@ -249,10 +259,31 @@
 		var err = false;
 		var npassw = document.querySelector('#password-input').value;
 		var cpassw = document.querySelector('#confirm-password').value;
+		var ndes = document.querySelector('#cprofile-input').value;
+
+		$scope.check_classification();
+
+		if(ndes!==desns){
+			$http.post(
+				'faculty_user/update_design/',
+				{username: uname, design_setting: ndes}
+			);
+			desns = ndes;
+			$scope.faculty_user_info[0].design_setting = ndes;
+			if (desns==='default.css')
+          		$scope.faculty_user_info[0].design_setting_name = 'Default';
+          	else if (desns==='maroon.css')
+          		$scope.faculty_user_info[0].design_setting_name = 'Maroon';
+		  	else if (desns==='grey.css')
+				$scope.faculty_user_info[0].design_setting_name = 'Grey';
+		  	else if (desns==='purple.css')
+				$scope.faculty_user_info[0].design_setting_name = 'Purple';
+			clrschged = true;
+		}
 
 		if(npassw!==""){
 			if (npassw!==cpassw){
-				Materialize.toast('Password do not match!', 3000, 'rounded');
+				Materialize.toast('Passwords do not match!', 3000, 'rounded');
 				err = true;
 			}
 			else{
@@ -360,19 +391,15 @@
 			$scope.faculty_user_info[0].classification = nclass;
 		}
 
-    if(colorchanged){
-      var ncolor = document.querySelector('#profile-input').value + ".css";
-      console.log(ncolor);
-      $http.post(
-        'faculty_user/update_design/',
-        {username: uname, design_setting: ncolor}
-      );
-      ocolor=ncolor;
-      $scope.faculty_user_info[0].design_setting = ncolor;
-    }
-
-		if((!err) && (gnchanged || mnchanged || lnchanged || clchanged || (npassw!=="") || colorchanged)) Materialize.toast('Profile updated!', 3000, 'rounded');
-		if(npassw!==""){
+		if((!err) && (gnchanged || mnchanged || lnchanged || clchanged || (npassw!=="") || (clrschged))){
+			Materialize.toast('Profile updated!', 3000, 'rounded');
+			clrschged = false;
+			clchanged = false;
+			lnchanged = false;
+			mnchanged = false;
+			gnchanged = false;
+		}
+		if((npassw!=="")&&(!err)){
 			document.querySelector('#password-input').value = "";
 			document.querySelector('#confirm-password').value = "";
 			$('#confirm-password').attr('disabled','disabled');

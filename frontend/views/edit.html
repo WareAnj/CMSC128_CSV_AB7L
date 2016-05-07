@@ -40,8 +40,9 @@
 	</nav>
 
 	<!-- MAIN BODY -->
-	<main>
-	<div id="nav-container" class="container" ng-controller="SectionCtrl">
+	<main ng-controller="SectionCtrl">
+		<div>
+	<div id="nav-container" class="container">
 		<!-- <div class="row">
 			<div class="input-field col s1">
 				<a href="#add-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">add</i></a>
@@ -84,8 +85,8 @@
 		            <td>{{lab_student.classification}}</td>
 		            <td>{{lab_student.college}}</td>
 		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
+		   				<a class="btn btn-floating waves-effect waves-light modal-trigger" ng-click="Get_Student_Id(lab_student.id, 'delete')"> <i class="material-icons">not_interested</i> </a>
+			        <a class="btn btn-floating waves-effect waves-light modal-trigger" ng-click="Get_Student_Id(lab_student.id, 'edit')"> <i class="material-icons">mode_edit</i> </a>
 
 		           </td>
 		          </tr>
@@ -93,9 +94,6 @@
 		      </table>
 		</div>
 	</div>
-
-
-
 
 
 
@@ -162,63 +160,66 @@
 	    	<p>Are you sure you want to delete this student?</p>
 	    </div>
 	    <div class="modal-footer">
-	      <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-default">Cancel</a>
-	      <a href="#!" class="modal-action modal-close waves-effect waves-green red lighten-1 btn btn-default">Delete Student</a>
+	      <a class="modal-action modal-close waves-effect waves-green btn btn-default">Cancel</a>
+	      <a ng-click="Delete_Selected_Student()" class="waves-effect waves-green red lighten-1 btn btn-default modal-close">Delete Student</a>
 	    </div>
 	</div>
 
-	<div id="modal2" class="modal">
-	    <div class="modal-content">
-	    	<h4>EDIT A STUDENT</h4>
-
-	    	<label> Name </label>
+	<div id="edit-modal" class="modal">
+		<div id="edit-modal-content" class="modal-content">
+  	<h4>EDIT A STUDENT</h4>
+			<form ng-submit="Update_Student_Info()" autocomplete="off">
+				<div ng-repeat="student in to_edit_student" class="past-data">
 	    	<div class="row">
 	    		<div class="input-field col s4">
-		    		<input id="student-firstname" type="text" class="validate">
-					<label for="student-firstname"> First Name </label>
+		    		<input id="student-firstname" type="text" class="validate" value="{{student.given_name}}" ng-keyup="check_given_name_change()">
+					<label for="student-firstname" class="active"> First Name </label>
 				</div>
 				<div class="input-field col s4">
-		    		<input id="student-middlename" type="text" class="validate">
-					<label for="student-middlename"> Middle Name </label>
+		    		<input id="student-middlename" type="text" class="validate" value="{{student.middle_name}}" ng-keyup="check_middle_name_change()">
+					<label for="student-middlename" class="active"> Middle Name </label>
 				</div>
 				<div class="input-field col s4">
-		    		<input id="student-lastname" type="text" class="validate">
-					<label for="student-lastname"> Last Name </label>
+		    		<input id="student-lastname" type="text" class="validate" value="{{student.last_name}}" ng-keyup="check_last_name_change()">
+					<label for="student-lastname" class="active"> Last Name </label>
 				</div>
 	    	</div>
 
 	    	<div class="row">
 	    		<div class="input-field col s4">
-		    		<input id="student-degree" type="text" class="validate">
-					<label for="student-degree"> Degree </label>
+		    		<input id="student-degree" type="text" class="validate" value="{{student.degree}}" ng-keyup="check_degree_change()">
+					<label for="student-degree" class="active"> Degree </label>
 				</div>
 				<div class="input-field col s4">
-		    		<input id="student-classification" type="text" class="validate">
-					<label for="student-classification"> Classification </label>
+		    		<input id="student-classification" type="text" class="validate" value="{{student.classification}}" ng-keyup="check_classification_change()">
+					<label for="student-classification" class="active"> Classification </label>
 				</div>
 				<div class="input-field col s4">
-		    		<input id="student-college" type="text" class="validate">
-					<label for="student-college"> College </label>
+		    		<input id="student-college" type="text" class="validate" value="{{student.college}}" ng-keyup="check_college_change()">
+					<label for="student-college" class="active"> College </label>
 				</div>
 	    	</div>
-
-
-	    </div>
-	    <div class="modal-footer">
-	      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn btn-default">Save Student</a>
-	    </div>
+			</div>
+	      <button id="submit-button" type="submit" class="right modal-action modal-close waves-effect waves-green btn btn-default">Save Student</button>
+		</form>
+		</div>
 	</div>
 
-
+</div>
 		</main>
 </div>
 
 <script>
 $(document).ready(function(){
+
+	$('#edit-modal').on('hidden.bs.modal', function () {
+			alert('The modal is now hidden.');
+		});
 	$('ul.tabs').tabs();
 	$('.modal-trigger').leanModal();
 	$('select').material_select();
 	$('.showsidenav').sideNav();
+
 	function load_table(){
 		$("#lab-sections").children(":first").trigger("click");
 	};
