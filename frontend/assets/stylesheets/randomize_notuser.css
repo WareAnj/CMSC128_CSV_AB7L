@@ -124,3 +124,7 @@ table{
 .row {
     margin-bottom: 10px !important;
 }
+
+.table-heading {
+    padding-right: 8%;
+}
