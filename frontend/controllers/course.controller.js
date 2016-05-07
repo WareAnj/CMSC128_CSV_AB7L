@@ -260,7 +260,7 @@
 		
 		if(npassw!==""){
 			if (npassw!==cpassw){
-				Materialize.toast('Password do not match!', 3000, 'rounded');
+				Materialize.toast('Passwords do not match!', 3000, 'rounded');
 				err = true;
 			}
 			else{
@@ -376,7 +376,7 @@
 			mnchanged = false;
 			gnchanged = false;
 		}
-		if(npassw!==""){
+		if((npassw!=="")&&(!err)){
 			document.querySelector('#password-input').value = "";
 			document.querySelector('#confirm-password').value = "";
 			$('#confirm-password').attr('disabled','disabled');
