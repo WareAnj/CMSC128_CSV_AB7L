@@ -28,9 +28,8 @@
 			<div id="rand-not-user" class="container">
 			<div class="row">
 				<!-- COLUMN FOR FORM -->
-				<h4 class="center">RANDOMIZE</h4>
 				<div class="col s12 m5 l5">
-					<div class="container center">
+						<div class="container center">
 						<form onSubmit="return false;" id="form">
 							<div class="section">
 								<div class="row">
@@ -59,7 +58,7 @@
 
 
 					  		<div class="section">
-					  			<h5 id="add-space">Or input a file <a id="help" class="modal-trigger"><sup class="small red-text">[?]</sup></a></h5>
+					  			<h5>Or input a file <a id="help" class="modal-trigger"><sup class="small red-text">[?]</sup></a></h5>
 					  			<!-- FILE READING -->
 							    <div class="file-field input-field">
 							      <div class="btn grey darken-2">
@@ -72,11 +71,11 @@
 							    </div>
 							</div>
 
-							<div class="section">
+							<div class="section-button">
 				  				<button id="clear" class="btn waves-effect waves-light grey darken-2">Clear All Names
 				  				</button>
 				  			</div>
-				  			<div class="section">
+				  			<div class="section-button">
 				  				<a class="modal-trigger">
 				  				<button id="rand" class="btn waves-effect waves-light">
 				  					Randomize
@@ -90,17 +89,19 @@
 
 				<!-- COLUMN FOR TABLE -->
 				<div id="table-names" class="col s12 m7 l7">
+					<h5 class="center table-heading">Student List</h5>
+					<div class="cntainer" id="table-container">
 						<p></p>
 						<table class="centered bordered highlight">
 							<thead>
 								<tr>
-									<th><h5>Student List</h5></th>
-									<th></th>
+
 								</tr>
 							</thead>
 							<tbody id="table">
 							</tbody>
 						</table>
+					</div>
 				</div>
 
 			</div>
