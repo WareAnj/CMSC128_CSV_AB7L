@@ -38,24 +38,77 @@
 	</div>
 	<!--<img src="img/stripes2.jpg" />-->
 
-	<main style="position: absoute">
+	<main>
 		<div class="container" id="details-container">
 			<div class="row">
-				<div class="col s6 m5 l6">
-					<h1>Welcome, Admin</h1>
+				<!-- DETAILS CONTAINER -->
+				<div class="col s4 m4 l4 center" id="details-container-text">
+					<h5>Hello, ADMIN</h5>
+					<p>Welcome to the Administration page. In here, you will be able to see user logs and approve users. Feel free to navigate.</p>
+					<div>
+						 <ul class="collapsible popout" data-collapsible="accordion">
+						    <li>
+						      	<div class="collapsible-header"><i class="material-icons">recent_actors</i>Pending users</div>
+						      	<div class="collapsible-body">
+						      		<p>You currently have 3 pending users</p>
+						      		<a href="#/admin/view-pending" class="modal-trigger waves-effect waves-light btn">Check it out</a>
+						      </div>
+						    </li>
+						    <li>
+						      	<div class="collapsible-header"><i class="material-icons">equalizer</i>User logs</div>
+						      	<div class="collapsible-body">
+						      		<p>You currently have 24 user logs</p>
+						      		<a href="#/admin/view-logs" class="modal-trigger waves-effect waves-light btn">Check it out</a>
+						      	</div>
+						    </li>
+						    <li>
+						      	<div class="collapsible-header"><i class="material-icons">view_list</i>Approved Users</div>
+						      	<div class="collapsible-body">
+						      		<p>You currently approved 1 user</p>
+						      		<a href="#/admin/view-approved" class="modal-trigger waves-effect waves-light btn">Check it out</a>
+						      	</div>
+						    </li>
+						  </ul>
+					</div>
 				</div>
-				
+				<!-- HIGHCHARTS CONTAINER -->
+				<div class="col offset-s7 s7 m7 l7 center">
+					<p>Hello hello this is the highcharts zone</p>
+					<div id="logs">
+						<!-- <div id="logs-content" class="container">
+							<h4 class="center">Volunteer Logs</h4>
+							<div id="cmsc128" class="row">
+								<h5>CMSC 128</h5>
+								<div class="col s12 m12 l6" id="lec-class-lab"></div>
+								<div class="col s12 m12 l6" id="lec-class-student"></div>
+							</div>
+							<hr>
+							<div id="cmsc132" class="row">
+								<h5>CMSC 132</h5>
+								<div class="col s12 m12 l6" id="lec-class-lab"></div>
+								<div class="col s12 m12 l6" id="lec-class-student"></div>
+							</div>
+						</div> -->
+					</div>
+			</div>
+				</div>
 			</div>
 		</div>
 	</main>
+	<script type="text/javascript" src="js/default.js"></script>
+    <script type="text/javascript" src="js/logs.js"></script>
+	<script src="js/highcharts.js"></script>
 
 	<script>
-	$('.showsidenav').sideNav({
-		menuWidth: 350, // Default is 240
-	});
-	$(document).ready(function(){
-		$('ul.tabs').tabs();
-	});
+		$('.showsidenav').sideNav({
+			menuWidth: 350, // Default is 240
+		});
+		$(document).ready(function(){
+			$('ul.tabs').tabs();
+		});
 	</script>
 </div>
+<link type="text/css" rel="stylesheet" href="../assets/stylesheets/logs.css">
+<script type="text/javascript" src="../assets/js/admin.js"></script>
 <link type="text/css" rel="stylesheet" href="../assets/stylesheets/admin.css">
+

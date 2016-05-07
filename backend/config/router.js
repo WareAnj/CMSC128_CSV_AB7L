@@ -12,10 +12,11 @@ module.exports = (router) => {
     // faculty_user routes
     router.post('/faculty_user/register',                                                   __.faculty_user.register);
     router.get ('/faculty_user/get_user',                                                   __.faculty_user.get_logged_in_faculty_user_id);
-    router.post('/faculty_user/update_name',                            $('Faculty User'),  __.faculty_user.update_name);
-    router.post('/faculty_user/update_password',                        $('Faculty User'),  __.faculty_user.update_password);
-    router.post('/faculty_user/update_profile',                         $('Faculty User'),  __.faculty_user.update_profile);
-    router.post('/faculty_user/update_classification',                  $('Faculty User'),  __.faculty_user.update_classification);
+    router.post('/faculty_user/update_name/',                           $('Faculty User'),  __.faculty_user.update_name);
+    router.post('/faculty_user/update_password/',                       $('Faculty User'),  __.faculty_user.update_password);
+    router.post('/faculty_user/update_profile/',                        $('Faculty User'),  __.faculty_user.update_profile);
+    router.post('/faculty_user/update_classification/',                 $('Faculty User'),  __.faculty_user.update_classification);
+    router.post('/faculty_user/update_design',                          $('Faculty User'),  __.faculty_user.update_colour_profile);
 
     // check course if existing
     router.post('/course/check_course_code',                            $('Faculty User'),  __.course.check_course_code);
@@ -27,9 +28,11 @@ module.exports = (router) => {
     router.del ('/course/delete_course',                                $('Faculty User'),  __.course.delete_course);
 
     // lecture routes
-    router.get ('/course/lecture/get_lecture',                          $('Faculty User'),  __.lecture.get_lecture);
-    router.get ('/course/lecture/get_class_list',                       $('Faculty User'),  __.lecture.get_lecture_class_list);
-    router.get ('/course/lecture/get_student',                          $('Faculty User'),  __.lecture.get_lecture_student);
+    router.get ('/course/lecture/get_lecture',                          $('Faculty User'), __.lecture.get_lecture);
+    router.get ('/course/lecture/get_class_list',                       $('Faculty User'), __.lecture.get_lecture_class_list);
+    router.get ('/course/lecture/get_student',                          $('Faculty User'), __.lecture.get_lecture_student);
+    router.del ('/course/lecture/delete_student_in_lab_section',        $('Faculty User'), __.lecture.delete_student_in_lab_section);
+    router.put ('/course/lecture/update_student_in_lab_section',        $('Faculty User'), __.lecture.update_student_in_lab_section);
 
     // lab routes
     router.get ('/course/lecture/get_lab_sections',                     $('Faculty User'),  __.lecture.get_lab_sections);

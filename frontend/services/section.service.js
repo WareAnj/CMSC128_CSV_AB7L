@@ -13,6 +13,8 @@
 		service.Get_Class_List = Get_Class_List;
 		service.Get_Student = Get_Student;
 		service.Get_Student_Per_Lab_Section = Get_Student_Per_Lab_Section;
+		service.Delete_Student = Delete_Student;
+		service.Update_Student = Update_Student;
 		return service;
 
 		function Get_Lab_Sections(course_id, name){
@@ -66,6 +68,34 @@
 			})
 			.error(function(data) {
 				deferred.reject("Error: Cannot Get Student");
+			});
+
+			return deferred.promise;
+		}
+
+		function Delete_Student(id){
+			let deferred = $q.defer();
+
+			$http.delete("course/lecture/delete_student_in_lab_section?id=" + id)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Delete Student");
+			});
+
+			return deferred.promise;
+		}
+
+		function Update_Student(id, newStudent){
+			let deferred = $q.defer();
+
+			$http.put("course/lecture/update_student_in_lab_section?id=" + id, newStudent)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Update Student");
 			});
 
 			return deferred.promise;
