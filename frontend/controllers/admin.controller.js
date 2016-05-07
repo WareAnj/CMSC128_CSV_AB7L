@@ -138,13 +138,18 @@
         }
 
         $scope.formatDate = (date) => {
+            var months = [
+                'January', 'February', 'March', 'April', 'May', 
+                'June', 'July', 'August', 'September', 'October',
+                'November', 'December'];
+
             var d = new Date(date);
             var yyyy = d.getFullYear().toString();
             var mm = (d.getMonth() + 1).toString();
             var dd = d.getDate().toString();
             var hh = d.getHours();
             var min = d.getMinutes();
-            var string = mm+"/"+dd+"/"+yyyy+"   "+hh+":"+min;
+            var string = months[mm]+" "+dd+", "+yyyy+" "+hh+":"+min;
             return string;
         }
 
