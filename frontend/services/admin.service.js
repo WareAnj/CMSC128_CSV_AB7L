@@ -26,6 +26,7 @@
 	        	$http.get("admin/authenticate_logout")
 	        			.then((data) => {
 	            			deferred.resolve(data);
+	            			localStorage.clear();
 	            			$window.location.href = '/';
 						}, (error) => {
 							deferred.reject(error.data);
