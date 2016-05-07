@@ -1,6 +1,7 @@
 .DS_STORE
 *.*~
-**/*.log.*
+*.log
+*.log.*
 **/.git/**/*
 node_modules/**/*
 dist/
