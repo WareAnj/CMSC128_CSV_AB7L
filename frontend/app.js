@@ -55,8 +55,6 @@
                         $location.path('/');                      
                     }
                 });
-
-            console.log('called');
         }
 
         check_session();
