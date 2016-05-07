@@ -16,7 +16,6 @@
         }
 
         $rootScope.$on('$routeChangeStart', (event, next, current) => {
-            console.log(next.$$route.originalPath);
             let user = check_session(next.$$route.originalPath);
 
             if (!no_need_auth($location.url()) && typeof user === 'undefined') {
@@ -27,6 +26,7 @@
         // Routes that doesn't need authentication
         let no_auth_routes = ['/', '/guest-trynow'];
         let routes_for_admin = ['/admin', '/admin/view-pending', '/admin/view-logs', '/admin/view-approved'];
+        let routes_for_faculty_user = ['/home', '/class', '/settings_randomize'];
 
         // check if the current route does not need authentication (check if in the array)
         function no_need_auth(route) {
@@ -38,7 +38,7 @@
         }
 
         function need_faculty_user_auth(route) {
-            return no_auth_routes.indexOf(route) === -1 ? false : true;
+            return routes_for_faculty_user.indexOf(route) === -1 ? false : true;
         }       
 
         // Check the backend for existing session
