@@ -16,7 +16,8 @@
         }
 
         $rootScope.$on('$routeChangeStart', (event, next, current) => {
-            let user = check_session();
+            console.log(next.$$route.originalPath);
+            let user = check_session(next.$$route.originalPath);
 
             if (!no_need_auth($location.url()) && typeof user === 'undefined') {
                 $location.path('/');
@@ -25,15 +26,23 @@
 
         // Routes that doesn't need authentication
         let no_auth_routes = ['/', '/guest-trynow'];
-        let routes_for_admin = ['/admin', 'admin/view-pending', 'admin/view-logs', 'admin/view-approved'];
+        let routes_for_admin = ['/admin', '/admin/view-pending', '/admin/view-logs', '/admin/view-approved'];
 
         // check if the current route does not need authentication (check if in the array)
         function no_need_auth(route) {
             return no_auth_routes.indexOf(route) === -1 ? false : true;
         }
 
+        function need_admin_auth(route) {
+            return routes_for_admin.indexOf(route) === -1 ? false : true;
+        }
+
+        function need_faculty_user_auth(route) {
+            return no_auth_routes.indexOf(route) === -1 ? false : true;
+        }       
+
         // Check the backend for existing session
-        function check_session() {
+        function check_session(next_route) {
             let deferred = $q.defer();
 
             AuthenticationService
@@ -46,10 +55,14 @@
                     else {
                         localStorage.user = data.data;
                         if (data.data.role === 'Faculty User') {
-                            $location.path('/home');
+                            if (need_admin_auth(next_route) || next_route === '/') {
+                                $location.path('/home');
+                            }
                         }
                         else if (data.data.role === 'Administrator') {
-                            $location.path('/admin');   
+                            if (need_faculty_user_auth(next_route) || next_route === '/') {
+                                $location.path('/admin');
+                            }
                         }
                     }
 

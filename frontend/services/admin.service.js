@@ -27,7 +27,7 @@
 	        			.then((data) => {
 	            			deferred.resolve(data);
 	            			localStorage.clear();
-	            			$window.location.href = '/';
+	            			$location.path('/');
 						}, (error) => {
 							deferred.reject(error.data);
 							Materialize.toast(error.data, 1000);   
