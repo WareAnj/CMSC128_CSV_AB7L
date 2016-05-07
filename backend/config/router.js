@@ -12,10 +12,11 @@ module.exports = (router) => {
     // faculty_user routes
     router.post('/faculty_user/register',                                                   __.faculty_user.register);
     router.get ('/faculty_user/get_user',                                                   __.faculty_user.get_logged_in_faculty_user_id);
-    router.post('/faculty_user/update_name',                            $('Faculty User'),  __.faculty_user.update_name);
-    router.post('/faculty_user/update_password',                        $('Faculty User'),  __.faculty_user.update_password);
-    router.post('/faculty_user/update_profile',                         $('Faculty User'),  __.faculty_user.update_profile);
-    router.post('/faculty_user/update_classification',                  $('Faculty User'),  __.faculty_user.update_classification);
+    router.post('/faculty_user/update_name/',                           $('Faculty User'),  __.faculty_user.update_name);
+    router.post('/faculty_user/update_password/',                       $('Faculty User'),  __.faculty_user.update_password);
+    router.post('/faculty_user/update_profile/',                        $('Faculty User'),  __.faculty_user.update_profile);
+    router.post('/faculty_user/update_classification/',                 $('Faculty User'),  __.faculty_user.update_classification);
+    router.post('/faculty_user/update_design',                          $('Faculty User'),  __.faculty_user.update_design);
 
     // check course if existing
     router.post('/course/check_course_code',                            $('Faculty User'),  __.course.check_course_code);

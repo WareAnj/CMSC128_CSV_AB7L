@@ -226,16 +226,17 @@
 												</div>
 										</div>
 										<div class="col s12 m6 l6 container">
-													<div class="input-field">
-														<select id="profile-input" onchange="displayProfile()">
-															<option value="default">Default</option>
-															<option value="maroon">Maroon</option>
-															 <option value="grey">Grey</option>
-															 <option value="purple">Purple</option>
-														</select>
-														<label for="classification-input" class="black-text">Color Profile</label>
-													</div>
+												<div class="input-field">
+													<select id="profile-input" onchange="displayProfile()" ng-model="selectcolor.repeatSelect" ng-change="check_display()">
+														<option id="current_color" value="" disabled selected>{{info.design_setting}}</option>
+														<option value="default">Default</option>
+														<option value="maroon">Maroon</option>
+														<option value="grey">Grey</option>
+														<option value="purple">Purple</option>
+													</select>
+													<label for="classification-input" class="black-text">Color Profile</label>
 												</div>
+										</div>
 									 </div>
 									</form>
 								</div>
