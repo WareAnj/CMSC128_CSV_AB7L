@@ -15,6 +15,7 @@
             $('.button-collapse').sideNav('hide');
         }
 
+        // Event listener when the route is changed
         $rootScope.$on('$routeChangeStart', (event, next, current) => {
             let user = check_session(next.$$route.originalPath);
 
@@ -33,10 +34,12 @@
             return no_auth_routes.indexOf(route) === -1 ? false : true;
         }
 
+        // check if the current route needs administrator privileges
         function need_admin_auth(route) {
             return routes_for_admin.indexOf(route) === -1 ? false : true;
         }
 
+        // check if the current route needs faculty user privileges
         function need_faculty_user_auth(route) {
             return routes_for_faculty_user.indexOf(route) === -1 ? false : true;
         }       
@@ -72,7 +75,6 @@
             return deferred.promise;
         }
 
-        check_session();
     }
 
 
