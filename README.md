@@ -60,7 +60,7 @@ The CSVs is an online application that allows teachers to select random ‘volun
 
 2. Import all files in the folder `backend/es6/database/`
   ```sh
-  ./setup_database.sh
+  ./setup_database_development.sh
   ```
 
 3. Run this commands:
