@@ -14,13 +14,14 @@
                 .LoginAsAdmin($scope.facultyUser)
                 .then((data) => {
                     $scope.faculty_user_data.push(data);
-                    $location.url('/admin');
+                    $location.path('/admin');
                 }, (error) => {
                     if (error.context === 'Invalid username' || error.context === 'Invalid password') {
                         AuthenticationService
                             .LoginAsFacultyUser($scope.facultyUser)
                             .then((data) => {
-                                $location.url('/home');
+                                $location.path('/home');
+                                //if (!$rootScope.$$phase) $rootScope.$apply();
                             }, (error) => {
                                 Materialize.toast(error.context);
                             });

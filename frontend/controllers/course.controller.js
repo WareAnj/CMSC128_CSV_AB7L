@@ -28,7 +28,7 @@
     let ocode;
     let otitl;
     let odesc;
-    let desns;
+    let ocolor;
     let titlchged = false;
     let codechged = false;
     let descchged = false;
@@ -37,6 +37,7 @@
     let mnchanged = false;
     let lnchanged = false;
     let clchanged = false;
+    let colorchanged = false;
     let namep = new RegExp("[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+");
     let textRegex = new RegExp("[A-Za-z0-9\s]+");
 
@@ -59,17 +60,39 @@
           omname = data.middle_name;
           olname = data.last_name;
           uname = data.username;
-          desns = data.design_setting;
-          if (desns==='default.css')
-          	$scope.faculty_user_info[0].design_setting_name = 'Default';
-          else if (desns==='maroon.css')
-          	$scope.faculty_user_info[0].design_setting_name = 'Maroon';
-          else if (desns==='grey.css')
-          	$scope.faculty_user_info[0].design_setting_name = 'Grey';
-          else if (desns==='purple.css')
-          	$scope.faculty_user_info[0].design_setting_name = 'Purple';
-          if(desns!=='default.css')
-          	$("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+desns+"'>");
+          ocolor = data.design_setting;
+          $scope.selectd = {
+          	repeatSelect: null,
+          	options: [
+          		{id: "Instructor I", name: "Instructor I"},
+          		{id: "Instructor II", name: "Instructor II"},
+          		{id: "Instructor III", name: "Instructor III"},
+          		{id: "Instructor IV", name: "Instructor IV"},
+          		{id: "Instructor V", name: "Instructor V"},
+          		{id: "Instructor VI", name: "Instructor VI"},
+          		{id: "Assistant Professor I", name: "Assistant Professor I"},
+          		{id: "Assistant Professor II", name: "Assistant Professor II"},
+          		{id: "Assistant Professor III", name: "Assistant Professor III"},
+          		{id: "Assistant Professor IV", name: "Assistant Professor IV"},
+          		{id: "Assistant Professor V", name: "Assistant Professor V"},
+          		{id: "Assistant Professor VI", name: "Assistant Professor VI"},
+          		{id: "Professor I", name: "Professor I"},
+          		{id: "Professor II", name: "Professor II"},
+          		{id: "Professor III", name: "Professor III"},
+          		{id: "Professor IV", name: "Professor IV"},
+          		{id: "Professor V", name: "Professor V"},
+          		{id: "Professor VI", name: "Professor VI"}
+          	]
+          };
+          $scope.selectcolor = {
+            repeatSelect: null,
+            options: [
+              {id: "default.css", name: "default.css"},
+              {id: "maroon.css", name: "maroon.css"},
+              {id: "grey.css", name: "grey.css"},
+              {id: "purple.css", name: "purple.css"}
+            ]
+          };
         });
     }
 
@@ -182,19 +205,19 @@
 		if(ocode===ncode) codechged = false;
 		else codechged = true;
 	}
-	
+
 	$scope.check_course_title_changes = function(){
 		var ntitl = document.querySelector("#new-title-input").value;
 		if(otitl===ntitl) titlchged = false;
 		else titlchged = true;
 	}
-	
+
 	$scope.check_course_description_changes = function(){
 		var ndesc = document.querySelector("#new-desc-input").value;
 		if(odesc===ndesc) descchged = false;
 		else descchged = true;
 	}
-	
+
     $scope.Delete_Course = function(id) {
       CourseService.Delete_Course(id)
         .then(function(data){ });
@@ -239,7 +262,7 @@
 		var ndes = document.querySelector('#cprofile-input').value;
 
 		$scope.check_classification();
-		
+
 		if(ndes!==desns){
 			$http.post(
 				'faculty_user/update_design/',
@@ -257,7 +280,7 @@
 				$scope.faculty_user_info[0].design_setting_name = 'Purple';
 			clrschged = true;
 		}
-		
+
 		if(npassw!==""){
 			if (npassw!==cpassw){
 				Materialize.toast('Passwords do not match!', 3000, 'rounded');
@@ -425,6 +448,13 @@
 			}
 		}
 	}
+
+  $scope.check_display = function(){
+    console.log(ocolor);
+    var ncolor = document.querySelector('#profile-input').value + ".css";
+    if(ocolor===ncolor) colorchanged = false;
+    else colorchanged = true;
+  }
 
 	$scope.check_classification = function(){
 		var nclass = document.querySelector('#classification-input').value;
