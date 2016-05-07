@@ -28,6 +28,7 @@
     let ocode;
     let otitl;
     let odesc;
+    let desns;
     let titlchged = false;
     let codechged = false;
     let descchged = false;
@@ -50,35 +51,34 @@
           localStorage.setItem("course_description", "");
           localStorage.setItem("section_name", "");
           localStorage.setItem("section_code", "");
+          localStorage.setItem("design_setting", "");
           user_id = data.id;
           oclass = data.classification;
           ogname = data.given_name;
           omname = data.middle_name;
           olname = data.last_name;
           uname = data.username;
+          desns = data.design_setting;
           $scope.selectd = {
-          	repeatSelect: null,
-          	options: [
-          		{id: "Instructor I", name: "Instructor I"},
-          		{id: "Instructor II", name: "Instructor II"},
-          		{id: "Instructor III", name: "Instructor III"},
-          		{id: "Instructor IV", name: "Instructor IV"},
-          		{id: "Instructor V", name: "Instructor V"},
-          		{id: "Instructor VI", name: "Instructor VI"},
-          		{id: "Assistant Professor I", name: "Assistant Professor I"},
-          		{id: "Assistant Professor II", name: "Assistant Professor II"},
-          		{id: "Assistant Professor III", name: "Assistant Professor III"},
-          		{id: "Assistant Professor IV", name: "Assistant Professor IV"},
-          		{id: "Assistant Professor V", name: "Assistant Professor V"},
-          		{id: "Assistant Professor VI", name: "Assistant Professor VI"},
-          		{id: "Professor I", name: "Professor I"},
-          		{id: "Professor II", name: "Professor II"},
-          		{id: "Professor III", name: "Professor III"},
-          		{id: "Professor IV", name: "Professor IV"},
-          		{id: "Professor V", name: "Professor V"},
-          		{id: "Professor VI", name: "Professor VI"}
-          	]
+          	repeatSelect: null
           };
+          $scope.colourSet = {
+          	setting: null
+          };
+          if (desns==='default.css')
+          	$scope.faculty_user_info[0].design_setting_name = 'Default';
+          else if (desns==='maroon.css')
+          	$scope.faculty_user_info[0].design_setting_name = 'Maroon';
+          else if (desns==='grey.css')
+          	$scope.faculty_user_info[0].design_setting_name = 'Grey';
+          else if (desns==='purple.css')
+          	$scope.faculty_user_info[0].design_setting_name = 'Purple';
+          if(desns!=='default.css'){
+          	function give(){
+          		$("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+desns+"'>");
+          	}
+          	setTimeout(give,300);
+          }
         });
     }
 
@@ -246,6 +246,8 @@
 		var npassw = document.querySelector('#password-input').value;
 		var cpassw = document.querySelector('#confirm-password').value;
 
+		$scope.check_classification();
+		
 		if(npassw!==""){
 			if (npassw!==cpassw){
 				Materialize.toast('Password do not match!', 3000, 'rounded');
@@ -429,6 +431,12 @@
   		var nlname = document.querySelector('#lname-input').value;
   		if (olname===nlname) lnchanged=false;
   		else lnchanged = true;
+  	}
+  	
+  	$scope.check_colour_changes = function() {
+  		console.log(desns);
+  		var ndes = document.querySelector('#cprofile-input').value;
+  		console.log((ndes));
   	}
 
     // checker in add course

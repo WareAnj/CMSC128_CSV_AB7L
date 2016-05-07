@@ -201,8 +201,8 @@
 											</div>
 											<div class="col s12 m12 l4">
 												<div class="input-field">
-													<select id="classification-input" ng-model="selectd.repeatSelect" ng-change="check_classification()">
-														<option value="{{info.classification}}" selected="selected">{{info.classification}}</option>
+													<select id="classification-input">
+														<option value="{{info.classification}}" ng-selected="true">{{info.classification}}</option>
 														<option value="Instructor I">Instructor I</option>
 														 <option value="Instructor II">Instructor II</option>
 														 <option value="Instructor III">Instructor III</option>
@@ -224,19 +224,22 @@
 													</select>
 													<label for="classification-input" class="black-text"><i class="material-icons left">perm_identity</i>Classification</label>
 												</div>
+											</div>
 										</div>
-										<div class="col s12 m6 l6 container">
-													<div class="input-field">
-														<select id="profile-input" onchange="displayProfile()">
-															<option value="default">Default</option>
-															<option value="maroon">Maroon</option>
-															 <option value="grey">Grey</option>
-															 <option value="purple">Purple</option>
-														</select>
-														<label for="classification-input" class="black-text">Color Profile</label>
-													</div>
-												</div>
-									 </div>
+										<div class="row">
+											<div class="col s12 m12 l12 container">
+											<div class="input-field">
+												<select id="cprofile-input">
+													<option value="{{info.design_setting}}" ng-selected="true">{{info.design_setting_name}}</option>
+													<option value="default.css">Default</option>
+													<option value="maroon.css">Maroon</option>
+													<option value="grey.css">Grey</option>
+													<option value="purple.css">Purple</option>
+												</select>
+												<label for="classification-input" class="black-text">Colour Profile</label>
+											</div>
+										</div>
+										</div>
 									</form>
 								</div>
 							</div>

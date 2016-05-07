@@ -12,7 +12,7 @@ $(document).ready(function(){
 });*/
 
 function displayProfile() {
-	var cssf = document.getElementById("profile-input").value + ".css";
+	var cssf = document.getElementById("cprofile-input").value + ".css";
 	
 	if(document.getElementById("profile-setting")){
 		if(cssf != "default.css") $('#profile-setting').replaceWith("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+ cssf + "'>");
