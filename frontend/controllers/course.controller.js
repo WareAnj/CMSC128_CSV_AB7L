@@ -28,6 +28,7 @@
     let ocode;
     let otitl;
     let odesc;
+    let desns;
     let ocolor;
     let titlchged = false;
     let codechged = false;
