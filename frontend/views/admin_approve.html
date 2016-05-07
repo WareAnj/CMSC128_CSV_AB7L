@@ -31,66 +31,68 @@
 		</nav>
 	</div>
 
-	<div class="container">
-		<table data-ng-init="GetUsers()" ng-table="usersTable" show-filter="true" id="admintable" class="highlight responsive-table bordered centered stripped">
-			<thead>
-				<tr>
-					<th>
-						<a ng-click="order('given_name')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by first name.">First Name
-						</a>
-					</th>
-					<th>
-						<a ng-click="order('last_name')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by last name.">Last Name
-						</a>	
-					</th>
-					<th>
-						<a ng-click="order('username')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by username.">Username
-						</a>
-					</th>
-					<th>
-						<a ng-click="order('employee_id')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by employee ID.">Employee ID
-						</a>
-					</th>
-					<th>
-						<a ng-click="order('classification')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by classification.">Classification
-						</a>
-					</th>
-					<th>
-						<a ng-click="order('date_signed_up')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by sign up date.">Sign Up Date
-						</a>
-					</th>
-					<th>
-						<a class="waves-effect waves-light btn">Approve</a>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				 <tr ng-repeat="user in userList | orderBy:predicate:reverse">
-			       <td data-title="given_name" >
-			           {{user.given_name}}
-			       </td>
-			       <td data-title="last_name" >
-			           {{user.last_name}}
-			       </td>
-			       <td data-title="username" >
-			           {{user.username}}
-			       </td>
-			       <td data-title="employee_id" >
-			           {{user.employee_id}}
-			       </td>
-			       <td data-title="classification">
-			           {{user.classification}}
-			       </td>
-			       <td data-title="date_signed_up" >
-			           {{user.date_signed_up}}
-			       </td>
-			       <td data-title="approve_button">
-			           <button id="{{user.username}}" class="waves-effect waves-light btn material-icons" ng-click="ApproveUser(user.id, user.username)">done</button>
-			       </td>
-			   </tr>
-			</tbody>
-		</table>
-	</div>
+	<main>
+		<div class="container">
+			<table data-ng-init="GetUsers()" ng-table="usersTable" show-filter="true" id="admintable" class="highlight responsive-table bordered centered stripped">
+				<thead>
+					<tr>
+						<th>
+							<a ng-click="order('given_name')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by first name.">First Name
+							</a>
+						</th>
+						<th>
+							<a ng-click="order('last_name')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by last name.">Last Name
+							</a>	
+						</th>
+						<th>
+							<a ng-click="order('username')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by username.">Username
+							</a>
+						</th>
+						<th>
+							<a ng-click="order('employee_id')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by employee ID.">Employee ID
+							</a>
+						</th>
+						<th>
+							<a ng-click="order('classification')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by classification.">Classification
+							</a>
+						</th>
+						<th>
+							<a ng-click="order('date_signed_up')" class="waves-effect waves-light btn tooltipped" data-position="top" data-delay="50" data-tooltip="Sort by sign up date.">Sign Up Date
+							</a>
+						</th>
+						<th>
+							<a class="waves-effect waves-light btn">Approve</a>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					 <tr ng-repeat="user in userList | orderBy:predicate:reverse">
+				       <td data-title="given_name" >
+				           {{user.given_name}}
+				       </td>
+				       <td data-title="last_name" >
+				           {{user.last_name}}
+				       </td>
+				       <td data-title="username" >
+				           {{user.username}}
+				       </td>
+				       <td data-title="employee_id" >
+				           {{user.employee_id}}
+				       </td>
+				       <td data-title="classification">
+				           {{user.classification}}
+				       </td>
+				       <td data-title="date_signed_up" >
+				           {{formatDate(user.date_signed_up)}}
+				       </td>
+				       <td data-title="approve_button">
+				           <button id="{{user.username}}" class="waves-effect waves-light btn material-icons" ng-click="ApproveUser(user.id, user.username)">done</button>
+				       </td>
+				   </tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
 	<script>
 		$('.showsidenav').sideNav({
 			menuWidth: 350, // Default is 240

@@ -31,6 +31,7 @@
 		</nav>
 	</div>
 
+	<main>
 		<div class="container">
 		 <div class="row">
 			<div class="col s12">
@@ -75,7 +76,7 @@
 				           {{user.username}}
 				       </td>
 				       <td data-title="date_login" id="dynamictd">
-				           {{user.date_logout}}
+				           {{formatDate(user.date_logout)}}
 				       </td>
 				   </tr>
 				</tbody>
@@ -114,13 +115,14 @@
 				           {{user.username}}
 				       </td>
 				       <td data-title="date_login" id="dynamictd">
-				           {{user.date_login}}
+				           {{ formatDate(user.date_login) }}
 				       </td>
 				   </tr>
 				</tbody>
 			</table>
 			</div>
 		</div>
+	</main>
 		<script type="text/javascript">
 			$('#logintable').show();
 			$('#logouttable').hide();

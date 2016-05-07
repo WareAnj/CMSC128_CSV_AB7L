@@ -15,3 +15,7 @@ $(document).ready(function(){
     $("#addModal").openModal();
   });
 });
+
+$(document).on('click', '#logout-button', function() {
+	$("#profile-setting").remove();
+});
