@@ -166,10 +166,10 @@
 	</div>
 
 	<div id="edit-modal" class="modal">
-		<div class="modal-content">
+		<div id="edit-modal-content" class="modal-content">
   	<h4>EDIT A STUDENT</h4>
 			<form ng-submit="Update_Student_Info()" autocomplete="off">
-				<div ng-repeat="student in to_edit_student">
+				<div ng-repeat="student in to_edit_student" class="past-data">
 	    	<div class="row">
 	    		<div class="input-field col s4">
 		    		<input id="student-firstname" type="text" class="validate" value="{{student.given_name}}" ng-keyup="check_given_name_change()">
@@ -211,10 +211,15 @@
 
 <script>
 $(document).ready(function(){
+
+	$('#edit-modal').on('hidden.bs.modal', function () {
+			alert('The modal is now hidden.');
+		});
 	$('ul.tabs').tabs();
 	$('.modal-trigger').leanModal();
 	$('select').material_select();
 	$('.showsidenav').sideNav();
+
 });
 
 

@@ -102,6 +102,12 @@
         $("#delete-modal").openModal();
       }
       if(type == "edit"){
+        $("#edit-modal").openModal({
+          complete: function(){
+            $(".past-data").html("");
+          }
+        });
+
         SectionService.Get_Student(student_id)
         .then(function(data) {
           $scope.to_edit_student.push({
@@ -113,7 +119,7 @@
             'college' : data[0].college
           });
         });
-        $("#edit-modal").openModal();
+
       }
     }
 
@@ -143,7 +149,7 @@
         $scope.newStudent.classification = "";
         $scope.newStudent.college = "";
       });
-
+      Materialize.toast('Student Successfully Edited!', 3000, 'rounded');
       SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
         .then(function(data) {
          $scope.student_per_lab = [];
@@ -188,5 +194,7 @@
       if (old_student_college===new_college) college=false;
   		else college = true;
     }
+
+
   }
 })();
