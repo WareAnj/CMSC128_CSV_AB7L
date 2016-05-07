@@ -10,7 +10,7 @@
   function RandomCtrl($rootScope, $scope, $location, RandomService) {
     var students = localStorage.getItem('students');
     $scope.students = JSON.parse(students);
-    console.log($scope.students);
+
     $scope.labdata = [];
     $scope.labSections = [];
     var randdata = {};
@@ -87,7 +87,8 @@
               }
             });
          }
-         randomizeStudents(0);     
+        console.log($scope.students);
+        randomizeStudents(0);     
       }
 
       //Whole section

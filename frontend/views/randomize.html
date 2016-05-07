@@ -1,0 +1,31 @@
+<div ng-controller="RandomCtrl">
+	<nav class="teal">
+		<ul id="slide-out" class="side-nav">
+	    	<li><a href="#!">Edit Profile</a></li>
+	     	<li><a href="#!">Second Link</a></li>
+	     	<li><button class="waves-effect waves-light btn centered" id="logout-btn" ng-click="logout()">logout</button></li>
+  	  	</ul>
+   	 <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu marginize"></i></a>
+	</nav>
+	
+	<div>
+		<!-- <div class="carousel" ng-repeat="student in students"> -->
+		<div class="carousel">	
+			<!-- <div> -->
+		    <a class="carousel-item" ng-repeat="student in students">
+		    <!-- <a class="carousel-item"> -->
+			    	<img src="../assets/img/user.png">
+			    	<p style="text-align: center;"> 
+			    	{{student.last_name}}, {{student.given_name}} {{student.middle_name}}
+			    	{{student.student_number}}
+			   	 	</p>
+		   	</a>
+		   	<!-- </div> -->
+		</div>
+  </div>
+</div>
+<script>
+	 $(document).ready(function(){
+      $('.carousel').carousel();
+    });
+</script>
