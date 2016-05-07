@@ -122,6 +122,11 @@
         });
     }
 
+    $scope.Get_Selected_Course = function(course_id) {
+      $("#addLecture").openModal();
+      localStorage.setItem("course_id", course_id);
+    }
+
     $scope.Add_Course = function() {
       CourseService.Add_Course($scope.newCourse)
       .then(function(data) {
@@ -245,6 +250,35 @@
                 });
             }
           });
+    }
+
+    $scope.Add_Lecture = function(){
+      CourseService.Add_Lecture(localStorage.getItem("course_id"), $scope.newLecture)
+        .then(function(data) {
+            $scope.newLecture.section_name = "";
+            Materialize.toast('Lecture Section added!', 5000, 'rounded');
+            localStorage.setItem("course_id", "")
+            $('#addLecture').closeModal();
+        });
+
+      CourseService.Get_Course(user_id)
+        .then(function(data) {
+          $scope.faculty_user_courses = [];
+          for(let i = 0; i < data.length; i++) {
+            CourseService.Get_Lecture(data[i].id)
+              .then(function(data2) {
+                  $scope.faculty_user_courses.push({
+                    'code': data[i].code,
+                    'course_id': data[i].course_id,
+                    'description': data[i].description,
+                    'faculty_user_id': data[i].faculty_user_id,
+                    'id': data[i].id,
+                    'title': data[i].title,
+                    'lecture' : data2
+                  });
+              });
+          }
+        });
     }
 
     $scope.Get_Selected_Lecture = function(c_id, c_code, c_title, c_desc, section_name) {
@@ -603,6 +637,35 @@
 
           if(c_code_edit && c_title_edit && c_description_edit) $("#submit-button-edit").removeAttr('disabled');
           else $("#submit-button-edit").attr('disabled', 'disabled');
+        }
+
+  		);
+  	}
+
+    $scope.check_section_name = function(){
+  		let section_name = document.querySelector('#section-name-input').value;
+
+      if (section_name===""){
+  			if($("#section-name-input").hasClass('invalid')){
+  				$("#section-name-input").removeClass('invalid');
+  			} $("#submit-button-add-lecture").addClass('disabled');
+  		}
+
+  		$http.post(
+  			"course/lecture/check_section_name?course_id=" + localStorage.getItem("course_id"),  $scope.newLecture
+  			).then(function(response){;
+  				if (response.data){
+  					if(!($("#section-name-input").hasClass('invalid'))){
+  						$("#section-name-input").addClass('invalid');
+              $("#submit-button-add-lecture").addClass('disabled');
+  					}
+          }
+          else{
+  					if($("#section-name-input").hasClass('invalid')){
+  						$("#section-name-input").removeClass('invalid');
+              $("#submit-button-add-lecture").removeClass('disabled');
+  					}
+      		}
         }
 
   		);

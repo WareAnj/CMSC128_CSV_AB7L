@@ -82,7 +82,7 @@
 											<a title="Update Course Details" class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(course)">
 												<i class="material-icons custom-text text-darken-1">mode_edit</i>
 											</a>
-											<a title="Add Lecture Class" class="btn-floating btn-large waves-effect waves-light white" ng-click="Get_Selected_Course()">
+											<a title="Add Lecture Class" class="btn-floating btn-large waves-effect waves-light white" ng-click="Get_Selected_Course(course.id)">
 												<i class="material-icons custom-text text-darken-1">add</i>
 											</a>
 											<h5>{{course.code}}</h5>
@@ -168,32 +168,17 @@
 					<div id="addLecture" class="modal">
 				    <div class="modal-content">
 				      <h5>Add Lecture Section</h5>
-							<form ng-submit="" autocomplete="off">
+							<form ng-submit="Add_Lecture()" autocomplete="off">
 								<div class="row">
 						      <div class="input-field">
 						        <div class="col s12 m12 l12">
-											<input placeholder="Course Code" type="text" id="code-input" ng-keyup="check_course_code_add()" ng-model="newCourse.course_code" required="required">
-											<label for="course-code-input" class="active" data-error="Course Code Already Exits!">Course Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-										</div>
-						      </div>
-						    </div>
-								<div class="row">
-						      <div class="input-field">
-						        <div class="col s12 m12 l12">
-						          <input placeholder="Course Title" type="text" id="title-input" ng-keyup="check_course_code_add()" ng-model="newCourse.course_title" required="required">
-						        </div>
-						      </div>
-						    </div>
-								<div class="row">
-						      <div class="input-field">
-						        <div class="col s12 m12 l12">
-											<textarea id="desc-input" class="materialize-textarea custom-text text-darken-1" ng-keyup="check_course_code_add()" ng-model="newCourse.course_description"></textarea>
-											<label for="desc-input">Course Description</label>
+											<input placeholder="Lecture Section Name" type="text" id="section-name-input" ng-keyup="check_section_name()" ng-model="newLecture.section_name" required="required">
+											<label for="section-name-input" class="active" data-error="Lecture Section Already Exits!"> Lecture Section&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 										</div>
 						      </div>
 						    </div>
 								<div class="modal-footer">
-									<button id="submit-button-add" class="btn waves-effect waves-light" type="submit" disabled>Add Course</button>
+									<button id="submit-button-add-lecture" class="btn waves-effect waves-light" type="submit">Add Lecture</button>
 								</div>
 							</form>
 				    </div>

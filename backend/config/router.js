@@ -27,7 +27,11 @@ module.exports = (router) => {
     router.put ('/course/put_course',                                   $('Faculty User'),  __.course.put_course);
     router.del ('/course/delete_course',                                $('Faculty User'),  __.course.delete_course);
 
+    // check lecture if existing in specific course
+    router.post('/course/lecture/check_section_name',                    $('Faculty User'),  __.lecture.check_section_name);
+
     // lecture routes
+    router.post ('/course/lecture/post_lecture',                        $('Faculty User'), __.lecture.post_lecture);
     router.get ('/course/lecture/get_lecture',                          $('Faculty User'), __.lecture.get_lecture);
     router.get ('/course/lecture/get_class_list',                       $('Faculty User'), __.lecture.get_lecture_class_list);
     router.get ('/course/lecture/get_student',                          $('Faculty User'), __.lecture.get_lecture_student);
