@@ -3,14 +3,15 @@ $(document).ready(function(){
 });
 
 function displayProfile() {
-	var cssf = document.getElementById("cprofile-input").value + ".css";
+	var cssf = document.getElementById("cprofile-input").value;
 	
 	if(document.getElementById("profile-setting")){
-		if(cssf != "default.css") $('#profile-setting').replaceWith("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+ cssf + "'>");
-		else $('#profile-setting').remove();
+		if(cssf=== "default.css") $('#profile-setting').remove();
+		else $('#profile-setting').replaceWith("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+ cssf + "'>");
 	}
 
 	else{
-		$("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+ cssf + "'>");
+		if(cssf!=='default.css')
+			$("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+ cssf + "'>");
 	}
 };
