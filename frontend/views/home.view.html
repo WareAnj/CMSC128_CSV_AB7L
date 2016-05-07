@@ -22,7 +22,7 @@
 						</div>
 						<div ng-repeat="course in faculty_user_courses">
 							<div ng-repeat="lecture in course.lecture">
-								<a class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Course(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
+								<a class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Lecture(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
 							</div>
 						</div>
 						<div class="center" ng-controller="HomeCtrl">
@@ -82,14 +82,14 @@
 											<a title="Update Course Details" class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(course)">
 												<i class="material-icons custom-text text-darken-1">mode_edit</i>
 											</a>
-											<a title="Add Lecture Class" class="btn-floating btn-large waves-effect waves-light white" ng-click="">
+											<a title="Add Lecture Class" class="btn-floating btn-large waves-effect waves-light white" ng-click="Get_Selected_Course(course.id)">
 												<i class="material-icons custom-text text-darken-1">add</i>
 											</a>
 											<h5>{{course.code}}</h5>
 								    </div>
 										<ul class="collapsible popout" data-collapsible="expandable" >
 											<li ng-repeat="lecture in course.lecture">
-												<div class="collapsible-header" ng-click="Get_Selected_Course(course.id, course.code, course.title, course.description, lecture.name)"><i class="material-icons custom-text text-darken-1" >star_rate</i>{{lecture.name}}</div>
+												<div class="collapsible-header" ng-click="Get_Selected_Lecture(course.id, course.code, course.title, course.description, lecture.name)"><i class="material-icons custom-text text-darken-1" >star_rate</i>{{lecture.name}}</div>
 												<!-- <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div> -->
 											</li>
 										</ul>
@@ -99,6 +99,7 @@
 						</div>
 					</div>
 					<!--MODALS-->
+					<!-- ADD COURSE -->
 					<div id="addModal" class="modal">
 				    <div class="modal-content">
 				      <h5>Add Course</h5>
@@ -132,6 +133,7 @@
 							</form>
 				    </div>
 				  </div>
+					<!-- UPDATE COURSE -->
 					<div id="editModal" class="modal">
 				    <div class="modal-content">
 				      <h5>Edit Course</h5>
@@ -158,6 +160,25 @@
 						    </div>
 								<div class="modal-footer">
 									<button id="submit-button-edit" class="btn waves-effect waves-light" type="submit">Edit Course</button>
+								</div>
+							</form>
+				    </div>
+				  </div>
+					<!-- ADD LECTURE -->
+					<div id="addLecture" class="modal">
+				    <div class="modal-content">
+				      <h5>Add Lecture Section</h5>
+							<form ng-submit="Add_Lecture()" autocomplete="off">
+								<div class="row">
+						      <div class="input-field">
+						        <div class="col s12 m12 l12">
+											<input placeholder="Lecture Section Name" type="text" id="section-name-input" ng-keyup="check_section_name()" ng-model="newLecture.section_name" required="required">
+											<label for="section-name-input" class="active" data-error="Lecture Section Already Exits!"> Lecture Section&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										</div>
+						      </div>
+						    </div>
+								<div class="modal-footer">
+									<button id="submit-button-add-lecture" class="btn waves-effect waves-light" type="submit">Add Lecture</button>
 								</div>
 							</form>
 				    </div>

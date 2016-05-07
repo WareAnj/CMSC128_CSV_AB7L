@@ -17,6 +17,7 @@
     service.Delete_Course = Delete_Course;
 		// Lecture
 		service.Get_Lecture = Get_Lecture;
+		service.Add_Lecture = Add_Lecture;
 		return service;
 
 		function Get_User() {
@@ -67,7 +68,7 @@
 
 		function Edit_Course(id, course) {
 			let deferred = $q.defer();
-			
+
 			$http.put("course/put_course?id=" + id, course)
 			.success(function(data) {
 				deferred.resolve(data);
@@ -102,6 +103,20 @@
 			})
 			.error(function(data) {
 				deferred.reject("Error: Cannot Get Lecture Classes");
+			});
+
+			return deferred.promise;
+		}
+
+		function Add_Lecture(course_id, section_name) {
+			let deferred = $q.defer();
+			
+			$http.post("course/lecture/post_lecture?course_id=" + course_id, section_name)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Add Lecture Class");
 			});
 
 			return deferred.promise;
