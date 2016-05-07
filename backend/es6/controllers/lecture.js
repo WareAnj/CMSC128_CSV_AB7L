@@ -249,3 +249,38 @@ exports.get_student_per_lab_section = (req, res, next) => {
   start();
 
 };
+
+exports.delete_student_in_lab_section = (req, res, next) => {
+  const data = {
+      id:                  req.query.id
+  };
+
+  function start () {
+      db.query('DELETE FROM student_section WHERE student_id = ?;'
+               ,
+               [data.id],
+                send_response);
+  }
+
+  function send_response (err, result, args, last_query) {
+      if (err) {
+          winston.error('Error in deleting students in section', last_query);
+          return next(err);
+      }
+
+      db.query('DELETE FROM student WHERE id = ?;'
+               ,
+               [data.id],
+                send);
+  }
+
+  function send (err, result, args, last_query){
+    if (err) {
+        winston.error('Error in deleting students in students', last_query);
+        return next(err);
+    }
+    res.send(result);
+  }
+
+  start();
+};

@@ -40,8 +40,8 @@
 	</nav>
 
 	<!-- MAIN BODY -->
-	<main>
-	<div id="nav-container" class="container" ng-controller="SectionCtrl">
+	<main ng-controller="SectionCtrl">
+	<div id="nav-container" class="container">
 		<!-- <div class="row">
 			<div class="input-field col s1">
 				<a href="#add-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">add</i></a>
@@ -84,8 +84,8 @@
 		            <td>{{lab_student.classification}}</td>
 		            <td>{{lab_student.college}}</td>
 		            <td>
-		   				<a href="#delete-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">not_interested</i> </a>
-			            <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
+		   				<a class="btn btn-floating waves-effect waves-light modal-trigger" ng-click="Get_Student_Id(lab_student.id)"> <i class="material-icons">not_interested</i> </a>
+			        <a href="#modal2" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">mode_edit</i> </a>
 
 		           </td>
 		          </tr>
@@ -93,9 +93,6 @@
 		      </table>
 		</div>
 	</div>
-
-
-
 
 
 
@@ -162,8 +159,8 @@
 	    	<p>Are you sure you want to delete this student?</p>
 	    </div>
 	    <div class="modal-footer">
-	      <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-default">Cancel</a>
-	      <a href="#!" class="modal-action modal-close waves-effect waves-green red lighten-1 btn btn-default">Delete Student</a>
+	      <a href="#" class="modal-action modal-close waves-effect waves-green btn btn-default">Cancel</a>
+	      <a ng-click="Delete_Selected_Student()" class="waves-effect waves-green red lighten-1 btn btn-default">Delete Student</a>
 	    </div>
 	</div>
 

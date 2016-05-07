@@ -14,6 +14,8 @@
     $scope.student = [];
     $scope.student_per_lab = [];
 
+    let student_id;
+
     $scope.Get_Lab_Sections = function() {
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
          .then(function(data) {
@@ -25,21 +27,17 @@
                'section_code':  data[i].code
              });
            }
-           console.log($scope.lab_sections_info);
         });
      }
 
      $scope.Get_Student_Per_Lab_Section = function(section_code) {
-        console.log(section_code);
-        
-        localStorage.setItem("section_code", section_code)
+       localStorage.setItem("section_code", section_code)
        SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
          .then(function(data) {
           $scope.student_per_lab = [];
            for(var i = 0 ; i < data.length; i++){
              $scope.student_per_lab.push(data[i]);
            }
-           console.log($scope.student_per_lab);
         });
      }
 
@@ -68,7 +66,27 @@
         $scope.student = [];
         $scope.student.push(data[0]);
       });
+    }
 
+    $scope.Delete_Selected_Student = function() {
+      $("#delete-modal").closeModal();
+      SectionService.Delete_Student(student_id)
+      .then(function(data){
+
+      });
+
+      SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
+        .then(function(data) {
+         $scope.student_per_lab = [];
+          for(var i = 0 ; i < data.length; i++){
+            $scope.student_per_lab.push(data[i]);
+          }
+       });
+    }
+
+    $scope.Get_Student_Id = function(s_id){
+      student_id = s_id;
+      $("#delete-modal").openModal();
     }
   }
 })();
