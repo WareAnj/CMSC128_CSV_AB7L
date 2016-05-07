@@ -60,12 +60,6 @@
           olname = data.last_name;
           uname = data.username;
           desns = data.design_setting;
-          $scope.selectd = {
-          	repeatSelect: null
-          };
-          $scope.colourSet = {
-          	setting: null
-          };
           if (desns==='default.css')
           	$scope.faculty_user_info[0].design_setting_name = 'Default';
           else if (desns==='maroon.css')
@@ -74,12 +68,8 @@
           	$scope.faculty_user_info[0].design_setting_name = 'Grey';
           else if (desns==='purple.css')
           	$scope.faculty_user_info[0].design_setting_name = 'Purple';
-          if(desns!=='default.css'){
-          	//function setPColour(){
-          		$("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+desns+"'>");
-          	//}
-          	//setTimeout(setPColour, 300);
-          }
+          if(desns!=='default.css')
+          	$("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+desns+"'>");
         });
     }
 
