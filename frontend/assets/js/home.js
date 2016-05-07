@@ -2,14 +2,14 @@ $(document).ready(function(){
 	$('ul.tabs').tabs();
 });
 
-$(document).ready(function(){
+/*$(document).ready(function(){
     function get_file(){
     	var cssf = $("#cssfile").html();
         $("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+ cssf + "'>");
     };
 
 	setTimeout(get_file, 300);
-});
+});*/
 
 function displayProfile() {
 	var cssf = document.getElementById("profile-input").value + ".css";
