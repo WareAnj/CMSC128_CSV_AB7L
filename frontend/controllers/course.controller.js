@@ -28,6 +28,7 @@
     let ocode;
     let otitl;
     let odesc;
+    let ocolor;
     let titlchged = false;
     let codechged = false;
     let descchged = false;
@@ -35,6 +36,7 @@
     let mnchanged = false;
     let lnchanged = false;
     let clchanged = false;
+    let colorchanged = false;
     let namep = new RegExp("[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+");
     let textRegex = new RegExp("[A-Za-z0-9\s]+");
 
@@ -56,6 +58,7 @@
           omname = data.middle_name;
           olname = data.last_name;
           uname = data.username;
+          ocolor = data.design_setting;
           $scope.selectd = {
           	repeatSelect: null,
           	options: [
@@ -78,6 +81,15 @@
           		{id: "Professor V", name: "Professor V"},
           		{id: "Professor VI", name: "Professor VI"}
           	]
+          };
+          $scope.selectcolor = {
+            repeatSelect: null,
+            options: [
+              {id: "default.css", name: "default.css"},
+              {id: "maroon.css", name: "maroon.css"},
+              {id: "grey.css", name: "grey.css"},
+              {id: "purple.css", name: "purple.css"}
+            ]
           };
         });
     }
@@ -348,7 +360,18 @@
 			$scope.faculty_user_info[0].classification = nclass;
 		}
 
-		if((!err) && (gnchanged || mnchanged || lnchanged || clchanged || (npassw!==""))) Materialize.toast('Profile updated!', 3000, 'rounded');
+    if(colorchanged){
+      var ncolor = document.querySelector('#profile-input').value + ".css";
+      console.log(ncolor);
+      $http.post(
+        'faculty_user/update_design/',
+        {username: uname, design_setting: ncolor}
+      );
+      ocolor=ncolor;
+      $scope.faculty_user_info[0].design_setting = ncolor;
+    }
+
+		if((!err) && (gnchanged || mnchanged || lnchanged || clchanged || (npassw!=="") || colorchanged)) Materialize.toast('Profile updated!', 3000, 'rounded');
 		if(npassw!==""){
 			document.querySelector('#password-input').value = "";
 			document.querySelector('#confirm-password').value = "";
@@ -398,6 +421,13 @@
 			}
 		}
 	}
+
+  $scope.check_display = function(){
+    console.log(ocolor);
+    var ncolor = document.querySelector('#profile-input').value + ".css";
+    if(ocolor===ncolor) colorchanged = false;
+    else colorchanged = true;
+  }
 
 	$scope.check_classification = function(){
 		var nclass = document.querySelector('#classification-input').value;
