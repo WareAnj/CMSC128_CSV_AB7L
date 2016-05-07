@@ -36,3 +36,10 @@ ul {
 .collapsible-body > p {
 	padding:2%;
 }
+
+#container {
+    height: 400px; 
+    min-width: 310px; 
+    max-width: 800px;
+    margin: 0 auto;
+}
