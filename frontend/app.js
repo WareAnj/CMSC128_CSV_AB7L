@@ -17,7 +17,7 @@
 
         // Routes that doesn't need authentication
         let no_auth_routes = ['/', '/guest-trynow'];
-        let routes_for_admin = [];
+        let routes_for_admin = ['/admin', 'admin/view-pending', 'admin/view-logs', 'admin/view-approved'];
 
         // check if the current route does not need authentication (check if in the array)
         function no_need_auth(route) {
