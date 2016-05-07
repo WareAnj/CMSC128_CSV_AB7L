@@ -2,7 +2,7 @@
   "name": "CMSC128_CSV_AB7L",
   "version": "0.0.1",
   "description": "The CSVs is an online application that allows teachers to select random ‘volunteers’. The volunteers are students enrolled in a class.",
-  "main": "backend/es6/server.js",
+  "main": "backend/server.js",
   "dependencies": {
     "angular-moment": "^1.0.0-beta.6",
     "anytv-node-importer": "0.0.0",
@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "nodemon backend/server.js",
-    "test": "mocha backend/es6/test/api --recursive"
+    "test": "mocha backend/test/api --recursive"
   },
   "repository": {
     "type": "git",
