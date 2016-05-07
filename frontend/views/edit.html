@@ -1,4 +1,5 @@
 <div>
+
 	<!-- NAV BAR -->
 	<nav>
 	 	<div class="nav-wrapper container">
@@ -56,7 +57,7 @@
 		<div class="row"  data-ng-init="Get_Lab_Sections()">
 			<div class="col s12" style="padding: 0;">
 				<ul class="tabs " style="overflow-x: hidden;">
-					<li class="tab col s3" ng-repeat="lab in lab_sections_info">
+					<li id="lab-sections" class="tab col s3" ng-repeat="lab in lab_sections_info">
 						<a ng-click="Get_Student_Per_Lab_Section(lab.section_code)" href="#first-table">{{lab.course_code}} {{lab.section_name}} - {{lab.section_code}}</a>
 					</li>
 				</ul>
@@ -219,7 +220,10 @@ $(document).ready(function(){
 	$('.modal-trigger').leanModal();
 	$('select').material_select();
 	$('.showsidenav').sideNav();
+	function load_table(){
+		$("#lab-sections").children(":first").trigger("click");
+	};
+	setTimeout(load_table, 100);
 });
-
 
 </script>
