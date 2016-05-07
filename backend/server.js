@@ -60,7 +60,7 @@ function start () {
 
     winston.log('verbose', 'Binding 3rd-party middlewares');
     app.use(morgan('combined', {stream: util.configure_logger(config.LOGS_DIR)}));
-    app.use(express.static(__dirname + '/../../frontend'));
+    app.use(express.static(__dirname + '/../frontend'));
     app.use(require('method-override')());
     app.use(body_parser.urlencoded({extended: false}));
     app.use(body_parser.json());
@@ -74,7 +74,7 @@ function start () {
 
     winston.log('info', 'Server listening on port', config.PORT);
 
-    return app.listen(config.PORT, config.IP_ADDRESS);
+    return app.listen(config.PORT);
 }
 
 handler = start();
