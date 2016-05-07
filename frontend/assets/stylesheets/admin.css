@@ -16,7 +16,7 @@ body {
 }
 
 #details-container-text {
-	margin: 10px;
+	margin: 12px;
 	font-family: header-text-2;
 	font-size: 13px;
 }
@@ -27,4 +27,12 @@ h5 {
 
 ul {
 	font-size: 12px;
+}
+
+.collapsible-body {
+	padding: 10px !important;
+}
+
+.collapsible-body > p {
+	padding:2%;
 }
