@@ -187,19 +187,21 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="col s12 m6 l4">
+											<div class="col s12 m6 l6">
 												<div class="input-field">
 													<input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" type="password" name="user-password" id="password-input" ng-keyup="check_password_changes()"/>
 													<label id="pwd-input-label" for="password-input" class="black-text" data-error="Passwords do not match!"><i class="material-icons left">vpn_key</i>Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 												</div>
 											</div>
-											<div class="col s12 m6 l4">
+											<div class="col s12 m6 l6">
 												<div class="input-field">
 													<input type="password" name="confirm-password" id="confirm-password" id="confirm-password" ng-keyup="check_confirm_password()" disabled/>
 													<label id="cpwd-label" for="password-input" class="black-text" data-error="Passwords do not match!">Confirm Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 												</div>
 											</div>
-											<div class="col s12 m12 l4">
+										</div>
+										<div class="row">
+											<div class="col s12 m6 l6">
 												<div class="input-field">
 													<select id="classification-input">
 														<option value="{{info.classification}}" ng-selected="true">{{info.classification}}</option>
@@ -225,20 +227,18 @@
 													<label for="classification-input" class="black-text"><i class="material-icons left">perm_identity</i>Classification</label>
 												</div>
 											</div>
-										</div>
-										<div class="row">
-											<div class="col s12 m12 l12 container">
-											<div class="input-field">
-												<select id="cprofile-input" onchange="displayProfile()">
-													<option value="{{info.design_setting}}" ng-selected="true">{{info.design_setting_name}}</option>
-													<option value="default.css">Default</option>
-													<option value="maroon.css">Maroon</option>
-													<option value="grey.css">Grey</option>
-													<option value="purple.css">Purple</option>
-												</select>
-												<label for="classification-input" class="black-text">Colour Profile</label>
+											<div class="col s12 m6 l6 container">
+												<div class="input-field">
+													<select id="cprofile-input" onchange="displayProfile()">
+														<option value="{{info.design_setting}}" ng-selected="true">{{info.design_setting_name}}</option>
+														<option value="default.css">Default</option>
+														<option value="maroon.css">Maroon</option>
+														<option value="grey.css">Grey</option>
+														<option value="purple.css">Purple</option>
+													</select>
+													<label for="cprofile-input" class="black-text">Colour Profile</label>
+												</div>
 											</div>
-										</div>
 										</div>
 									</form>
 								</div>
