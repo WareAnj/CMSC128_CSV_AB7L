@@ -45,6 +45,7 @@ module.exports = (router) => {
     router.get ('/course/lecture/get_class_list',                       $('Faculty User'), __.lecture.get_lecture_class_list);
     router.get ('/course/lecture/get_student',                          $('Faculty User'), __.lecture.get_lecture_student);
     router.del ('/course/lecture/delete_student_in_lab_section',        $('Faculty User'), __.lecture.delete_student_in_lab_section);
+    router.put ('/course/lecture/update_student_in_lab_section',        $('Faculty User'), __.lecture.update_student_in_lab_section);
 
     // lab routes
     router.get ('/course/lecture/get_lab_sections',                     $('Faculty User'), __.lecture.get_lab_sections);

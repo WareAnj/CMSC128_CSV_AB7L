@@ -284,3 +284,35 @@ exports.delete_student_in_lab_section = (req, res, next) => {
 
   start();
 };
+
+exports.update_student_in_lab_section = (req, res, next) => {
+  const data = {
+      id:                  req.query.id,
+      given_name:          req.body.given_name,
+      middle_name:         req.body.middle_name,
+      last_name:           req.body.last_name,
+      degree:              req.body.degree,
+      classification:      req.body.classification,
+      college:             req.body.college
+  };
+  function start () {
+
+      db.query(['UPDATE student SET given_name = ?, middle_name = ?, last_name = ?,',
+                'degree = ?, classification = ?, college = ? WHERE id = ?;'
+                ].join(' '),
+               [data.given_name, data.middle_name, data.last_name,
+                data.degree, data.classification, data.college, data.id],
+                send_response);
+  }
+
+  function send_response (err, result, args, last_query) {
+      if (err) {
+          winston.error('Error in updating student in section', last_query);
+          return next(err);
+      }
+
+      res.send(result);
+  }
+
+  start();
+};
