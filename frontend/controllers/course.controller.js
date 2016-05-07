@@ -32,6 +32,7 @@
     let titlchged = false;
     let codechged = false;
     let descchged = false;
+    let clrschged = false;
     let gnchanged = false;
     let mnchanged = false;
     let lnchanged = false;
@@ -74,10 +75,10 @@
           else if (desns==='purple.css')
           	$scope.faculty_user_info[0].design_setting_name = 'Purple';
           if(desns!=='default.css'){
-          	function give(){
+          	//function setPColour(){
           		$("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+desns+"'>");
-          	}
-          	setTimeout(give,300);
+          	//}
+          	//setTimeout(setPColour, 300);
           }
         });
     }
@@ -245,8 +246,27 @@
 		var err = false;
 		var npassw = document.querySelector('#password-input').value;
 		var cpassw = document.querySelector('#confirm-password').value;
+		var ndes = document.querySelector('#cprofile-input').value;
 
 		$scope.check_classification();
+		
+		if(ndes!==desns){
+			$http.post(
+				'faculty_user/update_design/',
+				{username: uname, design_setting: ndes}
+			);
+			desns = ndes;
+			$scope.faculty_user_info[0].design_setting = ndes;
+			if (desns==='default.css')
+          		$scope.faculty_user_info[0].design_setting_name = 'Default';
+          	else if (desns==='maroon.css')
+          		$scope.faculty_user_info[0].design_setting_name = 'Maroon';
+		  	else if (desns==='grey.css')
+				$scope.faculty_user_info[0].design_setting_name = 'Grey';
+		  	else if (desns==='purple.css')
+				$scope.faculty_user_info[0].design_setting_name = 'Purple';
+			clrschged = true;
+		}
 		
 		if(npassw!==""){
 			if (npassw!==cpassw){
@@ -358,7 +378,14 @@
 			$scope.faculty_user_info[0].classification = nclass;
 		}
 
-		if((!err) && (gnchanged || mnchanged || lnchanged || clchanged || (npassw!==""))) Materialize.toast('Profile updated!', 3000, 'rounded');
+		if((!err) && (gnchanged || mnchanged || lnchanged || clchanged || (npassw!=="") || (clrschged))){
+			Materialize.toast('Profile updated!', 3000, 'rounded');
+			clrschged = false;
+			clchanged = false;
+			lnchanged = false;
+			mnchanged = false;
+			gnchanged = false;
+		}
 		if(npassw!==""){
 			document.querySelector('#password-input').value = "";
 			document.querySelector('#confirm-password').value = "";
@@ -431,12 +458,6 @@
   		var nlname = document.querySelector('#lname-input').value;
   		if (olname===nlname) lnchanged=false;
   		else lnchanged = true;
-  	}
-  	
-  	$scope.check_colour_changes = function() {
-  		console.log(desns);
-  		var ndes = document.querySelector('#cprofile-input').value;
-  		console.log((ndes));
   	}
 
     // checker in add course

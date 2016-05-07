@@ -229,7 +229,7 @@
 										<div class="row">
 											<div class="col s12 m12 l12 container">
 											<div class="input-field">
-												<select id="cprofile-input">
+												<select id="cprofile-input" onchange="displayProfile()">
 													<option value="{{info.design_setting}}" ng-selected="true">{{info.design_setting_name}}</option>
 													<option value="default.css">Default</option>
 													<option value="maroon.css">Maroon</option>
