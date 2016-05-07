@@ -114,6 +114,27 @@ exports.update_name = (req, res, next) => {
 	}
 }
 
+exports.update_colour_profile = (req, res, next) => {
+	const design_setting = req.body.design_setting;
+	const uname = req.body.username;
+	db.query(
+		[
+			'UPDATE faculty_user SET design_setting=?',
+			'WHERE username=?;'
+		].join(' '),[design_setting, uname],responder
+	);
+
+	function responder(err, result){
+		if(err){
+			winston.error('Error in updating Faculty Design Setting'+err);
+			res.send(false);
+            return next(err);
+        }
+        req.session.user.design_setting = design_setting;
+        res.send(true);
+	}
+}
+
 exports.update_classification = (req, res, next) => {
 	const classification = req.body.classification;
 	const uname = req.body.username;

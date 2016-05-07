@@ -30,6 +30,7 @@ module.exports = (router) => {
     router.post('/faculty_user/update_password/',                       $('Faculty User'),  __.faculty_user.update_password);
     router.post('/faculty_user/update_profile/',                        $('Faculty User'),  __.faculty_user.update_profile);
     router.post('/faculty_user/update_classification/',                 $('Faculty User'),  __.faculty_user.update_classification);
+    router.post('/faculty_user/update_design',                          $('Faculty User'),  __.faculty_user.update_colour_profile);
 
     // check course if existing
     router.post('/course/check_course_code/',                                                __.course.check_course_code);
