@@ -21,14 +21,12 @@
             AdminService.GetCountsApproved()
                 .then(function(data){
                     $scope.countsApproved = data.data[0].length;
-                    console.log(data);
                 });
         }
 
         $scope.GetCountsPending = () => {
             AdminService.GetCountsPending()
                 .then(function(data){
-                    console.log(data);
                     $scope.countsPending = data.data[0].length;
                 });
         }
@@ -164,7 +162,7 @@
 
             var d = new Date(date);
             var yyyy = d.getFullYear().toString();
-            var mm = (d.getMonth() + 1).toString();
+            var mm = (d.getMonth() - 1).toString();
             var dd = d.getDate().toString();
             var hh = d.getHours();
             var min = d.getMinutes();
