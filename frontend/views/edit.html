@@ -50,8 +50,10 @@
 						<ul class="tabs " style="overflow-x: hidden;">
 						<li id="lab-sections" class="tab col s3" ng-repeat="lab in lab_sections_info">
 								<a ng-click="Get_Student_Per_Lab_Section(lab.section_code)" href="#first-table">
-									<button class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">add</i></button>
-									<button class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">delete</i></button>	
+
+								<button class="btn btn-floating waves-effect waves-light modal-trigger" onclick="$('#add-modal').openModal()"> <i class="material-icons">add</i></button>
+								<button class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">delete</i></button>
+
 								{{lab.course_code}} {{lab.section_name}} - {{lab.section_code}}</a>
 							</li>
 						</ul>
