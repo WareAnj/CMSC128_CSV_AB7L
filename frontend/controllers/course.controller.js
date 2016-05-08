@@ -104,7 +104,7 @@
           if($scope.faculty_user_info[0].design_setting !== 'default.css'){
             	$("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+$scope.faculty_user_info[0].design_setting+"'>");
           }
-          
+
         });
     }
 
@@ -337,6 +337,10 @@
 				$scope.faculty_user_info[0].design_setting_name = 'Purple';
 			clrschged = true;
 		}
+
+    if(desns !== 'default.css'){
+        $("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+desns+"'>");
+    }
 
 		if(npassw!==""){
 			if (npassw!==cpassw){
