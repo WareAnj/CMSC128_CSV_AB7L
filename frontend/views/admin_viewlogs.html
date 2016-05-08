@@ -38,18 +38,19 @@
 	</div>
 
 	<main>
+	<main style="padding-top:40px;">
 		<div class="row">
-				<div class="col s12">
-				  <ul class="tabs">
-					<li class="tab col s3 text-color-teal"><a class="active" id="login-all" ng-click="GetAllLogin()">View all Login</a></li>
-					<li class="tab col s3"><a id="logout-all" ng-click="GetAllLogout()">View all Logout</a></li>
-					<li class="tab col s3"><a id="login-specific" ng-click="GetSpecificLogin()"> View Login by User</a></li>
-					<li class="tab col s3"><a id="logout-specific" ng-click="GetSpecificLogout()"> View Logout by User</a></li>
-				  </ul>
-				</div>
+			<div class="col s12">
+			  <ul class="tabs">
+				<li class="tab col s3"><a class="active teal-text" id="login-all" ng-click="GetAllLogin()">View all Login</a></li>
+				<li class="tab col s3"><a class="teal-text" id="logout-all" ng-click="GetAllLogout()">View all Logout</a></li>
+				<li class="tab col s3"><a class="teal-text" id="login-specific" ng-click="GetSpecificLogin()"> View Login by User</a></li>
+				<li class="tab col s3"><a class="teal-text" id="logout-specific" ng-click="GetSpecificLogout()"> View Logout by User</a></li>
+			  </ul>
 			</div>
+		</div>
 		<div class="container">
-
+		</div> -->
 			<div id="logouttable">
 			<table ng-table="usersTable" show-filter="true" id="admintableout" class="highlight responsive-table tablesorter bordered centered stripped">
 				<thead>
