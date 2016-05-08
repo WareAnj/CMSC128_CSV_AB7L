@@ -49,6 +49,7 @@
        SectionService.Add_Lab_Section(localStorage.getItem('course_code'), localStorage.getItem('section_name'), $scope.newSection)
         .then(function(data) {
           $scope.newSection.code = "";
+          Materialize.toast('Section Successfully Added!', 3000, 'rounded');
           $('#addLab-modal').closeModal();
         });
 
@@ -108,7 +109,7 @@
     $scope.Delete_Selected_Student = function() {
       SectionService.Delete_Student(student_id)
       .then(function(data){
-
+          Materialize.toast('Student Successfully Deleted!', 3000, 'rounded');
       });
 
       SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
