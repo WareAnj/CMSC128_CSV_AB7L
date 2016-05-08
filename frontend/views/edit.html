@@ -44,16 +44,12 @@
 
 	<div>
 		<div id="nav-container" class="container">
-		<!-- <div class="row">
+		<div class="row">
 			<div class="input-field col s1">
-				<a href="#add-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">add</i></a>
+				<!-- <a href="#add-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">add</i></a> -->
+				<a href="#addLab-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">add</i></a>
 			</div>
-			<div class="input-field col s11">
-				<input id="search-bar" type="text" class="search">
-				<label for="search-bar" class="center-align valign"> Search </label>
-		  </div>
-	  </div> -->
-
+	  </div>
 
 		<!-- LAB SECTIONS -->
 		<div class="row"  data-ng-init="Get_Lab_Sections()">
@@ -97,13 +93,28 @@
 		</div>
 	</div>
 
+	<div id="addLab-modal" class="modal">
+	<div class="modal-content center">
+	<h4>Add Section</h4>
+	<form ng-submit="Add_Lab_Section()" autocomplete="off">
+		<div class="row">
+			<div class="col s6 m12 l12">
+				<div class="input-field">
+					<input placeholder="Section Name" type="text" id="lab-input" ng-model="newSection.code">
+					<label for="lab-input">Section Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				</div>
+			</div>
+		</div>
+		<button id="submit-button" class="btn waves-effect waves-light" type="submit">Add Lab Section</button>
+	</form>
+</div>
+	</div>
 
-
-	<!-- MODALS: LOGIN AND SIGN UP -->
+	<!-- ADD STUDENT IN LAB -->
 	<div id="add-modal" class="modal">
 	    <div class="modal-content center">
   <h4>Add a Student</h4>
-  <form ng-submit="AddFacultyUser()" autocomplete="off">
+  <form ng-submit="" autocomplete="off">
     <div class="row">
       <div class="input-field">
         <div class="col s12 m12 l4">

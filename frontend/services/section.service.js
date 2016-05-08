@@ -10,6 +10,7 @@
 	function SectionService($http, $q) {
 		let service = {};
 		service.Get_Lab_Sections = Get_Lab_Sections;
+		service.Add_Lab_Section = Add_Lab_Section;
 		service.Get_Class_List = Get_Class_List;
 		service.Get_Student = Get_Student;
 		service.Get_Student_Per_Lab_Section = Get_Student_Per_Lab_Section;
@@ -26,6 +27,20 @@
 			})
 			.error(function(data) {
 				deferred.reject("Error: Cannot Get Lab Sections");
+			});
+
+			return deferred.promise;
+		}
+
+		function Add_Lab_Section(course_code, section_name, section_code){
+			var deferred = $q.defer();
+
+			$http.post("/section/post_sub_section?course_code=" + course_code + "&name=" + section_name, section_code)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Add Lab Section");
 			});
 
 			return deferred.promise;
