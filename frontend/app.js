@@ -17,7 +17,11 @@
 
         // Event listener every route change
         $rootScope.$on('$routeChangeStart', (event, next, current) => {
-            check_session($location.url());
+            let user = check_session($location.url());
+
+            if (no_need_auth($location.url()) && typeof user === 'undefined') {
+                $location.path($location.url());
+            }
         });
 
         // Routes that doesn't need authentication
@@ -73,8 +77,6 @@
 
             return deferred.promise;
         }
-
-        check_session();
     }
 
 
