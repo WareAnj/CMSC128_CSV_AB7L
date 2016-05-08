@@ -34,11 +34,13 @@
          .then(function(data) {
           $scope.lab_sections_info = [];
            for(var i = 0 ; i < data.length; i++){
-             $scope.lab_sections_info.push({
-               'course_code' : localStorage.getItem('course_code'),
-               'section_name' :  localStorage.getItem("section_name"),
-               'section_code':  data[i].code
-             });
+             if(data[i].code != null){
+               $scope.lab_sections_info.push({
+                 'course_code': localStorage.getItem('course_code'),
+                 'section_name': localStorage.getItem("section_name"),
+                 'section_code': data[i].code
+               });
+            }
            }
         });
      }
