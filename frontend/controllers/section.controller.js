@@ -45,6 +45,29 @@
         });
      }
 
+     $scope.Add_Lab_Section = function() {
+       SectionService.Add_Lab_Section(localStorage.getItem('course_code'), localStorage.getItem('section_name'), $scope.newSection)
+        .then(function(data) {
+          $scope.newSection.code = "";
+          Materialize.toast('Section Successfully Added!', 3000, 'rounded');
+          $('#addLab-modal').closeModal();
+        });
+
+        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
+          .then(function(data) {
+           $scope.lab_sections_info = [];
+            for(var i = 0 ; i < data.length; i++){
+              if(data[i].code != null){
+                $scope.lab_sections_info.push({
+                  'course_code': localStorage.getItem('course_code'),
+                  'section_name': localStorage.getItem("section_name"),
+                  'section_code': data[i].code
+                });
+             }
+            }
+         });
+     }
+
      $scope.Get_Student_Per_Lab_Section = function(section_code) {
        localStorage.setItem("section_code", section_code)
        SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
@@ -86,7 +109,7 @@
     $scope.Delete_Selected_Student = function() {
       SectionService.Delete_Student(student_id)
       .then(function(data){
-
+          Materialize.toast('Student Successfully Deleted!', 3000, 'rounded');
       });
 
       SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
