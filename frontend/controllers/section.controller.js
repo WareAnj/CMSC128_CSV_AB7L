@@ -149,7 +149,7 @@
       .then(function(data){
           Materialize.toast('Section Successfully Deleted!', 3000, 'rounded');
           localStorage.setItem("section_code", "");
-          $("#lab-sections").children(":first").trigger("click");
+          $route.reload();
       });
 
       SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
