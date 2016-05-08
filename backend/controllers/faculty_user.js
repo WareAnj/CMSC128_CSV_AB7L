@@ -51,7 +51,7 @@ exports.update_password = (req, res, next) => {
 		[uname, pword],
 		responder
 	);
-	
+
 	function responder (err, result){
 		if (err) {
 			winston.error('Error in updating Faculty User Password!', last_query);
@@ -235,10 +235,10 @@ exports.get_logged_in_faculty_user_id = (req, res, next) => {
 exports.post_volunteer = (req, res, next) => {
 
     const data = {
-        user_id:                req.body.user_id,
-        course_code:            req.body.course_code,
-        section_name:           req.body.section_name,
-        section_code:           req.body.section_code,
+        user_id:                req.session.user.id,
+        course_code:            req.query.course_code,
+        section_name:           req.query.section_name,
+        section_code:           req.query.section_code,
         student_number:         req.body.student_number,
         given_name:             req.body.given_name,
         middle_name:            req.body.middle_name,
@@ -249,6 +249,7 @@ exports.post_volunteer = (req, res, next) => {
     };
 
     function start () {
+
         db.query (
             'CALL POST_VOLUNTEER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
             [
@@ -390,7 +391,7 @@ exports.randomize = (req, res, next) => {
     };
 
     function start () {
-        
+
     	if (typeof data.section_code === 'undefined') {
 	        db.query (
 	            'DROP VIEW IF EXISTS temporary_view' + data.user_id + ';',
