@@ -49,7 +49,10 @@
 					<div class="col s12" style="padding: 0;">
 						<ul class="tabs " style="overflow-x: hidden;">
 							<li id="lab-sections" class="tab col s3" ng-repeat="lab in lab_sections_info">
-								<a ng-click="Get_Student_Per_Lab_Section(lab.section_code)" href="#first-table"> {{lab.course_code}} {{lab.section_name}} - {{lab.section_code}}</a>
+								<a ng-click="Get_Student_Per_Lab_Section(lab.section_code)" href="#first-table">
+								<button class="btn btn-floating waves-effect waves-light modal-trigger" onclick="$('#add-modal').openModal()"> <i class="material-icons">add</i></button>
+								<button class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">delete</i></button>
+								{{lab.course_code}} {{lab.section_name}} - {{lab.section_code}}</a>
 							</li>
 						</ul>
 					</div>
@@ -60,19 +63,22 @@
 					<table class="highlight centered responsive-table white striped">
 		        <thead>
 		          <tr>
-		              <th data-field="stdnumber">Student Number</th>
-		              <th data-field="name">Name</th>
-		              <th data-field="degree">Degree</th>
-		              <th data-field="classification">Classification</th>
-		              <th data-field="college">College</th>
+		              <th ng-click="order_lab('student_number')" data-field="stdnumber">Student Number</th>
+		              <th ng-click="order_lab('given_name')" data-field="given_name"> Given Name</th>
+									<th ng-click="order_lab('middle_name')" data-field="middle_name"> Middle Name</th>
+									<th ng-click="order_lab('last_name')" data-field="last_name"> Last Name</th>
+		              <th ng-click="order_lab('degree')" data-field="degree">Degree</th>
+		              <th ng-click="order_lab('classification')" data-field="classification">Classification</th>
+		              <th ng-click="order_lab('college')" data-field="college">College</th>
 		              <th data-field="action">Action</th>
 		          </tr>
 		        </thead>
-
 		        <tbody ng-repeat="lab_student in student_per_lab">
 		         	<tr>
 		            <td>{{lab_student.student_number}}</td>
-		            <td>{{lab_student.given_name}} {{lab_student.last_name}}</td>
+		            <td>{{lab_student.given_name}}</td>
+								<td>{{lab_student.middle_name}}</td>
+								<td>{{lab_student.last_name}}</td>
 		            <td>{{lab_student.degree}}</td>
 		            <td>{{lab_student.classification}}</td>
 		            <td>{{lab_student.college}}</td>
@@ -96,13 +102,13 @@
 							<!-- SECTION NAME -->
 							<div class="col s6 m12 l12">
 								<div class="input-field">
-									<input placeholder="Section Name" type="text" id="lab-input" ng-model="newSection.code">
-									<label for="lab-input">Section Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+									<input placeholder="Section Name" type="text" id="lab-input" ng-model="newSection.code" ng-change="check_lab_section_name()">
+									<label for="lab-input" class="active">Section Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 								</div>
 							</div>
 						</div>
 						<!-- ADD LAB SECTION BUTTON  -->
-						<button id="submit-button" class="btn waves-effect waves-light" type="submit">Add Lab Section</button>
+						<button id="submit-button" class="disabled btn waves-effect waves-light" type="submit">Add Lab Section</button>
 					</form>
 				</div>
 			</div>

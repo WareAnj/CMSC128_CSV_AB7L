@@ -5,10 +5,11 @@
     .module('app')
     .controller('RandomCtrl', RandomCtrl);
 
-  RandomCtrl.$inject = ["$scope", "$location", "RandomService"];
+  RandomCtrl.$inject = ["$rootScope", "$scope", "$location", "RandomService"];
 
-  function RandomCtrl($scope, $location, RandomService) {
-    $scope.students = [];
+  function RandomCtrl($rootScope, $scope, $location, RandomService) {
+    var students = localStorage.getItem('students');
+    $scope.students = JSON.parse(students);
     $scope.labdata = [];
     $scope.labSections = [];
     var randdata = {};
@@ -36,12 +37,10 @@
        $scope.students = [];      
 
       //randomize per lab section
-      if($scope.counts.whole == 0){
-         
-         for(var i = 0; i < $scope.labSections.length; i++){
+      if($scope.counts.whole == 0){        
 
-          var varlab = $scope.labSections[i];
-
+         function randomizeStudents(count) {
+            var varlab = $scope.labSections[count];
             randdata = {
               "user_id":$scope.user_id, 
               "course_code":$scope.course_code, 
@@ -49,35 +48,44 @@
               "section_code":varlab,
               "limit": $scope.counts[varlab]
             };
-            
-              RandomService.Randomize(randdata)
+            RandomService.Randomize(randdata)
               .then(function(data) {
-                for(var i = 0; i < data.length; i++)
-                  $scope.students.push(data[i]);
+                for(var j = 0; j < data.length; j++)
+                  $scope.students.push(data[j]);
 
-              });
-
-         }          
-      
+              console.log("inside");
+              if(count == $scope.labSections.length - 1){
+                localStorage.setItem('students', JSON.stringify($scope.students));
+                $rootScope.redirect('/results_randomize');
+              } else {
+                randomizeStudents(count+1);
+              }
+            });
+         }
+         randomizeStudents(0);     
       }
 
-
       //Whole section
-      if($scope.counts.whole != 0){
-         
+      if($scope.counts.whole != 0){         
           randdata = {
           "user_id":$scope.user_id,
           "course_code":$scope.course_code,
           "section_name":$scope.section_name,
           "limit":$scope.counts.whole
         };
-
           RandomService.Randomize(randdata)
           .then(function(data) {
-            for(var i = 0; i < data.length; i++)
+            for(var i = 0; i < data.length; i++){
               $scope.students.push(data[i]);
-          });
+              console.log(data[i]);
 
+              if(i == data.length-1){
+                localStorage.setItem('students', JSON.stringify($scope.students));
+                $rootScope.redirect('/results_randomize');
+              }
+
+            }
+          });
       }
 
     }

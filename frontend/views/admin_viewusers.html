@@ -37,7 +37,7 @@
 		</nav>
 	</div>
 
-	<main>
+	<main style="padding-top:40px;">
 		<div class="container">
 			<table data-ng-init="GetAllApproved()" ng-table="usersTable" show-filter="true" id="admintable" class="highlight responsive-table bordered centered stripped">
 				<thead>
@@ -100,13 +100,10 @@
 			</table>
 		</div>
 	</main>
-	<script type="text/javascript">
-		$('.showsidenav').sideNav({
-			menuWidth: 350, // Default is 240
-		});
-		$(document).ready(function(){
-			$('ul.tabs').tabs();
-		});
-	</script>
+	<script type="text/javascript" src="../assets/js/default.js"></script>
+	<script type="text/javascript" src="../assets/js/highcharts.js"></script>
+  	<!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script type="text/javascript" src="../assets/js/admin.js"></script>
 </div>
 <link type="text/css" rel="stylesheet" href="../assets/stylesheets/admin_tables.css">

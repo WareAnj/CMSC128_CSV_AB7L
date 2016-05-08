@@ -93,12 +93,8 @@ body {
 main {
  	flex: 1 0 auto;
 	background-color: #E6EBE0;
-	min-height: calc(100vh - 64px - 76.5px);
-}
-
-#logo-text{
-	font-family: sample;
-	font-size: 37px;
+	min-height: calc(100vh - 64px - 70px);
+	margin-bottom: -2%;
 }
 
 h4{
@@ -137,7 +133,7 @@ footer.page-footer{
 
 #signupModal{
 	width: 70%;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 @media only screen and (max-width: 600px) {
@@ -166,6 +162,7 @@ footer.page-footer{
 }
 
 footer.page-footer {
+	padding: 2px;
 	margin-top: 0px !important;
 }
 
