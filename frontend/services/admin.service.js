@@ -9,6 +9,8 @@
 
 	function AdminService($http, $q, $location, $window) {
 		let service = {};
+		service.GetCountsApproved = GetCountsApproved;
+		service.GetCountsPending = GetCountsPending;
 		service.Logout = Logout;
 		service.GetUsers = GetUsers;
 		service.ApproveUser = ApproveUser;
@@ -20,6 +22,34 @@
 	
 		return service;
 
+		function GetCountsApproved() {
+			let deferred = $q.defer();
+
+			  $http.get("admin/get_approved_users")
+						.then((data) => {
+	            			deferred.resolve(data);
+						}, (error) => {
+							deferred.reject(error.data);
+							Materialize.toast(error.data, 1000);   
+						});
+
+			  return deferred.promise;						
+		}
+
+		function GetCountsPending() {
+			let deferred = $q.defer();
+
+			$http.get("admin/get_pending_users")
+						.then((data) => {
+	            			deferred.resolve(data);
+						}, (error) => {
+							deferred.reject(error.data);
+							Materialize.toast(error.data, 1000);   
+						});
+
+			return deferred.promise;			
+		}
+
 		function Logout() {
 			let deferred = $q.defer();
 
@@ -27,14 +57,13 @@
 	        			.then((data) => {
 	            			deferred.resolve(data);
 	            			localStorage.clear();
-	            			$location.path('/');
 						}, (error) => {
 							deferred.reject(error.data);
 							Materialize.toast(error.data, 1000);   
 						});
 
 			return deferred.promise;
-		};
+		}
 
 		function GetUsers(){
 			let deferred = $q.defer();
@@ -48,7 +77,7 @@
 						});
 
 			return deferred.promise;
-		};		
+		}		
 
 		function ApproveUser(id){
 			let deferred = $q.defer();
