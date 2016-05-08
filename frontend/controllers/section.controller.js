@@ -144,6 +144,37 @@
        });
     }
 
+    $scope.Delete_Selected_Lab = function() {
+      SectionService.Delete_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
+      .then(function(data){
+          Materialize.toast('Section Successfully Deleted!', 3000, 'rounded');
+          localStorage.setItem("section_code", "");
+          $("#lab-sections").children(":first").trigger("click");
+      });
+
+      SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
+        .then(function(data) {
+         $scope.lab_sections_info = [];
+          for(var i = 0 ; i < data.length; i++){
+            if(data[i].code != null){
+              $scope.lab_sections_info.push({
+                'course_code': localStorage.getItem('course_code'),
+                'section_name': localStorage.getItem("section_name"),
+                'section_code': data[i].code
+              });
+           }
+          }
+       });
+    }
+
+    $scope.Get_Selected_Lab = function(lab, type) {
+      if(type == "delete") {
+        $('#delete-lab-modal').openModal();
+        localStorage.setItem("section_code", lab.section_code);
+      }
+    }
+
+
     $scope.Get_Student_Id = function(s_id, type){
       student_id = s_id;
       if(type == "delete"){
@@ -267,15 +298,35 @@
       }
     }
 
-    $scope.Get_Section_Id(c_code, s_name, s_code) = function(){
+    $scope.Get_Section_Id = function(c_code, s_name, s_code){
       course_code = c_code;
       section_name = s_name;
       section_code = s_code;
-      $('#add-modal').openModal()
+      $('#add-modal').openModal();
     }
 
     $scope.Add_Student_In_Lab_Section = function(){
-      
+      SectionService.Add_Student_In_Lab_Section(course_code, section_name, section_code, $scope.newLabStudent)
+      .then(function(data){
+
+        $scope.newLabStudent.given_name = "";
+        $scope.newLabStudent.middle_name = "";
+        $scope.newLabStudent.last_name = "";
+        $scope.newLabStudent.student_number = "";
+        $scope.newLabStudent.degree = "";
+        $scope.newLabStudent.classification = "";
+        $scope.newLabStudent.college = "";
+      });
+
+      SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
+        .then(function(data) {
+         $scope.student_per_lab = [];
+          for(var i = 0 ; i < data.length; i++){
+            $scope.student_per_lab.push(data[i]);
+          }
+       });
+       Materialize.toast('Student Successfully Created!', 3000, 'rounded');
+       $('#add-modal').closeModal();
     }
   }
 })();

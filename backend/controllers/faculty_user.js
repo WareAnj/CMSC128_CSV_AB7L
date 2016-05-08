@@ -236,9 +236,9 @@ exports.post_volunteer = (req, res, next) => {
 
     const data = {
         user_id:                req.session.user.id,
-        course_code:            req.body.course_code,
-        section_name:           req.body.section_name,
-        section_code:           req.body.section_code,
+        course_code:            req.query.course_code,
+        section_name:           req.query.section_name,
+        section_code:           req.query.section_code,
         student_number:         req.body.student_number,
         given_name:             req.body.given_name,
         middle_name:            req.body.middle_name,
@@ -249,6 +249,7 @@ exports.post_volunteer = (req, res, next) => {
     };
 
     function start () {
+
         db.query (
             'CALL POST_VOLUNTEER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
             [
