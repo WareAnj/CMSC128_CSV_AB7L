@@ -28,6 +28,13 @@
     let classification = false;
     let degree = false;
     let college = false;
+    let gname_add = false;
+    let mname_add = false;
+    let lname_add = false;
+    let classification_add = false;
+    let degree_add = false;
+    let college_add = false;
+    let student_number_add = false;
     let lab_section_name = true;
     let labSectionRegex = new RegExp("^([1-9]|10)L$");
 
@@ -238,40 +245,172 @@
        });
     }
 
-    $scope.check_given_name_change = function(){
+    $scope.check_given_name_change_edit = function(){
       var new_name = document.querySelector('#student-firstname').value;
       if (old_student_given_name===new_name) gname=false;
   		else gname = true;
     }
 
-    $scope.check_middle_name_change = function(){
+    $scope.check_middle_name_change_edit = function(){
       var new_name = document.querySelector('#student-middlename').value;
       if (old_student_middle_name===new_name) mname=false;
   		else mname = true;
     }
 
-    $scope.check_last_name_change = function(){
+    $scope.check_last_name_change_edit = function(){
       var new_name = document.querySelector('#student-lastname').value;
       if (old_student_last_name===new_name) lname=false;
   		else lname = true;
     }
 
-    $scope.check_degree_change = function(){
+    $scope.check_degree_change_edit = function(){
       var new_degree = document.querySelector('#student-degree').value;
       if (old_student_degree===new_degree) degree=false;
   		else degree = true;
     }
 
-    $scope.check_classification_change = function(){
+    $scope.check_classification_change_edit = function(){
       var new_classification = document.querySelector('#student-classification').value;
       if (old_student_classification===new_classification) classification=false;
   		else classification = true;
     }
 
-    $scope.check_college_change = function(){
+    $scope.check_college_change_edit = function(){
       var new_college = document.querySelector('#student-college').value;
       if (old_student_college===new_college) college=false;
   		else college = true;
+    }
+
+    $scope.check_given_name_change_add = function(){
+      var new_name = document.querySelector('#fname-input').value;
+      if(new_name===""){
+        $("#submit-button-add").addClass("disabled");
+        gname_add = false;
+      } else{
+
+        gname_add = true;
+      }
+      if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
+        $("#submit-button-add").removeClass("disabled");
+      } else{
+        $("#submit-button-add").addClass("disabled");
+      }
+    }
+
+    $scope.check_middle_name_change_add = function(){
+      var new_name = document.querySelector('#mname-input').value;
+      if(new_name===""){
+        $("#submit-button-add").addClass("disabled");
+        mname_add = false;
+      } else{
+
+        mname_add = true;
+      }
+      if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
+        $("#submit-button-add").removeClass("disabled");
+      } else{
+        $("#submit-button-add").addClass("disabled");
+      }
+    }
+
+    $scope.check_last_name_change_add = function(){
+      var new_name = document.querySelector('#lname-input').value;
+      if(new_name===""){
+        $("#submit-button-add").addClass("disabled");
+        lname_add = false;
+      } else{
+
+        lname_add = true;
+      }
+      if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
+        $("#submit-button-add").removeClass("disabled");
+      } else{
+        $("#submit-button-add").addClass("disabled");
+      }
+    }
+
+    $scope.check_degree_change_add = function(){
+      var new_degree = document.querySelector('#degree-input').value;
+      if(new_degree===""){
+        $("#submit-button-add").addClass("disabled");
+        degree_add = false;
+      } else{
+
+        degree_add = true;
+      }
+      if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
+        $("#submit-button-add").removeClass("disabled");
+      } else{
+        $("#submit-button-add").addClass("disabled");
+      }
+    }
+
+    $scope.check_classification_change_add = function(){
+      var new_classification = document.querySelector('#classification-input').value;
+      if(new_classification===""){
+        $("#submit-button-add").addClass("disabled");
+        classification_add = false;
+      } else{
+        classification_add = true;
+      }
+      if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
+        $("#submit-button-add").removeClass("disabled");
+      } else{
+        $("#submit-button-add").addClass("disabled");
+      }
+    }
+
+    $scope.check_student_number_change_add = function(){
+      var new_student_number = document.querySelector('#stdnuminput').value;
+
+      if (new_student_number==="") {
+  			if($("#stdnuminput").hasClass('invalid')) {
+  				$("#stdnuminput").removeClass('invalid');
+  			}
+  			$("#submit-button-add").attr('disabled', 'disabled');
+        $("#submit-button-add").addClass("disabled");
+        student_number_add = false;
+  			return;
+  		}
+
+      $http.get(
+  			         "faculty_user/check_student_number?student_number=" + new_student_number + "&course_id=" + localStorage.getItem("course_id")
+  			        ).then(function(response) {
+                  console.log(response.data);
+  				        if (response.data) {
+					          if(!($("#stdnuminput").hasClass('invalid'))) {
+						          $("#stdnuminput").addClass('invalid');
+                      $("#submit-button-add").addClass("disabled");
+					          }
+  					        student_number_add = false;
+          		    } else {
+					          if($("#stdnuminput").hasClass('invalid')) {
+						          $("#stdnuminput").removeClass('invalid');
+					          }
+            		    student_number_add = true;
+                    if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
+                      $("#submit-button-add").removeClass("disabled");
+                    } else{
+                      $("#submit-button-add").addClass("disabled");
+                    }
+          		   }
+  			       }
+  		       );
+    }
+
+    $scope.check_college_change_add = function(){
+      var new_college = document.querySelector('#college-input').value;
+      if(new_college===""){
+        $("#submit-button-add").addClass("disabled");
+        college_add = false;
+      } else{
+        college_add = true;
+      }
+      if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
+        $("#submit-button-add").removeClass("disabled");
+      } else{
+        $("#submit-button-add").addClass("disabled");
+      }
     }
 
     $scope.check_lab_section_name = function(){

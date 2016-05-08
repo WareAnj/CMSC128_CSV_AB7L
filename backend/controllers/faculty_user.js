@@ -224,6 +224,30 @@ exports.check_faculty_user_employee_id = (req, res, next) => {
 	}
 };
 
+exports.check_student_number = (req, res, next) => {
+  const student_number = req.query.student_number;
+  const course_id = req.query.course_id;
+
+  db.query(
+    [
+      'SELECT student_number FROM student st, section s, student_section ss',
+      'WHERE s.course_id = ? AND s.id = ss.section_id AND ss.student_id = st.id AND st.student_number = ?;'
+    ].join(' '),
+	   [course_id, student_number],
+     responder
+  );
+
+	function responder(err, result){
+		if (err) winston.error('Error! ', err);
+		let rows = result.length;
+    if (rows == 1) {
+			res.status(200).send(true);
+		} else {
+			res.status(200).send(false);
+		}
+	}
+};
+
 exports.get_logged_in_faculty_user_id = (req, res, next) => {
   if(req.session.user==null){
   	res.send(false);
