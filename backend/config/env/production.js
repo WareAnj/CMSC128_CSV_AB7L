@@ -5,14 +5,15 @@ module.exports = {
     LOG_LEVEL: 'info',
 
     DB: {
-        host: '127.7.195.130',
-        user: 'admincLIUeSA',
-        password: 'nuWMcYuKqs95',
+        host: '127.9.231.2',
+        user: 'adminWvZt41M',
+        password: '87LQIr_PbY7u',
         database: 'reginyzr'
     },
 
     REDIS_DB: {
-        host: '127.7.195.132',
-        port: 16379
+        host: process.env.OPENSHIFT_REDIS_HOST,
+        port: process.env.OPENSHIFT_REDIS_PORT,
+        pass: process.env.REDIS_PASSWORD
     }
 };
