@@ -4,15 +4,15 @@
     angular.module('app')
             .controller('HomeCtrl', HomeCtrl);
 
-    HomeCtrl.$inject = ['$scope', '$location', '$http', '$q'];
+    HomeCtrl.$inject = ['$rootScope', '$scope', '$location', '$http', '$q'];
 
-    function HomeCtrl($scope, $location, $http, $q) {
+    function HomeCtrl($rootScope, $scope, $location, $http, $q) {
         $scope.Logout = () => {
             let deferred = $q.defer();
 
             $http.get('/authenticate/logout')
                 .then((data) => {
-                    $location.url('/');
+                    $rootScope.redirect('/');
                     localStorage.clear();
                     deferred.resolve(data);
                 }, (error) => {

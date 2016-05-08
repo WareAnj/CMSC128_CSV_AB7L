@@ -4,20 +4,39 @@
     angular.module('app')
             .controller('AdminCtrl', AdminCtrl);
 
-    AdminCtrl.$inject = ['$scope', '$http', '$q', 'AdminService'];
+    AdminCtrl.$inject = ['$rootScope', '$scope', '$http', '$q', 'AdminService'];
 
-    function AdminCtrl($scope, $http, $q, AdminService) {
+    function AdminCtrl($rootScope, $scope, $http, $q, AdminService) {
 
         $scope.userList = [];
+        $scope.countsApproved;
+        $scope.countsPending;
 
         $scope.order = (predicate) => {
           $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
           $scope.predicate = predicate;
         }
 
+        $scope.GetCountsApproved = () => {
+            AdminService.GetCountsApproved()
+                .then(function(data){
+                    $scope.countsApproved = data.data[0].length;
+                    console.log(data);
+                });
+        }
+
+        $scope.GetCountsPending = () => {
+            AdminService.GetCountsPending()
+                .then(function(data){
+                    console.log(data);
+                    $scope.countsPending = data.data[0].length;
+                });
+        }
+
         $scope.Logout = () => {
         AdminService.Logout()
             .then((data) => {
+                $rootScope.redirect('/');
             });
         }
 
