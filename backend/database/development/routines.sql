@@ -442,10 +442,6 @@ BEGIN
 		DELETE FROM student_section WHERE section_id IN
 		(SELECT sid FROM (SELECT s.id AS sid FROM section s, course c WHERE c.id = s.course_id AND c.code = _course_code AND s.name = _name) AS id);
 
-		-- Delete the reference to the course
-		DELETE FROM faculty_user_course WHERE course_id =
-		(SELECT cid FROM (SELECT DISTINCT c.id AS cid FROM course c, section s WHERE s.course_id = c.id AND c.code = _course_code AND s.name = _name) AS id);
-
 		-- Finally, delete the sections with the specified name and course_code
 		DELETE FROM section WHERE course_id =
 		(SELECT cid FROM (SELECT DISTINCT c.id AS cid FROM course c, section s WHERE s.course_id = c.id AND c.code = _course_code AND s.name = _name) AS id);
