@@ -46,6 +46,7 @@
         .then(function(data){
           $scope.faculty_user_info = [];
           $scope.faculty_user_info.push(data);
+          localStorage.setItem("user_id", data.id);
           localStorage.setItem("course_id", "");
           localStorage.setItem("course_code", "");
           localStorage.setItem("course_title", "");
