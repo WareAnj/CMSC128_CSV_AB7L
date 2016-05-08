@@ -10,7 +10,6 @@
   function RandomCtrl($rootScope, $scope, $location, RandomService) {
     var students = localStorage.getItem('students');
     $scope.students = JSON.parse(students);
-    console.log($scope.students);
     $scope.labdata = [];
     $scope.labSections = [];
     var randdata = {};
@@ -29,21 +28,22 @@
               $scope.labdata.push(data[i]);
               $scope.labSections.push(data[i].code);
             }
-         }); 
+         });
 
       }
 
-    $scope.Randomize = function() { 
+    $scope.Randomize = function() {
 
-       $scope.students = [];      
+       $scope.students = [];
 
       //randomize per lab section
       if($scope.counts.whole == 0){
+
          function randomizeStudents(count) {
             var varlab = $scope.labSections[count];
             randdata = {
-              "user_id":$scope.user_id, 
-              "course_code":$scope.course_code, 
+              "user_id":$scope.user_id,
+              "course_code":$scope.course_code,
               "section_name":$scope.section_name,
               "section_code":varlab,
               "limit": $scope.counts[varlab]
@@ -53,7 +53,6 @@
                 for(var j = 0; j < data.length; j++)
                   $scope.students.push(data[j]);
 
-              console.log("inside");
               if(count == $scope.labSections.length - 1){
                 localStorage.setItem('students', JSON.stringify($scope.students));
                 $rootScope.redirect('/results_randomize');
@@ -62,11 +61,11 @@
               }
             });
          }
-         randomizeStudents(0);     
+         randomizeStudents(0);
       }
 
       //Whole section
-      if($scope.counts.whole != 0){         
+      if($scope.counts.whole != 0){
           randdata = {
           "user_id":$scope.user_id,
           "course_code":$scope.course_code,
@@ -77,7 +76,6 @@
           .then(function(data) {
             for(var i = 0; i < data.length; i++){
               $scope.students.push(data[i]);
-              console.log(data[i]);
 
               if(i == data.length-1){
                 localStorage.setItem('students', JSON.stringify($scope.students));
