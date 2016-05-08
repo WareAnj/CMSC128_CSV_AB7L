@@ -95,6 +95,9 @@
             .when('/settings_randomize', {
                 'templateUrl'   :   'views/settings_randomize.html'
             })
+            .when('/results_randomize', {
+                'templateUrl'   :   'views/results_randomize.html'
+            })
             .when('/admin', {
                 'controller'    :   'AdminCtrl',
                 'templateUrl'   :   'views/admin.html'
