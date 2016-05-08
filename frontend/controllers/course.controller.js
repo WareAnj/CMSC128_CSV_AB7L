@@ -59,7 +59,7 @@
           olname = data.last_name;
           uname = data.username;
           desns = data.design_setting;
-          
+
           if(desns === 'default.css') {
             $scope.faculty_user_info[0].design_setting_name = 'Default';
           } else if(desns === 'maroon.css') {
@@ -624,12 +624,14 @@
 
     $scope.check_section_name = function(){
   		let section_name = document.querySelector('#section-name-input').value;
+      let textReg = new RegExp("[A-Za-z0-9]+\s*[A-Za-z0-9]+");
 
-      if (section_name===""){
-  			if($("#section-name-input").hasClass('invalid')){
-  				$("#section-name-input").removeClass('invalid');
-  			} $("#submit-button-add-lecture").addClass('disabled');
-  		}
+      if(section_name==="" && !textReg.test(section_name)) {
+  		 	if($("#section-name-input").hasClass('invalid')){
+  		 		 $("#section-name-input").removeClass('invalid');
+  		 	}
+        $("#submit-button-add-lecture").addClass('disabled');
+  	  }
 
   		$http.post(
   			"course/lecture/check_section_name?course_id=" + localStorage.getItem("course_id"),  $scope.newLecture
@@ -637,14 +639,15 @@
   				if (response.data){
   					if(!($("#section-name-input").hasClass('invalid'))){
   						$("#section-name-input").addClass('invalid');
-              $("#submit-button-add-lecture").addClass('disabled');
   					}
-          }
-          else{
+            $("#submit-button-add-lecture").addClass('disabled');
+          } else {
   					if($("#section-name-input").hasClass('invalid')){
   						$("#section-name-input").removeClass('invalid');
-              $("#submit-button-add-lecture").removeClass('disabled');
   					}
+            if(section_name!=="" && textReg.test(section_name)) {
+              $("#submit-button-add-lecture").removeClass('disabled');
+            }
       		}
         }
 
