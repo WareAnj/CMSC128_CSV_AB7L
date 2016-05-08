@@ -59,29 +59,7 @@
           olname = data.last_name;
           uname = data.username;
           desns = data.design_setting;
-          $scope.selectd = {
-          	repeatSelect: null,
-          	options: [
-          		{id: "Instructor I", name: "Instructor I"},
-          		{id: "Instructor II", name: "Instructor II"},
-          		{id: "Instructor III", name: "Instructor III"},
-          		{id: "Instructor IV", name: "Instructor IV"},
-          		{id: "Instructor V", name: "Instructor V"},
-          		{id: "Instructor VI", name: "Instructor VI"},
-          		{id: "Assistant Professor I", name: "Assistant Professor I"},
-          		{id: "Assistant Professor II", name: "Assistant Professor II"},
-          		{id: "Assistant Professor III", name: "Assistant Professor III"},
-          		{id: "Assistant Professor IV", name: "Assistant Professor IV"},
-          		{id: "Assistant Professor V", name: "Assistant Professor V"},
-          		{id: "Assistant Professor VI", name: "Assistant Professor VI"},
-          		{id: "Professor I", name: "Professor I"},
-          		{id: "Professor II", name: "Professor II"},
-          		{id: "Professor III", name: "Professor III"},
-          		{id: "Professor IV", name: "Professor IV"},
-          		{id: "Professor V", name: "Professor V"},
-          		{id: "Professor VI", name: "Professor VI"}
-          	]
-          };
+          
           if(desns === 'default.css') {
             $scope.faculty_user_info[0].design_setting_name = 'Default';
           } else if(desns === 'maroon.css') {
