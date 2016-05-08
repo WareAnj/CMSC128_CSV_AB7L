@@ -104,8 +104,8 @@ exports.post_sub_section = (req, res, next) => {
     let response;
 
     const data = {
-        course_code:        req.body.course_code,
-        name:               req.body.name,
+        course_code:        req.query.course_code,
+        name:               req.query.name,
         code:               req.body.code
     };
 
