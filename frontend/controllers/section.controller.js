@@ -29,7 +29,7 @@
     let degree = false;
     let college = false;
     let lab_section_name = true;
-    let labSectionRegex = new RegExp("^[1-10]L$");
+    let labSectionRegex = new RegExp("^([1-9]|10)L$");
     $scope.Get_Lab_Sections = function() {
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
          .then(function(data) {
