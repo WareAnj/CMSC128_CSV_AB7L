@@ -3,27 +3,30 @@
 	<div class="navbar">
 		<nav ng-controller="CourseCtrl">
 		 	<div class="nav-wrapper container">
-				<!-- SIDE NAV  -->
+				<!-- SIDE NAV BUTTON -->
 				<ul>
 		    	<li><a data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
 		    </ul>
-
+				<!-- SIDE NAV -->
 				<div id="slide-out" class="side-nav center" data-ng-init="Get_Course()">
 					<img id="sidenav-logo" src="../assets/img/logo-2.png">
+					<!-- USER NAME -->
 					<div ng-repeat="info in faculty_user_info">
 						<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
 					</div>
+					<!-- LIST OF COURSES -->
 					<div ng-repeat="course in faculty_user_courses">
 						<div ng-repeat="lecture in course.lecture">
 							<a href="#/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Lecture(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
 						</div>
 					</div>
+					<!-- LOG OUT BUTTON -->
 					<div class = "center">
 						<a ng-click="Logout()" ng-controller="HomeCtrl" onclick="$('showsidenav').sideNav('hide');" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
 					</div>
 				</div>
 
-				<!--  HOME -->
+				<!--  HOME BUTTON -->
 		    <ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
 				  <li><a ng-click="redirect('/home')">Home</a></li>
 		    </ul>
@@ -32,7 +35,6 @@
 				<div class="center">
 			 		<a ng-click="redirect('/home')" onclick="$('.showsidenav').sideNav('hide');" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
 			  </div>
-
 		  </div>
 		</nav>
 	</div>
@@ -43,28 +45,34 @@
 		<div id="mainContainer"class="container">
 			<div class="row no-margin">
 				<div class="col s12 m4 l4">
+					<!-- COURSE INFORMATION -->
 					<div id="course-info" class="card-panel custom lighten-1">
 						<div ng-repeat="s_info in section_info">
-						<div class="row">
-							<h4>{{s_info.course_code}} {{s_info.section_name}}</h4>
-						</div>
-						<div class="row">
-							<strong>Title</strong>: {{s_info.course_title}}
-						</div>
-						<div class="row">
-							<strong>Description</strong>: {{s_info.course_description}}
+							<div class="row">
+								<h4>{{s_info.course_code}} {{s_info.section_name}}</h4>
+							</div>
+							<div class="row">
+								<strong>Title</strong>: {{s_info.course_title}}
+							</div>
+							<div class="row">
+								<strong>Description</strong>: {{s_info.course_description}}
+							</div>
 						</div>
 					</div>
-					</div>
+
 					<div id="buttons-class" class="row">
+						<!-- EDIT BUTTON -->
 						<div class="col s12 m12 l12">
 							<a ng-click="redirect('/edit')" class="waves-effect waves-light btn">Edit</a>
 						</div>
+						<!-- RANDOMIZE BUTTON -->
 						<div class="col s12 m12 l12">
 							<a ng-click="redirect('/settings_randomize')" class="waves-effect waves-light btn">Randomize</a>
 						</div>
 					</div>
 				</div>
+
+				<!-- CLASS LIST -->
 				<div class="col s12 m8 l8">
 					<div id="classList">
 						<div class="card-panel custom">
@@ -72,14 +80,18 @@
 							<table class="table highlight">
 								<thead>
 									<tr>
-										<th class="center-align">NAME</th>
+										<th class="center-align">GIVEN NAME</th>
+										<th class="center-align">MIDDLE NAME</th>
+										<th class="center-align">LAST NAME</th>
 										<th class="center-align">LAB SECTION</th>
 										<th class="center-align">NUMBER OF <br> TIMES CALLED</th>
 									</tr>
 								</thead>
 								<tbody >
 									<tr ng-repeat="info in student_info">
-										<td>{{info.given_name}} {{info.middle_name}} {{info.last_name}}</td>
+										<td>{{info.given_name}}</td>
+										<td>{{info.middle_name}}</td>
+										<td>{{info.last_name}}</td>
 										<td>{{info.name}} - {{info.code}}</td>
 										<td>{{info.frequency}}</td>
 										<td><a ng-click="Get_Selected_Student(info.id)" class="modal-trigger"><i class="material-icons prefix" style="cursor:pointer;">info_outline</i></a>
@@ -90,23 +102,30 @@
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 
-		<!--MODALS-->
+		<!-- STUDENT MODAL -->
 		<div id="stdInfo1" class="modal">
 			<div class="modal-content">
 				<div class="row">
 					<div class="col s5 offset-s3"><h4 id="headerText">Student Information</h4></div>
-					<div class="col s4"><a onclick="$('#stdInfo1').closeModal()" style="cursor:pointer"><i class="material-icons right">close</i></a></div>
+					<!-- CLOSE BUTTON -->
+					<div class="col s4">
+						<a onclick="$('#stdInfo1').closeModal()" style="cursor:pointer"><i class="material-icons right">close</i></a>
+					</div>
 				</div>
+
 				<div class="row">
 					<div class="col s4">
+						<!-- STUDENT'S IMAGE -->
 						<div class="card-image">
 							<img src="../assets/img/user.png" style="height:175px; width:175px">
 						</div>
 						<!--<img src="img/user.png" style="height:150px; width:150px">-->
 					</div>
+					<!-- STUDENT'S INFORMATION -->
 					<div class="col s8">
 						<ul ng-repeat="stud in student">
 							<li><h5><strong>Name</strong>: {{stud.given_name}} {{stud.middle_name}} {{stud.last_name}} </h5></li>
@@ -121,11 +140,11 @@
 		</div>
 	</main>
 	<!-- END OF MAIN -->
-
-	<!-- SCRIPTS -->
-  <script type="text/javascript" src="../assets/js/home.js"></script>
-  <script type="text/javascript" src="../assets/js/default.js"></script>
 </div>
 
-<!-- STYLESHEETS -->
+<!-- SCRIPTS -->
+<script type="text/javascript" src="../assets/js/home.js"></script>
+<script type="text/javascript" src="../assets/js/default.js"></script>
+
+<!-- CSS -->
 <link type="text/css" rel="stylesheet" href="../assets/stylesheets/class.css">
