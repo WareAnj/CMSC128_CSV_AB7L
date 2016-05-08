@@ -74,7 +74,7 @@ function start () {
 
     winston.log('info', 'Server listening on port', config.PORT);
 
-    return app.listen(config.PORT);
+    return app.listen(config.PORT, config.IP_ADDRESS);
 }
 
 handler = start();
