@@ -39,31 +39,6 @@
 
       //randomize per lab section
       if($scope.counts.whole == 0){
-        // var i, j
-        //  for(i = 0; i < $scope.labSections.length; i++){          
-        //   var varlab = $scope.labSections[i];
-        //     randdata = {
-        //       "user_id":$scope.user_id, 
-        //       "course_code":$scope.course_code, 
-        //       "section_name":$scope.section_name,
-        //       "section_code":varlab,
-        //       "limit": $scope.counts[varlab]
-        //     };
-            
-        //       RandomService.Randomize(randdata)
-        //       .then(function(data) {
-        //         for(j = 0; j < data.length; j++)
-        //           $scope.students.push(data[j]);
-
-        //         console.log("inside");
-        //         if(i == $scope.labSections.length && j == data.length){
-        //           localStorage.setItem('students', JSON.stringify($scope.students));
-        //           $rootScope.redirect('/results_randomize');
-        //         }
-
-        //       });
-        //  }
-
          function randomizeStudents(count) {
             var varlab = $scope.labSections[count];
             randdata = {
