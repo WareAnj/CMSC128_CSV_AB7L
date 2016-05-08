@@ -26,7 +26,7 @@
         // Routes that doesn't need authentication
         let no_auth_routes = ['/', '/guest-trynow'];
         let routes_for_admin = ['/admin', '/admin/view-pending', '/admin/view-logs', '/admin/view-approved'];
-        let routes_for_faculty_user = ['/home', '/class', '/settings_randomize'];
+        let routes_for_faculty_user = ['/home', '/class', '/edit', '/settings_randomize'];
 
         // check if the current route does not need authentication (check if in the array)
         function no_need_auth(route) {
@@ -39,7 +39,7 @@
 
         function need_faculty_user_auth(route) {
             return routes_for_faculty_user.indexOf(route) === -1 ? false : true;
-        }       
+        }
 
         // Check the backend for existing session
         function check_session(next_route) {
@@ -50,7 +50,7 @@
                 .then((data) => {
                     if (data.data === false) {
                         localStorage.clear();
-                        $location.path('/');                      
+                        $location.path('/');
                     }
                     else {
                         localStorage.user = data.data;
@@ -83,7 +83,7 @@
             })
             .when('/home', {
                 'controller'    :   'CourseCtrl',
-                'templateUrl'   :   'views/home.view.html' 
+                'templateUrl'   :   'views/home.view.html'
             })
             .when('/class', {
                 'controller'    :   'SectionCtrl',
