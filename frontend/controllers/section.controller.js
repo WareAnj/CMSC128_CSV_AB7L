@@ -103,7 +103,6 @@
       var orderBy = $filter('orderBy');
       $scope.predicate = predicate;
       $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
-      console.log($scope.reverse);
       $scope.student_info = orderBy($scope.student_info, predicate, $scope.reverse);
     };
 
@@ -233,7 +232,6 @@
 
     $scope.check_lab_section_name = function(){
       let user_input_lab_section = document.querySelector('#lab-input').value;
-      console.log(user_input_lab_section);
 
       for(let i = 0; i < $scope.lab_sections_info.length; i++){
         if(user_input_lab_section === $scope.lab_sections_info[i].section_code){
