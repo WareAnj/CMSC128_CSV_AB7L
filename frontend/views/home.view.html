@@ -22,7 +22,7 @@
 						</div>
 						<div ng-repeat="course in faculty_user_courses">
 							<div ng-repeat="lecture in course.lecture">
-								<a class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Lecture(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
+								<a ng-href="#/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Lecture(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
 							</div>
 						</div>
 						<div class="center" ng-controller="HomeCtrl">
@@ -88,7 +88,7 @@
 								    </div>
 										<ul class="collapsible popout" data-collapsible="expandable" >
 											<li ng-repeat="lecture in course.lecture">
-												<div class="collapsible-header" ng-click="Get_Selected_Lecture(course.id, course.code, course.title, course.description, lecture.name)"><i class="material-icons custom-text text-darken-1" >star_rate</i>{{lecture.name}}<i class="material-icons custom-text text-darken-1 right">clear</i></div>
+												<div class="collapsible-header" ng-click="Get_Selected_Lecture(course.id, course.code, course.title, course.description, lecture.name)"><a ng-href="#/class"><i class="material-icons custom-text text-darken-1" >star_rate</i>{{lecture.name}}</a><i class="material-icons custom-text text-darken-1 right" style="cursor:default" ng-click="Delete_Selected_Lecture(course.code, lecture.name)">clear</i></div>
 												<!-- <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div> -->
 											</li>
 										</ul>
@@ -177,7 +177,7 @@
 						      </div>
 						    </div>
 								<div class="modal-footer">
-									<button id="submit-button-add-lecture" class="btn waves-effect waves-light" type="submit">Add Lecture</button>
+									<button id="submit-button-add-lecture" class="btn waves-effect waves-light disabled" type="submit">Add Lecture</button>
 								</div>
 							</form>
 				    </div>

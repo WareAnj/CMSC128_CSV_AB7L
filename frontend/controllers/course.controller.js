@@ -46,6 +46,7 @@
         .then(function(data){
           $scope.faculty_user_info = [];
           $scope.faculty_user_info.push(data);
+          localStorage.setItem("user_id", data.id);
           localStorage.setItem("course_id", "");
           localStorage.setItem("course_code", "");
           localStorage.setItem("course_title", "");
@@ -59,7 +60,7 @@
           olname = data.last_name;
           uname = data.username;
           desns = data.design_setting;
-          
+
           if(desns === 'default.css') {
             $scope.faculty_user_info[0].design_setting_name = 'Default';
           } else if(desns === 'maroon.css') {
@@ -268,10 +269,42 @@
       localStorage.setItem("course_title", c_title);
       localStorage.setItem("course_description", c_desc);
       localStorage.setItem("section_name", section_name);
-      window.location.href='#/class';
       $('.showsidenav').sideNav('hide');
-      $route.reload();
+      if($route.current.loadedTemplateUrl != 'views/home.view.html') {
+        $route.reload();
+      }
     }
+
+    $scope.Delete_Selected_Lecture = function(c_code, section_name) {
+      localStorage.setItem("course_code", c_code);
+      localStorage.setItem("section_name", section_name);
+      CourseService.Delete_Lecture(localStorage.getItem("course_code"), localStorage.getItem("section_name"))
+        .then(function(data) {
+            Materialize.toast('Lecture Section Deleted!', 5000, 'rounded');
+            localStorage.setItem("course_code", "");
+            localStorage.setItem("section_name", "");
+        });
+
+      CourseService.Get_Course(user_id)
+        .then(function(data) {
+          $scope.faculty_user_courses = [];
+          for(let i = 0; i < data.length; i++) {
+            CourseService.Get_Lecture(data[i].id)
+              .then(function(data2) {
+                  $scope.faculty_user_courses.push({
+                    'code': data[i].code,
+                    'course_id': data[i].course_id,
+                    'description': data[i].description,
+                    'faculty_user_id': data[i].faculty_user_id,
+                    'id': data[i].id,
+                    'title': data[i].title,
+                    'lecture' : data2
+                  });
+              });
+          }
+        });
+    }
+
 
     // Update USER Details
   	$scope.Update_Details = function() {
@@ -624,12 +657,14 @@
 
     $scope.check_section_name = function(){
   		let section_name = document.querySelector('#section-name-input').value;
+      let textReg = new RegExp("[A-Za-z0-9]+\s*[A-Za-z0-9]+");
 
-      if (section_name===""){
-  			if($("#section-name-input").hasClass('invalid')){
-  				$("#section-name-input").removeClass('invalid');
-  			} $("#submit-button-add-lecture").addClass('disabled');
-  		}
+      if(section_name==="" && !textReg.test(section_name)) {
+  		 	if($("#section-name-input").hasClass('invalid')){
+  		 		 $("#section-name-input").removeClass('invalid');
+  		 	}
+        $("#submit-button-add-lecture").addClass('disabled');
+  	  }
 
   		$http.post(
   			"course/lecture/check_section_name?course_id=" + localStorage.getItem("course_id"),  $scope.newLecture
@@ -637,14 +672,15 @@
   				if (response.data){
   					if(!($("#section-name-input").hasClass('invalid'))){
   						$("#section-name-input").addClass('invalid');
-              $("#submit-button-add-lecture").addClass('disabled');
   					}
-          }
-          else{
+            $("#submit-button-add-lecture").addClass('disabled');
+          } else {
   					if($("#section-name-input").hasClass('invalid')){
   						$("#section-name-input").removeClass('invalid');
-              $("#submit-button-add-lecture").removeClass('disabled');
   					}
+            if(section_name!=="" && textReg.test(section_name)) {
+              $("#submit-button-add-lecture").removeClass('disabled');
+            }
       		}
         }
 

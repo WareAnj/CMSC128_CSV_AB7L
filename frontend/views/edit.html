@@ -41,8 +41,9 @@
 
 	<!-- MAIN BODY -->
 	<main ng-controller="SectionCtrl">
-		<div>
-	<div id="nav-container" class="container">
+
+	<div>
+		<div id="nav-container" class="container">
 		<!-- <div class="row">
 			<div class="input-field col s1">
 				<a href="#add-modal" class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">add</i></a>
@@ -53,12 +54,13 @@
 		  </div>
 	  </div> -->
 
+
 		<!-- LAB SECTIONS -->
 		<div class="row"  data-ng-init="Get_Lab_Sections()">
 			<div class="col s12" style="padding: 0;">
 				<ul class="tabs " style="overflow-x: hidden;">
 					<li id="lab-sections" class="tab col s3" ng-repeat="lab in lab_sections_info">
-						<a ng-click="Get_Student_Per_Lab_Section(lab.section_code)" href="#first-table">{{lab.course_code}} {{lab.section_name}} - {{lab.section_code}}</a>
+						<a ng-click="Get_Student_Per_Lab_Section(lab.section_code)" href="#first-table"> {{lab.course_code}} {{lab.section_name}} - {{lab.section_code}}</a>
 					</li>
 				</ul>
 			</div>

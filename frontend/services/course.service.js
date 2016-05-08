@@ -18,6 +18,7 @@
 		// Lecture
 		service.Get_Lecture = Get_Lecture;
 		service.Add_Lecture = Add_Lecture;
+		service.Delete_Lecture = Delete_Lecture;
 		return service;
 
 		function Get_User() {
@@ -113,6 +114,20 @@
 			})
 			.error(function(data) {
 				deferred.reject("Error: Cannot Add Lecture Class");
+			});
+
+			return deferred.promise;
+		}
+
+		function Delete_Lecture(course_code, section_name) {
+			let deferred = $q.defer();
+
+			$http.delete("/section/delete_lecture_section?course_code=" + course_code + "&name=" + section_name)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Delete Lecture Class");
 			});
 
 			return deferred.promise;
