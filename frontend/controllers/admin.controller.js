@@ -168,7 +168,7 @@
             var dd = d.getDate().toString();
             var hh = d.getHours();
             var min = d.getMinutes();
-            var string = months[mm]+" "+dd+", "+yyyy+" "+hh+":"+min;
+            var string = months[mm+1]+" "+dd+", "+yyyy+" "+hh+":"+min;
             return string;
         }
 
