@@ -26,8 +26,7 @@
 							</div>
 						</div>
 						<div class="center" ng-controller="HomeCtrl">
-							<a ng-click="Logout()" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
-
+							<a ng-click="Logout()" onclick="$('.showsidenav').sideNav('hide');" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
 						</div>
 					</div>
 		    </div>
@@ -89,7 +88,7 @@
 								    </div>
 										<ul class="collapsible popout" data-collapsible="expandable" >
 											<li ng-repeat="lecture in course.lecture">
-												<div class="collapsible-header" ng-click="Get_Selected_Lecture(course.id, course.code, course.title, course.description, lecture.name)"><i class="material-icons custom-text text-darken-1" >star_rate</i>{{lecture.name}}</div>
+												<div class="collapsible-header" ng-click="Get_Selected_Lecture(course.id, course.code, course.title, course.description, lecture.name)"><i class="material-icons custom-text text-darken-1" >star_rate</i>{{lecture.name}}<i class="material-icons custom-text text-darken-1 right">clear</i></div>
 												<!-- <div class="collapsible-body custom darken-1 white-text"><p>Lorem ipsum dolor sit amet.</p></div> -->
 											</li>
 										</ul>

@@ -25,10 +25,6 @@
 
 			$http.get("faculty_user/get_user")
 			.success(function(data) {
-				if(data===false){
-					window.location.href='/';
-					alert("No session found!");
-				}
 				deferred.resolve(data);
 			})
 			.error(function(data) {
@@ -110,7 +106,7 @@
 
 		function Add_Lecture(course_id, section_name) {
 			let deferred = $q.defer();
-			
+
 			$http.post("course/lecture/post_lecture?course_id=" + course_id, section_name)
 			.success(function(data) {
 				deferred.resolve(data);
