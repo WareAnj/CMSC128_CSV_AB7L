@@ -5,6 +5,10 @@
   	content: '\25bc';
 }
 
+main{
+	margin-bottom: 0;
+}
+
 table tbody{
    overflow: auto;
    height: 100px;
