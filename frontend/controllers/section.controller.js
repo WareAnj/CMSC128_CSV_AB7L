@@ -367,7 +367,6 @@
   			if($("#stdnuminput").hasClass('invalid')) {
   				$("#stdnuminput").removeClass('invalid');
   			}
-  			$("#submit-button-add").attr('disabled', 'disabled');
         $("#submit-button-add").addClass("disabled");
         student_number_add = false;
   			return;
@@ -376,7 +375,6 @@
       $http.get(
   			         "faculty_user/check_student_number?student_number=" + new_student_number + "&course_id=" + localStorage.getItem("course_id")
   			        ).then(function(response) {
-                  console.log(response.data);
   				        if (response.data) {
 					          if(!($("#stdnuminput").hasClass('invalid'))) {
 						          $("#stdnuminput").addClass('invalid');
