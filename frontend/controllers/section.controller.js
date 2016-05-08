@@ -30,6 +30,10 @@
     let college = false;
     let lab_section_name = true;
     let labSectionRegex = new RegExp("^([1-9]|10)L$");
+
+    let course_code;
+    let section_name;
+    let section_code;
     $scope.Get_Lab_Sections = function() {
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
          .then(function(data) {
@@ -261,6 +265,17 @@
       if(!user_input_lab_section){
         $("#submit-button").addClass("disabled");
       }
+    }
+
+    $scope.Get_Section_Id(c_code, s_name, s_code) = function(){
+      course_code = c_code;
+      section_name = s_name;
+      section_code = s_code;
+      $('#add-modal').openModal()
+    }
+
+    $scope.Add_Student_In_Lab_Section = function(){
+      
     }
   }
 })();
