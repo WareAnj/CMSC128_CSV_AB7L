@@ -21,14 +21,12 @@
             AdminService.GetCountsApproved()
                 .then(function(data){
                     $scope.countsApproved = data.data[0].length;
-                    console.log(data);
                 });
         }
 
         $scope.GetCountsPending = () => {
             AdminService.GetCountsPending()
                 .then(function(data){
-                    console.log(data);
                     $scope.countsPending = data.data[0].length;
                 });
         }
