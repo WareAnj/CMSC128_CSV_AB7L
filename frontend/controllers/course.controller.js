@@ -29,7 +29,6 @@
     let otitl;
     let odesc;
     let desns;
-    let ocolor;
     let titlchged = false;
     let codechged = false;
     let descchged = false;
@@ -59,39 +58,21 @@
           omname = data.middle_name;
           olname = data.last_name;
           uname = data.username;
-          ocolor = data.design_setting;
-          $scope.selectd = {
-          	repeatSelect: null,
-          	options: [
-          		{id: "Instructor I", name: "Instructor I"},
-          		{id: "Instructor II", name: "Instructor II"},
-          		{id: "Instructor III", name: "Instructor III"},
-          		{id: "Instructor IV", name: "Instructor IV"},
-          		{id: "Instructor V", name: "Instructor V"},
-          		{id: "Instructor VI", name: "Instructor VI"},
-          		{id: "Assistant Professor I", name: "Assistant Professor I"},
-          		{id: "Assistant Professor II", name: "Assistant Professor II"},
-          		{id: "Assistant Professor III", name: "Assistant Professor III"},
-          		{id: "Assistant Professor IV", name: "Assistant Professor IV"},
-          		{id: "Assistant Professor V", name: "Assistant Professor V"},
-          		{id: "Assistant Professor VI", name: "Assistant Professor VI"},
-          		{id: "Professor I", name: "Professor I"},
-          		{id: "Professor II", name: "Professor II"},
-          		{id: "Professor III", name: "Professor III"},
-          		{id: "Professor IV", name: "Professor IV"},
-          		{id: "Professor V", name: "Professor V"},
-          		{id: "Professor VI", name: "Professor VI"}
-          	]
-          };
-          $scope.selectcolor = {
-            repeatSelect: null,
-            options: [
-              {id: "default.css", name: "default.css"},
-              {id: "maroon.css", name: "maroon.css"},
-              {id: "grey.css", name: "grey.css"},
-              {id: "purple.css", name: "purple.css"}
-            ]
-          };
+          desns = data.design_setting;
+          
+          if(desns === 'default.css') {
+            $scope.faculty_user_info[0].design_setting_name = 'Default';
+          } else if(desns === 'maroon.css') {
+            $scope.faculty_user_info[0].design_setting_name = 'Maroon';
+          } else if(desns === 'grey.css') {
+            $scope.faculty_user_info[0].design_setting_name = 'Grey';
+          } else if(desns === 'purple.css') {
+            $scope.faculty_user_info[0].design_setting_name = 'Purple';
+          }
+
+          if(desns !== 'default.css'){
+            	$("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+desns+"'>");
+          }
         });
     }
 
@@ -489,7 +470,6 @@
 	}
 
   $scope.check_display = function(){
-    console.log(ocolor);
     var ncolor = document.querySelector('#profile-input').value + ".css";
     if(ocolor===ncolor) colorchanged = false;
     else colorchanged = true;
