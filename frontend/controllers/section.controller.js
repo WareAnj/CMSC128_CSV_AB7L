@@ -5,9 +5,9 @@
     .module('app')
     .controller('SectionCtrl', SectionCtrl);
 
-  SectionCtrl.$inject = ["$scope", "$location", "$http", "SectionService", "$route"];
+  SectionCtrl.$inject = ["$scope", "$location", "$http", "SectionService", "$route", "$filter"];
 
-  function SectionCtrl($scope, $location, $http, SectionService, $route) {
+  function SectionCtrl($scope, $location, $http, SectionService, $route, $filter) {
     $scope.section_info = [];
     $scope.lab_sections_info = [];
     $scope.student_info = [];
@@ -94,7 +94,17 @@
         'course_title': localStorage.getItem("course_title"),
         'course_description': localStorage.getItem("course_description")
       });
+
+      $scope.order('given_name', true);
     }
+
+    $scope.order = function(predicate) {
+      var orderBy = $filter('orderBy');
+      $scope.predicate = predicate;
+      $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+      console.log($scope.reverse);
+      $scope.student_info = orderBy($scope.student_info, predicate, $scope.reverse);
+    };
 
     $scope.Get_Selected_Student = function(student_id) {
       localStorage.setItem("student_id", student_id)
