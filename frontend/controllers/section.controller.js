@@ -140,6 +140,37 @@
        });
     }
 
+    $scope.Delete_Selected_Lab = function() {
+      SectionService.Delete_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
+      .then(function(data){
+          Materialize.toast('Section Successfully Deleted!', 3000, 'rounded');
+          localStorage.setItem("section_code", "");
+          $("#lab-sections").children(":first").trigger("click");
+      });
+
+      SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
+        .then(function(data) {
+         $scope.lab_sections_info = [];
+          for(var i = 0 ; i < data.length; i++){
+            if(data[i].code != null){
+              $scope.lab_sections_info.push({
+                'course_code': localStorage.getItem('course_code'),
+                'section_name': localStorage.getItem("section_name"),
+                'section_code': data[i].code
+              });
+           }
+          }
+       });
+    }
+
+    $scope.Get_Selected_Lab = function(lab, type) {
+      if(type == "delete") {
+        $('#delete-lab-modal').openModal();
+        localStorage.setItem("section_code", lab.section_code);
+      }
+    }
+
+
     $scope.Get_Student_Id = function(s_id, type){
       student_id = s_id;
       if(type == "delete"){
