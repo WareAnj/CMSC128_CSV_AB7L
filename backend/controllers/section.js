@@ -135,9 +135,9 @@ exports.delete_sub_section = (req, res, next) => {
     let response;
 
     const data = {
-        course_code:            req.body.course_code,
-        name:                   req.body.name,
-        code:                   req.body.code
+        course_code:            req.query.course_code,
+        name:                   req.query.name,
+        code:                   req.query.code
     };
 
 
