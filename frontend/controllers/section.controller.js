@@ -29,7 +29,7 @@
     let degree = false;
     let college = false;
     let lab_section_name = true;
-
+    let labSectionRegex = new RegExp("^(1L|2L|3L|4L|5L|6L|7L|8L|9L|10L)$");
     $scope.Get_Lab_Sections = function() {
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
          .then(function(data) {
@@ -239,10 +239,14 @@
         }
       }
       if(!lab_section_name){
-        Materialize.toast('Lab Section Exist!', 3000, 'rounded');
+        Materialize.toast('Lab Section Already Exist!', 3000, 'rounded');
         $("#submit-button").addClass("disabled");
       } else{
-        $("#submit-button").removeClass("disabled");
+        if((labSectionRegex.test(user_input_lab_section))){
+            $("#submit-button").removeClass("disabled");
+        } else{
+            $("#submit-button").addClass("disabled");
+        }
       }
       lab_section_name = true;
       if(!user_input_lab_section){
