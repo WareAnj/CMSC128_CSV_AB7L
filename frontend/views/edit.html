@@ -125,16 +125,16 @@
       			<div class="input-field">
 							<!-- GIVEN NAME -->
 							<div class="col s12 m12 l4">
-          			<input placeholder="Given Name" type="text" id="fname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+" ng-model="newLabStudent.given_name">
+          			<input placeholder="Given Name" type="text" id="fname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+" ng-model="newLabStudent.given_name" ng-keyup="check_given_name_change_add()">
           			<label for="fname-input">Name</label>
         			</div>
 							<!-- MIDDLE NAME -->
         			<div class="col s12 m12 l4">
-          			<input placeholder="Middle Name" type="text" id="mname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+" ng-model="newLabStudent.middle_name">
+          			<input placeholder="Middle Name" type="text" id="mname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+" ng-model="newLabStudent.middle_name" ng-keyup="check_middle_name_change_add()">
         			</div>
 							<!-- LAST NAME -->
         			<div class="col s12 m12 l4">
-          			<input placeholder="Last Name" type="text" id="lname-input"required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+" ng-model="newLabStudent.last_name">
+          			<input placeholder="Last Name" type="text" id="lname-input"required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+" ng-model="newLabStudent.last_name" ng-keyup="check_last_name_change_add()">
         			</div>
       			</div>
     			</div>
@@ -142,14 +142,14 @@
       			<div class="col s6 m12 l6">
 							<!-- STUDENT NUMBER  -->
 							<div class="input-field">
-          			<input placeholder="Student Number" type="text" id="stdnuminput" ng-model="newLabStudent.student_number">
+          			<input placeholder="Student Number" type="text" id="stdnuminput" ng-model="newLabStudent.student_number" ng-keyup="check_student_number_change_add()">
           			<label for="nameinput" class="active">Student Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         			</div>
       			</div>
       			<div class="col s6 m12 l6">
 							<!-- DEGREE -->
 							<div class="input-field">
-          			<input placeholder="Degree" type="text" ng-model="newLabStudent.degree">
+          			<input id="degree-input" placeholder="Degree" type="text" ng-model="newLabStudent.degree" ng-keyup="check_degree_change_add()">
           			<label class="active">Degree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         			</div>
       			</div>
@@ -158,14 +158,23 @@
             <div class="col s12 m6 l6">
 							<!-- COLLEGE -->
 	        		<div class="input-field">
-	          		<input placeholder="College" type="text" ng-model="newLabStudent.college">
-	          		<label class="active">College&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	          		<select id="college-input" class="input-field" ng-model="newLabStudent.college" ng-change="check_college_change_add()">
+									<option value="" disabled selected>College</option>
+									<option value="CA">CA</option>
+									<option value="CAS">CAS</option>
+									<option value="CEAT">CEAT</option>
+									<option value="CFNR">CFNR</option>
+									<option value="CHE">CHE</option>
+									<option value="CEM">CEM</option>
+									<option value="CDC">CDC</option>
+									<option value="CVM">CVM</option>
+								</select>
 	        		</div>
       			</div>
       			<div class="col s12 m6 l6">
 							<!-- CLASSIFICATION -->
 	        		<div>
-	    		  		<select id="classificationinput" class="input-field" ng-model="newLabStudent.classification" ng-change="check_clasfn()">
+	    		  		<select id="classification-input" class="input-field" ng-model="newLabStudent.classification" ng-change="check_classification_change_add()">
 		      			 <option value="" disabled selected>Classification</option>
 		      			 <option value="Freshman">Freshman</option>
 		      			 <option value="Sophomore">Sophomore</option>
@@ -176,7 +185,7 @@
       			</div>
     			</div>
 					<!-- ADD STUDENT BUTTON -->
-      		<button id="submit-button" class="btn waves-effect waves-light" type="submit">Add Student</button>
+      		<button id="submit-button-add" class="btn waves-effect waves-light disabled" type="submit">Add Student</button>
   			</form>
 			</div>
 		</div>
@@ -220,17 +229,17 @@
 	    			<div class="row">
 							<!-- GIVEN NAME -->
 	    				<div class="input-field col s4">
-			    			<input id="student-firstname" type="text" class="validate" value="{{student.given_name}}" ng-keyup="check_given_name_change()">
+			    			<input id="student-firstname" type="text" class="validate" value="{{student.given_name}}" ng-keyup="check_given_name_change_edit()">
 								<label for="student-firstname" class="active"> Given Name </label>
 							</div>
 							<!-- MIDDLE NAME -->
 							<div class="input-field col s4">
-		    				<input id="student-middlename" type="text" class="validate" value="{{student.middle_name}}" ng-keyup="check_middle_name_change()">
+		    				<input id="student-middlename" type="text" class="validate" value="{{student.middle_name}}" ng-keyup="check_middle_name_change_edit()">
 								<label for="student-middlename" class="active"> Middle Name </label>
 							</div>
 							<!-- LAST NAME -->
 							<div class="input-field col s4">
-		    				<input id="student-lastname" type="text" class="validate" value="{{student.last_name}}" ng-keyup="check_last_name_change()">
+		    				<input id="student-lastname" type="text" class="validate" value="{{student.last_name}}" ng-keyup="check_last_name_change_edit()">
 								<label for="student-lastname" class="active"> Last Name </label>
 							</div>
 	    			</div>
@@ -238,17 +247,17 @@
 	    			<div class="row">
 							<!-- DEGREE -->
 	    				<div class="input-field col s4">
-		    				<input id="student-degree" type="text" class="validate" value="{{student.degree}}" ng-keyup="check_degree_change()">
+		    				<input id="student-degree" type="text" class="validate" value="{{student.degree}}" ng-keyup="check_degree_change_edit()">
 								<label for="student-degree" class="active"> Degree </label>
 							</div>
 							<!-- CLASSIFICATION -->
 							<div class="input-field col s4">
-			    			<input id="student-classification" type="text" class="validate" value="{{student.classification}}" ng-keyup="check_classification_change()">
+			    			<input id="student-classification" type="text" class="validate" value="{{student.classification}}" ng-keyup="check_classification_change_edit()">
 								<label for="student-classification" class="active"> Classification </label>
 							</div>
 							<!-- COLLEGE -->
 							<div class="input-field col s4">
-		    				<input id="student-college" type="text" class="validate" value="{{student.college}}" ng-keyup="check_college_change()">
+		    				<input id="student-college" type="text" class="validate" value="{{student.college}}" ng-keyup="check_college_change_edit()">
 								<label for="student-college" class="active"> College </label>
 							</div>
 	    			</div>

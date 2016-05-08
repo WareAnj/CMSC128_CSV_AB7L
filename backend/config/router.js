@@ -63,7 +63,7 @@ module.exports = (router) => {
     // routes to check the username or employee_id if it is already existing in the database
     router.post('/faculty_user/check_faculty_user_username',                                __.faculty_user.check_faculty_user_username);
     router.post('/faculty_user/check_faculty_user_employee_id',                             __.faculty_user.check_faculty_user_employee_id);
-
+    router.get('/faculty_user/check_student_number',                                       __.faculty_user.check_student_number);
     // randomize n students from a course with the specified section
     router.post('/faculty_user/randomize',	                            $('Faculty User'),  __.faculty_user.randomize);
 
