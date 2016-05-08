@@ -16,7 +16,7 @@
         }
 
         $rootScope.$on('$routeChangeStart', (event, next, current) => {
-            let user = check_session(next.$$route.originalPath);
+            let user = check_session($location.url());
 
             if (!no_need_auth($location.url()) && typeof user === 'undefined') {
                 $location.path('/');
