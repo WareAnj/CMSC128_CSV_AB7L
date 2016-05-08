@@ -48,13 +48,14 @@
 				<div class="row"  data-ng-init="Get_Lab_Sections()">
 					<div class="col s12" style="padding: 0;">
 						<ul class="tabs " style="overflow-x: hidden;">
-							<li id="lab-sections" class="tab col s3" ng-repeat="lab in lab_sections_info">
+						<li id="lab-sections" class="tab col s3" ng-repeat="lab in lab_sections_info">
 								<a ng-click="Get_Student_Per_Lab_Section(lab.section_code)" href="#first-table">
+
 								<!-- ADD STUDENT BUTTON -->
-								<button class="btn btn-floating waves-effect waves-light modal-trigger" onclick="$('#add-modal').openModal()"> <i class="material-icons">add</i></button>
+								<button class="btn btn-floating waves-effect waves-light modal-trigger" ng-click="Get_Section_Id(lab.course_code, lab.section_name, lab.section_code)"> <i class="material-icons">add</i></button>
 								<!-- DELETE LAB BUTTON -->
-								<button class="btn btn-floating waves-effect waves-light modal-trigger" ng-click="Get_Selected_Lab(lab, 'delete')"> <i class="material-icons">delete</i></button>
-								{{lab.course_code}} {{lab.section_name}} - {{lab.section_code}} </a>
+								<button class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">delete</i></button>
+								{{lab.course_code}} {{lab.section_name}} - {{lab.section_code}}</a>
 							</li>
 						</ul>
 					</div>
@@ -119,21 +120,21 @@
 			<div id="add-modal" class="modal">
 	    	<div class="modal-content center">
   			<h4>Add a Student</h4>
-  			<form ng-submit="" autocomplete="off">
+  			<form ng-submit="Add_Student_In_Lab_Section()" autocomplete="off">
     			<div class="row">
       			<div class="input-field">
 							<!-- GIVEN NAME -->
 							<div class="col s12 m12 l4">
-          			<input placeholder="Given Name" type="text" id="fname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+">
+          			<input placeholder="Given Name" type="text" id="fname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+" ng-model="newLabStudent.given_name">
           			<label for="fname-input">Name</label>
         			</div>
 							<!-- MIDDLE NAME -->
         			<div class="col s12 m12 l4">
-          			<input placeholder="Middle Name" type="text" id="mname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+">
+          			<input placeholder="Middle Name" type="text" id="mname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+" ng-model="newLabStudent.middle_name">
         			</div>
 							<!-- LAST NAME -->
         			<div class="col s12 m12 l4">
-          			<input placeholder="Last Name" type="text" id="lname-input"required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+">
+          			<input placeholder="Last Name" type="text" id="lname-input"required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+" ng-model="newLabStudent.last_name">
         			</div>
       			</div>
     			</div>
@@ -141,15 +142,15 @@
       			<div class="col s6 m12 l6">
 							<!-- STUDENT NUMBER  -->
 							<div class="input-field">
-          			<input placeholder="Student Number" type="text" id="stdnuminput">
-          			<label for="nameinput">Student Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+          			<input placeholder="Student Number" type="text" id="stdnuminput" ng-model="newLabStudent.student_number">
+          			<label for="nameinput" class="active">Student Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         			</div>
       			</div>
       			<div class="col s6 m12 l6">
 							<!-- DEGREE -->
 							<div class="input-field">
-          			<input placeholder="Degree" type="text">
-          			<label>Degree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+          			<input placeholder="Degree" type="text" ng-model="newLabStudent.degree">
+          			<label class="active">Degree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         			</div>
       			</div>
     			</div>
@@ -157,14 +158,14 @@
             <div class="col s12 m6 l6">
 							<!-- COLLEGE -->
 	        		<div class="input-field">
-	          		<input placeholder="College" type="text">
-	          		<label>College&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	          		<input placeholder="College" type="text" ng-model="newLabStudent.college">
+	          		<label class="active">College&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 	        		</div>
       			</div>
       			<div class="col s12 m6 l6">
 							<!-- CLASSIFICATION -->
 	        		<div>
-	    		  		<select id="classificationinput" class="input-field" ng-model="newFacultyUser.classification" ng-change="check_clasfn()">
+	    		  		<select id="classificationinput" class="input-field" ng-model="newLabStudent.classification" ng-change="check_clasfn()">
 		      			 <option value="" disabled selected>Classification</option>
 		      			 <option value="Freshman">Freshman</option>
 		      			 <option value="Sophomore">Sophomore</option>

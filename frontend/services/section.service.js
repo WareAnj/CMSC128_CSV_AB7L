@@ -17,6 +17,7 @@
 		service.Get_Student_Per_Lab_Section = Get_Student_Per_Lab_Section;
 		service.Delete_Student = Delete_Student;
 		service.Update_Student = Update_Student;
+		service.Add_Student_In_Lab_Section = Add_Student_In_Lab_Section;
 		return service;
 
 		function Get_Lab_Sections(course_id, name){
@@ -126,6 +127,19 @@
 			})
 			.error(function(data) {
 				deferred.reject("Error: Cannot Update Student");
+			});
+
+			return deferred.promise;
+		}
+
+		function Add_Student_In_Lab_Section(c_code, s_name, s_code, newLabStudent){
+			let deferred = $q.defer();
+			$http.post("/faculty_user/post_volunteer?course_code=" + c_code + "&section_name=" + s_name + "&section_code=" + s_code, newLabStudent)
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(data) {
+				deferred.reject("Error: Cannot Add Student to Lab Section");
 			});
 
 			return deferred.promise;

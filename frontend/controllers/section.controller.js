@@ -30,6 +30,10 @@
     let college = false;
     let lab_section_name = true;
     let labSectionRegex = new RegExp("^([1-9]|10)L$");
+
+    let course_code;
+    let section_name;
+    let section_code;
     $scope.Get_Lab_Sections = function() {
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
          .then(function(data) {
@@ -292,6 +296,37 @@
       if(!user_input_lab_section){
         $("#submit-button").addClass("disabled");
       }
+    }
+
+    $scope.Get_Section_Id = function(c_code, s_name, s_code){
+      course_code = c_code;
+      section_name = s_name;
+      section_code = s_code;
+      $('#add-modal').openModal();
+    }
+
+    $scope.Add_Student_In_Lab_Section = function(){
+      SectionService.Add_Student_In_Lab_Section(course_code, section_name, section_code, $scope.newLabStudent)
+      .then(function(data){
+
+        $scope.newLabStudent.given_name = "";
+        $scope.newLabStudent.middle_name = "";
+        $scope.newLabStudent.last_name = "";
+        $scope.newLabStudent.student_number = "";
+        $scope.newLabStudent.degree = "";
+        $scope.newLabStudent.classification = "";
+        $scope.newLabStudent.college = "";
+      });
+
+      SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
+        .then(function(data) {
+         $scope.student_per_lab = [];
+          for(var i = 0 ; i < data.length; i++){
+            $scope.student_per_lab.push(data[i]);
+          }
+       });
+       Materialize.toast('Student Successfully Created!', 3000, 'rounded');
+       $('#add-modal').closeModal();
     }
   }
 })();
