@@ -28,6 +28,7 @@
     let classification = false;
     let degree = false;
     let college = false;
+    let lab_section_name = true;
 
     $scope.Get_Lab_Sections = function() {
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
@@ -230,6 +231,25 @@
   		else college = true;
     }
 
+    $scope.check_lab_section_name = function(){
+      let user_input_lab_section = document.querySelector('#lab-input').value;
+      console.log(user_input_lab_section);
 
+      for(let i = 0; i < $scope.lab_sections_info.length; i++){
+        if(user_input_lab_section === $scope.lab_sections_info[i].section_code){
+          lab_section_name = false;
+        }
+      }
+      if(!lab_section_name){
+        Materialize.toast('Lab Section Exist!', 3000, 'rounded');
+        $("#submit-button").addClass("disabled");
+      } else{
+        $("#submit-button").removeClass("disabled");
+      }
+      lab_section_name = true;
+      if(!user_input_lab_section){
+        $("#submit-button").addClass("disabled");
+      }
+    }
   }
 })();

@@ -96,13 +96,13 @@
 							<!-- SECTION NAME -->
 							<div class="col s6 m12 l12">
 								<div class="input-field">
-									<input placeholder="Section Name" type="text" id="lab-input" ng-model="newSection.code">
-									<label for="lab-input">Section Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+									<input placeholder="Section Name" type="text" id="lab-input" ng-model="newSection.code" ng-change="check_lab_section_name()">
+									<label for="lab-input" class="active">Section Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 								</div>
 							</div>
 						</div>
 						<!-- ADD LAB SECTION BUTTON  -->
-						<button id="submit-button" class="btn waves-effect waves-light" type="submit">Add Lab Section</button>
+						<button id="submit-button" class="disabled btn waves-effect waves-light" type="submit">Add Lab Section</button>
 					</form>
 				</div>
 			</div>
