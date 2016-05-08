@@ -44,6 +44,8 @@
             }
            }
         });
+
+        $scope.order_lab('given_name', true);
      }
 
      $scope.Add_Lab_Section = function() {
@@ -104,6 +106,13 @@
       $scope.predicate = predicate;
       $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
       $scope.student_info = orderBy($scope.student_info, predicate, $scope.reverse);
+    };
+
+    $scope.order_lab = function(predicate) {
+      var orderBy = $filter('orderBy');
+      $scope.predicate = predicate;
+      $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+      $scope.student_per_lab = orderBy($scope.student_per_lab, predicate, $scope.reverse);
     };
 
     $scope.Get_Selected_Student = function(student_id) {
