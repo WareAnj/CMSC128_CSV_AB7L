@@ -5,9 +5,9 @@
     .module('app')
     .controller('SectionCtrl', SectionCtrl);
 
-  SectionCtrl.$inject = ["$scope", "$location", "$http", "SectionService", "$route"];
+  SectionCtrl.$inject = ["$scope", "$location", "$http", "SectionService", "$route", "$filter"];
 
-  function SectionCtrl($scope, $location, $http, SectionService, $route) {
+  function SectionCtrl($scope, $location, $http, SectionService, $route, $filter) {
     $scope.section_info = [];
     $scope.lab_sections_info = [];
     $scope.student_info = [];
@@ -28,7 +28,8 @@
     let classification = false;
     let degree = false;
     let college = false;
-
+    let lab_section_name = true;
+    let labSectionRegex = new RegExp("^([1-9]|10)L$");
     $scope.Get_Lab_Sections = function() {
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
          .then(function(data) {
@@ -43,6 +44,8 @@
             }
            }
         });
+
+        $scope.order_lab('given_name', true);
      }
 
      $scope.Add_Lab_Section = function() {
@@ -94,7 +97,23 @@
         'course_title': localStorage.getItem("course_title"),
         'course_description': localStorage.getItem("course_description")
       });
+
+      $scope.order('given_name', true);
     }
+
+    $scope.order = function(predicate) {
+      var orderBy = $filter('orderBy');
+      $scope.predicate = predicate;
+      $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+      $scope.student_info = orderBy($scope.student_info, predicate, $scope.reverse);
+    };
+
+    $scope.order_lab = function(predicate) {
+      var orderBy = $filter('orderBy');
+      $scope.predicate = predicate;
+      $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+      $scope.student_per_lab = orderBy($scope.student_per_lab, predicate, $scope.reverse);
+    };
 
     $scope.Get_Selected_Student = function(student_id) {
       localStorage.setItem("student_id", student_id)
@@ -220,6 +239,28 @@
   		else college = true;
     }
 
+    $scope.check_lab_section_name = function(){
+      let user_input_lab_section = document.querySelector('#lab-input').value;
 
+      for(let i = 0; i < $scope.lab_sections_info.length; i++){
+        if(user_input_lab_section === $scope.lab_sections_info[i].section_code){
+          lab_section_name = false;
+        }
+      }
+      if(!lab_section_name){
+        Materialize.toast('Lab Section Already Exist!', 3000, 'rounded');
+        $("#submit-button").addClass("disabled");
+      } else{
+        if((labSectionRegex.test(user_input_lab_section))){
+            $("#submit-button").removeClass("disabled");
+        } else{
+            $("#submit-button").addClass("disabled");
+        }
+      }
+      lab_section_name = true;
+      if(!user_input_lab_section){
+        $("#submit-button").addClass("disabled");
+      }
+    }
   }
 })();
