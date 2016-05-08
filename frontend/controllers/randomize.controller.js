@@ -10,7 +10,6 @@
   function RandomCtrl($rootScope, $scope, $location, RandomService) {
     var students = localStorage.getItem('students');
     $scope.students = JSON.parse(students);
-    console.log($scope.students);
     $scope.labdata = [];
     $scope.labSections = [];
     var randdata = {};
@@ -38,7 +37,8 @@
        $scope.students = [];      
 
       //randomize per lab section
-      if($scope.counts.whole == 0){
+      if($scope.counts.whole == 0){        
+
          function randomizeStudents(count) {
             var varlab = $scope.labSections[count];
             randdata = {

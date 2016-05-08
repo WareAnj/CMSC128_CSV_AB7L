@@ -21,7 +21,9 @@ table {
 	-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;	
+    background-size: cover;
+    height: 100vh;
+    max-height: none;
 }
 
 .center-label{
@@ -38,6 +40,8 @@ table {
 
 #brief-intro{
 	background-color: rgba(250,255,249, 0.8);
+	height: 100vh;
+    max-height: none;
 }
 
 #brief-intro #content{
@@ -47,6 +51,28 @@ table {
 #brief-intro #content a{
 	margin-right: 20px;
 	background-color: #50514F;
+}
+
+#logo-text{
+	font-family: sample;
+	font-size: 37px;
+}
+
+@media only screen and (max-width: 460px) {
+	#logo-text{
+		font-size: 8vw;
+	}
+	#brief-intro #content a{
+		font-size: 3vw;
+	}
+
+	#brief-intro #content img{
+		height: 50vw;
+	}	
+
+	#brief-intro #content{
+		padding-top: 10%;
+	}
 }
 
 #intro-logo{
