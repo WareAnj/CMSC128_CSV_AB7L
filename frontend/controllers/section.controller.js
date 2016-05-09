@@ -469,6 +469,7 @@
        $('#add-modal').closeModal();
     }
 
+    // http://jsfiddle.net/sturtevant/AZFvQ/
     $scope.Upload_CSV = function(){
       $("#file").change(function(e) {
         var ext = $("#file").val().split(".").pop().toLowerCase();
@@ -508,8 +509,9 @@
             var arroflab = [];
 
             for(var i = 0; i < list_of_students.length; i++){
-              if(arroflab.indexOf(list_of_students[i].section_code) == -1){
-                arroflab.push(list_of_students[i].section_code);
+              if(arroflab.indexOf(list_of_students[i].code) == -1){
+                arroflab.push(list_of_students[i].code);
+
                 SectionService.Add_Lab_Section(localStorage.getItem('course_code'), localStorage.getItem('section_name'), list_of_students[i])
                 .then(function(data) {
                   console.log(data);
