@@ -23,6 +23,7 @@ body {
 #add-button-nav {
 	position: relative;
 	float: right;
+	font-family: nav-side;
 }
 
 #table-container {

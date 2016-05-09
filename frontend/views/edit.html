@@ -48,8 +48,8 @@
 					<div class="row"  data-ng-init="Get_Lab_Sections()">
 						<div class="col s12" style="padding: 0;">
 							<ul class="tabs " style="overflow-x: hidden;">
-								<li id="lab-sections" class="tab col s3 #active\" ng-repeat="lab in lab_sections_info">
-									<a ng-click="Get_Student_Per_Lab_Section(lab.section_code)" href="#first-table">
+								<li id="lab-sections" class="tab col s3" ng-repeat="lab in lab_sections_info">
+									<a ng-click="Get_Student_Per_Lab_Section(lab.section_code)" href="#first-table" class="teal-text text-darken-5">
 										<!-- ADD STUDENT BUTTON -->
 										<button class="btn btn-floating waves-effect waves-light modal-trigger" ng-click="Get_Section_Id(lab.course_code, lab.section_name, lab.section_code)"> <i class="material-icons">add</i></button>
 										<!-- DELETE LAB BUTTON -->
@@ -76,6 +76,7 @@
 										<th data-field="action">Action</th>
 									</tr>
 								</thead>
+
 								<tbody ng-repeat="lab_student in student_per_lab">
 									<tr>
 										<td>{{lab_student.student_number}}</td>
