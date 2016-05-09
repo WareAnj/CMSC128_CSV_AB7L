@@ -669,7 +669,7 @@
 
     $scope.check_section_name = function(){
   		let section_name = document.querySelector('#section-name-input').value;
-      let textReg = new RegExp("[A-Za-z0-9]+\s*[A-Za-z0-9]+");
+      let textReg = new RegExp("[A-Za-z0-9]+\s*[A-Za-z0-9]*");
 
       if(section_name==="" && !textReg.test(section_name)) {
   		 	if($("#section-name-input").hasClass('invalid')){
