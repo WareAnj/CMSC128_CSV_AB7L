@@ -468,5 +468,75 @@
        Materialize.toast('Student Successfully Created!', 3000, 'rounded');
        $('#add-modal').closeModal();
     }
+
+    // http://jsfiddle.net/sturtevant/AZFvQ/
+    $scope.Upload_CSV = function(){
+      $("#file").change(function(e) {
+        var ext = $("#file").val().split(".").pop().toLowerCase();
+
+        if($.inArray(ext, ['csv']) == -1) {
+            Materialize.toast("Only .csv files are allowed", 3000);
+            document.getElementById('file').value = '';
+            return;
+        }
+
+        if (e.target.files != undefined) {
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+            var csvval=e.target.result.split("\n");
+            var inputrad= [];
+
+            for(var j = 0; j < csvval.length; j++){
+              var csvvalue=csvval[j].split("\\n");
+              for(var i = 0; i<csvvalue.length;i++) {
+                var temp = csvvalue[i].split(",");
+                inputrad.push(temp);
+              }
+            }
+
+            var objArray = [];
+            for (var i = 1; i < inputrad.length - 1; i++) {
+              objArray[i - 1] = {};
+              for (var k = 0; k < inputrad[0].length && k < inputrad[i].length; k++) {
+                var key = inputrad[0][k];
+                objArray[i - 1][key] = inputrad[i][k]
+              }
+            }
+
+            var json = JSON.stringify(objArray);
+            var list_of_students = angular.fromJson(json);
+            var arroflab = [];
+
+            for(var i = 0; i < list_of_students.length; i++){
+              if(arroflab.indexOf(list_of_students[i].code) == -1){
+                arroflab.push(list_of_students[i].code);
+
+                SectionService.Add_Lab_Section(localStorage.getItem('course_code'), localStorage.getItem('section_name'), list_of_students[i])
+                .then(function(data) {
+
+                });
+              }
+            }
+
+            for(var j = 0; j < list_of_students.length; j++){
+               SectionService.Add_Student_In_Lab_Section(localStorage.getItem('course_code'), localStorage.getItem('section_name'), list_of_students[j].code, list_of_students[j])
+                 .then(function(data){
+
+                 });
+             }
+
+             SectionService.Get_Class_List(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
+               .then(function(data) {
+                 for(let i = 0; i < data.length; i++) {
+                   $scope.student_info.push(data[i]);
+                 }
+               });
+          }
+        };
+        	reader.readAsText(e.target.files.item(0));
+      });
+    }
+
   }
 })();
