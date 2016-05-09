@@ -19,6 +19,5 @@ $(document).ready(function(){
 
 $(document).on('click', '#logout-button', function() {
 	$("#profile-setting").remove();
-
-  location.reload();
+  setTimeout(function (){location.reload()}, 10);
 });
