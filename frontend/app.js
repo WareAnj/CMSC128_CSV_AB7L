@@ -103,7 +103,7 @@
                 'templateUrl'   :   'views/settings_randomize.html'
             })
             .when('/results_randomize', {
-                'templateUrl'   :   'views/results_randomize.html'
+                'templateUrl'   :   'views/randomize.html'
             })
             .when('/admin', {
                 'controller'    :   'AdminCtrl',
