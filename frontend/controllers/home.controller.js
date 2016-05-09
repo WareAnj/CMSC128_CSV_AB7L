@@ -11,6 +11,9 @@
         $scope.Logout = () => {
             HomeService.Logout()
                 .then(function(data){
+		    if(document.getElementById("profile-setting")){
+			$('#profile-setting').remove();
+		    }
                     $rootScope.redirect('/');
                     localStorage.clear();
                 }, (error) => {
