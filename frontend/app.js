@@ -27,7 +27,7 @@
         // Routes that doesn't need authentication
         let no_auth_routes = ['/', '/guest-trynow'];
         let routes_for_admin = ['/admin', '/admin/view-pending', '/admin/view-logs', '/admin/view-approved'];
-        let routes_for_faculty_user = ['/home', '/class', '/edit', '/settings_randomize', '/results_randomize'];
+        let routes_for_faculty_user = ['/home', '/class', '/edit', '/logs', '/settings_randomize', '/results_randomize'];
 
         // check if the current route does not need authentication (check if in the array)
         function no_need_auth(route) {
@@ -88,6 +88,9 @@
             .when('/home', {
                 'controller'    :   'CourseCtrl',
                 'templateUrl'   :   'views/home.view.html'
+            })
+            .when('/logs', {
+                'templateUrl'   :   'views/logs.html'
             })
             .when('/class', {
                 'controller'    :   'SectionCtrl',
