@@ -28,5 +28,28 @@ body {
 #table-container {
 	max-height: calc(100vh - 120px - 120px);
 	overflow: auto;
-	overflow-x: hidden; 
+	overflow-x: hidden;
+}
+
+#lab-sections button{
+	background-color: transparent;
+	border: none;
+}
+
+button i{
+	color: black;
+	vertical-align: text-bottom;
+}
+
+#delete-modal a, #delete-lab-modal a{
+	margin-right: 2%;
+}
+
+#delete-modal, #delete-lab-modal{
+	margin-top: 5%;
+	padding-bottom: 2%;
+}
+
+#edit-modal button{
+	margin-bottom: 5%;
 }
