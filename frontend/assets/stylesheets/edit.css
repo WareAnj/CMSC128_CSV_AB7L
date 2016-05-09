@@ -4,7 +4,7 @@ body {
 }
 
 #main-container {
-	min-width: calc(100% - 10%);
+	min-width: calc(100% - 20%);
 	margin-top: 2%;
 	margin-bottom: 2%;
 	background-color: white;
@@ -13,4 +13,9 @@ body {
 	box-shadow: 3px 3px 3px #888888;
 	max-height: calc(100vh - 64px - 66.5px);
 	min-height: calc(100vh - 64px - 66.5px);
+}
+
+.container {
+	width: 85% !important;
+	max-height: calc(100vh - 64px - 80px);
 }
