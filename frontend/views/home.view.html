@@ -85,12 +85,14 @@
 							<div class="col s12 m4">
 								<div class="card-panel custom lighten-1">
 								  <div class="center">
-										<!-- DELETE COURSE BUTTON -->
-										<a title="Delete Course" class="btn-floating btn-large waves-effect waves-light white" ng-click="Delete_Course(course.id)"><i class="material-icons custom-text text-darken-1">delete</i></a>
-										<!-- UPDATE COURSE BUTTON -->
-										<a title="Update Course Details" class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(course)"><i class="material-icons custom-text text-darken-1">mode_edit</i></a>
 										<!-- ADD LECTURE SECTION -->
 										<a title="Add Lecture Class" class="btn-floating btn-large waves-effect waves-light white" ng-click="Get_Selected_Course(course.id)"><i class="material-icons custom-text text-darken-1">add</i></a>
+
+										<!-- UPDATE COURSE BUTTON -->
+										<a title="Update Course Details" class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(course)"><i class="material-icons custom-text text-darken-1">mode_edit</i></a>
+
+										<!-- DELETE COURSE BUTTON -->
+										<a title="Delete Course" class="btn-floating btn-large waves-effect waves-light white" ng-click="Delete_Course(course.id)"><i class="material-icons custom-text text-darken-1">delete</i></a>
 										<!-- COURSE NAME -->
 										<h5>{{course.code}}</h5>
 								  </div>
