@@ -45,7 +45,6 @@
 				<div class="row">
 					<div id="settings-randomize">
 						<div class="row">
-
 							<div class="col s12 m4 l4" ng-controller="SectionCtrl" data-ng-init="Get_Class_List()">
 								<div id="course-info" class="card-panel custom lighten-1">
 									<div ng-repeat="s_info in section_info">
@@ -69,7 +68,7 @@
 											<div class="col s8" style="padding-left: 15%;">
 												<h5>{{section_name}}</h5>
 											</div>
-											<div class="col s1">
+											<div class="col s2 m2 l1">
 												<input id="whole" type="number" name="whole" max="{{countWhole}}" min="0" placeholder="0" value="0" ng-model="counts.whole" ng-init="counts.whole=0"></input>
 											</div>
 										</div>
@@ -79,7 +78,7 @@
 											<div class="col s8">
 												<h6>{{section_name}}-{{labsection.code}}</h6>
 											</div>
-											<div class="col s1">
+											<div class="col s2 m2 l1">
 												<input class="lsections" type="number" name="onel" max="{{labsection.count}}" min="0" placeholder="0" value="0"  ng-model="counts[labsection.code]" ng-init="counts[labsection.code]=0"></input>
 											</div>
 										</div>
