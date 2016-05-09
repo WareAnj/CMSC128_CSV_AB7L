@@ -6,7 +6,6 @@ nav {
 main {
  	flex: 1 0 auto;
 	background-color: #E3CBC7;
-	margin-bottom: -2%;
 }
 
 #home-content .tabs, #home-content .custom.lighten-1{

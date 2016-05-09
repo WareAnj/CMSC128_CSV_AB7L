@@ -60,3 +60,17 @@ h3{
   font-family: header-text;
   font-size: 50px;
 }
+
+
+.file-field .btn{
+    margin-left: 6%;
+    width: 10%;
+}
+
+.file-field .btn span{
+    margin-left: -10px;
+}
+
+.file-field.input-field{
+  width: 90%;
+}

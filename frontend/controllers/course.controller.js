@@ -215,27 +215,29 @@
 	}
 
     $scope.Delete_Course = function(id) {
-      CourseService.Delete_Course(id)
-        .then(function(data){ });
+    if (confirm("Are you sure you want to delete this course?")) {
+        CourseService.Delete_Course(id)
+          .then(function(data){ });
 
-        CourseService.Get_Course(user_id)
-          .then(function(data) {
-            $scope.faculty_user_courses = [];
-            for(let i = 0; i < data.length; i++) {
-              CourseService.Get_Lecture(data[i].id)
-                .then(function(data2) {
-                    $scope.faculty_user_courses.push({
-                      'code': data[i].code,
-                      'course_id': data[i].course_id,
-                      'description': data[i].description,
-                      'faculty_user_id': data[i].faculty_user_id,
-                      'id': data[i].id,
-                      'title': data[i].title,
-                      'lecture' : data2
-                    });
-                });
-            }
-          });
+          CourseService.Get_Course(user_id)
+            .then(function(data) {
+              $scope.faculty_user_courses = [];
+              for(let i = 0; i < data.length; i++) {
+                CourseService.Get_Lecture(data[i].id)
+                  .then(function(data2) {
+                      $scope.faculty_user_courses.push({
+                        'code': data[i].code,
+                        'course_id': data[i].course_id,
+                        'description': data[i].description,
+                        'faculty_user_id': data[i].faculty_user_id,
+                        'id': data[i].id,
+                        'title': data[i].title,
+                        'lecture' : data2
+                      });
+                  });
+              }
+            });
+      }
     }
 
     $scope.Add_Lecture = function(){
@@ -280,33 +282,35 @@
     }
 
     $scope.Delete_Selected_Lecture = function(c_code, section_name) {
-      localStorage.setItem("course_code", c_code);
-      localStorage.setItem("section_name", section_name);
-      CourseService.Delete_Lecture(localStorage.getItem("course_code"), localStorage.getItem("section_name"))
-        .then(function(data) {
-            Materialize.toast('Lecture Section Deleted!', 5000, 'rounded');
-            localStorage.setItem("course_code", "");
-            localStorage.setItem("section_name", "");
-        });
+    if (confirm("Are you sure you want to delete this section?")) {
+        localStorage.setItem("course_code", c_code);
+        localStorage.setItem("section_name", section_name);
+        CourseService.Delete_Lecture(localStorage.getItem("course_code"), localStorage.getItem("section_name"))
+          .then(function(data) {
+              Materialize.toast('Lecture Section Deleted!', 5000, 'rounded');
+              localStorage.setItem("course_code", "");
+              localStorage.setItem("section_name", "");
+          });
 
-      CourseService.Get_Course(user_id)
-        .then(function(data) {
-          $scope.faculty_user_courses = [];
-          for(let i = 0; i < data.length; i++) {
-            CourseService.Get_Lecture(data[i].id)
-              .then(function(data2) {
-                  $scope.faculty_user_courses.push({
-                    'code': data[i].code,
-                    'course_id': data[i].course_id,
-                    'description': data[i].description,
-                    'faculty_user_id': data[i].faculty_user_id,
-                    'id': data[i].id,
-                    'title': data[i].title,
-                    'lecture' : data2
-                  });
-              });
-          }
-        });
+        CourseService.Get_Course(user_id)
+          .then(function(data) {
+            $scope.faculty_user_courses = [];
+            for(let i = 0; i < data.length; i++) {
+              CourseService.Get_Lecture(data[i].id)
+                .then(function(data2) {
+                    $scope.faculty_user_courses.push({
+                      'code': data[i].code,
+                      'course_id': data[i].course_id,
+                      'description': data[i].description,
+                      'faculty_user_id': data[i].faculty_user_id,
+                      'id': data[i].id,
+                      'title': data[i].title,
+                      'lecture' : data2
+                    });
+                });
+            }
+          });
+      }
     }
 
 

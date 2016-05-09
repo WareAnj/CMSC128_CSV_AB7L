@@ -130,3 +130,11 @@ h5{
 #profile i{
   font-size: 30px;
 }
+
+main{
+    margin-bottom: -2%;
+}
+
+a{
+  color: rgb(55, 55, 55);
+}
