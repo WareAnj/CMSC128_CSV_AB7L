@@ -14,14 +14,17 @@ table tbody{
    height: 100px;
 }
 
-#div1{
-	padding-left: 5px;
+.admintable1{
+    height: 350px;
+	overflow: auto;
 }
 
-#div2{
-	padding-right: 35px;
+#logouttable{
+    height: 350px;
+	overflow: auto;
 }
 
-#div3{
-	padding-right: 48px;
+#logintable{
+    height: 350px;
+	overflow: auto;
 }
