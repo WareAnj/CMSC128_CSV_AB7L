@@ -15,11 +15,12 @@
             $('.button-collapse').sideNav('hide');
         }
 
+        // Event listener every route change
         $rootScope.$on('$routeChangeStart', (event, next, current) => {
             let user = check_session($location.url());
 
-            if (!no_need_auth($location.url()) && typeof user === 'undefined') {
-                $location.path('/');
+            if (no_need_auth($location.url()) && typeof user === 'undefined') {
+                $location.path($location.url());
             }
         });
 
@@ -33,34 +34,39 @@
             return no_auth_routes.indexOf(route) === -1 ? false : true;
         }
 
+        // check if the current route needs admin authentication (check if in the array)
         function need_admin_auth(route) {
             return routes_for_admin.indexOf(route) === -1 ? false : true;
         }
 
+        // check if the current route needs faculty user authentication (check if in the array)
         function need_faculty_user_auth(route) {
             return routes_for_faculty_user.indexOf(route) === -1 ? false : true;
         }
 
         // Check the backend for existing session
-        function check_session(next_route) {
+        function check_session(url) {
             let deferred = $q.defer();
 
             AuthenticationService
                 .GetUser()
                 .then((data) => {
-                    if (data.data === false) {
+                    if (data.data === false && no_need_auth(url)) {
+                        $location.path(url);
+                    }
+                    else if (data.data === false && !no_need_auth(url)) {
                         localStorage.clear();
                         $location.path('/');
                     }
-                    else {
+                    else if (data.data !== false) {
                         localStorage.user = data.data;
                         if (data.data.role === 'Faculty User') {
-                            if (need_admin_auth(next_route) || next_route === '/') {
+                            if (need_admin_auth(url) || url === '/') {
                                 $location.path('/home');
                             }
                         }
                         else if (data.data.role === 'Administrator') {
-                            if (need_faculty_user_auth(next_route) || next_route === '/') {
+                            if (need_faculty_user_auth(url) || url === '/') {
                                 $location.path('/admin');
                             }
                         }
@@ -71,8 +77,6 @@
 
             return deferred.promise;
         }
-
-        check_session();
     }
 
 
