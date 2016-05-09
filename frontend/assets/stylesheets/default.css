@@ -167,7 +167,8 @@ footer.page-footer {
 
 @media only screen and (max-width: 350px) {
   #logo {
-    width: 200px !important; /* for smaller screens */
+    width: 60vw !important; /* for smaller screens */
+  	height: 13vh;
   }
 }
 
