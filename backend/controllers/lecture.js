@@ -175,6 +175,34 @@ exports.get_lab_sections = (req, res, next) => {
 
 };
 
+exports.get_lab_limits = (req, res, next) => {
+  const data = {
+      lab_section:           req.query.lab_section,
+      name:                req.query.name
+  };
+
+  function start () {
+      db.query([
+                  'SELECT COUNT(student_id) as count from student_section',
+                  'WHERE section_id=(select id from section where name = ? and code = ?);'
+               ].join(' '),
+               [data.name, data.lab_section],
+                send_response);
+  }
+
+  function send_response (err, result, args, last_query) {
+      if (err) {
+          winston.error('Error in getting lab sections', last_query);
+          return next(err);
+      }
+
+      res.send(result);
+  }
+
+  start();
+
+};
+
 exports.get_student_per_lab_section = (req, res, next) => {
   const data = {
       course_code:           req.query.course_code,
