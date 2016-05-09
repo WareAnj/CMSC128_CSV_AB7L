@@ -19,3 +19,14 @@ body {
 	width: 85% !important;
 	max-height: calc(100vh - 64px - 80px);
 }
+
+#add-button-nav {
+	position: relative;
+	float: right;
+}
+
+#table-container {
+	max-height: calc(100vh - 120px - 120px);
+	overflow: auto;
+	overflow-x: hidden; 
+}
