@@ -1,9 +1,43 @@
 <div>
-	<nav class="teal">
-			<div class="center">
-				<a ng-click="redirect('/home')" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
-			</div>
-	</nav>
+	<div class="navbar">
+		<nav ng-controller="CourseCtrl">
+		 	<div class="nav-wrapper container">
+				<!-- SIDE NAV BUTTON -->
+				<ul>
+		    		<li><a data-activates="slide-out" class="showsidenav"><i class="material-icons">reorder</i></a></li>
+		    	</ul>
+				<!-- SIDE NAV -->
+				<div id="slide-out" class="side-nav center" data-ng-init="Get_Course()">
+					<img id="sidenav-logo" src="../assets/img/logo-2.png">
+					<!-- USER NAME -->
+					<div ng-repeat="info in faculty_user_info">
+						<h5 class="teal-text text-lighten-2">{{info.given_name}} {{info.middle_name}} {{info.last_name}}</h5>
+					</div>
+					<!-- LIST OF COURSES -->
+					<div ng-repeat="course in faculty_user_courses">
+						<div ng-repeat="lecture in course.lecture">
+							<a href="#/class" class="waves-effect waves-teal btn-flat blue-text text-lighten-2" ng-click="Get_Selected_Lecture(course.id, course.code, course.title, course.description, lecture.name)">{{course.code}} {{lecture.name}}</a></li>
+						</div>
+					</div>
+					<!-- LOG OUT BUTTON -->
+					<div class = "center">
+						<a ng-click="Logout()" ng-controller="HomeCtrl" onclick="$('showsidenav').sideNav('hide');" id="logout-button" class="waves-effect waves-teal btn-flat blue-text text-lighten-2">Log Out</a>
+					</div>
+				</div>
+
+				<!--  HOME BUTTON -->
+		    <ul id="nav-mobile" class="right hide-on-med-and-down nav-right">
+				  <li><a ng-click="redirect('/home')">Home</a></li>
+		    </ul>
+
+				<!-- REGINYZR LOGO -->
+				<div class="center">
+			 		<a ng-click="redirect('/home')" onclick="$('.showsidenav').sideNav('hide');" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
+			  </div>
+		  </div>
+		</nav>
+	</div>
+
 	<main>
 	<div ng-controller="RandomCtrl">
 		<div class="carousel">
@@ -14,17 +48,18 @@
 		    		{{student.student_number}} <br>
 	   	 		</p>
 			</div>
-  	</div>
+  		</div>
 	</div>
 
 	<ul id="add-button-nav">
 		<div class="input-field center">
-		<a ng-click="redirect('/settings_randomize')" class="waves-effect waves-light btn-large grey white-text modal-trigger">RANDOMIZE AGAIN
+		<a ng-click="redirect('/settings_randomize')" class="waves-effect waves-light btn-large white-text modal-trigger">RANDOMIZE AGAIN
 		</a>
 		</div>
 	</ul>
-</main>
+	</main>
 </div>
+
 <script>
 	 $(function(){
      	setTimeout(function(){
@@ -34,4 +69,8 @@
 	setTimeout(function(){
 		$('.carousel').carousel('next');
 	}, 1000);
+	$(".showsidenav").sideNav();
+
 </script>
+
+<link type="text/css" rel="stylesheet" href="../assets/stylesheets/results.css">
