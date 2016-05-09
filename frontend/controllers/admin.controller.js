@@ -21,6 +21,7 @@
             AdminService.GetCountsApproved()
                 .then(function(data){
                     $scope.countsApproved = data.data[0].length;
+                    $scope.loader = true;
                 });
         }
 
@@ -28,6 +29,7 @@
             AdminService.GetCountsPending()
                 .then(function(data){
                     $scope.countsPending = data.data[0].length;
+                    $scope.loader = true;
                 });
         }
 
@@ -46,6 +48,7 @@
                   for (let i = 0; i < length; i++) {
                       $scope.userList.push(data.data[0][i]);
                   }
+                  $scope.loader = true;
               });
         }
 
@@ -87,8 +90,8 @@
                     for (let i = 0; i < length; i++) {
                         $scope.userList.push(retdata.data[i]);
                     }
+                    $scope.loader = true;
                 });
-
             $('#logintable').show();
             $('#logouttable').hide();
         }
@@ -103,7 +106,7 @@
                         $scope.userList.push(retdata.data[i]);
                     }
                 });
-
+            $scope.loader = true;
             $('#logintable').hide();
             $('#logouttable').show();
         }
@@ -120,7 +123,7 @@
                         $scope.userList.push(retdata.data[i]);
                     }
                 });
-
+            $scope.loader = true;
             $('#logintable').show();
             $('#logouttable').hide();
         }
@@ -137,7 +140,7 @@
                         $scope.userList.push(retdata.data[i]);
                     }
                 });
-
+            $scope.loader = true;
             $('#logintable').hide();
             $('#logouttable').show();
         }
@@ -151,6 +154,7 @@
                     for (let i = 0; i < length; i++) {
                         $scope.userList.push(retdata.data[0][i]);
                     }
+                    $scope.loader = true;
                 });
         }
 
