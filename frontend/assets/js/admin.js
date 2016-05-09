@@ -3,58 +3,65 @@
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
 
-    $('#container').highcharts({
+   $('#container').highcharts({
         chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
+            type: 'bar'
         },
         title: {
-            text: 'Faculty User Section Distribution'
+            text: 'Historic World Population by Region'
+        },
+        subtitle: {
+            text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+        },
+        xAxis: {
+            categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Population (millions)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            valueSuffix: ' millions'
         },
         plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
+            bar: {
                 dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %</a>',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
+                    enabled: true
                 }
             }
         },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
         series: [{
-            name: 'Volunteer Frequency',
-            colorByPoint: true,
-            data: [{
-                name: 'AB-7L',
-                y: 27.33,
-                sliced: true,
-            }, {
-                name: 'AB-2L',
-                y: 24.27,
-            }, {
-                name: 'AB-4L',
-                y: 15.88
-            }, {
-                name: 'AB-3L',
-                y: 13.79
-            }, {
-                name: 'AB-1L',
-                y: 8.92
-            }, {
-                name: 'AB-5L',
-                y: 5.21
-            }, {
-                name: 'AB-6L',
-                y: 4.6
-            }]
+            name: 'Year 1800',
+            data: [107, 31, 635, 203, 2]
+        }, {
+            name: 'Year 1900',
+            data: [133, 156, 947, 408, 6]
+        }, {
+            name: 'Year 2012',
+            data: [1052, 954, 4250, 740, 38]
         }]
     });
 
