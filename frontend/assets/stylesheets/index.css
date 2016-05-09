@@ -53,10 +53,23 @@ table {
 	background-color: #50514F;
 }
 
+#content h4{
+	font-size: 50px;
+	text-align: center;
+	padding: 0 0 1% 0;
+}
+
+
 #logo-text{
 	font-family: sample;
 	font-size: 37px;
 }
+
+
+#more-info #content i{
+	font-size: 80px;
+}
+
 
 @media only screen and (max-width: 460px) {
 	#logo-text{
@@ -72,6 +85,26 @@ table {
 
 	#brief-intro #content{
 		padding-top: 10%;
+	}
+
+	#more-info-2 img{
+		width: 80vw;
+	}
+
+	#more-info-2 p{
+		font-size: 5vw;
+	}
+
+	#more-info-2 h3{
+		font-size: 8vw;
+	}
+
+	#content h4{
+		font-size: 10vw;
+	}
+
+	#more-info #content i{
+		font-size: 20vw;
 	}
 }
 
@@ -90,16 +123,6 @@ table {
 
 #more-info #content{
 	padding: 3% 0 3% 0;
-}
-
-#content h4{
-	font-size: 50px;
-	text-align: center;
-	padding: 0 0 1% 0;
-}
-
-#more-info #content i{
-	font-size: 80px;
 }
 
 #more-info #content .caption{
