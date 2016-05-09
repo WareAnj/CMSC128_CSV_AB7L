@@ -78,7 +78,7 @@
 			
 
 			$("#clear").click(function(){
-				var checker = confirm("Confirm Clear All Fields");
+				var checker = confirm("Are you sure you want to clear all names?");
 
 				if(!checker)
 					return;
@@ -177,7 +177,7 @@
 							var string = lines[line].trim();
 
 							if(numlines > 10){
-								Materialize.toast("Input file have more than 10 lines", 3000);
+								Materialize.toast("Input file has more than 10 lines", 3000);
 								return;
 							}
 
