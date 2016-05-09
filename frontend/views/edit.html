@@ -54,7 +54,7 @@
 								<!-- ADD STUDENT BUTTON -->
 								<button class="btn btn-floating waves-effect waves-light modal-trigger" ng-click="Get_Section_Id(lab.course_code, lab.section_name, lab.section_code)"> <i class="material-icons">add</i></button>
 								<!-- DELETE LAB BUTTON -->
-								<button class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">delete</i></button>
+								<button class="btn btn-floating waves-effect waves-light modal-trigger" ng-click="Get_Selected_Lab(lab, 'delete')"> <i class="material-icons">delete</i></button>
 								{{lab.course_code}} {{lab.section_name}} - {{lab.section_code}}</a>
 							</li>
 						</ul>
