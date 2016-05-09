@@ -155,7 +155,7 @@ exports.get_lab_sections = (req, res, next) => {
 
   function start () {
       db.query([
-                  'SELECT s.code FROM course c, section s',
+                  'SELECT s.code, s.id FROM course c, section s',
                   'WHERE s.course_id = ? and c.id = s.course_id and name = ?;'
                ].join(' '),
                [data.course_id, data.name],
