@@ -1,24 +1,29 @@
 <div>
 	<nav class="teal">
-		<ul id="slide-out" class="side-nav">
-	    	<li><a href="#!">Edit Profile</a></li>
-	     	<li><a href="#!">Second Link</a></li>
-	     	<li><button class="waves-effect waves-light btn centered" id="logout-btn" ng-click="logout()">logout</button></li>
-  	  	</ul>
-   	 <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu marginize"></i></a>
+			<div class="center">
+				<a ng-click="redirect('/home')" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
+			</div>
 	</nav>
-	
+	<main>
 	<div ng-controller="RandomCtrl">
-		<div class="carousel">	
+		<div class="carousel">
 			<div class="carousel-item" ng-repeat="student in students track by $index">
 			    <img src="../assets/img/user.png">
-			    <p style="text-align: center;"> 
+			    <p style="text-align: center;">
 		    		{{student.last_name}}, {{student.given_name}} {{student.middle_name}} <br>
-		    		{{student.student_number}}
+		    		{{student.student_number}} <br>
 	   	 		</p>
 			</div>
-  		</div>
+  	</div>
 	</div>
+
+	<ul id="add-button-nav">
+		<div class="input-field center">
+		<a ng-click="redirect('/settings_randomize')" class="waves-effect waves-light btn-large grey white-text modal-trigger">RANDOMIZE AGAIN
+		</a>
+		</div>
+	</ul>
+</main>
 </div>
 <script>
 	 $(function(){
