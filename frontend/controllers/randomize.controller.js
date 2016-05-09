@@ -12,6 +12,8 @@
     $scope.students = JSON.parse(students);
     $scope.labdata = [];
     $scope.labSections = [];
+    $scope.labLimits = [];
+    $scope.countWhole = 0;
     var randdata = {};
 
     $scope.user_id = localStorage.getItem("user_id");
@@ -19,18 +21,29 @@
     $scope.section_name = localStorage.getItem("section_name");
     $scope.course_id = localStorage.getItem("course_id");
 
-
      $scope.GetLabs = function() {
+      RandomService.GetLabs($scope.section_name, $scope.course_id)
+        .then(function(data) {
+          for(var i = 0 ; i < data.length; i++){
+            $scope.labdata.push(data[i]);
+            $scope.labSections.push(data[i].code);
 
-        RandomService.GetLabs($scope.section_name, $scope.course_id)
+            if(i == data.length-1)
+              $scope.GetLimits();
+          }
+       });     
+
+    }
+
+    $scope.GetLimits = function() {
+      for(var j = 0; j < $scope.labdata.length; j++ ){
+          RandomService.GetLimits($scope.section_name, $scope.labSections[j], j)
           .then(function(data) {
-            for(var i = 0 ; i < data.length; i++){
-              $scope.labdata.push(data[i]);
-              $scope.labSections.push(data[i].code);
-            }
-         });
-
+            $scope.labdata[data.j].count = data.count;
+            $scope.countWhole += data.count;
+          });  
       }
+    }
 
     $scope.Randomize = function() {
 

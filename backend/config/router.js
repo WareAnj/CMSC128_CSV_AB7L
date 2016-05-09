@@ -40,6 +40,7 @@ module.exports = (router) => {
 
     // lab routes
     router.get ('/course/lecture/get_lab_sections',                     $('Faculty User'),  __.lecture.get_lab_sections);
+    router.get ('/course/lecture/get_lab_limits',                       $('Faculty User'),  __.lecture.get_lab_limits);
 
     // student routes
     router.get ('/course/lecture/get_student_per_lab_section',          $('Faculty User'),  __.lecture.get_student_per_lab_section);
