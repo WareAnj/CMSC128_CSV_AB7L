@@ -78,7 +78,7 @@
     }
 
    $scope.Get_Course = function() {
-      CourseService.Get_Course(user_id)
+      CourseService.Get_Course(localStorage.getItem("user_id"))
         .then(function(data) {
           $scope.faculty_user_courses = [];
           for(let i = 0; i < data.length; i++) {
