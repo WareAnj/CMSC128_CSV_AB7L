@@ -70,17 +70,17 @@
 												<h5>{{section_name}}</h5>
 											</div>
 											<div class="col s1">
-												<input id="whole" type="number" name="whole" max="140" min="0" placeholder="0" value="0" ng-model="counts.whole" ng-init="counts.whole=0"></input>
+												<input id="whole" type="number" name="whole" max="{{countWhole}}" min="0" placeholder="0" value="0" ng-model="counts.whole" ng-init="counts.whole=0"></input>
 											</div>
 										</div>
 
 
-										<div class="row" ng-repeat="labsection in labdata" >
+										<div class="row" ng-repeat="labsection in labdata">
 											<div class="col s8">
 												<h6>{{section_name}}-{{labsection.code}}</h6>
 											</div>
 											<div class="col s1">
-												<input class="lsections" type="number" name="onel" max="20" min="0" placeholder="0" value="0"  ng-model="counts[labsection.code]" ng-init="counts[labsection.code]=0"></input>
+												<input class="lsections" type="number" name="onel" max="{{labsection.count}}" min="0" placeholder="0" value="0"  ng-model="counts[labsection.code]" ng-init="counts[labsection.code]=0"></input>
 											</div>
 										</div>
 									
