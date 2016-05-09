@@ -50,7 +50,7 @@
 
 		function Delete_Lab_Section(course_id, section_id){
 			var deferred = $q.defer();
-			
+
 			$http.delete("/section/delete_sub_section?course_id=" + course_id + "&section_id=" + section_id)
 			.success(function(data) {
 				deferred.resolve(data);
