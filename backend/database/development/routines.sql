@@ -563,3 +563,25 @@ BEGIN
 
 END $$
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS DELETE_LAB;
+DELIMITER $$
+CREATE PROCEDURE DELETE_LAB (_course_id int, _section_id int)
+BEGIN
+	 CREATE TEMPORARY TABLE _lab_student_table (_id int);
+
+   INSERT INTO _lab_student_table SELECT st.id from student st, section s, student_section ss
+	 WHERE s.id = _section_id AND s.id = ss.section_id and ss.student_id = st.id;
+
+	 DELETE FROM student_section WHERE section_id = _section_id;
+	 DELETE FROM student WHERE id IN (SELECT * FROM _lab_student_table);
+
+	IF ((SELECT COUNT(*) FROM section WHERE course_id = _course_id) = 1) THEN
+		UPDATE section SET code = NULL WHERE id = _section_id and course_id = _course_id;
+	ELSE
+		DELETE FROM section WHERE id = _section_id and course_id = _course_id;
+ 	END IF;
+
+	DROP TABLE _lab_student_table;
+END $$
+DELIMITER ;
