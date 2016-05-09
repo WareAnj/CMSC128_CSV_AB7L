@@ -514,17 +514,24 @@
 
                 SectionService.Add_Lab_Section(localStorage.getItem('course_code'), localStorage.getItem('section_name'), list_of_students[i])
                 .then(function(data) {
-                  console.log(data);
+
                 });
               }
             }
 
-            // for(var j = 0; j < list_of_students.length; j++){
-            //   SectionService.Add_Student_In_Lab_Section(localStorage.getItem('course_code'), localStorage.getItem('section_name'), list_of_students[j].section_code, list_of_students[j])
-            //   .then(function(data){
-            //
-            //   });
-            // }
+            for(var j = 0; j < list_of_students.length; j++){
+               SectionService.Add_Student_In_Lab_Section(localStorage.getItem('course_code'), localStorage.getItem('section_name'), list_of_students[j].code, list_of_students[j])
+                 .then(function(data){
+
+                 });
+             }
+
+             SectionService.Get_Class_List(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
+               .then(function(data) {
+                 for(let i = 0; i < data.length; i++) {
+                   $scope.student_info.push(data[i]);
+                 }
+               });
           }
         };
         	reader.readAsText(e.target.files.item(0));
