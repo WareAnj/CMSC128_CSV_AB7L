@@ -50,7 +50,8 @@
                $scope.lab_sections_info.push({
                  'course_code': localStorage.getItem('course_code'),
                  'section_name': localStorage.getItem("section_name"),
-                 'section_code': data[i].code
+                 'section_code': data[i].code,
+                 'section_id':  data[i].id
                });
             }
            }
@@ -75,7 +76,8 @@
                 $scope.lab_sections_info.push({
                   'course_code': localStorage.getItem('course_code'),
                   'section_name': localStorage.getItem("section_name"),
-                  'section_code': data[i].code
+                  'section_code': data[i].code,
+                  'section_id':  data[i].id
                 });
              }
             }
@@ -152,10 +154,10 @@
     }
 
     $scope.Delete_Selected_Lab = function() {
-      SectionService.Delete_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
+      SectionService.Delete_Lab_Section(localStorage.getItem("course_id"), localStorage.getItem("section_id"))
       .then(function(data){
           Materialize.toast('Section Successfully Deleted!', 3000, 'rounded');
-          localStorage.setItem("section_code", "");
+          localStorage.setItem("section_id", "");
           $route.reload();
       });
 
@@ -167,7 +169,8 @@
               $scope.lab_sections_info.push({
                 'course_code': localStorage.getItem('course_code'),
                 'section_name': localStorage.getItem("section_name"),
-                'section_code': data[i].code
+                'section_code': data[i].code,
+                'section_id':  data[i].id
               });
            }
           }
@@ -177,7 +180,7 @@
     $scope.Get_Selected_Lab = function(lab, type) {
       if(type == "delete") {
         $('#delete-lab-modal').openModal();
-        localStorage.setItem("section_code", lab.section_code);
+        localStorage.setItem("section_id", lab.section_id);
       }
     }
 
