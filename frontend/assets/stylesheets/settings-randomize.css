@@ -1,69 +1,4 @@
-/* BRIEF INTRO */
-
-main #brief-intro{
-	background-color: white;
-}
-/*
-#brief-intro-container{
-	background: url("../img/stripes2.jpg") no-repeat;
-	-webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}*/
-
-#brief-intro #content{
-	padding: 5% 0 3% 10%;
-}
-
-#brief-intro #content a{
-	margin-right: 20px;
-	background-color: #50514F;
-}
-
-#intro-logo{
-	height: 220px;
-	display: block;
-  	margin-left: auto;
-  	margin-right: auto;
-}
-
-/* MORE INFO - HOW DOES IT WORK */
-
-#more-info, #get-started{
-	background-color: #BEE3DB;
-}
-
-#more-info #content, #more-info-2 #content{
-	padding: 3% 0 3% 0;
-}
-
-#content h4{
-	font-size: 50px;
-	text-align: center;
-	padding: 0 0 1% 0;
-}
-
-#more-info #content i{
-	font-size: 80px;
-}
-
-#more-info #content .caption{
-	font-size: 30px;
-	font-weight: 300;
-	margin-bottom: -5px;
-}
-
 strong{
-  color: #B23E00;
-}
-
-h6{
-  text-align: center;
-  color: #652300;
-}
-
-h5{
   color: #B23E00;
 }
 
@@ -72,14 +7,6 @@ h5{
   padding-top: 0px;
 }
 
-#course-info{
-  padding: 10%;
-}
-
-#brief-intro-container{
-	background: url("../img/cover-f.jpg") no-repeat center;
-	-webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+main{
+	margin-bottom: -2%;
 }
