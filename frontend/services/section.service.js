@@ -48,10 +48,10 @@
 			return deferred.promise;
 		}
 
-		function Delete_Lab_Section(course_code, section_name, section_code){
+		function Delete_Lab_Section(course_id, section_id){
 			var deferred = $q.defer();
-
-			$http.delete("/section/delete_sub_section?course_code=" + course_code + "&name=" + section_name + "&code=" + section_code)
+			
+			$http.delete("/section/delete_sub_section?course_id=" + course_id + "&section_id=" + section_id)
 			.success(function(data) {
 				deferred.resolve(data);
 			})

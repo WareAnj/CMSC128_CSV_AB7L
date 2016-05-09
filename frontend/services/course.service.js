@@ -121,7 +121,7 @@
 
 		function Delete_Lecture(course_code, section_name) {
 			let deferred = $q.defer();
-
+			
 			$http.delete("/section/delete_lecture_section?course_code=" + course_code + "&name=" + section_name)
 			.success(function(data) {
 				deferred.resolve(data);

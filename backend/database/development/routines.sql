@@ -376,31 +376,19 @@ DROP PROCEDURE IF EXISTS INSERT_LECTURE_SECTION;
 DELIMITER $$
 CREATE PROCEDURE INSERT_LECTURE_SECTION (_faculty_user_id INT, _course_code VARCHAR(16), _name VARCHAR(8))
 BEGIN
-	DECLARE _course_id INT;
-    DECLARE _course_title VARCHAR(64);
-    DECLARE _course_description VARCHAR(256);
+		DROP TABLE IF EXISTS temp_section;
+	  CREATE TEMPORARY TABLE temp_section (_section_name VARCHAR(8));
 
-	-- Check if there is already a lecture section under that course
-	IF (SELECT COUNT(*) FROM section s, course c WHERE c.id = s.course_id AND c.code = _course_code AND s.name = _name) THEN
-		SELECT CONCAT('Lecture section ', _name, ' under ', _course_code, ' already exists') AS message;
-	ELSE
-        SELECT c.title INTO _course_title
-        FROM faculty_user_course fc, course c
-        WHERE c.id = fc.course_id AND c.code = _course_code AND fc.faculty_user_id = _faculty_user_id;
+		INSERT INTO temp_section SELECT name from section s, course c WHERE c.code = _course_code AND c.id = s.course_id;
 
-		SELECT c.description INTO _course_description
-        FROM faculty_user_course fc, course c
-        WHERE c.id = fc.course_id AND c.code = _course_code AND fc.faculty_user_id = _faculty_user_id;
-
-        INSERT INTO course (code, title, description) VALUES (_course_code, _course_title, _course_description);
-
-		SELECT LAST_INSERT_ID() INTO _course_id;
-
-		INSERT INTO section (course_id, name) VALUES (_course_id, _name);
-		INSERT INTO faculty_user_course (faculty_user_id, course_id) VALUES (_faculty_user_id, _course_id);
-
-		SELECT 'Lecture section was successfully created' AS message;
+		IF(SELECT COUNT(*) FROM temp_section WHERE _section_name = _name) THEN
+			SELECT CONCAT('Lecture section ', _name, ' under ', _course_code, ' already exists') AS message;
+		ELSE
+			INSERT INTO section (course_id, name) VALUES (_course_id, _name);
+			INSERT INTO faculty_user_course (faculty_user_id, course_id) VALUES (_faculty_user_id, _course_id);
+			SELECT 'Lecture section was successfully created' AS message;
 	END IF;
+		DROP TABLE temp_section;
 END $$
 DELIMITER ;
 
@@ -432,22 +420,22 @@ DROP PROCEDURE IF EXISTS DELETE_LECTURE_SECTION;
 DELIMITER $$
 CREATE PROCEDURE DELETE_LECTURE_SECTION (_course_code VARCHAR(16), _name VARCHAR(8))
 BEGIN
-	-- Check for invalid course code and section name
-	IF ((SELECT COUNT(*) FROM course c WHERE c.code = _course_code) = 0) THEN
-		SELECT CONCAT('Course code ', _course_code, ' does not exist') AS message;
-	ELSEIF ((SELECT COUNT(*) FROM course c, section s WHERE c.id = s.course_id AND c.code = _course_code AND s.name = _name) = 0) THEN
-		SELECT CONCAT('Section name ', _name, ' under ', _course_code, ' does not exist') AS message;
-	ELSE
-		-- Delete the students referencing to the section ids
-		DELETE FROM student_section WHERE section_id IN
-		(SELECT sid FROM (SELECT s.id AS sid FROM section s, course c WHERE c.id = s.course_id AND c.code = _course_code AND s.name = _name) AS id);
+	DROP TABLE IF EXISTS _student_table;
+	DROP TABLE IF EXISTS _lecture_table;
+	CREATE TEMPORARY TABLE _student_table (student_id int, section_id int);
+	CREATE TEMPORARY TABLE _lecture_table (id int);
+	-- Delete the students referencing to the section ids
+	INSERT INTO _student_table SELECT st.id, s.id FROM course c, section s, student_section ss, student st WHERE c.code = _course_code AND c.id = s.course_id AND s.name = _name AND s.id = ss.section_id AND ss.student_id = st.id;
+	DELETE FROM student_section WHERE section_id IN (SELECT section_id FROM _student_table);
+	DELETE FROM student WHERE id IN (SELECT student_id FROM _student_table);
 
-		-- Finally, delete the sections with the specified name and course_code
-		DELETE FROM section WHERE course_id =
-		(SELECT cid FROM (SELECT DISTINCT c.id AS cid FROM course c, section s WHERE s.course_id = c.id AND c.code = _course_code AND s.name = _name) AS id);
+	-- Finally, delete the sections with the specified name and course_code
+	INSERT INTO _lecture_table SELECT s.id FROM course c, section s WHERE c.code = _course_code AND c.id = s.course_id AND s.name = _name;
+	DELETE FROM section WHERE id IN (SELECT id FROM _lecture_table);
+	DROP TABLE _student_table;
+	DROP TABLE _lecture_table;
+	SELECT 'Lecture section was deleted successfully' AS message;
 
-		SELECT 'Lecture section was deleted successfully' AS message;
-	END IF;
 END $$
 DELIMITER ;
 
@@ -550,6 +538,7 @@ DROP PROCEDURE IF EXISTS DELETE_STUDENT;
 DELIMITER $$
 CREATE PROCEDURE DELETE_STUDENT (_course_id int)
 BEGIN
+	 DROP TABLE IF EXISTS _student_table;
 	 CREATE TEMPORARY TABLE _student_table (_id int);
 
    INSERT INTO _student_table SELECT st.id from student st, course c, section s, student_section ss WHERE c.id = _course_id AND c.id = s.course_id AND s.id = ss.section_id and ss.student_id = st.id;
@@ -561,5 +550,27 @@ BEGIN
 	 DELETE FROM course WHERE id = _course_id;
 	 DROP TABLE _student_table;
 
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS DELETE_LAB;
+DELIMITER $$
+CREATE PROCEDURE DELETE_LAB (_course_id int, _section_id int)
+BEGIN
+	 CREATE TEMPORARY TABLE _lab_student_table (_id int);
+
+   INSERT INTO _lab_student_table SELECT st.id from student st, section s, student_section ss
+	 WHERE s.id = _section_id AND s.id = ss.section_id and ss.student_id = st.id;
+
+	 DELETE FROM student_section WHERE section_id = _section_id;
+	 DELETE FROM student WHERE id IN (SELECT * FROM _lab_student_table);
+
+	IF ((SELECT COUNT(*) FROM section WHERE course_id = _course_id) = 1) THEN
+		UPDATE section SET code = NULL WHERE id = _section_id and course_id = _course_id;
+	ELSE
+		DELETE FROM section WHERE id = _section_id and course_id = _course_id;
+ 	END IF;
+
+	DROP TABLE _lab_student_table;
 END $$
 DELIMITER ;

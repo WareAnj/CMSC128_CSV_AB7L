@@ -32,7 +32,7 @@
 	    	</ul>
 	    	<ul id="add-button-nav">
 	    		<div class="input-field">
-					<a href="#addLab-modal" class="waves-effect waves-light btn-large grey white-text modal-trigger" title="Add Section">Add a Section 		
+					<a href="#addLab-modal" class="waves-effect waves-light btn-large grey white-text modal-trigger" title="Add Section">Add a Section
 					</a>
 				</div>
 	    	</ul>
@@ -53,13 +53,13 @@
 										<!-- ADD STUDENT BUTTON -->
 										<button class="btn btn-floating waves-effect waves-light modal-trigger" ng-click="Get_Section_Id(lab.course_code, lab.section_name, lab.section_code)"> <i class="material-icons">add</i></button>
 										<!-- DELETE LAB BUTTON -->
-										<button class="btn btn-floating waves-effect waves-light modal-trigger"> <i class="material-icons">delete</i></button>
+										<button class="btn btn-floating waves-effect waves-light modal-trigger" ng-click="Get_Selected_Lab(lab, 'delete')"> <i class="material-icons">delete</i></button>
 										{{lab.course_code}} {{lab.section_name}} - {{lab.section_code}}</a>
 								</li>
 							</ul>
 						</div>
 					</div>
-					
+
 					<div id="table-container">
 						<!-- STUDENTS' INFORMATION -->
 						<div class="row"  id="first-table">
@@ -76,7 +76,6 @@
 										<th data-field="action">Action</th>
 									</tr>
 								</thead>
-
 								<tbody ng-repeat="lab_student in student_per_lab">
 									<tr>
 										<td>{{lab_student.student_number}}</td>
@@ -92,7 +91,7 @@
 										</td>
 									</tr>
 								</tbody>
-				      		</table>
+				      </table>
 						</div>
 					</div>
 

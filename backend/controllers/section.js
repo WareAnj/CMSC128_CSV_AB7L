@@ -83,13 +83,12 @@ exports.delete_lecture_section = (req, res, next) => {
                 send_response);
     }
 
-
     function send_response (err, result, args, last_query) {
         if (err) {
+
             winston.error('Error in deleting a lecture section', last_query);
             return next(err);
         }
-
         res.send(result[0][0]);
     }
 
@@ -135,15 +134,14 @@ exports.delete_sub_section = (req, res, next) => {
     let response;
 
     const data = {
-        course_code:            req.query.course_code,
-        name:                   req.query.name,
-        code:                   req.query.code
+        course_id:              req.query.course_id,
+        section_id:             req.query.section_id
     };
 
 
     function start () {
-        db.query('CALL DELETE_SUB_SECTION(?, ?, ?);',
-                [data.course_code, data.name, data.code],
+        db.query('CALL DELETE_LAB(?, ?);',
+                [data.course_id, data.section_id],
                 send_response);
     }
 
@@ -154,7 +152,7 @@ exports.delete_sub_section = (req, res, next) => {
             return next(err);
         }
 
-        res.send(result[0][0]);
+        res.send(result);
     }
 
     start();

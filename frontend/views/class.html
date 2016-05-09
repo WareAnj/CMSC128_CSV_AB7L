@@ -73,15 +73,16 @@
 						<!-- <div class="col s12 m12 l12">
 							<a class="waves-effect waves-light btn"> UPLOAD CSV FILE </a> -->
 							<!-- FILE READING -->
-							<!-- <div class="file-field input-field">
+							<div class="file-field input-field">
 								<div class="btn grey darken-2">
 									<span><i class="material-icons">file_upload</i></span>
-									<input type="file" name="file" id="file">
+									<input type="file" name="file" id="file" ng-model="CSVFile">
 								</div>
 								<div class="file-path-wrapper">
-									<input class="file-path validate" type="text" id="text-file-area">
+									<input class="file-path validate" type="text" id="csv" class="text" ng-model="fileUpload" data-ng-init="Upload_CSV()">
 								</div>
-							</div> -->
+
+							</div>
 						<!-- </div> -->
 					</div>
 				</div>
