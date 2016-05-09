@@ -10,6 +10,7 @@
   function RandomCtrl($rootScope, $scope, $location, RandomService) {
     var students = localStorage.getItem('students');
     $scope.students = JSON.parse(students);
+
     $scope.labdata = [];
     $scope.labSections = [];
     $scope.labLimits = [];
@@ -31,7 +32,7 @@
             if(i == data.length-1)
               $scope.GetLimits();
           }
-       });     
+       });
 
     }
 
@@ -41,7 +42,7 @@
           .then(function(data) {
             $scope.labdata[data.j].count = data.count;
             $scope.countWhole += data.count;
-          });  
+          });
       }
     }
 
@@ -74,6 +75,7 @@
               }
             });
          }
+
          randomizeStudents(0);
       }
 

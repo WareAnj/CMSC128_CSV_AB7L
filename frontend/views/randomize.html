@@ -1,0 +1,37 @@
+<div>
+	<nav class="teal">
+			<div class="center">
+				<a ng-click="redirect('/home')" class="brand-logos"> <img id="logo" src="../assets/img/text2.png"></a>
+			</div>
+	</nav>
+	<main>
+	<div ng-controller="RandomCtrl">
+		<div class="carousel">
+			<div class="carousel-item" ng-repeat="student in students track by $index">
+			    <img src="../assets/img/user.png">
+			    <p style="text-align: center;">
+		    		{{student.last_name}}, {{student.given_name}} {{student.middle_name}} <br>
+		    		{{student.student_number}} <br>
+	   	 		</p>
+			</div>
+  	</div>
+	</div>
+
+	<ul id="add-button-nav">
+		<div class="input-field center">
+		<a ng-click="redirect('/settings_randomize')" class="waves-effect waves-light btn-large grey white-text modal-trigger">RANDOMIZE AGAIN
+		</a>
+		</div>
+	</ul>
+</main>
+</div>
+<script>
+	 $(function(){
+     	setTimeout(function(){
+     		$('.carousel').carousel();
+     	}, -100);
+ 	});
+	setTimeout(function(){
+		$('.carousel').carousel('next');
+	}, 1000);
+</script>
