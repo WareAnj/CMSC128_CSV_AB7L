@@ -504,6 +504,10 @@ exports.randomize = (req, res, next) => {
                 [parseInt(frequency) + 1, id]
             )
         }
+        db.query (
+            'INSERT INTO randomizer_logs (date_randomized, faculty_user_id) VALUES (now(), ?)',
+            [data.user_id]
+        )
 
         res.send(result);
     }
