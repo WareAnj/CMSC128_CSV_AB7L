@@ -327,12 +327,12 @@
 			desns = ndes;
 			$scope.faculty_user_info[0].design_setting = ndes;
 			if (desns==='default.css')
-      		$scope.faculty_user_info[0].design_setting_name = 'Default';
-    	else if (desns==='maroon.css')
-    		$scope.faculty_user_info[0].design_setting_name = 'Maroon';
-	  	else if (desns==='grey.css')
+				$scope.faculty_user_info[0].design_setting_name = 'Default';
+			else if (desns==='maroon.css')
+				$scope.faculty_user_info[0].design_setting_name = 'Maroon';
+			else if (desns==='grey.css')
 				$scope.faculty_user_info[0].design_setting_name = 'Grey';
-	  	else if (desns==='purple.css')
+			else if (desns==='purple.css')
 				$scope.faculty_user_info[0].design_setting_name = 'Purple';
 			clrschged = true;
 		}
