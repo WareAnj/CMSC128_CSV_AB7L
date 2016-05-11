@@ -138,3 +138,9 @@ main{
 a{
   color: rgb(55, 55, 55);
 }
+
+@media only screen and (max-width: 400px) {
+  main{
+    margin-bottom: -5.5%;
+  }
+}
