@@ -60,7 +60,6 @@
           olname = data.last_name;
           uname = data.username;
           desns = data.design_setting;
-
           if(desns === 'default.css') {
             $scope.faculty_user_info[0].design_setting_name = 'Default';
           } else if(desns === 'maroon.css') {
@@ -69,10 +68,6 @@
             $scope.faculty_user_info[0].design_setting_name = 'Grey';
           } else if(desns === 'purple.css') {
             $scope.faculty_user_info[0].design_setting_name = 'Purple';
-          }
-
-          if(desns !== 'default.css'){
-            	$("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+desns+"'>");
           }
         });
     }
@@ -101,7 +96,7 @@
         .then(function(data){
           $scope.faculty_user_info = [];
           $scope.faculty_user_info.push(data);
-          if($scope.faculty_user_info[0].design_setting !== 'default.css'){
+          if((!($("#profile-setting").length))&&$scope.faculty_user_info[0].design_setting !== 'default.css'){
             	$("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+$scope.faculty_user_info[0].design_setting+"'>");
           }
 
@@ -341,10 +336,6 @@
 				$scope.faculty_user_info[0].design_setting_name = 'Purple';
 			clrschged = true;
 		}
-
-    if(desns !== 'default.css'){
-        $("head").append("<link id='profile-setting' type='text/css' rel='stylesheet' href='../assets/stylesheets/"+desns+"'>");
-    }
 
 		if(npassw!==""){
 			if (npassw!==cpassw){
