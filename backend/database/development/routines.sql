@@ -553,7 +553,7 @@ BEGIN
 END $$
 DELIMITER ;
 
---DELETE_LAB procedure
+-- DELETE_LAB procedure
 DROP PROCEDURE IF EXISTS DELETE_LAB;
 DELIMITER $$
 CREATE PROCEDURE DELETE_LAB (_course_id int, _section_id int)
