@@ -37,7 +37,9 @@
   				$("#submit-button").attr('disabled', 'disabled');
           $("#submit-button").addClass("disabled");
   				$('#signupModal').closeModal();
-  				$('#classificationinput').val("");
+  				$('#classificationinput').val('');
+  				$('#classificationinput').prop('selectedIndex',0);
+  				$('#classificationinput').material_select();
 				  $scope.faculty_user_data.push(data);
 			  	Materialize.toast('Faculty User added!', 3000, 'rounded');
 				  fname = false;
