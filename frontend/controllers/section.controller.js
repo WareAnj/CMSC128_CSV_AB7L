@@ -66,6 +66,8 @@
           $scope.newSection.code = "";
           Materialize.toast('Section Successfully Added!', 3000, 'rounded');
           $('#addLab-modal').closeModal();
+          $("#submit-button").attr('disabled', 'disabled');
+          $("#submit-button").addClass('disabled');
         });
 
         SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
@@ -424,16 +426,20 @@
       }
       if(!lab_section_name){
         Materialize.toast('Lab Section Already Exist!', 3000, 'rounded');
-        $("#submit-button").addClass("disabled");
+        $("#submit-button").attr('disabled', 'disabled');
+        $("#submit-button").addClass('disabled');
       } else{
         if((labSectionRegex.test(user_input_lab_section))){
+            $("#submit-button").attr('disabled', false);
             $("#submit-button").removeClass("disabled");
         } else{
+            $("#submit-button").attr('disabled', 'disabled');
             $("#submit-button").addClass("disabled");
         }
       }
       lab_section_name = true;
       if(!user_input_lab_section){
+        $("#submit-button").attr('disabled', 'disabled');
         $("#submit-button").addClass("disabled");
       }
     }
