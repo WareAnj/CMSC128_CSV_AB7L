@@ -597,7 +597,7 @@
   			).then(function(response){
   				if (response.data){
   					if(!($("#code-input").hasClass('invalid'))){
-  						$("#ccodeAddLabel").attr('data-error','Course Code Already Exits!');
+  						$("#ccodeAddLabel").attr('data-error','Course Code already exists!');
   						$("#code-input").addClass('invalid');
   					}
   					c_code_add = false;
