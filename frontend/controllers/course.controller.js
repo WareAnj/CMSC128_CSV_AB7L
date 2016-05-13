@@ -563,7 +563,15 @@
   			$("#submit-button-add").attr('disabled', 'disabled');
         $("#submit-button-add").addClass('disabled');
         c_code_add = false;
-  		}
+  	  }
+  	  
+  	  if(!(textRegex.test(course_code))){
+  	  		if(!($("#code-input").hasClass('invalid'))){
+  	  			$("#ccodeAddLabel").attr('data-error','Invalid Course Code format!');
+  	  			$("#code-input").addClass('invalid');
+  	  		}
+  	  		c_code_add = false;
+  	  }
 
       if (course_title===""){
         $("#submit-button-add").attr('disabled', 'disabled');
@@ -571,7 +579,9 @@
         c_title_add = false;
       } else {
         if (!(textRegex.test(course_title))){
-          Materialize.toast('Invalid Course Title format!', 3000, 'rounded');
+          if(!($("#title-input").hasClass('invalid'))){
+  	  			$("#title-input").addClass('invalid');
+  	  	  }
           c_title_add = false;
         } else{
             c_title_add = true;
@@ -581,11 +591,16 @@
       if (course_description===""){
         $("#submit-button-add").attr('disabled', 'disabled');
         $("#submit-button-add").addClass('disabled');
+        if($("#desc-input").hasClass('invalid')){
+  	  			$("#desc-input").removeClass('invalid');
+  	  	}
         c_description_add = false;
 
       } else {
         if (!(textRegex.test(course_description))){
-          Materialize.toast('Invalid Character found!', 3000, 'rounded');
+          if(!($("#desc-input").hasClass('invalid'))){
+  	  			$("#desc-input").addClass('invalid');
+  	  	  }
           c_description_add = false;
         } else{
             c_description_add = true;
@@ -601,23 +616,22 @@
   						$("#code-input").addClass('invalid');
   					}
   					c_code_add = false;
-          }
-          else{
+			  	}
+			  	else{
   					if($("#code-input").hasClass('invalid')){
   						$("#code-input").removeClass('invalid');
   					}
-        		c_code_add = true;
-      		  }
+        			c_code_add = true;
+      		  	}
 
-          if(c_code_add && c_title_add && c_description_add){
-            $("#submit-button-add").removeAttr('disabled');
-            $("#submit-button-add").removeClass('disabled');
-          }else{
-            $("#submit-button-add").attr('disabled', 'disabled');
-            $("#submit-button-add").addClass('disabled');
-          } 
-        }
-
+			  if(c_code_add && c_title_add && c_description_add){
+				$("#submit-button-add").removeAttr('disabled');
+				$("#submit-button-add").removeClass('disabled');
+			  }else{
+				$("#submit-button-add").attr('disabled', 'disabled');
+				$("#submit-button-add").addClass('disabled');
+			  } 
+        	}
   		);
   	}
 
