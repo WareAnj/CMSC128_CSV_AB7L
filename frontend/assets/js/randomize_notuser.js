@@ -169,7 +169,6 @@
 						var checkerArr = [];
 
 						var lines = this.result.split('\n');
-						console.log(lines);
 						var numlines = lines.length;
 
 						//first loop for file validation
