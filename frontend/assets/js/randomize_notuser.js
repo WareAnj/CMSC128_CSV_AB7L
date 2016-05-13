@@ -160,8 +160,8 @@
 
 					//checking file type
 					var ext = $('#file').val().split('.').pop().toLowerCase();
-					if($.inArray(ext, ['txt']) == -1) {
-					    Materialize.toast("Only .txt files are allowed", 3000);
+					if($.inArray(ext, ['csv']) == -1) {
+					    Materialize.toast("Only .csv files are allowed", 3000);
 					    return;
 					}
 
@@ -169,6 +169,7 @@
 						var checkerArr = [];
 
 						var lines = this.result.split('\n');
+						console.log(lines);
 						var numlines = lines.length;
 
 						//first loop for file validation
