@@ -39,7 +39,7 @@
     let clchanged = false;
     let colorchanged = false;
     let namep = new RegExp(/^[A-Za-z\-\s]+$/);
-    let textRegex = new RegExp("[A-Za-z0-9\s]+");
+    let textRegex = new RegExp(/^[A-Za-z0-9\s]+$/);
 
     $scope.Get_User = function() {
       CourseService.Get_User()
