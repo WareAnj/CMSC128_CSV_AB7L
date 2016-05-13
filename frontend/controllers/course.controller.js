@@ -116,6 +116,8 @@
         $scope.newCourse.course_description = "";
         $scope.faculty_user_courses.push(data);
         Materialize.toast('Course added!', 5000, 'rounded');
+        $("#submit-button-add").attr('disabled', 'disabled');
+        $("#submit-button-add").addClass('disabled');
         $('#addModal').closeModal();
       });
 
@@ -241,6 +243,8 @@
             $scope.newLecture.section_name = "";
             Materialize.toast('Lecture Section added!', 5000, 'rounded');
             localStorage.setItem("course_id", "")
+            $("#submit-button-add-lecture").attr('disabled', 'disabled');
+            $("#submit-button-add-lecture").addClass('disabled');
             $('#addLecture').closeModal();
         });
 
@@ -546,11 +550,13 @@
   				$("#code-input").removeClass('invalid');
   			}
   			$("#submit-button-add").attr('disabled', 'disabled');
+        $("#submit-button-add").addClass('disabled');
         c_code_add = false;
   		}
 
       if (course_title===""){
         $("#submit-button-add").attr('disabled', 'disabled');
+        $("#submit-button-add").addClass('disabled');
         c_title_add = false;
       } else {
         if (!(textRegex.test(course_title))){
@@ -563,6 +569,7 @@
 
       if (course_description===""){
         $("#submit-button-add").attr('disabled', 'disabled');
+        $("#submit-button-add").addClass('disabled');
         c_description_add = false;
 
       } else {
@@ -590,8 +597,13 @@
         		c_code_add = true;
       		  }
 
-          if(c_code_add && c_title_add && c_description_add) $("#submit-button-add").removeAttr('disabled');
-          else $("#submit-button-add").attr('disabled', 'disabled');
+          if(c_code_add && c_title_add && c_description_add){
+            $("#submit-button-add").removeAttr('disabled');
+            $("#submit-button-add").removeClass('disabled');
+          }else{
+            $("#submit-button-add").attr('disabled', 'disabled');
+            $("#submit-button-add").addClass('disabled');
+          } 
         }
 
   		);
@@ -666,6 +678,7 @@
   		 	if($("#section-name-input").hasClass('invalid')){
   		 		 $("#section-name-input").removeClass('invalid');
   		 	}
+        $("#submit-button-add-lecture").attr('disabled', 'disabled');
         $("#submit-button-add-lecture").addClass('disabled');
   	  }
 
@@ -676,13 +689,15 @@
   					if(!($("#section-name-input").hasClass('invalid'))){
   						$("#section-name-input").addClass('invalid');
   					}
+            $("#submit-button-add-lecture").attr('disabled', 'disabled');
             $("#submit-button-add-lecture").addClass('disabled');
           } else {
   					if($("#section-name-input").hasClass('invalid')){
   						$("#section-name-input").removeClass('invalid');
   					}
             if(section_name!=="" && textReg.test(section_name)) {
-              $("#submit-button-add-lecture").removeClass('disabled');
+              $("#submit-button-add-lecture").attr('disabled', false);
+            $("#submit-button-add-lecture").removeClass('disabled');
             }
       		}
         }
