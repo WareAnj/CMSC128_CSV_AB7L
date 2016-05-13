@@ -370,7 +370,7 @@
 				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(ngname))){
+			if ((namep.test(nmname))){
 				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -414,7 +414,7 @@
 				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(ngname))){
+			if ((namep.test(nmname))){
 				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
 				err = true;
 			}
