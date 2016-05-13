@@ -639,9 +639,14 @@
   			"course/check_course_code/", $scope.course
   			).then(function(response){
   				if (response.data){
+            console.log(ocode);
+            console.log($scope.course.course_code);
   					if(!($("#new-code-input").hasClass('invalid'))){
   						$("#new-code-input").addClass('invalid');
   					}
+            if(($scope.course.course_code===ocode)&&($("#new-code-input").hasClass('invalid'))){
+              $("#new-code-input").removeClass('invalid');
+            }
   					c_code_edit = false;
           }
           else{
