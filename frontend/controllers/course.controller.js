@@ -38,7 +38,7 @@
     let lnchanged = false;
     let clchanged = false;
     let colorchanged = false;
-    let namep = new RegExp("^[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+$");
+    let namep = new RegExp(/^[A-Za-z\-\s]*$/);
     let textRegex = new RegExp("[A-Za-z0-9\s]+");
 
     $scope.Get_User = function() {
@@ -358,11 +358,12 @@
 			var ngname = document.querySelector('#fname-input').value;
 			var nmname = document.querySelector('#mname-input').value;
 			var nlname = document.querySelector('#lname-input').value;
+			
 			if (ngname===""){
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(ngname))){
+			if (!(namep.test(ngname))){
 				Materialize.toast('Invalid Given Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -370,7 +371,7 @@
 				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(nmname))){
+			if (!(namep.test(nmname))){
 				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -378,7 +379,7 @@
 				Materialize.toast('Last Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(nlname))){
+			if (!(namep.test(nlname))){
 				Materialize.toast('Invalid Last Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -406,7 +407,7 @@
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(ngname))){
+			if (!(namep.test(ngname))){
 				Materialize.toast('Invalid Given Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -414,7 +415,7 @@
 				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(nmname))){
+			if (!(namep.test(nmname))){
 				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -422,7 +423,7 @@
 				Materialize.toast('Last Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(nlname))){
+			if (!(namep.test(nlname))){
 				Materialize.toast('Invalid Last Name format!', 3000, 'rounded');
 				err = true;
 			}
