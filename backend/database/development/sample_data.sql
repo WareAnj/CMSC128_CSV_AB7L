@@ -106,7 +106,7 @@ insert into student (student_number, given_name, middle_name, last_name, degree,
 insert into student (student_number, given_name, middle_name, last_name, degree, classification, college) values ('2013-56969', 'CLOSURE', 'CLEAN', 'AURA', 'BSBIO', 'Junior', 'CAS');
     insert into student_section (student_id, section_id) values (40, 8);
 
-insert into faculty_user (username, password, employee_id, classification, given_name, middle_name, last_name) values ('user2', SHA1('user2'), '002', 'Instructor III', 'Marie Betel', 'D', 'De Robles');
+insert into faculty_user (username, password, employee_id, classification, given_name, middle_name, last_name) values ('user2', SHA1('user2'), '002', 'Instructor III', 'Marie Betel', 'B', 'De Robles');
 insert into faculty_user (username, password, employee_id, classification, given_name, middle_name, last_name) values ('user3', SHA1('user3'), '003', 'Instructor I', 'Angelica', 'Geeca', 'Ware');
 
 insert into faculty_user_course (faculty_user_id, course_id) values (1, 1);
