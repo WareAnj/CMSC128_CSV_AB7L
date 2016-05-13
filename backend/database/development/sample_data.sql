@@ -4,10 +4,10 @@ INSERT INTO admin(id, username, password) VALUES (1, 'admin', SHA1('admin'));
 
 insert into faculty_user (username, password, employee_id, classification, given_name, middle_name, last_name, is_approved) values ('user1', SHA1('user1'), '001', 'Professor I', 'Reginald Neil', 'C', 'Recario', 1);
 
-insert into course (code, title, description) values ('CMSC 128', 'Introduction to Software Engineering', '*insert desc here*');
-insert into course (code, title, description) values ('CMSC 132', 'Computer Architecture', '*insert desc here*');
-insert into course (code, title, description) values ('CMSC 141', 'Automata and Language Theory', '*insert desc here*');
-insert into course (code, title, description) values ('CMSC 170', 'Introduction to Artifial Intelligence', '*insert desc here*');
+insert into course (code, title, description) values ('CMSC 128', 'Introduction to Software Engineering', 'Principles and methods for the design implementation validation evaluation and maintenance of software systems');
+insert into course (code, title, description) values ('CMSC 132', 'Computer Architecture', 'Advanced topics in computer systems organization from a designers point of view');
+insert into course (code, title, description) values ('CMSC 141', 'Automata and Language Theory', 'Abstract machines and languages');
+insert into course (code, title, description) values ('CMSC 170', 'Introduction to Artifial Intelligence', 'Basic principles of Artificial Intelligence');
 
 insert into section (course_id, name, code) values (1, 'AB', '1L');
 insert into section (course_id, name, code) values (1, 'AB', '2L');
