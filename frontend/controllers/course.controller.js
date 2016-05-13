@@ -38,7 +38,7 @@
     let lnchanged = false;
     let clchanged = false;
     let colorchanged = false;
-    let namep = new RegExp("[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+");
+    let namep = new RegExp("^[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+$");
     let textRegex = new RegExp("[A-Za-z0-9\s]+");
 
     $scope.Get_User = function() {
@@ -639,9 +639,14 @@
   			"course/check_course_code/", $scope.course
   			).then(function(response){
   				if (response.data){
+            console.log(ocode);
+            console.log($scope.course.course_code);
   					if(!($("#new-code-input").hasClass('invalid'))){
   						$("#new-code-input").addClass('invalid');
   					}
+            if(($scope.course.course_code===ocode)&&($("#new-code-input").hasClass('invalid'))){
+              $("#new-code-input").removeClass('invalid');
+            }
   					c_code_edit = false;
           }
           else{
