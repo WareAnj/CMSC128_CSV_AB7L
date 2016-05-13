@@ -79,12 +79,12 @@
 												<h6>{{section_name}}-{{labsection.code}}</h6>
 											</div>
 											<div class="col s2 m2 l1">
-												<input class="lsections" type="number" name="onel" max="{{labsection.count}}" min="0" placeholder="0" value="0"  ng-model="counts[labsection.code]" ng-init="counts[labsection.code]=0"></input>
+												<input class="lsections" type="number" name="onel" max="{{labsection.count}}" min="0" placeholder="0" value="0"  ng-model="counts[labsection.code]" ng-init="counts[labsection.code]=0" onchange="CheckValue()"></input>
 											</div>
 										</div>
 
 
-										<div class="center"><button class="btn waves-effect waves-teal" type="submit"><i class="material-icons right">shuffle</i> Randomize!</button></div>
+										<div class="center"><button id="randomizebutton" class="btn waves-effect waves-teal disabled" type="submit" disabled><i class="material-icons right">shuffle</i> Randomize!</button></div>
 									</form>
 								</div>
 							</div>
@@ -97,15 +97,35 @@
 
 		<script type="text/javascript">
 				document.getElementById('whole').onchange = function(){
-					var wholevalue = document.getElementById('whole').value;
+					var wholevalue = document.getElementById('whole').value;		//value of whole lab					
 
 					if(wholevalue != 0){
 						$(".lsections").attr("disabled",true);
-
+						$("#randomizebutton").attr("disabled",false);
+						$("#randomizebutton").attr("class","btn waves-effect waves-teal");
 					}else{
+						CheckValue();
 						$(".lsections").attr("disabled",false);
 					}
 
+				}
+
+				function CheckValue(){
+					var labs = document.getElementsByClassName("lsections");		//value per lab
+					var randomizeTrue = false;										//boolean for activating button
+
+					for(var i = 0; i < labs.length; i++){
+						if(labs[i].value != 0)
+							randomizeTrue = true;
+					}
+
+					if(randomizeTrue){
+						$("#randomizebutton").attr("disabled",false);
+						$("#randomizebutton").attr("class","btn waves-effect waves-teal");
+					}else{
+						$("#randomizebutton").attr("disabled",true);
+						$("#randomizebutton").attr("class","btn waves-effect waves-teal disabled");
+					}
 				}
 		</script>
 	</body>
