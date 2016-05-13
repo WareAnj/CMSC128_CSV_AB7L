@@ -173,6 +173,7 @@
 						    <div class="input-field">
 						      <div class="col s12 m12 l12">
 						        <input placeholder="New Course Title" type="text" ng-keyup="check_course_code_edit()" id="new-title-input" ng-model="course.course_title" required="required" ng-change="check_course_title_changes()">
+						        <label id="crst-input-label" for="new-title-input" class="black-text" data-error="Invalid Course title format!">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
 						      </div>
 						    </div>
 							</div>
@@ -182,7 +183,7 @@
 								<div class="input-field">
 						      <div class="col s12 m12 l12">
 										<textarea id="new-desc-input" ng-keyup="check_course_code_edit()" class="materialize-textarea" ng-model="course.course_description" ng-change="check_course_description_changes()"></textarea>
-										<label for="new-desc-input">Course Description</label>
+										<label id="crsd-input-label" for="new-desc-input" data-error="Invalid Course Description format!">Course Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 									</div>
 						    </div>
 						  </div>
