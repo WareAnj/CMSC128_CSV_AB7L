@@ -358,7 +358,7 @@
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if (!(namep.test(ngname))){
+			if ((namep.test(ngname))){
 				Materialize.toast('Invalid Given Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -366,7 +366,7 @@
 				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if (!(namep.test(ngname))){
+			if ((namep.test(ngname))){
 				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -374,7 +374,7 @@
 				Materialize.toast('Last Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if (!(namep.test(nlname))){
+			if ((namep.test(nlname))){
 				Materialize.toast('Invalid Last Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -402,7 +402,7 @@
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if (!(namep.test(ngname))){
+			if ((namep.test(ngname))){
 				Materialize.toast('Invalid Given Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -410,7 +410,7 @@
 				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if (!(namep.test(ngname))){
+			if ((namep.test(ngname))){
 				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -418,7 +418,7 @@
 				Materialize.toast('Last Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if (!(namep.test(nlname))){
+			if ((namep.test(nlname))){
 				Materialize.toast('Invalid Last Name format!', 3000, 'rounded');
 				err = true;
 			}
