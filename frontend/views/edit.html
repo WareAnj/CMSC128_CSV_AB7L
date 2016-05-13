@@ -128,16 +128,16 @@
       			<div class="input-field">
 							<!-- GIVEN NAME -->
 							<div class="col s12 m12 l4">
-          			<input placeholder="Given Name" type="text" id="fname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+" ng-model="newLabStudent.given_name" ng-keyup="check_given_name_change_add()">
+          			<input placeholder="Given Name" type="text" id="fname-input"  required="required" pattern="^[A-Za-z\-\s]+$" ng-model="newLabStudent.given_name" ng-keyup="check_given_name_change_add()">
           			<label for="fname-input">Name</label>
         			</div>
 							<!-- MIDDLE NAME -->
         			<div class="col s12 m12 l4">
-          			<input placeholder="Middle Name" type="text" id="mname-input"  required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+" ng-model="newLabStudent.middle_name" ng-keyup="check_middle_name_change_add()">
+          			<input placeholder="Middle Name" type="text" id="mname-input"  required="required" pattern="^[A-Za-z\-\s]+$" ng-model="newLabStudent.middle_name" ng-keyup="check_middle_name_change_add()">
         			</div>
 							<!-- LAST NAME -->
         			<div class="col s12 m12 l4">
-          			<input placeholder="Last Name" type="text" id="lname-input"required="required" pattern="[A-Za-z\.\-\s]*[A-Za-z\.]+" ng-model="newLabStudent.last_name" ng-keyup="check_last_name_change_add()">
+          			<input placeholder="Last Name" type="text" id="lname-input"required="required" pattern="^[A-Za-z\-\s]+$" ng-model="newLabStudent.last_name" ng-keyup="check_last_name_change_add()">
         			</div>
       			</div>
     			</div>
@@ -145,8 +145,10 @@
       			<div class="col s6 m12 l6">
 							<!-- STUDENT NUMBER  -->
 							<div class="input-field">
-          			<input placeholder="Student Number" type="text" id="stdnuminput" ng-model="newLabStudent.student_number" ng-keyup="check_student_number_change_add()">
-          			<label for="nameinput" class="active">Student Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+          			<input placeholder="Student Number" type="text" id="stdnuminput" ng-model="newLabStudent.student_number" ng-keyup="check_student_number_change_add()" pattern="^(([1][9][0-9][0-9])|([2][0-9][0-9][0-9]))\-[0-9]{5}$">
+          			<label id="snLabel" for="nameinput" class="active">
+          				Student Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          			</label>
         			</div>
       			</div>
       			<div class="col s6 m12 l6">

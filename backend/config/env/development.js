@@ -6,7 +6,7 @@ module.exports = {
     DB: {
         host: 'localhost',
         user: 'root',
-        password: 'user',
+        password: '!kkzki@',
         database: 'cmsc128ab7l'
     },
 
