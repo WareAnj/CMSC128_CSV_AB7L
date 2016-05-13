@@ -57,6 +57,8 @@
                 .ApproveUser(id)
                 .then((retdata) => {
                    if(retdata.message = "Faculty user successfully approved!"){
+                    var counts = parseInt($("#counts").text());
+                    document.getElementById("counts").innerHTML = counts-1;
                     let index = -1;
                     let comArr = eval($scope.userList);
                     for (let i = 0; i < comArr.length; i++) {
