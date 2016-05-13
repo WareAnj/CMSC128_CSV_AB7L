@@ -548,34 +548,42 @@
       let course_title = document.querySelector('#title-input').value;
       let course_description = document.querySelector('#desc-input').value;
       
-      if(course_code.length>16){
-      	if(!($("#code-input").hasClass('invalid'))){
-  			$("#ccodeAddLabel").attr('data-error','Course code cannot be greater than 16 characters!');
-  			$("#code-input").addClass('invalid');
-  		}
-		return;
-      }
-      
       if (course_code===""){
   			if($("#code-input").hasClass('invalid')){
   				$("#code-input").removeClass('invalid');
   			}
   			$("#submit-button-add").attr('disabled', 'disabled');
-        $("#submit-button-add").addClass('disabled');
-        c_code_add = false;
+        	$("#submit-button-add").addClass('disabled');
+        	c_code_add = false;
   	  }
-  	  
-  	  if(!(textRegex.test(course_code))){
-  	  		if(!($("#code-input").hasClass('invalid'))){
-  	  			$("#ccodeAddLabel").attr('data-error','Invalid Course Code format!');
-  	  			$("#code-input").addClass('invalid');
-  	  		}
-  	  		c_code_add = false;
-  	  }
-
+  	  else{
+		  if(!(textRegex.test(course_code))){
+				if(!($("#code-input").hasClass('invalid'))){
+					$("#ccodeAddLabel").attr('data-error','Invalid Course Code format!');
+					$("#code-input").addClass('invalid');
+				}
+				c_code_add = false;
+		  }
+		  else if(course_code.length>16){
+			if(!($("#code-input").hasClass('invalid'))){
+				$("#ccodeAddLabel").attr('data-error','Course code cannot be greater than 16 characters!');
+				$("#code-input").addClass('invalid');
+			}
+			c_code_add = false;
+		  }	  
+		  else{
+		  	if($("#code-input").hasClass('invalid')){
+  	  			$("#code-input").removeClass('invalid');
+  	  	  	}
+			c_code_add = true;
+		  }
+	  }
       if (course_title===""){
         $("#submit-button-add").attr('disabled', 'disabled');
         $("#submit-button-add").addClass('disabled');
+        if($("#title-input").hasClass('invalid')){
+  	  			$("#title-input").removeClass('invalid');
+  	  	}
         c_title_add = false;
       } else {
         if (!(textRegex.test(course_title))){
@@ -584,6 +592,9 @@
   	  	  }
           c_title_add = false;
         } else{
+        	if($("#title-input").hasClass('invalid')){
+  	  			$("#title-input").removeClass('invalid');
+  	  	  	}
             c_title_add = true;
         }
       }
@@ -603,10 +614,15 @@
   	  	  }
           c_description_add = false;
         } else{
+        	if($("#desc-input").hasClass('invalid')){
+  	  			$("#desc-input").removeClass('invalid');
+  	  	  	}
             c_description_add = true;
         }
       }
-
+		if(!c_code_add){
+			return;
+		}
   		$http.post(
   			"course/check_course_code/", $scope.newCourse
   			).then(function(response){
