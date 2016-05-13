@@ -124,7 +124,7 @@
 							<div class="row">
 						    <div class="input-field">
 						      <div class="col s12 m12 l12">
-										<input placeholder="Course Code" type="text" id="code-input" ng-keyup="check_course_code_add()" ng-model="newCourse.course_code" required="required">
+										<input placeholder="Course Code" type="text" id="code-input" ng-keyup="check_course_code_add()" ng-model="newCourse.course_code" required="required" pattern="^[A-Za-z0-9\s]+$">
 										<label id="ccodeAddLabel" for="course-code-input" class="active" data-error="Course Code Already Exits!">
 											Course Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -139,7 +139,7 @@
 							<div class="row">
 						    <div class="input-field">
 						      <div class="col s12 m12 l12">
-						        <input placeholder="Course Title" type="text" id="title-input" ng-keyup="check_course_code_add()" ng-model="newCourse.course_title" required="required">
+						        <input placeholder="Course Title" type="text" id="title-input" ng-keyup="check_course_code_add()" ng-model="newCourse.course_title" required="required" pattern="^[A-Za-z0-9\s]+$">
 						        <label for="title-input" data-error="Invalid Course Title format!">
 						        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -176,14 +176,14 @@
 								<!-- COURSE CODE -->
 								<div class="input-field">
 						      <div class="col s12 m12 l12">
-						        <input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" name="new-code-input" ng-model="course.course_code" required="required" ng-change="check_course_code_changes()">
+						        <input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" name="new-code-input" ng-model="course.course_code" required="required" ng-change="check_course_code_changes()" pattern="^[A-Za-z0-9\s]+$">
 						        <label id="crs-input-label" for="new-code-input" class="black-text" data-error="Course Code already exists!">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
 							  </div>
 						    </div>
 								<!-- COURSE TITLE -->
 						    <div class="input-field">
 						      <div class="col s12 m12 l12">
-						        <input placeholder="New Course Title" type="text" ng-keyup="check_course_code_edit()" id="new-title-input" ng-model="course.course_title" required="required" ng-change="check_course_title_changes()">
+						        <input placeholder="New Course Title" type="text" ng-keyup="check_course_code_edit()" id="new-title-input" ng-model="course.course_title" required="required" ng-change="check_course_title_changes()" pattern="^[A-Za-z0-9\s]+$">
 						        <label id="crst-input-label" for="new-title-input" class="black-text" data-error="Invalid Course title format!">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
 						      </div>
 						    </div>
