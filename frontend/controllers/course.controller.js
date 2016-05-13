@@ -109,6 +109,7 @@
     }
 
     $scope.Add_Course = function() {
+    	console.log($scope.newCourse);
       CourseService.Add_Course($scope.newCourse)
       .then(function(data) {
         $scope.newCourse.course_code = "";
@@ -543,9 +544,18 @@
     // checker in add course
     $scope.check_course_code_add = function(){
 
-  		let course_code = document.querySelector('#code-input').value;
+  	  let course_code = document.querySelector('#code-input').value;
       let course_title = document.querySelector('#title-input').value;
       let course_description = document.querySelector('#desc-input').value;
+      
+      if(course_code.length>16){
+      	if(!($("#code-input").hasClass('invalid'))){
+  			$("#ccodeAddLabel").attr('data-error','Course code cannot be greater than 16 characters!');
+  			$("#code-input").addClass('invalid');
+  		}
+		return;
+      }
+      
       if (course_code===""){
   			if($("#code-input").hasClass('invalid')){
   				$("#code-input").removeClass('invalid');
@@ -587,6 +597,7 @@
   			).then(function(response){
   				if (response.data){
   					if(!($("#code-input").hasClass('invalid'))){
+  						$("#ccodeAddLabel").attr('data-error','Course Code Already Exits!');
   						$("#code-input").addClass('invalid');
   					}
   					c_code_add = false;
