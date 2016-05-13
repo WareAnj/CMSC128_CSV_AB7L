@@ -367,8 +367,9 @@
 
     $scope.check_student_number_change_add = function(){
       var new_student_number = document.querySelector('#stdnuminput').value;
-
-      if (new_student_number==="") {
+	  var student_number_regex = new RegExp(/^(([1][9][0-9][0-9])|([2][0-9][0-9][0-9]))\-[0-9]{5}$/);
+	  
+	  if (new_student_number==="") {
   			if($("#stdnuminput").hasClass('invalid')) {
   				$("#stdnuminput").removeClass('invalid');
   			}
@@ -376,12 +377,21 @@
         student_number_add = false;
   			return;
   		}
+	  
+	  if(!(student_number_regex.test(new_student_number))){
+	  	$("#snLabel").attr('data-error','Student number format invalid! Use YYYY-NNNNN!');
+	  	if(!($("#stdnuminput").hasClass('invalid'))){
+	  		$("#stdnuminput").addClass('invalid');
+	  	}
+	  	return;
+	  }
 
       $http.get(
   			         "faculty_user/check_student_number?student_number=" + new_student_number + "&course_id=" + localStorage.getItem("course_id")
   			        ).then(function(response) {
   				        if (response.data) {
 					          if(!($("#stdnuminput").hasClass('invalid'))) {
+					          	  $("#snLabel").attr('data-error','Student number already used!');
 						          $("#stdnuminput").addClass('invalid');
                       $("#submit-button-add").addClass("disabled");
 					          }

@@ -38,8 +38,8 @@
     let lnchanged = false;
     let clchanged = false;
     let colorchanged = false;
-    let namep = new RegExp("^[A-Za-z\.\-\s]*[A-Za-z\.\-\s]+$");
-    let textRegex = new RegExp("[A-Za-z0-9\s]+");
+    let namep = new RegExp(/^[A-Za-z\-\s]+$/);
+    let textRegex = new RegExp(/^[A-Za-z0-9\s]+$/);
 
     $scope.Get_User = function() {
       CourseService.Get_User()
@@ -109,6 +109,7 @@
     }
 
     $scope.Add_Course = function() {
+    	console.log($scope.newCourse);
       CourseService.Add_Course($scope.newCourse)
       .then(function(data) {
         $scope.newCourse.course_code = "";
@@ -358,11 +359,12 @@
 			var ngname = document.querySelector('#fname-input').value;
 			var nmname = document.querySelector('#mname-input').value;
 			var nlname = document.querySelector('#lname-input').value;
+			
 			if (ngname===""){
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(ngname))){
+			if (!(namep.test(ngname))){
 				Materialize.toast('Invalid Given Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -370,7 +372,7 @@
 				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(ngname))){
+			if (!(namep.test(nmname))){
 				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -378,7 +380,7 @@
 				Materialize.toast('Last Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(nlname))){
+			if (!(namep.test(nlname))){
 				Materialize.toast('Invalid Last Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -406,7 +408,7 @@
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(ngname))){
+			if (!(namep.test(ngname))){
 				Materialize.toast('Invalid Given Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -414,7 +416,7 @@
 				Materialize.toast('Middle Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(ngname))){
+			if (!(namep.test(nmname))){
 				Materialize.toast('Invalid Middle Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -422,7 +424,7 @@
 				Materialize.toast('Last Name can not be blank!', 3000, 'rounded');
 				err = true;
 			}
-			if ((namep.test(nlname))){
+			if (!(namep.test(nlname))){
 				Materialize.toast('Invalid Last Name format!', 3000, 'rounded');
 				err = true;
 			}
@@ -542,27 +544,57 @@
     // checker in add course
     $scope.check_course_code_add = function(){
 
-  		let course_code = document.querySelector('#code-input').value;
+  	  let course_code = document.querySelector('#code-input').value;
       let course_title = document.querySelector('#title-input').value;
       let course_description = document.querySelector('#desc-input').value;
+      
       if (course_code===""){
   			if($("#code-input").hasClass('invalid')){
   				$("#code-input").removeClass('invalid');
   			}
   			$("#submit-button-add").attr('disabled', 'disabled');
-        $("#submit-button-add").addClass('disabled');
-        c_code_add = false;
-  		}
-
+        	$("#submit-button-add").addClass('disabled');
+        	c_code_add = false;
+  	  }
+  	  else{
+		  if(!(textRegex.test(course_code))){
+				if(!($("#code-input").hasClass('invalid'))){
+					$("#ccodeAddLabel").attr('data-error','Invalid Course Code format!');
+					$("#code-input").addClass('invalid');
+				}
+				c_code_add = false;
+		  }
+		  else if(course_code.length>16){
+			if(!($("#code-input").hasClass('invalid'))){
+				$("#ccodeAddLabel").attr('data-error','Course code cannot be greater than 16 characters!');
+				$("#code-input").addClass('invalid');
+			}
+			c_code_add = false;
+		  }	  
+		  else{
+		  	if($("#code-input").hasClass('invalid')){
+  	  			$("#code-input").removeClass('invalid');
+  	  	  	}
+			c_code_add = true;
+		  }
+	  }
       if (course_title===""){
         $("#submit-button-add").attr('disabled', 'disabled');
         $("#submit-button-add").addClass('disabled');
+        if($("#title-input").hasClass('invalid')){
+  	  			$("#title-input").removeClass('invalid');
+  	  	}
         c_title_add = false;
       } else {
         if (!(textRegex.test(course_title))){
-          Materialize.toast('Invalid Course Title format!', 3000, 'rounded');
+          if(!($("#title-input").hasClass('invalid'))){
+  	  			$("#title-input").addClass('invalid');
+  	  	  }
           c_title_add = false;
         } else{
+        	if($("#title-input").hasClass('invalid')){
+  	  			$("#title-input").removeClass('invalid');
+  	  	  	}
             c_title_add = true;
         }
       }
@@ -570,42 +602,52 @@
       if (course_description===""){
         $("#submit-button-add").attr('disabled', 'disabled');
         $("#submit-button-add").addClass('disabled');
+        if($("#desc-input").hasClass('invalid')){
+  	  			$("#desc-input").removeClass('invalid');
+  	  	}
         c_description_add = false;
 
       } else {
         if (!(textRegex.test(course_description))){
-          Materialize.toast('Invalid Character found!', 3000, 'rounded');
+          if(!($("#desc-input").hasClass('invalid'))){
+  	  			$("#desc-input").addClass('invalid');
+  	  	  }
           c_description_add = false;
         } else{
+        	if($("#desc-input").hasClass('invalid')){
+  	  			$("#desc-input").removeClass('invalid');
+  	  	  	}
             c_description_add = true;
         }
       }
-
+		if(!c_code_add){
+			return;
+		}
   		$http.post(
   			"course/check_course_code/", $scope.newCourse
   			).then(function(response){
   				if (response.data){
   					if(!($("#code-input").hasClass('invalid'))){
+  						$("#ccodeAddLabel").attr('data-error','Course Code already exists!');
   						$("#code-input").addClass('invalid');
   					}
   					c_code_add = false;
-          }
-          else{
+			  	}
+			  	else{
   					if($("#code-input").hasClass('invalid')){
   						$("#code-input").removeClass('invalid');
   					}
-        		c_code_add = true;
-      		  }
+        			c_code_add = true;
+      		  	}
 
-          if(c_code_add && c_title_add && c_description_add){
-            $("#submit-button-add").removeAttr('disabled');
-            $("#submit-button-add").removeClass('disabled');
-          }else{
-            $("#submit-button-add").attr('disabled', 'disabled');
-            $("#submit-button-add").addClass('disabled');
-          } 
-        }
-
+			  if(c_code_add && c_title_add && c_description_add){
+				$("#submit-button-add").removeAttr('disabled');
+				$("#submit-button-add").removeClass('disabled');
+			  }else{
+				$("#submit-button-add").attr('disabled', 'disabled');
+				$("#submit-button-add").addClass('disabled');
+			  } 
+        	}
   		);
   	}
 
@@ -614,64 +656,98 @@
       let course_code = document.querySelector('#new-code-input').value;
       let course_title = document.querySelector('#new-title-input').value;
       let course_description = document.querySelector('#new-desc-input').value;
+      
       if (course_code===""){
   			if($("#new-code-input").hasClass('invalid')){
   				$("#new-code-input").removeClass('invalid');
   			}
-  			$("#submit-button-edit").attr('disabled', 'disabled');
-        c_code_edit = false;
+        	c_code_edit = false;
+  	  }
+  	  else{
+  	  	if(!(textRegex.test(course_code))){
+  			$("#crs-input-label").attr('data-error','Invalid Course Code format!')
+  			if(!($("#new-code-input").hasClass('invalid'))){
+  				$("#new-code-input").addClass('invalid');
+  			}
+  			c_code_edit = false;
   		}
+  		else{
+  			if($("#new-code-input").hasClass('invalid')){
+  				$("#new-code-input").removeClass('invalid');
+  			}
+  		}
+  	  }
 
       if (course_title===""){
-        $("#submit-button-edit").attr('disabled', 'disabled');
+        if($("#new-title-input").hasClass('invalid')){
+        	$("#new-title-input").removeClass('invalid');
+        }
         c_title_edit = false;
-      } else {
+      }
+      else {
         if (!(textRegex.test(course_title))){
-          Materialize.toast('Invalid Course Title format!', 3000, 'rounded');
+          if(!($("#new-title-input").hasClass('invalid'))){
+        		$("#new-title-input").addClass('invalid');
+          }
           c_title_edit = false;
-        } else{
+        }
+        else{
+        	if($("#new-title-input").hasClass('invalid')){
+				$("#new-title-input").removeClass('invalid');
+			}
             c_title_edit = true;
         }
       }
 
       if (course_description===""){
-        $("#submit-button-edit").attr('disabled', 'disabled');
+        if($("#new-desc-input").hasClass('invalid')){
+			$("#new-desc-input").removeClass('invalid');
+		}
         c_description_edit = false;
 
-      } else {
+      }
+      else {
         if (!(textRegex.test(course_description))){
-          Materialize.toast('Invalid Character found!', 3000, 'rounded');
+          if(!($("#new-desc-input").hasClass('invalid'))){
+				$("#new-desc-input").addClass('invalid');
+		  }
           c_description_edit = false;
-        } else{
+        }
+        else{
+        	if($("#new-desc-input").hasClass('invalid')){
+				$("#new-desc-input").removeClass('invalid');
+			}
             c_description_edit = true;
         }
       }
+
+	  if(!c_code_edit){
+		return;
+	  }
 
   		$http.post(
   			"course/check_course_code/", $scope.course
   			).then(function(response){
   				if (response.data){
-            console.log(ocode);
-            console.log($scope.course.course_code);
   					if(!($("#new-code-input").hasClass('invalid'))){
+  						$("#crs-input-label").attr('data-error','Course Code already exists!')
   						$("#new-code-input").addClass('invalid');
   					}
-            if(($scope.course.course_code===ocode)&&($("#new-code-input").hasClass('invalid'))){
-              $("#new-code-input").removeClass('invalid');
-            }
+            		if((course_code===ocode)&&($("#new-code-input").hasClass('invalid'))){
+              			$("#new-code-input").removeClass('invalid');
+            		}
   					c_code_edit = false;
-          }
-          else{
+          		}
+          		else{
   					if($("#new-code-input").hasClass('invalid')){
   						$("#new-code-input").removeClass('invalid');
   					}
-        		c_code_edit = true;
-      		  }
+        			c_code_edit = true;
+      		  	}
 
-          if(c_code_edit && c_title_edit && c_description_edit) $("#submit-button-edit").removeAttr('disabled');
-          else $("#submit-button-edit").attr('disabled', 'disabled');
-        }
-
+          		if(c_code_edit && c_title_edit && c_description_edit) $("#submit-button-edit").removeAttr('disabled');
+          		else $("#submit-button-edit").attr('disabled', 'disabled');
+        	}
   		);
   	}
 
