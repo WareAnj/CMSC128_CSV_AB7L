@@ -661,15 +661,15 @@
   			if($("#new-code-input").hasClass('invalid')){
   				$("#new-code-input").removeClass('invalid');
   			}
-  			$("#submit-button-edit").attr('disabled', 'disabled');
         	c_code_edit = false;
   	  }
   	  else{
-  	  	if(!(textRegex.test(couse_code))){
+  	  	if(!(textRegex.test(course_code))){
   			$("#crs-input-label").attr('data-error','Invalid Course Code format!')
   			if(!($("#new-code-input").hasClass('invalid'))){
   				$("#new-code-input").addClass('invalid');
   			}
+  			c_code_edit = false;
   		}
   		else{
   			if($("#new-code-input").hasClass('invalid')){
@@ -679,59 +679,61 @@
   	  }
 
       if (course_title===""){
-        if($("new-title-input").hasClass('invalid')){
-        	$("new-title-input").removeClass('invalid');
+        if($("#new-title-input").hasClass('invalid')){
+        	$("#new-title-input").removeClass('invalid');
         }
         c_title_edit = false;
       }
       else {
         if (!(textRegex.test(course_title))){
-          if(!($("new-title-input").hasClass('invalid'))){
-        		$("new-title-input").addClass('invalid');
+          if(!($("#new-title-input").hasClass('invalid'))){
+        		$("#new-title-input").addClass('invalid');
           }
           c_title_edit = false;
         }
         else{
-        	if($("new-title-input").hasClass('invalid')){
-				$("new-title-input").removeClass('invalid');
+        	if($("#new-title-input").hasClass('invalid')){
+				$("#new-title-input").removeClass('invalid');
 			}
             c_title_edit = true;
         }
       }
 
       if (course_description===""){
-        if($("new-desc-input").hasClass('invalid')){
-			$("new-desc-input").removeClass('invalid');
+        if($("#new-desc-input").hasClass('invalid')){
+			$("#new-desc-input").removeClass('invalid');
 		}
         c_description_edit = false;
 
       }
       else {
         if (!(textRegex.test(course_description))){
-          if(!($("new-desc-input").hasClass('invalid'))){
-				$("new-desc-input").addClass('invalid');
+          if(!($("#new-desc-input").hasClass('invalid'))){
+				$("#new-desc-input").addClass('invalid');
 		  }
           c_description_edit = false;
         }
         else{
-        	if($("new-desc-input").hasClass('invalid')){
-				$("new-desc-input").removeClass('invalid');
+        	if($("#new-desc-input").hasClass('invalid')){
+				$("#new-desc-input").removeClass('invalid');
 			}
             c_description_edit = true;
         }
       }
 
+	  if(!c_code_edit){
+		return;
+	  }
+
   		$http.post(
   			"course/check_course_code/", $scope.course
   			).then(function(response){
   				if (response.data){
-            		console.log(ocode);
-            		console.log($scope.course.course_code);
   					if(!($("#new-code-input").hasClass('invalid'))){
   						$("#crs-input-label").attr('data-error','Course Code already exists!')
   						$("#new-code-input").addClass('invalid');
   					}
-            		if(($scope.course.course_code===ocode)&&($("#new-code-input").hasClass('invalid'))){
+            		if((course_code===ocode)&&($("#new-code-input").hasClass('invalid'))){
               			$("#new-code-input").removeClass('invalid');
             		}
   					c_code_edit = false;
