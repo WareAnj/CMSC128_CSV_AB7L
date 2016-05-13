@@ -656,13 +656,14 @@
       let course_code = document.querySelector('#new-code-input').value;
       let course_title = document.querySelector('#new-title-input').value;
       let course_description = document.querySelector('#new-desc-input').value;
+      
       if (course_code===""){
   			if($("#new-code-input").hasClass('invalid')){
   				$("#new-code-input").removeClass('invalid');
   			}
   			$("#submit-button-edit").attr('disabled', 'disabled');
         c_code_edit = false;
-  		}
+  	   }
 
       if (course_title===""){
         $("#submit-button-edit").attr('disabled', 'disabled');
@@ -693,27 +694,26 @@
   			"course/check_course_code/", $scope.course
   			).then(function(response){
   				if (response.data){
-            console.log(ocode);
-            console.log($scope.course.course_code);
+            		console.log(ocode);
+            		console.log($scope.course.course_code);
   					if(!($("#new-code-input").hasClass('invalid'))){
   						$("#new-code-input").addClass('invalid');
   					}
-            if(($scope.course.course_code===ocode)&&($("#new-code-input").hasClass('invalid'))){
-              $("#new-code-input").removeClass('invalid');
-            }
+            		if(($scope.course.course_code===ocode)&&($("#new-code-input").hasClass('invalid'))){
+              			$("#new-code-input").removeClass('invalid');
+            		}
   					c_code_edit = false;
-          }
-          else{
+          		}
+          		else{
   					if($("#new-code-input").hasClass('invalid')){
   						$("#new-code-input").removeClass('invalid');
   					}
-        		c_code_edit = true;
-      		  }
+        			c_code_edit = true;
+      		  	}
 
-          if(c_code_edit && c_title_edit && c_description_edit) $("#submit-button-edit").removeAttr('disabled');
-          else $("#submit-button-edit").attr('disabled', 'disabled');
-        }
-
+          		if(c_code_edit && c_title_edit && c_description_edit) $("#submit-button-edit").removeAttr('disabled');
+          		else $("#submit-button-edit").attr('disabled', 'disabled');
+        	}
   		);
   	}
 
