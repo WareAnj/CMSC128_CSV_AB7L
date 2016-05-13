@@ -58,8 +58,7 @@
 	            			deferred.resolve(data);
 	            			localStorage.clear();
 						}, (error) => {
-							deferred.reject(error.data);
-							Materialize.toast(error.data, 1000);   
+							deferred.reject(error.data); 
 						});
 
 			return deferred.promise;
