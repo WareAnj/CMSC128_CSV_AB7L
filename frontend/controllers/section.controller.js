@@ -42,6 +42,8 @@
     let section_name;
     let section_code;
     $scope.Get_Lab_Sections = function() {
+    	
+      $('#student-classification').material_select();
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
          .then(function(data) {
           $scope.lab_sections_info = [];
