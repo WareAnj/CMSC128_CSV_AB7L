@@ -124,7 +124,7 @@
 							<div class="row">
 						    <div class="input-field">
 						      <div class="col s12 m12 l12">
-										<input placeholder="Course Code" type="text" id="code-input" ng-keyup="check_course_code_add()" ng-model="newCourse.course_code" required="required" pattern="^[A-Za-z0-9\s]+$">
+										<input placeholder="Course Code" type="text" id="code-input" ng-keyup="check_course_code_add()" ng-model="newCourse.course_code" required="required" pattern="^[A-Za-z0-9\s]+$" maxlength="16">
 										<label id="ccodeAddLabel" for="course-code-input" class="active" data-error="Course Code Already Exists!">
 											Course Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -154,8 +154,8 @@
 							<div class="row">
 						    <div class="input-field">
 						      <div class="col s12 m12 l12">
-										<textarea id="desc-input" class="materialize-textarea custom-text text-darken-1" ng-keyup="check_course_code_add()" ng-model="newCourse.course_description"></textarea>
-										<label for="desc-input" data-error="Invalid Course Description format!">Course Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<textarea id="desc-input" class="materialize-textarea black-text" ng-keyup="check_course_code_add()" ng-model="newCourse.course_description"></textarea>
+										<label for="desc-input" data-error="Invalid Course Description format!" class="black-text">Course Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 									</div>
 						    </div>
 						  </div>
@@ -179,7 +179,7 @@
 						        	<input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" name="new-code-input" ng-model="course.course_code" required="required" ng-change="check_course_code_changes()" pattern="^[A-Za-z0-9\s]+$">
 						        	<label id="crs-input-label" for="new-code-input" class="black-text" data-error="Course Code already exists!">
 						        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						        	</label> 
+						        	</label>
 							  	   </div>
 						        </div>
 						     </div>
@@ -190,7 +190,7 @@
 						        <input placeholder="New Course Title" type="text" ng-keyup="check_course_code_edit()" id="new-title-input" name="new-title-input" ng-model="course.course_title" required="required" ng-change="check_course_title_changes()" pattern="^[A-Za-z0-9\s]+$">
 						        <label id="crst-input-label" for="new-title-input" class="black-text" data-error="Invalid Course Title format!">
 						        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						        </label> 
+						        </label>
 						      </div>
 						    </div>
 						  </div>
@@ -252,16 +252,16 @@
 										<div class="input-field">
 											<!-- GIVEN NAME -->
 											<div class="col s12 m12 l4">
-												<input placeholder="First Name" type="text" name="user-fname" id="fname-input" value="{{info.given_name}}" pattern="^[A-Za-z\-\s]+$" ng-keyup="check_gname_changes()"/>
+												<input placeholder="First Name" type="text" name="user-fname" id="fname-input" value="{{info.given_name}}" pattern="^[A-Za-z][A-Za-z\-\s]+$" ng-keyup="check_gname_changes()"/>
 												<label for="fname-input" class="active black-text"><i class="black-text material-icons left">info</i>Name</label>
 											</div>
 											<!-- MIDDLE NAME -->
 											<div class="col s12 m12 l4">
-												<input placeholder="Middle Name" type="text" name="user-mname" id="mname-input" value="{{info.middle_name}}" pattern="^[A-Za-z\-\s]+$" ng-keyup="check_mname_changes()"/>
+												<input placeholder="Middle Name" type="text" name="user-mname" id="mname-input" value="{{info.middle_name}}" pattern="^[A-Za-z][A-Za-z\-\s]+$" ng-keyup="check_mname_changes()"/>
 											</div>
 											<!-- LAST NAME -->
 											<div class="col s12 m12 l4">
-												<input placeholder="Last Name" type="text" name="user-lname" id="lname-input" value="{{info.last_name}}" pattern="^[A-Za-z\-\s]+$" ng-keyup="check_lname_changes()"/>
+												<input placeholder="Last Name" type="text" name="user-lname" id="lname-input" value="{{info.last_name}}" pattern="^[A-Za-z][A-Za-z\-\s]+$" ng-keyup="check_lname_changes()"/>
 											</div>
 										</div>
 									</div>
