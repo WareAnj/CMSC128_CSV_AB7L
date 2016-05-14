@@ -124,7 +124,7 @@
 							<div class="row">
 						    <div class="input-field">
 						      <div class="col s12 m12 l12">
-										<input placeholder="Course Code" type="text" id="code-input" ng-keyup="check_course_code_add()" ng-model="newCourse.course_code" required="required" pattern="^[A-Za-z0-9\s]+$">
+										<input placeholder="Course Code" type="text" id="code-input" ng-keyup="check_course_code_add()" ng-model="newCourse.course_code" required="required" pattern="^[A-Za-z0-9\s]+$" maxlength="16">
 										<label id="ccodeAddLabel" for="course-code-input" class="active" data-error="Course Code Already Exists!">
 											Course Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -154,8 +154,8 @@
 							<div class="row">
 						    <div class="input-field">
 						      <div class="col s12 m12 l12">
-										<textarea id="desc-input" class="materialize-textarea custom-text text-darken-1" ng-keyup="check_course_code_add()" ng-model="newCourse.course_description"></textarea>
-										<label for="desc-input" data-error="Invalid Course Description format!">Course Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<textarea id="desc-input" class="materialize-textarea black-text" ng-keyup="check_course_code_add()" ng-model="newCourse.course_description"></textarea>
+										<label for="desc-input" data-error="Invalid Course Description format!" class="black-text">Course Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 									</div>
 						    </div>
 						  </div>
@@ -179,7 +179,7 @@
 						        	<input placeholder="New Course Code" type="text" ng-keyup="check_course_code_edit()" id="new-code-input" name="new-code-input" ng-model="course.course_code" required="required" ng-change="check_course_code_changes()" pattern="^[A-Za-z0-9\s]+$">
 						        	<label id="crs-input-label" for="new-code-input" class="black-text" data-error="Course Code already exists!">
 						        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						        	</label> 
+						        	</label>
 							  	   </div>
 						        </div>
 						     </div>
@@ -190,7 +190,7 @@
 						        <input placeholder="New Course Title" type="text" ng-keyup="check_course_code_edit()" id="new-title-input" name="new-title-input" ng-model="course.course_title" required="required" ng-change="check_course_title_changes()" pattern="^[A-Za-z0-9\s]+$">
 						        <label id="crst-input-label" for="new-title-input" class="black-text" data-error="Invalid Course Title format!">
 						        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						        </label> 
+						        </label>
 						      </div>
 						    </div>
 						  </div>
