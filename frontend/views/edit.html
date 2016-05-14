@@ -264,8 +264,8 @@
 							</div>
 							<!-- CLASSIFICATION -->
 							<div class="input-field col s4">
-			    			<input id="student-classification" type="text" class="validate" value="{{student.classification}}" ng-keyup="check_classification_change_edit()">
-								<label for="student-classification" class="active"> Classification </label>
+			    				<input id="student-classification" type="text" class="validate" value="{{student.classification}}" ng-keyup="check_classification_change_edit()" placeholder="Freshman or Sophomore or Junior or Senior" pattern="(Freshman|Sophomore|Junior|Senior)">
+								<label for="student-classification" class="active">Classification</label>
 							</div>
 							<!-- COLLEGE -->
 							<div class="input-field col s4">
