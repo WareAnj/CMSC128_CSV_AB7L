@@ -48,7 +48,7 @@
 					<ul class="tabs">
 						<li class="tab"><a href="#profile" class="black-text waves-effect waves-custom">Profile</a></li>
 						<li class="tab"><a href="#classes" class="black-text waves-effect waves-custom" ng-click="Get_Course()">Classes</a></li>
-						<li class="tab"><a href="#settings" class="black-text waves-effect waves-custom" ng-click="Get_User()" onclick="$('select').material_select()">Settings</a></li>
+						<li class="tab"><a href="#settings" class="black-text waves-effect waves-custom" data-ng-init="Get_User()" onclick="$('select').material_select()">Settings</a></li>
 					</ul>
 				</div>
 
@@ -92,7 +92,7 @@
 										<a title="Update Course Details" class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(course)"><i class="material-icons custom-text text-darken-1">mode_edit</i></a>
 
 										<!-- DELETE COURSE BUTTON -->
-										<a title="Delete Course" class="btn-floating btn-large waves-effect waves-light white" ng-click="Delete_Course(course.id)"><i class="material-icons custom-text text-darken-1">delete</i></a>
+										<a title="Delete Course" class="btn-floating btn-large waves-effect waves-light white" ng-click="Modal_Delete_Course(course.id)"><i class="material-icons custom-text text-darken-1">delete</i></a>
 										<!-- COURSE NAME -->
 										<h5>{{course.code}}</h5>
 								  </div>
@@ -103,7 +103,7 @@
 												<!-- LECTURE NAME -->
 												<a ng-href="#/class"><i class="material-icons custom-text text-darken-1" >star_rate</i>{{lecture.name}}</a>
 												<!-- DELETE LECTURE BUTTON -->
-												<i class="material-icons custom-text text-darken-1 right" style="cursor:default" ng-click="Delete_Selected_Lecture(course.code, lecture.name)">clear</i>
+												<i class="material-icons custom-text text-darken-1 right" style="cursor:default" ng-click="Modal_Delete_Selected_Lecture(course.code, lecture.name)">clear</i>
 											</div>
 										</li>
 									</ul>
@@ -235,6 +235,38 @@
 						</form>
 				  </div>
 				</div>
+
+					<!-- DELETE COURSE MODAL -->
+					<div id="delete-modal-course" class="modal">
+						<div class="container">
+							<div class="modal-content">
+								<h4>DELETE COURSE</h4>
+								<p>Are you sure you want to delete course?</p>
+							</div>
+							<div class="modal-footer">
+								<!-- CANCEL BUTTON -->
+								<a class="modal-action modal-close waves-effect waves-green btn btn-default">Cancel</a>
+								<!-- DELETE COURSE BUTTON -->
+								<a ng-click="Delete_Course()" class="waves-effect waves-green red lighten-1 btn btn-default modal-close">Delete Course</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- DELETE COURSE LECTURE MODAL -->
+					<div id="delete-modal-lecture" class="modal">
+						<div class="container">
+							<div class="modal-content">
+								<h4>DELETE LECTURE SECTION</h4>
+								<p>Are you sure you want to delete lecture section?</p>
+							</div>
+							<div class="modal-footer">
+								<!-- CANCEL BUTTON -->
+								<a class="modal-action modal-close waves-effect waves-green btn btn-default">Cancel</a>
+								<!-- DELETE COURSE LECTURE BUTTON -->
+								<a ng-click="Delete_Selected_Lecture()" class="waves-effect waves-green red lighten-1 btn btn-default modal-close">Delete Lecture Section</a>
+							</div>
+						</div>
+					</div>
 
 				<!-- SETTINGS -->
 				<div id="settings">
