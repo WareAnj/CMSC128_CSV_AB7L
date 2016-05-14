@@ -10,12 +10,6 @@ const config = {
 
     COOKIE_SECRET: 'R3G1nYzR',
 
-    CORS:  {
-        allowed_headers: 'Access-Token, X-Requested-With, Content-Type, Accept',
-        allowed_origins: '*',
-        allowed_methods: 'GET, POST, PUT, OPTIONS, DELETE'
-    },
-
     LOGS_DIR: path.normalize(__dirname + '/../logs'),
 
     use: (env) => {

@@ -41,21 +41,18 @@ function start () {
         store: store,
         secret: config.COOKIE_SECRET,
         resave: false,
-        //rolling: true,
         saveUninitialized: false,
         cookie: {
             path: '/',
             httpOnly: true,
             secure: false,
             maxAge: 1000 * 60 * 60 * 2     // 2 hours expiration
-            //domain: config.COOKIE_DOMAIN
         }
     }));
 
     // configure express app
     app.use(helmet());
     app.set('case sensitive routing', true);
-    //app.set('x-powered-by', false);
     app.set('trust proxy', 1)
 
     winston.log('verbose', 'Binding 3rd-party middlewares');
@@ -68,9 +65,7 @@ function start () {
 
 
     winston.log('verbose', 'Binding custom middlewares');
-    //app.use(require('anytv-node-cors')(config.CORS));
     app.use(require(__dirname + '/config/router')(express.Router()));
-    //app.use(require('anytv-node-error-handler')(winston));
 
     winston.log('info', 'Server listening on port', config.PORT);
 
