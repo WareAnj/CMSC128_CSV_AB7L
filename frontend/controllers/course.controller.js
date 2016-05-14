@@ -157,6 +157,8 @@
     }
 
     $scope.Edit_Course = function() {
+      if(!(codechged||titlchged||descchged))
+      	return;
       $scope.course.course_code = document.querySelector('#new-code-input').value;
       $scope.course.course_title = document.querySelector('#new-title-input').value;
       $scope.course.course_description = document.querySelector('#new-desc-input').value;
@@ -190,6 +192,24 @@
             }
           });
     }
+
+	$scope.check_course_code_changes = function(){
+		var ncode = document.querySelector("#new-code-input").value;
+		if(ocode===ncode) codechged = false;
+		else codechged = true;
+	}
+
+	$scope.check_course_title_changes = function(){
+		var ntitl = document.querySelector("#new-title-input").value;
+		if(otitl===ntitl) titlchged = false;
+		else titlchged = true;
+	}
+
+	$scope.check_course_description_changes = function(){
+		var ndesc = document.querySelector("#new-desc-input").value;
+		if(odesc===ndesc) descchged = false;
+		else descchged = true;
+	}
 
     $scope.Delete_Course = function(id) {
     if (confirm("Are you sure you want to delete this course?")) {
