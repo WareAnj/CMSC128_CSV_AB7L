@@ -155,7 +155,7 @@
       				<div class="col s6 m12 l6">
 						<!-- DEGREE -->
 						<div class="input-field">
-          					<input id="degree-input" name="degree-input" placeholder="Degree" type="text" ng-model="newLabStudent.degree" class="validate" ng-keyup="check_degree_change_add()">
+          					<input id="degree-input" name="degree-input" placeholder="Degree; BSCA, BSCS, BSBIO etc." type="text" maxlength=8 ng-model="newLabStudent.degree" class="validate" ng-keyup="check_degree_change_add()">
           					<label for="degree-input" class="active">
           					Degree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           					</label>
@@ -259,7 +259,7 @@
 	    			<div class="row">
 							<!-- DEGREE -->
 	    				<div class="input-field col s4">
-		    				<input id="student-degree" type="text" class="validate" value="{{student.degree}}" ng-keyup="check_degree_change_edit()">
+		    				<input id="student-degree" type="text" class="validate" value="{{student.degree}}" maxlength=8 ng-keyup="check_degree_change_edit()">
 								<label for="student-degree" class="active"> Degree </label>
 							</div>
 							<!-- CLASSIFICATION -->
