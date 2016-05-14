@@ -55,6 +55,12 @@
 
          function randomizeStudents(count) {
             var varlab = $scope.labSections[count];
+
+            if($scope.counts[varlab] < 0){
+              Materialize.toast("Negative Numbers Are Not Allowed", 1000);
+              return;
+            }
+
             randdata = {
               "user_id":$scope.user_id,
               "course_code":$scope.course_code,
@@ -80,7 +86,7 @@
       }
 
       //Whole section
-      if($scope.counts.whole != 0){
+      if($scope.counts.whole > 0){
           randdata = {
           "user_id":$scope.user_id,
           "course_code":$scope.course_code,

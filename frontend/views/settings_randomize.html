@@ -97,9 +97,14 @@
 
 		<script type="text/javascript">
 				document.getElementById('whole').onchange = function(){
-					var wholevalue = document.getElementById('whole').value;		//value of whole lab					
+					var wholevalue = document.getElementById('whole').value;		//value of whole lab\
 
-					if(wholevalue != 0){
+					if (wholevalue < 0){
+						Materialize.toast("Negative Numbers Are Not Allowed", 1000);
+						return;
+					}					
+
+					if(wholevalue > 0){
 						$(".lsections").attr("disabled",true);
 						$("#randomizebutton").attr("disabled",false);
 						$("#randomizebutton").attr("class","btn waves-effect waves-teal");
@@ -107,16 +112,29 @@
 						CheckValue();
 						$(".lsections").attr("disabled",false);
 					}
-
 				}
+
 
 				function CheckValue(){
 					var labs = document.getElementsByClassName("lsections");		//value per lab
 					var randomizeTrue = false;										//boolean for activating button
+					var wholevalue = document.getElementById('whole').value;		//value of whole lab
+
+					if (wholevalue < 0){
+						Materialize.toast("Negative Numbers Are Not Allowed", 1000);
+						return;
+					}
 
 					for(var i = 0; i < labs.length; i++){
-						if(labs[i].value != 0)
+						if(labs[i].value > 0)
 							randomizeTrue = true;
+						if(labs[i].value < 0){
+							$("#randomizebutton").attr("disabled",true);
+							$("#randomizebutton").attr("class","btn waves-effect waves-teal disabled");
+							Materialize.toast("Negative Numbers Are Not Allowed", 1000);
+							randomizeTrue = false;
+							return;
+						}
 					}
 
 					if(randomizeTrue){
