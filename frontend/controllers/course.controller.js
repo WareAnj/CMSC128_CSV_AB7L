@@ -109,7 +109,6 @@
     }
 
     $scope.Add_Course = function() {
-    	console.log($scope.newCourse);
       CourseService.Add_Course($scope.newCourse)
       .then(function(data) {
         $scope.newCourse.course_code = "";
@@ -558,15 +557,15 @@
   	  }
   	  else{
 		  if(!(textRegex.test(course_code))){
+				$("#ccodeAddLabel").attr('data-error','Invalid Course Code format!');
 				if(!($("#code-input").hasClass('invalid'))){
-					$("#ccodeAddLabel").attr('data-error','Invalid Course Code format!');
 					$("#code-input").addClass('invalid');
 				}
 				c_code_add = false;
 		  }
 		  else if(course_code.length>16){
+			$("#ccodeAddLabel").attr('data-error','Course code cannot be greater than 16 characters!');
 			if(!($("#code-input").hasClass('invalid'))){
-				$("#ccodeAddLabel").attr('data-error','Course code cannot be greater than 16 characters!');
 				$("#code-input").addClass('invalid');
 			}
 			c_code_add = false;
@@ -627,8 +626,8 @@
   			"course/check_course_code/", $scope.newCourse
   			).then(function(response){
   				if (response.data){
+  					$("#ccodeAddLabel").attr('data-error','Course Code already exists!');
   					if(!($("#code-input").hasClass('invalid'))){
-  						$("#ccodeAddLabel").attr('data-error','Course Code already exists!');
   						$("#code-input").addClass('invalid');
   					}
   					c_code_add = false;
@@ -665,7 +664,14 @@
   	  }
   	  else{
   	  	if(!(textRegex.test(course_code))){
-  			$("#crs-input-label").attr('data-error','Invalid Course Code format!')
+  			$("#crs-input-label").attr('data-error','Invalid Course Code format!');
+  			if(!($("#new-code-input").hasClass('invalid'))){
+  				$("#new-code-input").addClass('invalid');
+  			}
+  			c_code_edit = false;
+  		}
+  		else if (course_code.length>16){
+  			$("#crs-input-label").attr('data-error','Course code cannot be greater than 16 characters!!');
   			if(!($("#new-code-input").hasClass('invalid'))){
   				$("#new-code-input").addClass('invalid');
   			}
@@ -675,6 +681,7 @@
   			if($("#new-code-input").hasClass('invalid')){
   				$("#new-code-input").removeClass('invalid');
   			}
+  			c_code_edit = true;
   		}
   	  }
 
@@ -704,7 +711,6 @@
 			$("#new-desc-input").removeClass('invalid');
 		}
         c_description_edit = false;
-
       }
       else {
         if (!(textRegex.test(course_description))){
@@ -720,23 +726,34 @@
             c_description_edit = true;
         }
       }
-
-	  if(!c_code_edit){
-		return;
+	  
+	  if(!(c_code_edit && c_title_edit && c_description_edit)){
+	  	if(!($("#submit-button-edit").attr('disabled'))){
+        	$("#submit-button-edit").attr('disabled', 'disabled');
+        	$("#submit-button-edit").addClass('disabled');
+        }
+        return;
 	  }
-
+	  
+	  if(c_code_edit && c_title_edit && c_description_edit){
+        if($("#submit-button-edit").attr('disabled')){
+        	$("#submit-button-edit").removeAttr('disabled', 'disabled');
+        	$("#submit-button-edit").removeClass('disabled');
+        }
+	  }
   		$http.post(
   			"course/check_course_code/", $scope.course
   			).then(function(response){
   				if (response.data){
+  					$("#crs-input-label").attr('data-error','Course Code already exists!');
   					if(!($("#new-code-input").hasClass('invalid'))){
-  						$("#crs-input-label").attr('data-error','Course Code already exists!')
   						$("#new-code-input").addClass('invalid');
+  						c_code_edit = false;
   					}
             		if((course_code===ocode)&&($("#new-code-input").hasClass('invalid'))){
               			$("#new-code-input").removeClass('invalid');
+              			c_code_edit = true;
             		}
-  					c_code_edit = false;
           		}
           		else{
   					if($("#new-code-input").hasClass('invalid')){
@@ -745,8 +762,18 @@
         			c_code_edit = true;
       		  	}
 
-          		if(c_code_edit && c_title_edit && c_description_edit) $("#submit-button-edit").removeAttr('disabled');
-          		else $("#submit-button-edit").attr('disabled', 'disabled');
+          		if(c_code_edit && c_title_edit && c_description_edit){
+          			if($("#submit-button-edit").attr('disabled')){
+						$("#submit-button-edit").removeAttr('disabled', 'disabled');
+						$("#submit-button-edit").removeClass('disabled');
+					}
+          		}
+          		else{
+          			if(!($("#submit-button-edit").attr('disabled'))){
+						$("#submit-button-edit").attr('disabled', 'disabled');
+						$("#submit-button-edit").addClass('disabled');
+					}
+          		}
         	}
   		);
   	}
