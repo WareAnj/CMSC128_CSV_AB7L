@@ -247,7 +247,7 @@
         'classification': sClassification,
         'college' : sCollege
       });
-      SectionService.Update_Student(student_id, $scope.newStudent[0])
+      SectionService.Update_Student(student_id, $scope.newStudent[$scope.newStudent.length - 1])
       .then(function(data){
 
         $scope.newStudent.given_name = "";
@@ -570,6 +570,12 @@
             let inputrad= [];
             let inputstudnumlist = [];
 
+            let nameRegex = new RegExp("^[A-Za-z]*[' ']*[A-Za-z]+$");
+            let stdNumRegex = new RegExp("^(([1][9][0-9][0-9])|([2][0-9][0-9][0-9]))\-[0-9]{5}$");
+            let degreeRegex = new RegExp("^[A-Za-z][A-Za-z\s]+$");
+            let collegeRegex = new RegExp("^(CA|CAS|CEAT|CFNR|CHE|CEM|CDC|CVM)$");
+            let classRegex = new RegExp("^(Freshman|Sophomore|Junior|Senior)$");
+
             for(let j = 0; j < csvval.length; j++){
               let csvvalue=csvval[j].split("\\n");
               for(let i = 0; i<csvvalue.length;i++) {
@@ -579,13 +585,18 @@
             }
 
             let objArray = [];
-            for (let i = 1; i < inputrad.length - 1; i++) {
-              objArray[i - 1] = {};
+            for (let i = 0; i < inputrad.length - 1; i++) {
+              objArray[i] = {};
               for (let k = 0, y = 0; k < inputrad[0].length && k < inputrad[i].length; k++, y++) {
                 let key;
-                if(y == 8) y = 0;
-                else if(y == 0){
+                if(y == 0){
                   key = "student_number";
+                  if(!stdNumRegex.test(inputrad[i][k])) {
+                    Materialize.toast("Error: Please check the format of student number!It should be YYYY-NNNN", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
+
                   if(inputstudnumlist.indexOf(inputrad[i][k]) == -1){
                     inputstudnumlist.push(inputrad[i][k]);
                   } else {
@@ -601,16 +612,51 @@
                   }
                 } else if(y == 1) {
                   key = "given_name";
+
+                  if(!nameRegex.test(inputrad[i][k])) {
+                    Materialize.toast("Error: Please check the format of given names!", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
                 } else if(y == 2) {
                   key = "middle_name";
+
+                  if(!nameRegex.test(inputrad[i][k])) {
+                    Materialize.toast("Error: Please check the format of middle names!", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
                 } else if(y == 3) {
                   key = "last_name";
+
+                  if(!nameRegex.test(inputrad[i][k])) {
+                    Materialize.toast("Error: Please check the format of last names!", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
                 } else if(y == 4) {
                   key = "degree";
+
+                  if(!degreeRegex.test(inputrad[i][k])) {
+                    Materialize.toast("Error: Please check the format of degrees!", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
                 } else if(y == 5) {
                   key = "classification";
+
+                  if(!classRegex.test(inputrad[i][k])) {
+                    Materialize.toast("Error: Please check the classification!", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
                 } else if(y == 6) {
                   key = "college";
+                  if(!collegeRegex.test(inputrad[i][k])) {
+                    Materialize.toast("Error: Please check the colleges!", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
                 } else if(y == 7) {
                   key = "code";
                   if(!labSectionRegex.test(inputrad[i][k])){
@@ -618,9 +664,11 @@
                     document.getElementById('file').value = '';
                     return;
                   }
+
+                  y = 0;
                 }
 
-                objArray[i - 1][key] = inputrad[i][k]
+                objArray[i][key] = inputrad[i][k]
               }
             }
 
