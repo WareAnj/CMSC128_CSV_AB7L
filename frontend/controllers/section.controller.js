@@ -546,8 +546,16 @@
     // http://jsfiddle.net/sturtevant/AZFvQ/
     $scope.Upload_CSV = function(){
       $("#file").change(function(e) {
+
+        let studnumlist = [];
+
+        for(let i = 0; i < $scope.student_info.length; i++){
+          studnumlist.push($scope.student_info[i].student_number);
+        }
+
         let ext = $("#file").val().split(".").pop().toLowerCase();
 
+        // CHECKER FOR FILE EXTENSION
         if($.inArray(ext, ['csv']) == -1) {
             Materialize.toast("Only .csv files are allowed", 3000);
             document.getElementById('file').value = '';
@@ -555,11 +563,12 @@
         }
 
         if (e.target.files != undefined) {
-          let reader = new FileReader();
+          var reader = new FileReader();
 
           reader.onload = function(e) {
             let csvval=e.target.result.split("\n");
             let inputrad= [];
+            let inputstudnumlist = [];
 
             for(let j = 0; j < csvval.length; j++){
               let csvvalue=csvval[j].split("\\n");
@@ -572,8 +581,45 @@
             let objArray = [];
             for (let i = 1; i < inputrad.length - 1; i++) {
               objArray[i - 1] = {};
-              for (let k = 0; k < inputrad[0].length && k < inputrad[i].length; k++) {
-                let key = inputrad[0][k];
+              for (let k = 0, y = 0; k < inputrad[0].length && k < inputrad[i].length; k++, y++) {
+                let key;
+                if(y == 8) y = 0;
+                else if(y == 0){
+                  key = "student_number";
+                  if(inputstudnumlist.indexOf(inputrad[i][k]) == -1){
+                    inputstudnumlist.push(inputrad[i][k]);
+                  } else {
+                    Materialize.toast("Error: Please check the student numbers! (Duplicate student numbers in csv)", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
+
+                  if(studnumlist.indexOf(inputrad[i][k]) != -1){
+                    Materialize.toast("Error: Please check the student numbers! (Already exists in the list)", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
+                } else if(y == 1) {
+                  key = "given_name";
+                } else if(y == 2) {
+                  key = "middle_name";
+                } else if(y == 3) {
+                  key = "last_name";
+                } else if(y == 4) {
+                  key = "degree";
+                } else if(y == 5) {
+                  key = "classification";
+                } else if(y == 6) {
+                  key = "college";
+                } else if(y == 7) {
+                  key = "code";
+                  if(!labSectionRegex.test(inputrad[i][k])){
+                    Materialize.toast("Error: Please check the lab section names!", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
+                }
+
                 objArray[i - 1][key] = inputrad[i][k]
               }
             }
@@ -598,12 +644,21 @@
                  .then(function(data){
 
                  });
+                if( j == list_of_students.length - 1){
+                  Materialize.toast("Successfully added students in the class list", 3000);
+                  $('#file').val('');
+                }
              }
+
 
              SectionService.Get_Class_List(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
                .then(function(data) {
                  for(let i = 0; i < data.length; i++) {
                    $scope.student_info.push(data[i]);
+                 }
+                 if(data.length != 0){
+                    $('#rand-button').removeClass('disabled');
+                    $('#rand-button').attr('disabled', false);
                  }
                });
           }
