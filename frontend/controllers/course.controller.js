@@ -39,7 +39,8 @@
     let clchanged = false;
     let colorchanged = false;
     let namep = new RegExp(/^[A-Za-z][A-Za-z\-\s]+$/);
-    let textRegex = new RegExp(/^[A-Za-z0-9\s]+$/);
+    let textRegex = new RegExp(/^[A-Za-z][A-Za-z0-9\s]*$/);
+    let descRegex = new RegExp(/^[A-Za-z][A-Za-z0-9\s\,\.]*[\.]*$/);
 
     $scope.Get_User = function() {
       CourseService.Get_User()
@@ -615,7 +616,7 @@
         c_description_add = false;
 
       } else {
-        if (!(textRegex.test(course_description))){
+        if (!(descRegex.test(course_description))){
           if(!($("#desc-input").hasClass('invalid'))){
   	  			$("#desc-input").addClass('invalid');
   	  	  }
@@ -721,7 +722,7 @@
         c_description_edit = false;
       }
       else {
-        if (!(textRegex.test(course_description))){
+        if (!(descRegex.test(course_description))){
           if(!($("#new-desc-input").hasClass('invalid'))){
 				$("#new-desc-input").addClass('invalid');
 		  }
