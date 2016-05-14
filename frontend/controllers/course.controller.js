@@ -722,7 +722,7 @@
         c_description_edit = false;
       }
       else {
-        if (!(textRegex.test(course_description))){
+        if (!(descRegex.test(course_description))){
           if(!($("#new-desc-input").hasClass('invalid'))){
 				$("#new-desc-input").addClass('invalid');
 		  }
