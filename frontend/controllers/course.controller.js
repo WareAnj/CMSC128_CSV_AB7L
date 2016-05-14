@@ -211,30 +211,36 @@
 		else descchged = true;
 	}
 
-    $scope.Delete_Course = function(id) {
-    if (confirm("Are you sure you want to delete this course?")) {
-        CourseService.Delete_Course(id)
-          .then(function(data){ });
+  $scope.Modal_Delete_Course = function(id) {
+    localStorage.setItem("course_id", id);
+    $('#delete-modal-course').openModal();
+  }
 
-          CourseService.Get_Course(user_id)
-            .then(function(data) {
-              $scope.faculty_user_courses = [];
-              for(let i = 0; i < data.length; i++) {
-                CourseService.Get_Lecture(data[i].id)
-                  .then(function(data2) {
-                      $scope.faculty_user_courses.push({
-                        'code': data[i].code,
-                        'course_id': data[i].course_id,
-                        'description': data[i].description,
-                        'faculty_user_id': data[i].faculty_user_id,
-                        'id': data[i].id,
-                        'title': data[i].title,
-                        'lecture' : data2
-                      });
+  $scope.Delete_Course = function() {
+    let id = localStorage.getItem("course_id");
+    CourseService.Delete_Course(id)
+      .then(function(data){
+        localStorage.setItem("course_id", "");
+      });
+
+      CourseService.Get_Course(user_id)
+        .then(function(data) {
+          $scope.faculty_user_courses = [];
+          for(let i = 0; i < data.length; i++) {
+            CourseService.Get_Lecture(data[i].id)
+              .then(function(data2) {
+                  $scope.faculty_user_courses.push({
+                    'code': data[i].code,
+                    'course_id': data[i].course_id,
+                    'description': data[i].description,
+                    'faculty_user_id': data[i].faculty_user_id,
+                    'id': data[i].id,
+                    'title': data[i].title,
+                    'lecture' : data2
                   });
-              }
-            });
-      }
+              });
+          }
+        });
     }
 
     $scope.Add_Lecture = function(){
@@ -358,7 +364,7 @@
 			var ngname = document.querySelector('#fname-input').value;
 			var nmname = document.querySelector('#mname-input').value;
 			var nlname = document.querySelector('#lname-input').value;
-			
+
 			if (ngname===""){
 				Materialize.toast('Given Name can not be blank!', 3000, 'rounded');
 				err = true;
@@ -546,7 +552,7 @@
   	  let course_code = document.querySelector('#code-input').value;
       let course_title = document.querySelector('#title-input').value;
       let course_description = document.querySelector('#desc-input').value;
-      
+
       if (course_code===""){
   			if($("#code-input").hasClass('invalid')){
   				$("#code-input").removeClass('invalid');
@@ -569,7 +575,7 @@
 				$("#code-input").addClass('invalid');
 			}
 			c_code_add = false;
-		  }	  
+		  }
 		  else{
 		  	if($("#code-input").hasClass('invalid')){
   	  			$("#code-input").removeClass('invalid');
@@ -645,7 +651,7 @@
 			  }else{
 				$("#submit-button-add").attr('disabled', 'disabled');
 				$("#submit-button-add").addClass('disabled');
-			  } 
+			  }
         	}
   		);
   	}
@@ -655,7 +661,7 @@
       let course_code = document.querySelector('#new-code-input').value;
       let course_title = document.querySelector('#new-title-input').value;
       let course_description = document.querySelector('#new-desc-input').value;
-      
+
       if (course_code===""){
   			if($("#new-code-input").hasClass('invalid')){
   				$("#new-code-input").removeClass('invalid');
@@ -726,7 +732,7 @@
             c_description_edit = true;
         }
       }
-	  
+
 	  if(!(c_code_edit && c_title_edit && c_description_edit)){
 	  	if(!($("#submit-button-edit").attr('disabled'))){
         	$("#submit-button-edit").attr('disabled', 'disabled');
@@ -734,7 +740,7 @@
         }
         return;
 	  }
-	  
+
 	  if(c_code_edit && c_title_edit && c_description_edit){
         if($("#submit-button-edit").attr('disabled')){
         	$("#submit-button-edit").removeAttr('disabled', 'disabled');

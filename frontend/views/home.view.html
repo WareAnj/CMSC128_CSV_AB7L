@@ -92,7 +92,7 @@
 										<a title="Update Course Details" class="btn-floating btn-large waves-effect waves-light white modal-trigger" ng-click="openModal(course)"><i class="material-icons custom-text text-darken-1">mode_edit</i></a>
 
 										<!-- DELETE COURSE BUTTON -->
-										<a title="Delete Course" class="btn-floating btn-large waves-effect waves-light white" ng-click="Delete_Course(course.id)"><i class="material-icons custom-text text-darken-1">delete</i></a>
+										<a title="Delete Course" class="btn-floating btn-large waves-effect waves-light white" ng-click="Modal_Delete_Course(course.id)"><i class="material-icons custom-text text-darken-1">delete</i></a>
 										<!-- COURSE NAME -->
 										<h5>{{course.code}}</h5>
 								  </div>
@@ -235,6 +235,22 @@
 						</form>
 				  </div>
 				</div>
+
+					<!-- DELETE COURSE MODAL -->
+					<div id="delete-modal-course" class="modal">
+						<div class="container">
+							<div class="modal-content">
+								<h4>DELETE COURSE</h4>
+								<p>Are you sure you want to delete course?</p>
+							</div>
+							<div class="modal-footer">
+								<!-- CANCEL BUTTON -->
+								<a class="modal-action modal-close waves-effect waves-green btn btn-default">Cancel</a>
+								<!-- DELETE COURSE BUTTON -->
+								<a ng-click="Delete_Course()" class="waves-effect waves-green red lighten-1 btn btn-default modal-close">Delete Course</a>
+							</div>
+						</div>
+					</div>
 
 				<!-- SETTINGS -->
 				<div id="settings">
