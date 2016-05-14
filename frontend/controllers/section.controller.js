@@ -42,7 +42,7 @@
     let section_name;
     let section_code;
     $scope.Get_Lab_Sections = function() {
-    	
+
       $('#student-classification').material_select();
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
          .then(function(data) {
@@ -307,6 +307,7 @@
       var new_name = document.querySelector('#fname-input').value;
       if(new_name===""){
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
         gname_add = false;
       } else{
 
@@ -314,8 +315,10 @@
       }
       if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
         $("#submit-button-add").removeClass("disabled");
+        $("#submit-button-add").attr("disabled", false);
       } else{
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
       }
     }
 
@@ -323,6 +326,7 @@
       var new_name = document.querySelector('#mname-input').value;
       if(new_name===""){
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
         mname_add = false;
       } else{
 
@@ -330,8 +334,10 @@
       }
       if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
         $("#submit-button-add").removeClass("disabled");
+        $("#submit-button-add").attr("disabled", false);
       } else{
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
       }
     }
 
@@ -339,6 +345,7 @@
       var new_name = document.querySelector('#lname-input').value;
       if(new_name===""){
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
         lname_add = false;
       } else{
 
@@ -346,8 +353,10 @@
       }
       if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
         $("#submit-button-add").removeClass("disabled");
+        $("#submit-button-add").attr("disabled", false);
       } else{
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
       }
     }
 
@@ -355,6 +364,7 @@
       var new_degree = document.querySelector('#degree-input').value;
       if(new_degree===""){
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
         degree_add = false;
       } else{
 
@@ -362,8 +372,10 @@
       }
       if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
         $("#submit-button-add").removeClass("disabled");
+        $("#submit-button-add").attr("disabled", false);
       } else{
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
       }
     }
 
@@ -371,14 +383,17 @@
       var new_classification = document.querySelector('#classification-input').value;
       if(new_classification===""){
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
         classification_add = false;
       } else{
         classification_add = true;
       }
       if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
         $("#submit-button-add").removeClass("disabled");
+        $("#submit-button-add").attr("disabled", false);
       } else{
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
       }
     }
 
@@ -391,6 +406,7 @@
   				$("#stdnuminput").removeClass('invalid');
   			}
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
         student_number_add = false;
   			return;
   		}
@@ -401,7 +417,11 @@
 	  		$("#stdnuminput").addClass('invalid');
 	  	}
 	  	return;
-	  }
+	  } else{
+      if($("#stdnuminput").hasClass('invalid')) {
+        $("#stdnuminput").removeClass('invalid');
+      }
+    }
 
       $http.get(
   			         "faculty_user/check_student_number?student_number=" + new_student_number + "&course_id=" + localStorage.getItem("course_id")
@@ -411,6 +431,7 @@
 					          	  $("#snLabel").attr('data-error','Student number already used!');
 						          $("#stdnuminput").addClass('invalid');
                       $("#submit-button-add").addClass("disabled");
+                      $("#submit-button-add").attr("disabled", "disabled");
 					          }
   					        student_number_add = false;
           		    } else {
@@ -420,8 +441,10 @@
             		    student_number_add = true;
                     if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
                       $("#submit-button-add").removeClass("disabled");
+                      $("#submit-button-add").attr("disabled", false);
                     } else{
                       $("#submit-button-add").addClass("disabled");
+                      $("#submit-button-add").attr("disabled", "disabled");
                     }
           		   }
   			       }
@@ -432,14 +455,17 @@
       var new_college = document.querySelector('#college-input').value;
       if(new_college===""){
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
         college_add = false;
       } else{
         college_add = true;
       }
       if(gname_add && mname_add && lname_add && degree_add && classification_add && college_add && student_number_add){
         $("#submit-button-add").removeClass("disabled");
+        $("#submit-button-add").attr("disabled", false);
       } else{
         $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
       }
     }
 
@@ -481,7 +507,6 @@
     $scope.Add_Student_In_Lab_Section = function(){
       SectionService.Add_Student_In_Lab_Section(course_code, section_name, section_code, $scope.newLabStudent)
       .then(function(data){
-
         $scope.newLabStudent.given_name = "";
         $scope.newLabStudent.middle_name = "";
         $scope.newLabStudent.last_name = "";
@@ -489,6 +514,21 @@
         $scope.newLabStudent.degree = "";
         $scope.newLabStudent.classification = "";
         $scope.newLabStudent.college = "";
+        gname_add = false;
+        mname_add = false;
+        lname_add = false;
+        classification_add = false;
+        degree_add = false;
+        college_add = false;
+        student_number_add = false;
+        $('#classification-input').val('');
+        $('#classification-input').prop('selectedIndex',0);
+        $('#classification-input').material_select();
+        $('#college-input').val('');
+        $('#college-input').prop('selectedIndex',0);
+        $('#college-input').material_select();
+        $("#submit-button-add").addClass("disabled");
+        $("#submit-button-add").attr("disabled", "disabled");
       });
 
       SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
@@ -498,6 +538,7 @@
             $scope.student_per_lab.push(data[i]);
           }
        });
+
        Materialize.toast('Student Successfully Created!', 3000, 'rounded');
        $('#add-modal').closeModal();
     }
