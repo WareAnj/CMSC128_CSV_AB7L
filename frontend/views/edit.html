@@ -264,12 +264,30 @@
 							</div>
 							<!-- CLASSIFICATION -->
 							<div class="input-field col s4">
-			    				<input id="student-classification" type="text" class="validate" value="{{student.classification}}" ng-keyup="check_classification_change_edit()" placeholder="Freshman or Sophomore or Junior or Senior" pattern="(Freshman|Sophomore|Junior|Senior)">
+			    			<!-- <input id="student-classification" type="text" class="validate" value="{{student.classification}}" ng-keyup="check_classification_change_edit()" placeholder="Freshman or Sophomore or Junior or Senior" pattern="(Freshman|Sophomore|Junior|Senior)"> -->
+								<select id="student-classification">
+									<option value="{{student.classification}}" ng-selected="true">{{student.classification}}</option>
+									<option value="Freshman">Freshman</option>
+									<option value="Sophomore">Sophomore</option>
+									<option value="Junior">Junior</option>
+									<option value="Senior">Senior</option>
+								</select>
 								<label for="student-classification" class="active">Classification</label>
 							</div>
 							<!-- COLLEGE -->
 							<div class="input-field col s4">
-		    				<input id="student-college" type="text" class="validate" value="{{student.college}}" ng-keyup="check_college_change_edit()">
+		    				<!-- <input id="student-college" type="text" class="validate" value="{{student.college}}" ng-keyup="check_college_change_edit()"> -->
+								<select id="student-college">
+									<option value="{{student.college}}" ng-selected="true">{{student.college}}</option>
+									<option value="CA">CA</option>
+									<option value="CAS">CAS</option>
+									<option value="CEAT">CEAT</option>
+									<option value="CFNR">CFNR</option>
+									<option value="CHE">CHE</option>
+									<option value="CEM">CEM</option>
+									<option value="CDC">CDC</option>
+									<option value="CVM">CVM</option>
+								</select>
 								<label for="student-college" class="active"> College </label>
 							</div>
 	    			</div>
@@ -282,6 +300,8 @@
 	 </div>
 	</main>
 </div>
+
+<script type="text/javascript" src="../bower_components/Materialize/bin/materialize.js"></script>
 <link type="text/css" rel="stylesheet" href="../assets/stylesheets/edit.css">
 
 <!-- SCRIPTS -->
