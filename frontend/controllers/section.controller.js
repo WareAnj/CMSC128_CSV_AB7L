@@ -42,7 +42,7 @@
     let section_name;
     let section_code;
     $scope.Get_Lab_Sections = function() {
-    	
+
       $('#student-classification').material_select();
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
          .then(function(data) {
@@ -401,7 +401,11 @@
 	  		$("#stdnuminput").addClass('invalid');
 	  	}
 	  	return;
-	  }
+	  } else{
+      if($("#stdnuminput").hasClass('invalid')) {
+        $("#stdnuminput").removeClass('invalid');
+      }
+    }
 
       $http.get(
   			         "faculty_user/check_student_number?student_number=" + new_student_number + "&course_id=" + localStorage.getItem("course_id")
