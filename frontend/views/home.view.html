@@ -252,16 +252,16 @@
 										<div class="input-field">
 											<!-- GIVEN NAME -->
 											<div class="col s12 m12 l4">
-												<input placeholder="First Name" type="text" name="user-fname" id="fname-input" value="{{info.given_name}}" pattern="^[A-Za-z\-\s]+$" ng-keyup="check_gname_changes()"/>
+												<input placeholder="First Name" type="text" name="user-fname" id="fname-input" value="{{info.given_name}}" pattern="^[A-Za-z][A-Za-z\-\s]+$" ng-keyup="check_gname_changes()"/>
 												<label for="fname-input" class="active black-text"><i class="black-text material-icons left">info</i>Name</label>
 											</div>
 											<!-- MIDDLE NAME -->
 											<div class="col s12 m12 l4">
-												<input placeholder="Middle Name" type="text" name="user-mname" id="mname-input" value="{{info.middle_name}}" pattern="^[A-Za-z\-\s]+$" ng-keyup="check_mname_changes()"/>
+												<input placeholder="Middle Name" type="text" name="user-mname" id="mname-input" value="{{info.middle_name}}" pattern="^[A-Za-z][A-Za-z\-\s]+$" ng-keyup="check_mname_changes()"/>
 											</div>
 											<!-- LAST NAME -->
 											<div class="col s12 m12 l4">
-												<input placeholder="Last Name" type="text" name="user-lname" id="lname-input" value="{{info.last_name}}" pattern="^[A-Za-z\-\s]+$" ng-keyup="check_lname_changes()"/>
+												<input placeholder="Last Name" type="text" name="user-lname" id="lname-input" value="{{info.last_name}}" pattern="^[A-Za-z][A-Za-z\-\s]+$" ng-keyup="check_lname_changes()"/>
 											</div>
 										</div>
 									</div>
