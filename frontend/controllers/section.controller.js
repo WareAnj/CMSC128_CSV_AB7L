@@ -5,9 +5,9 @@
     .module('app')
     .controller('SectionCtrl', SectionCtrl);
 
-  SectionCtrl.$inject = ["$scope", "$location", "$http", "SectionService", "$route", "$filter"];
+  SectionCtrl.$inject = ["$scope", "$location", "$http", "SectionService", "$route", "$filter", "$rootScope"];
 
-  function SectionCtrl($scope, $location, $http, SectionService, $route, $filter) {
+  function SectionCtrl($scope, $location, $http, SectionService, $route, $filter, $rootScope) {
     $scope.section_info = [];
     $scope.lab_sections_info = [];
     $scope.student_info = [];
@@ -102,8 +102,18 @@
     $scope.Get_Class_List = function() {
       SectionService.Get_Class_List(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
         .then(function(data) {
-          for(let i = 0; i < data.length; i++) {
+          let i = 0;
+          for(i = 0; i < data.length; i++) {
             $scope.student_info.push(data[i]);
+          }
+          if(i == 0) {
+            $('#rand-button').addClass('disabled');
+            $('#rand-button').attr('disabled', 'disabled');
+          } else {
+            if(($("#rand-button").hasClass('disabled'))) {
+              $('#rand-button').removeClass('disabled');
+              $('#rand-button').attr('disabled', false);
+            }
           }
         });
 
@@ -188,6 +198,11 @@
       }
     }
 
+    $scope.Move_Randomize = function() {
+      if($scope.student_info.length != 0) {
+        $rootScope.redirect('/settings_randomize');
+      }
+    }
 
     $scope.Get_Student_Id = function(s_id, type){
       student_id = s_id;
@@ -370,7 +385,7 @@
     $scope.check_student_number_change_add = function(){
       var new_student_number = document.querySelector('#stdnuminput').value;
 	  var student_number_regex = new RegExp(/^(([1][9][0-9][0-9])|([2][0-9][0-9][0-9]))\-[0-9]{5}$/);
-	  
+
 	  if (new_student_number==="") {
   			if($("#stdnuminput").hasClass('invalid')) {
   				$("#stdnuminput").removeClass('invalid');
@@ -379,7 +394,7 @@
         student_number_add = false;
   			return;
   		}
-	  
+
 	  if(!(student_number_regex.test(new_student_number))){
 	  	$("#snLabel").attr('data-error','Student number format invalid! Use YYYY-NNNNN!');
 	  	if(!($("#stdnuminput").hasClass('invalid'))){
