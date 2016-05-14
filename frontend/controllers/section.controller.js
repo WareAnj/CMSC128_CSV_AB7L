@@ -514,6 +514,13 @@
         $scope.newLabStudent.degree = "";
         $scope.newLabStudent.classification = "";
         $scope.newLabStudent.college = "";
+        gname_add = false;
+        mname_add = false;
+        lname_add = false;
+        classification_add = false;
+        degree_add = false;
+        college_add = false;
+        student_number_add = false;
         $('#classification-input').val('');
         $('#classification-input').prop('selectedIndex',0);
         $('#classification-input').material_select();
