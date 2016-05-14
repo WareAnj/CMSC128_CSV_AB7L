@@ -47,7 +47,7 @@
        SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
          .then(function(data) {
           $scope.lab_sections_info = [];
-           for(var i = 0 ; i < data.length; i++){
+           for(let i = 0 ; i < data.length; i++){
              if(data[i].code != null){
                $scope.lab_sections_info.push({
                  'course_code': localStorage.getItem('course_code'),
@@ -75,7 +75,7 @@
         SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
           .then(function(data) {
            $scope.lab_sections_info = [];
-            for(var i = 0 ; i < data.length; i++){
+            for(let i = 0 ; i < data.length; i++){
               if(data[i].code != null){
                 $scope.lab_sections_info.push({
                   'course_code': localStorage.getItem('course_code'),
@@ -93,7 +93,7 @@
        SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
          .then(function(data) {
           $scope.student_per_lab = [];
-           for(var i = 0 ; i < data.length; i++){
+           for(let i = 0 ; i < data.length; i++){
              $scope.student_per_lab.push(data[i]);
            }
         });
@@ -129,14 +129,14 @@
     }
 
     $scope.order = function(predicate) {
-      var orderBy = $filter('orderBy');
+      let orderBy = $filter('orderBy');
       $scope.predicate = predicate;
       $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
       $scope.student_info = orderBy($scope.student_info, predicate, $scope.reverse);
     };
 
     $scope.order_lab = function(predicate) {
-      var orderBy = $filter('orderBy');
+      let orderBy = $filter('orderBy');
       $scope.predicate = predicate;
       $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
       $scope.student_per_lab = orderBy($scope.student_per_lab, predicate, $scope.reverse);
@@ -161,7 +161,7 @@
       SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
         .then(function(data) {
          $scope.student_per_lab = [];
-          for(var i = 0 ; i < data.length; i++){
+          for(let i = 0 ; i < data.length; i++){
             $scope.student_per_lab.push(data[i]);
           }
        });
@@ -178,7 +178,7 @@
       SectionService.Get_Lab_Sections(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
         .then(function(data) {
          $scope.lab_sections_info = [];
-          for(var i = 0 ; i < data.length; i++){
+          for(let i = 0 ; i < data.length; i++){
             if(data[i].code != null){
               $scope.lab_sections_info.push({
                 'course_code': localStorage.getItem('course_code'),
@@ -261,50 +261,50 @@
       SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
         .then(function(data) {
          $scope.student_per_lab = [];
-          for(var i = 0 ; i < data.length; i++){
+          for(let i = 0 ; i < data.length; i++){
             $scope.student_per_lab.push(data[i]);
           }
        });
     }
 
     $scope.check_given_name_change_edit = function(){
-      var new_name = document.querySelector('#student-firstname').value;
+      let new_name = document.querySelector('#student-firstname').value;
       if (old_student_given_name===new_name) gname=false;
   		else gname = true;
     }
 
     $scope.check_middle_name_change_edit = function(){
-      var new_name = document.querySelector('#student-middlename').value;
+      let new_name = document.querySelector('#student-middlename').value;
       if (old_student_middle_name===new_name) mname=false;
   		else mname = true;
     }
 
     $scope.check_last_name_change_edit = function(){
-      var new_name = document.querySelector('#student-lastname').value;
+      let new_name = document.querySelector('#student-lastname').value;
       if (old_student_last_name===new_name) lname=false;
   		else lname = true;
     }
 
     $scope.check_degree_change_edit = function(){
-      var new_degree = document.querySelector('#student-degree').value;
+      let new_degree = document.querySelector('#student-degree').value;
       if (old_student_degree===new_degree) degree=false;
   		else degree = true;
     }
 
     $scope.check_classification_change_edit = function(){
-      var new_classification = document.querySelector('#student-classification').value;
+      let new_classification = document.querySelector('#student-classification').value;
       if (old_student_classification===new_classification) classification=false;
   		else classification = true;
     }
 
     $scope.check_college_change_edit = function(){
-      var new_college = document.querySelector('#student-college').value;
+      let new_college = document.querySelector('#student-college').value;
       if (old_student_college===new_college) college=false;
   		else college = true;
     }
 
     $scope.check_given_name_change_add = function(){
-      var new_name = document.querySelector('#fname-input').value;
+      let new_name = document.querySelector('#fname-input').value;
       if(new_name===""){
         $("#submit-button-add").addClass("disabled");
         $("#submit-button-add").attr("disabled", "disabled");
@@ -323,7 +323,7 @@
     }
 
     $scope.check_middle_name_change_add = function(){
-      var new_name = document.querySelector('#mname-input').value;
+      let new_name = document.querySelector('#mname-input').value;
       if(new_name===""){
         $("#submit-button-add").addClass("disabled");
         $("#submit-button-add").attr("disabled", "disabled");
@@ -342,7 +342,7 @@
     }
 
     $scope.check_last_name_change_add = function(){
-      var new_name = document.querySelector('#lname-input').value;
+      let new_name = document.querySelector('#lname-input').value;
       if(new_name===""){
         $("#submit-button-add").addClass("disabled");
         $("#submit-button-add").attr("disabled", "disabled");
@@ -361,7 +361,7 @@
     }
 
     $scope.check_degree_change_add = function(){
-      var new_degree = document.querySelector('#degree-input').value;
+      let new_degree = document.querySelector('#degree-input').value;
       if(new_degree===""){
         $("#submit-button-add").addClass("disabled");
         $("#submit-button-add").attr("disabled", "disabled");
@@ -380,7 +380,7 @@
     }
 
     $scope.check_classification_change_add = function(){
-      var new_classification = document.querySelector('#classification-input').value;
+      let new_classification = document.querySelector('#classification-input').value;
       if(new_classification===""){
         $("#submit-button-add").addClass("disabled");
         $("#submit-button-add").attr("disabled", "disabled");
@@ -398,8 +398,8 @@
     }
 
     $scope.check_student_number_change_add = function(){
-      var new_student_number = document.querySelector('#stdnuminput').value;
-	  var student_number_regex = new RegExp(/^(([1][9][0-9][0-9])|([2][0-9][0-9][0-9]))\-[0-9]{5}$/);
+      let new_student_number = document.querySelector('#stdnuminput').value;
+	  let student_number_regex = new RegExp(/^(([1][9][0-9][0-9])|([2][0-9][0-9][0-9]))\-[0-9]{5}$/);
 
 	  if (new_student_number==="") {
   			if($("#stdnuminput").hasClass('invalid')) {
@@ -452,7 +452,7 @@
     }
 
     $scope.check_college_change_add = function(){
-      var new_college = document.querySelector('#college-input').value;
+      let new_college = document.querySelector('#college-input').value;
       if(new_college===""){
         $("#submit-button-add").addClass("disabled");
         $("#submit-button-add").attr("disabled", "disabled");
@@ -534,7 +534,7 @@
       SectionService.Get_Student_Per_Lab_Section(localStorage.getItem("course_code"), localStorage.getItem("section_name"), localStorage.getItem("section_code"))
         .then(function(data) {
          $scope.student_per_lab = [];
-          for(var i = 0 ; i < data.length; i++){
+          for(let i = 0 ; i < data.length; i++){
             $scope.student_per_lab.push(data[i]);
           }
        });
@@ -546,8 +546,16 @@
     // http://jsfiddle.net/sturtevant/AZFvQ/
     $scope.Upload_CSV = function(){
       $("#file").change(function(e) {
-        var ext = $("#file").val().split(".").pop().toLowerCase();
 
+        let studnumlist = [];
+
+        for(let i = 0; i < $scope.student_info.length; i++){
+          studnumlist.push($scope.student_info[i].student_number);
+        }
+
+        let ext = $("#file").val().split(".").pop().toLowerCase();
+
+        // CHECKER FOR FILE EXTENSION
         if($.inArray(ext, ['csv']) == -1) {
             Materialize.toast("Only .csv files are allowed", 3000);
             document.getElementById('file').value = '';
@@ -558,31 +566,69 @@
           var reader = new FileReader();
 
           reader.onload = function(e) {
-            var csvval=e.target.result.split("\n");
-            var inputrad= [];
+            let csvval=e.target.result.split("\n");
+            let inputrad= [];
+            let inputstudnumlist = [];
 
-            for(var j = 0; j < csvval.length; j++){
-              var csvvalue=csvval[j].split("\\n");
-              for(var i = 0; i<csvvalue.length;i++) {
-                var temp = csvvalue[i].split(",");
+            for(let j = 0; j < csvval.length; j++){
+              let csvvalue=csvval[j].split("\\n");
+              for(let i = 0; i<csvvalue.length;i++) {
+                let temp = csvvalue[i].split(",");
                 inputrad.push(temp);
               }
             }
 
-            var objArray = [];
-            for (var i = 1; i < inputrad.length - 1; i++) {
+            let objArray = [];
+            for (let i = 1; i < inputrad.length - 1; i++) {
               objArray[i - 1] = {};
-              for (var k = 0; k < inputrad[0].length && k < inputrad[i].length; k++) {
-                var key = inputrad[0][k];
+              for (let k = 0, y = 0; k < inputrad[0].length && k < inputrad[i].length; k++, y++) {
+                let key;
+                if(y == 8) y = 0;
+                else if(y == 0){
+                  key = "student_number";
+                  if(inputstudnumlist.indexOf(inputrad[i][k]) == -1){
+                    inputstudnumlist.push(inputrad[i][k]);
+                  } else {
+                    Materialize.toast("Error: Please check the student numbers! (Duplicate student numbers in csv)", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
+
+                  if(studnumlist.indexOf(inputrad[i][k]) != -1){
+                    Materialize.toast("Error: Please check the student numbers! (Already exists in the list)", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
+                } else if(y == 1) {
+                  key = "given_name";
+                } else if(y == 2) {
+                  key = "middle_name";
+                } else if(y == 3) {
+                  key = "last_name";
+                } else if(y == 4) {
+                  key = "degree";
+                } else if(y == 5) {
+                  key = "classification";
+                } else if(y == 6) {
+                  key = "college";
+                } else if(y == 7) {
+                  key = "code";
+                  if(!labSectionRegex.test(inputrad[i][k])){
+                    Materialize.toast("Error: Please check the lab section names!", 3000);
+                    document.getElementById('file').value = '';
+                    return;
+                  }
+                }
+
                 objArray[i - 1][key] = inputrad[i][k]
               }
             }
 
-            var json = JSON.stringify(objArray);
-            var list_of_students = angular.fromJson(json);
-            var arroflab = [];
+            let json = JSON.stringify(objArray);
+            let list_of_students = angular.fromJson(json);
+            let arroflab = [];
 
-            for(var i = 0; i < list_of_students.length; i++){
+            for(let i = 0; i < list_of_students.length; i++){
               if(arroflab.indexOf(list_of_students[i].code) == -1){
                 arroflab.push(list_of_students[i].code);
 
@@ -593,17 +639,26 @@
               }
             }
 
-            for(var j = 0; j < list_of_students.length; j++){
+            for(let j = 0; j < list_of_students.length; j++){
                SectionService.Add_Student_In_Lab_Section(localStorage.getItem('course_code'), localStorage.getItem('section_name'), list_of_students[j].code, list_of_students[j])
                  .then(function(data){
 
                  });
+                if( j == list_of_students.length - 1){
+                  Materialize.toast("Successfully added students in the class list", 3000);
+                  $('#file').val('');
+                }
              }
+
 
              SectionService.Get_Class_List(localStorage.getItem("course_id"), localStorage.getItem("section_name"))
                .then(function(data) {
                  for(let i = 0; i < data.length; i++) {
                    $scope.student_info.push(data[i]);
+                 }
+                 if(data.length != 0){
+                    $('#rand-button').removeClass('disabled');
+                    $('#rand-button').attr('disabled', false);
                  }
                });
           }
