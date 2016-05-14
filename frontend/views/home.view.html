@@ -103,7 +103,7 @@
 												<!-- LECTURE NAME -->
 												<a ng-href="#/class"><i class="material-icons custom-text text-darken-1" >star_rate</i>{{lecture.name}}</a>
 												<!-- DELETE LECTURE BUTTON -->
-												<i class="material-icons custom-text text-darken-1 right" style="cursor:default" ng-click="Delete_Selected_Lecture(course.code, lecture.name)">clear</i>
+												<i class="material-icons custom-text text-darken-1 right" style="cursor:default" ng-click="Modal_Delete_Selected_Lecture(course.code, lecture.name)">clear</i>
 											</div>
 										</li>
 									</ul>
@@ -248,6 +248,22 @@
 								<a class="modal-action modal-close waves-effect waves-green btn btn-default">Cancel</a>
 								<!-- DELETE COURSE BUTTON -->
 								<a ng-click="Delete_Course()" class="waves-effect waves-green red lighten-1 btn btn-default modal-close">Delete Course</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- DELETE COURSE LECTURE MODAL -->
+					<div id="delete-modal-lecture" class="modal">
+						<div class="container">
+							<div class="modal-content">
+								<h4>DELETE LECTURE SECTION</h4>
+								<p>Are you sure you want to delete lecture section?</p>
+							</div>
+							<div class="modal-footer">
+								<!-- CANCEL BUTTON -->
+								<a class="modal-action modal-close waves-effect waves-green btn btn-default">Cancel</a>
+								<!-- DELETE COURSE LECTURE BUTTON -->
+								<a ng-click="Delete_Selected_Lecture()" class="waves-effect waves-green red lighten-1 btn btn-default modal-close">Delete Lecture Section</a>
 							</div>
 						</div>
 					</div>
