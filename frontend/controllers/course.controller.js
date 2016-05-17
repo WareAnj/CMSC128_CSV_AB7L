@@ -38,7 +38,7 @@
     let lnchanged = false;
     let clchanged = false;
     let colorchanged = false;
-    let namep = new RegExp(/^[A-Za-z][A-Za-z\-\s]+$/);
+    let namep = new RegExp(/^[A-Za-z][A-Za-z\-\s]*$/);
     let textRegex = new RegExp(/^[A-Za-z][A-Za-z0-9\s]*$/);
     let descRegex = new RegExp(/^[A-Za-z][A-Za-z0-9\s\,\.]*[\.]*$/);
 
