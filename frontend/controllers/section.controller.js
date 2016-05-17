@@ -215,7 +215,7 @@
             $(".past-data").html("");
           }
         });
-
+        
         SectionService.Get_Student(student_id)
         .then(function(data) {
           $scope.to_edit_student.push({
