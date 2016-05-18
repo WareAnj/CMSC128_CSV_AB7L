@@ -240,17 +240,17 @@
 					<div ng-repeat="student in to_edit_student" class="past-data">
 	    			<div class="row">
 							<!-- GIVEN NAME -->
-	    				<div class="input-field col s4">
+	    				<div class="input-field col s4" onkeyup="reinit()" onclick="reinit()">
 			    			<input id="student-firstname" type="text" class="validate" value="{{student.given_name}}" pattern="^[A-Za-z][A-Za-z\-\s]*$" ng-keyup="check_given_name_change_edit()" onkeyup="reinit()" onclick="reinit()">
 								<label for="student-firstname" class="active"> Given Name </label>
 							</div>
 							<!-- MIDDLE NAME -->
-							<div class="input-field col s4">
+							<div class="input-field col s4" onkeyup="reinit()" onclick="reinit()">
 		    				<input id="student-middlename" type="text" class="validate" value="{{student.middle_name}}" pattern="^[A-Za-z][A-Za-z\-\s]*$" ng-keyup="check_middle_name_change_edit()" onkeyup="reinit()" onclick="reinit()">
 								<label for="student-middlename" class="active"> Middle Name </label>
 							</div>
 							<!-- LAST NAME -->
-							<div class="input-field col s4">
+							<div class="input-field col s4" onkeyup="reinit()" onclick="reinit()">
 		    				<input id="student-lastname" type="text" class="validate" value="{{student.last_name}}" pattern="^[A-Za-z][A-Za-z\-\s]*$" ng-keyup="check_last_name_change_edit()" onkeyup="reinit()" onclick="reinit()">
 								<label for="student-lastname" class="active"> Last Name </label>
 							</div>
@@ -258,8 +258,8 @@
 
 	    			<div class="row">
 							<!-- DEGREE -->
-	    				<div class="input-field col s4">
-		    				<input id="student-degree" type="text" class="validate" value="{{student.degree}}" maxlength=8 ng-keyup="check_degree_change_edit()">
+	    				<div class="input-field col s4" onkeyup="reinit()" onclick="reinit()">
+		    				<input id="student-degree" type="text" class="validate" value="{{student.degree}}" maxlength=8 ng-keyup="check_degree_change_edit()" onkeyup="reinit()" onclick="reinit()">
 								<label for="student-degree" class="active"> Degree </label>
 							</div>
 							<!-- CLASSIFICATION -->
